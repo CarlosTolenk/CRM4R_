@@ -13,8 +13,6 @@ var config = {
 require('./server/config/express')(app, config);
 //Configurando las rutas de forma modular
 require('./server/config/routes')(app);
-//Configurando el socket de forma modular
-require('./server/config/socket')(server);
 
 //Inicializando el servidor por el puerto
 server.listen(PORT, function(){

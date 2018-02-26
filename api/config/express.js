@@ -2,11 +2,8 @@
 const logger = require('morgan');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
-const swig = require('swig');
 const express = require('express');
-const passport = require('./passport');
-const session = require('express-session');
-const redisStore = require('connect-redis')(session);
+
 
 
 module.exports = (app, config) => {

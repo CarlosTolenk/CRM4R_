@@ -3,7 +3,7 @@
 //Requiriendo passport para las rutas de login y multiparty para subida de archivos como recursos
 
 
-module.exports = function(app){	
+module.exports = function(app){
 
 
 
