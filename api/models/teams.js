@@ -9,7 +9,8 @@ let TeamSchema = new Schema({
     apellido: String,
     nombre_usuario: String,
     avatar: String,
-    password: String
+    password: String,
+    role: String
 });
 
 exports.module = models.model('Team', TeamSchema);

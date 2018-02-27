@@ -1,5 +1,5 @@
 {
-  "name": "CRM4R_",
+  "name": "CRM4R",
   "version": "1.0.0",
   "description": "Una aplicación para el manejo de clientes y préstamos por medio de tickets",
   "main": "server.js",
@@ -21,15 +21,12 @@
     "url": "https://github.com/CarlosTolenk/CRM4R_/issues"
   },
   "dependencies": {
-    "async": "^2.6.0",
     "body-parser": "^1.18.2",
-    "connect-multiparty": "^2.1.0",
-    "connect-redis": "^3.3.3",
     "cookie-parser": "^1.4.3",
     "express": "^4.16.2",
     "express-session": "^1.15.6",
     "lodash": "^4.17.5",
-    "mongoose": "^5.0.6",
+    "mongoose": "^5.0.7",
     "morgan": "^1.9.0"
   }
 }

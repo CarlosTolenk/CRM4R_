@@ -1,13 +1,18 @@
-//Requiriendo los controlladores de los modulos para las rutas
+//Poder accerder a las nuevas tecnologias de Javascript
+'use strict'
 
-//Requiriendo passport para las rutas de login y multiparty para subida de archivos como recursos
+//Requiriendo los controlladores de los modulos para las rutas
+const Team = require('../controllers/team');
+
 
 
 module.exports = function(app){
 
+	app.get('/', Team.saludo);
+	app.get('/home');
 
 
-	app.get('*', function(req, res) {
-	  	res.render('index');
-	});
+
+
+
 };

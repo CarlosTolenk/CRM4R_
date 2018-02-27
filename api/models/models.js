@@ -1,13 +1,12 @@
-//Requerir Mongoose para poder acceder a la coleccion
+//Requiriendo Mongoose para poder gestionar la base de datos MongoDB
 const mongoose = require('mongoose');
 
-	mongoose.connect('mongodb://localhost/CRM_4R');
-
-	let db = mongoose.connection;
-	db.on('error', console.error.bind(console, 'Error de conexión!'));
-	db.once('open', function callback() {
-		console.log('Base de datos CRM_4R en funcacionamiento');
+mongoose.Promise = global.Promise;
+mongoose.connect('mongodb://localhost/Crm4R')
+	.then(() =>{
+		console.log("Conectado a la base de datos");
+	}).catch((err) =>{
+		console.log("Error al conectarse a la base de datos");
 	});
-
 
 module.exports = mongoose;
