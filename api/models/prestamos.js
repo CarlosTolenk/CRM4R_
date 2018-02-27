@@ -16,4 +16,4 @@ let PrestamoSchema = new Schema({
     garantia: {type: Schema.Types.ObjectId, ref: 'Garantia'}
 });
 
-exports.module = models.model('Prestamo', PrestamoSchema);
+module.exports = models.model('Prestamo', PrestamoSchema);

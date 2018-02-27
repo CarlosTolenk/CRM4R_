@@ -10,4 +10,4 @@ let GarantiaSchema = new Schema({
     hipotecaria: String
   });
 
-expors.module = models.model('Garantia', GarantiaSchema);
+module.exports = models.model('Garantia', GarantiaSchema);

@@ -12,4 +12,4 @@ let CierreSchema = new Schema({
     mora: Number
 });
 
-exports.module = models.model('Cierre', CierreSchema);
+module.exports = models.model('Cierre', CierreSchema);

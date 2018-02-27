@@ -11,12 +11,11 @@ module.exports = (app, config) => {
 	app.engine('html', swig.renderFile);
 	app.set('view engine', 'html');
 	app.set('views', config.rootPath + '/api/views');
-	*/
-
 	//Quitando la cache para desarrollo
 	app.set('view cache', false);
+	*/
 
-
+//Middlewares
 	app.use(cookieParser());
 	app.use(logger('dev'));
 	// parse application/x-www-form-urlencoded
@@ -25,6 +24,7 @@ module.exports = (app, config) => {
 	app.use(bodyParser.json());
 
 
+	//Archivos estáticos 
 	app.use(express.static(config.rootPath + '/public'));
 
 };

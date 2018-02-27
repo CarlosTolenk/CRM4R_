@@ -8,4 +8,4 @@ let DataCreditoSchema = new Schema({
     texto: String
 });
 
-module.export = models.molde('DataCredito', DataCreditoSchema);
+module.exports = models.molde('DataCredito', DataCreditoSchema);

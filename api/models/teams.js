@@ -8,9 +8,11 @@ let TeamSchema = new Schema({
     nombre: String,
     apellido: String,
     nombre_usuario: String,
+    email: String,
     avatar: String,
     password: String,
     role: String
 });
 
-exports.module = models.model('Team', TeamSchema);
+module.exports = models.model('Team', TeamSchema);
+ 

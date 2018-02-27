@@ -14,4 +14,4 @@ let TicketsSchema = new Schema({
     fecha: Date
 });
 
-exports.module = models.model('Ticket', TicketsSchema);
+module.exports = models.model('Ticket', TicketsSchema);

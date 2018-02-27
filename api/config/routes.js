@@ -1,18 +1,16 @@
-//Poder accerder a las nuevas tecnologias de Javascript
+//Poder accerder a las nuevas tecnologias y carácteristicas de Javascript
 'use strict'
-
 //Requiriendo los controlladores de los modulos para las rutas
-const Team = require('../controllers/team');
+const TeamController = require('../controllers/team');
+
+
+	module.exports = function(app){
+		//Rutas del miembro del Team login y registro
+		app.post('/api/register', TeamController.saveTeam);
 
 
 
-module.exports = function(app){
-
-	app.get('/', Team.saludo);
-	app.get('/home');
 
 
 
-
-
-};
+	};

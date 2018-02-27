@@ -4,7 +4,7 @@ const express = require('express'),
 	app = express(),
 	server = require('http').createServer(app);
 const PORT = process.env.PORT || 3000;
-const Models = require('./api/models/models');
+
 
 //Se agregó
 var config = {
@@ -14,6 +14,8 @@ var config = {
 require('./api/config/express')(app, config);
 //Configurando las rutas de forma modular
 require('./api/config/routes')(app);
+//Configurando el acceso a la base de dato
+require('./api/models/models');
 
 //Inicializando el servidor por el puerto
 server.listen(PORT, () => {

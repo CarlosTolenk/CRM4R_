@@ -9,4 +9,4 @@ let ComentariosSchema = new Schema({
     texto: String
 });
 
-exports.module = models.model('Comentario', ComentariosSchema);
+module.exports = models.model('Comentario', ComentariosSchema);
