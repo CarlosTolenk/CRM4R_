@@ -7,6 +7,7 @@ const TeamController = require('../controllers/team');
 	module.exports = function(app){
 		//Rutas del miembro del Team login y registro
 		app.post('/api/register', TeamController.saveTeam);
+		app.post('/api/login', TeamController.loginTeam);
 
 
 

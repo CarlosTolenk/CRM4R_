@@ -4,6 +4,8 @@
 const Team = require('../models/teams');
 //Requerir modulos necesarios para las funciones
 const bcrypt = require('bcrypt-nodejs');
+//Requerir el servicio para generar el token
+const jwt = require('../services/jwt');
 
 
 //Método para hacer el registro de los miembros del equipo
@@ -59,6 +61,38 @@ exports.saveTeam = (req, res, next) => {
 };
 
 //Método para hacer login de los miembros de los equipos
-exports.loginTeam = (res, req) => {
+exports.loginTeam = (req, res) => {
+  //Obtener toda la informacion de la petición
+  let params = req.body;
 
-}
+  let email = params.email;
+  let password = params.password;
+
+    Team.findOne({email: email}, (err, team) => {
+    if(err) return res.status(500).send({message: 'Error en la peticion'});
+
+    if(team){
+      bcrypt.compare(password, team.password, (err, check) => {
+        if(check){
+
+          if(params.gettoken){
+              // Generar y Devolver un token
+              return res.status(200).send({
+                token: jwt.createToken(team)
+              });
+
+          }else{
+            //Devolver datos de usuarios
+            team.password = undefined;
+            return res.status(200).send({team});
+          }
+
+        }else{
+          return res.status(404).send({message: 'El miembro no se ha podido identificar correctamente'});
+        }
+      });
+    }else{
+      return res.status(404).send({message: 'El miembro no se ha podido identificar correctamente!!'});
+    }
+  });
+};
