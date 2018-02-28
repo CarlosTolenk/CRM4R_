@@ -2,10 +2,12 @@
 'use strict'
 //Requiriendo los controlladores de los modulos para las rutas
 const TeamController = require('../controllers/team');
-const path = require('path');
+const ClienteController = require('../controllers/cliente');
+
 //Middlewares autentificación
 const md_auth = require('../middlewares/authenticated');
-
+//Requiriendo modulos necesarios para la implementaciones de los métodos
+const path = require('path');
 const multipart = require('connect-multiparty');
 const md_upload = multipart({uploadDir: './uploads/teams'});
 
@@ -17,6 +19,13 @@ const md_upload = multipart({uploadDir: './uploads/teams'});
 		app.get('/api/team/:id', md_auth.ensureAuth, TeamController.getTeam);
 		app.put('/api/update-team/:id',md_auth.ensureAuth, TeamController.updateTeam);
 		app.post('/api/upload-image-team/:id', [md_auth.ensureAuth, md_upload], TeamController.uploadImage);
+		//Rutas para los clientes
+		app.post('/api/add-cliente', md_auth.ensureAuth, ClienteController.saveCliente);
+
+
+
+
+
 		//metodo de prueba
 		app.get('/hola', md_auth.ensureAuth, TeamController.holaMundo);
 

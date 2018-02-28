@@ -7,11 +7,12 @@ const Schema = models.Schema;
 let PrestamoSchema = new Schema({
     cliente: {type: Schema.Types.ObjectId, ref: 'Cliente'},
     monto_original: Number,
-    metodo_pago: String,
+    metodo_pago: Number,
     interes: Number,
     duracion: Number,
     garante: String,
     total_monto: Number,
+    estado: String,
     fecha: Date,
     garantia: {type: Schema.Types.ObjectId, ref: 'Garantia'}
 });
