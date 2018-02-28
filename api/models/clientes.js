@@ -8,6 +8,7 @@ let ClienteSchema =  new Schema({
     nombre: String,
     apellido: String,
     email: String,
+    cedula: String,
     direccion: String,
     avatar: String,
     ocupacion: String,

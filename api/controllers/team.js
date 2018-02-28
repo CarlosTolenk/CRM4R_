@@ -4,6 +4,8 @@
 const Team = require('../models/teams');
 //Requerir modulos necesarios para las funciones
 const bcrypt = require('bcrypt-nodejs');
+const fs = require('fs');
+const path = require('path');
 //Requerir el servicio para generar el token
 const jwt = require('../services/jwt');
 
@@ -96,3 +98,80 @@ exports.loginTeam = (req, res) => {
     }
   });
 };
+
+//Obtener información del miembro del equipo
+exports.getTeam = (req, res) => {
+    //Guardar el id que nos llega por la url
+    let teamId = req.params.id;
+
+    Team.findById(teamId, (err, user) => {
+      if(err) return res.status(500).send({message: 'Error en la peteción'});
+
+      if(!user) return res.status(404).send({message: 'Usuario no existe'});
+
+      return res.status(200).send({user});
+    });
+};
+
+//Actualizar la información del miembro del equipo
+exports.updateTeam = (req, res) => {
+  let teamId = req.params.id;
+  let update = req.body;
+
+  //Borrar propiedad password
+  delete update.password;
+
+  if(teamId != req.user.sub){
+    return res.status(500).send({message: 'No tienes permiso para actualizar los datos del miembro'});
+  }
+
+  Team.findByIdAndUpdate(teamId, update, {new: true}, (err, userUpdated) => {
+    if(err) return res.status(500).send({message: 'Error en la peteción'});
+
+    if(!userUpdated) return res.status(404).send({message: 'No se ha podido actualizar el miembro del equipo'});
+
+    return res.status(200).send({user: userUpdated});
+  });
+
+};
+
+//Subir archivos de imagen/avatar para los miembros del equipo
+exports.uploadImage = (req, res) => {
+  let teamId = req.params.id;
+
+  if(req.files){
+      let file_path = req.files.image;
+      console.log(file_path);
+      let file_split = file_path.split('\\');
+
+      let file_name = file_split[2];
+      let ext_split = file_name.split('\.');
+      var file_ext = ext_split[1];
+
+      if(teamId != req.user.sub){
+        removeFilesOfUploads(res, file_path, 'No tienes permiso para actualizar los datos del miembro');
+      }
+
+      if(file_ext == 'png' || file_ext == 'jpg' || file_ext == 'jpeg' || file_ext == 'gif'){
+        //Actualizar documento de miembro de equipo.
+      }else{
+        removeFilesOfUploads(res, file_path, 'Extensión no válida');
+      }
+
+
+  }else{
+    return res.status(200).send({message: 'No se han subido archivos'});
+  }
+};
+
+function removeFilesOfUploads(res, file_path, message){
+  fs.unlick(file_path, (err) => {
+      return res.status(200).send({message: message});
+  });
+}
+
+
+//Metodo de prueba
+exports.holaMundo = (req, res) =>{
+  res.send('Hola Mundo');
+}
