@@ -21,6 +21,9 @@ const md_upload = multipart({uploadDir: './uploads/teams'});
 		app.post('/api/upload-image-team/:id', [md_auth.ensureAuth, md_upload], TeamController.uploadImage);
 		//Rutas para los clientes
 		app.post('/api/add-cliente', md_auth.ensureAuth, ClienteController.saveCliente);
+		app.get('/api/get-clientes/:page', md_auth.ensureAuth, ClienteController.getClientes);
+		app.put('/api/update-cliente/:id', md_auth.ensureAuth, ClienteController.updateCliente);
+		app.delete('/api/delete-cliente/:id', md_auth.ensureAuth, ClienteController.destroyCliente);
 
 
 

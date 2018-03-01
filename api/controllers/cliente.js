@@ -24,7 +24,7 @@ exports.saveCliente = (req, res, next) => {
       cliente.ocupacion = params.ocupacion;
       cliente.salario = params.salario;
       cliente.descripcion = params.descripcion;
-      cliente.fecha = moment().unix();
+      cliente.fecha = moment().format('LL');
       cliente.avatar = null;
 
       var nombre_completo = cliente.nombre + cliente.apellido
@@ -32,7 +32,7 @@ exports.saveCliente = (req, res, next) => {
 
       //Controlar los miembros del equipo duplicados
       Cliente.find({ $or: [
-                {email: cliente.cedula.toLowerCase()},
+                {cedula: cliente.cedula.toLowerCase()},
                 {nombre_usuario: nombre_completo.toLowerCase()}
       ]}).exec((err, clientes) => {
         if(err) return res.status(500).send({message: 'Error en la petición del miembro del equipo'});
@@ -87,4 +87,28 @@ exports.getClientes  = (req, res) => {
        pages: Math.ceil(total/itemsPerPage),
      })
   });
+};
+
+exports.updateCliente = (req, res) => {
+  let clienteId = req.params.id;
+  let update = req.body;
+
+  Cliente.findByIdAndUpdate(clienteId, update, {new: true}, (err, clienteUpdated) => {
+    if(err) return res.status(500).send({message: 'Error en la peteción'});
+
+    if(!clienteUpdated) return res.status(404).send({message: 'No se ha podido actualizar el miembro del equipo'});
+
+    return res.status(200).send({cliente: clienteUpdated});
+  });
+
+};
+
+exports.destroyCliente = (req, res) => {
+   Cliente.remove({_id: req.params.id}, function(error){
+      if(error){
+         return res.status(500).send({message: 'Error al eliminar el cliente'});
+      }else{
+         return res.status(200).send({message: 'Eliminado correctamente el cliente'});
+      }
+   });
 };
