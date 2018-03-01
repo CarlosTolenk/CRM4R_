@@ -6,11 +6,11 @@ const Cliente = require('../models/clientes');
 const mongoosePaginate = require('mongoose-pagination');
 const moment = require('moment');
 
-//Método para hacer el registro de los miembros del equipo
+//Método para agregar un nuevo cliente
 exports.saveCliente = (req, res, next) => {
   //Recoger toda la informacion de la peticion
   let params = req.body;
-  //Instanciar una variable para el Team que se va a crear
+  //Instanciar una variable para el Cliente que se va a crear
   let cliente = new Cliente();
  //Verificar si se han enviado todos los parámetros
   if(params.nombre && params.apellido && params.cedula && params.email && params.direccion
@@ -27,15 +27,12 @@ exports.saveCliente = (req, res, next) => {
       cliente.fecha = moment().format('LL');
       cliente.avatar = null;
 
-      var nombre_completo = cliente.nombre + cliente.apellido
-
-
       //Controlar los miembros del equipo duplicados
-      Cliente.find({ $or: [
+      Cliente.findOne({ $or: [
                 {cedula: cliente.cedula.toLowerCase()},
-                {nombre_usuario: nombre_completo.toLowerCase()}
+                {email: cliente.email}
       ]}).exec((err, clientes) => {
-        if(err) return res.status(500).send({message: 'Error en la petición del miembro del equipo'});
+        if(err) return res.status(500).send({message: 'Error en la petición del cliente'});
 
         if( clientes && clientes.length >= 1){
           return res.status(200).send({message: 'El cliente que intenta registrar, ya existe!!'});

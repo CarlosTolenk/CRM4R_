@@ -7,14 +7,29 @@ const Schema = models.Schema;
 let PrestamoSchema = new Schema({
     cliente: {type: Schema.Types.ObjectId, ref: 'Cliente'},
     monto_original: Number,
-    metodo_pago: Number,
-    interes: Number,
+    metodo_pago: String,
     duracion: Number,
+    interes: Number,
     garante: String,
-    total_monto: Number,
+    monto_total: Number,
     estado: String,
+    cuotas: Number,
     fecha: Date,
     garantia: {type: Schema.Types.ObjectId, ref: 'Garantia'}
 });
 
 module.exports = models.model('Prestamo', PrestamoSchema);
+
+
+/*
+Interes Compuesto
+total_monto = monto_original(1 + 90%/360)^(metodo_pago) 90% es lo que quiero ganar al año
+
+if(dia == origninal)
+if(semana == semana*7) para convertirlos a días
+
+cuotas = total_monto / metodo_pago
+
+
+
+*/

@@ -169,9 +169,3 @@ function removeFilesOfUploads(res, file_path, message){
       return res.status(200).send({message: message});
   });
 }
-
-
-//Metodo de prueba
-exports.holaMundo = (req, res) =>{
-  res.send('Hola Mundo');
-}

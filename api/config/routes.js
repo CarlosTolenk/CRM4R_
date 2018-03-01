@@ -3,6 +3,7 @@
 //Requiriendo los controlladores de los modulos para las rutas
 const TeamController = require('../controllers/team');
 const ClienteController = require('../controllers/cliente');
+const PrestamoController = require('../controllers/prestamo');
 
 //Middlewares autentificación
 const md_auth = require('../middlewares/authenticated');
@@ -24,13 +25,14 @@ const md_upload = multipart({uploadDir: './uploads/teams'});
 		app.get('/api/get-clientes/:page', md_auth.ensureAuth, ClienteController.getClientes);
 		app.put('/api/update-cliente/:id', md_auth.ensureAuth, ClienteController.updateCliente);
 		app.delete('/api/delete-cliente/:id', md_auth.ensureAuth, ClienteController.destroyCliente);
+		//Rutas para los préstamos
+		app.post('/api/add-prestamo', PrestamoController.addPrestamo);
 
 
 
 
 
-		//metodo de prueba
-		app.get('/hola', md_auth.ensureAuth, TeamController.holaMundo);
+		
 
 
 
