@@ -5,6 +5,8 @@ const Cliente = require('../models/clientes');
 //Requerir modulos necesarios para las funciones
 const mongoosePaginate = require('mongoose-pagination');
 const moment = require('moment');
+const fs = require('fs');
+const path = require('path');
 
 //Método para agregar un nuevo cliente
 exports.saveCliente = (req, res, next) => {
@@ -109,3 +111,60 @@ exports.destroyCliente = (req, res) => {
       }
    });
 };
+
+//Subir archivos de imagen/avatar para los miembros del equipo
+exports.uploadImage = (req, res) => {
+  let clienteId = req.params.id;
+
+  if(req.files){
+  //   console.log(req.files);
+      var file_path = req.files.image.path;
+  // console.log(file_path);
+      var file_split = file_path.split('\\');
+      console.log(file_split);
+      var file_name = file_split[3];
+      console.log(file_name);
+      var ext_split = file_name.split('\.');
+      var file_ext = ext_split[1];
+      console.log(file_ext);
+
+      if(file_ext == 'png' || file_ext == 'jpg' || file_ext == 'jpeg' || file_ext == 'gif'){
+        //Actualizar documento de miembro de equipo.
+
+        Cliente.findByIdAndUpdate(clienteId, {avatar: file_name}, {new:true}, (err, clienteUpdated) => {
+            if(err) return res.status(500).send({message: 'Error en la peteción'});
+
+            if(!clienteUpdated) return res.status(404).send({message: 'No se ha podido actualizar el cliente'});
+            return res.status(200).send({user: clienteUpdated});
+        });
+
+      }else{
+      return  removeFilesOfUploads(res, file_path, 'Extensión no válida');
+      }
+
+
+  }else{
+    return res.status(200).send({message: 'No se han subido archivos'});
+  }
+};
+
+exports.getImageFile = (req, res) => {
+  let image_file = req.params.imageFile;
+  let path_file = 'api/uploads/clientes/' + image_file;
+  console.log(path_file);
+
+  fs.exists(path_file, (exists) => {
+    if(exists){
+      res.sendFile(path.resolve(path_file));
+    }else{
+      res.status(200).send({message: 'No existe la imagen..'});
+    }
+  });
+};
+
+
+function removeFilesOfUploads(res, file_path, message){
+  fs.unlink(file_path, (err) => {
+      return res.status(200).send({message: message});
+  });
+}

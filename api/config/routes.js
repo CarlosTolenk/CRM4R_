@@ -11,6 +11,7 @@ const md_auth = require('../middlewares/authenticated');
 const path = require('path');
 const multipart = require('connect-multiparty');
 let md_upload = multipart({uploadDir: 'api/uploads/teams'});
+let md_uploadCliente = multipart({uploadDir: 'api/uploads/clientes'});
 
 
 	module.exports = function(app){
@@ -26,6 +27,8 @@ let md_upload = multipart({uploadDir: 'api/uploads/teams'});
 		app.get('/api/get-clientes/:page', md_auth.ensureAuth, ClienteController.getClientes);
 		app.put('/api/update-cliente/:id', md_auth.ensureAuth, ClienteController.updateCliente);
 		app.delete('/api/delete-cliente/:id', md_auth.ensureAuth, ClienteController.destroyCliente);
+		app.post('/api/upload-image-cliente/:id', [md_auth.ensureAuth, md_uploadCliente], ClienteController.uploadImage);
+		app.get('/api/get-image-cliente/:imageFile', ClienteController.getImageFile);
 		//Rutas para los préstamos
 		app.post('/api/add-prestamo', md_auth.ensureAuth, PrestamoController.addPrestamo);
 		app.get('/api/get-prestamos/:page', md_auth.ensureAuth, PrestamoController.getPrestamos);
