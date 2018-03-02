@@ -92,14 +92,30 @@ exports.updatePrestamo = (req, res) => {
   Prestamo.findById(prestamoId, (err, prestamo) => {
     if(err) return res.status(500).send({message: 'Error en la peteción'});
 
-    let interes = calculoInteres(prestamo.monto_total, prestamo.monto_original, params.duracion);
-    let cuota = calculoCuota(prestamo.monto_total, params.metodo_pago, params.duracion);
-    prestamo.metodo_pago = params.metodo_pago;
-    prestamo.duracion = params.duracion;
-    prestamo.interes = interes;
-    prestamo.cuotas = cuota;
-    update = prestamo;
 
+    if(params.monto_original > 0){
+      let monto_originalNuevo = prestamo.monto_total + params.monto_original;
+      console.log(monto_originalNuevo);
+      let monto_totalNuevo = calculoPrestamo(monto_originalNuevo, params.duracion, params.metodo_pago);
+      let interes = calculoInteres(monto_totalNuevo, monto_originalNuevo, params.duracion);
+      let cuota = calculoCuota(monto_totalNuevo, params.metodo_pago, params.duracion);
+      prestamo.monto_original = monto_originalNuevo;
+      prestamo.monto_total = monto_totalNuevo;
+      prestamo.metodo_pago = params.metodo_pago;
+      prestamo.duracion = params.duracion;
+      prestamo.interes = interes;
+      prestamo.cuotas = cuota;
+      update = prestamo;
+
+    }else{
+      let interes = calculoInteres(prestamo.monto_total, prestamo.monto_original, params.duracion);
+      let cuota = calculoCuota(prestamo.monto_total, params.metodo_pago, params.duracion);
+      prestamo.metodo_pago = params.metodo_pago;
+      prestamo.duracion = params.duracion;
+      prestamo.interes = interes;
+      prestamo.cuotas = cuota;
+      update = prestamo;
+    }
     Prestamo.findByIdAndUpdate(prestamoId, update, {new: true}, (err, prestamoUpdated) => {
       if(err) return res.status(500).send({message: 'Error en la peteción'});
 
@@ -111,16 +127,43 @@ exports.updatePrestamo = (req, res) => {
 
 };
 
+exports.destroyPrestamo = (req, res) => {
+
+  Prestamo.findById(req.params.id, (err, prestamo) => {
+    if(err) return res.status(500).send({message: 'Error en la peteción'});
+
+    if(prestamo.estado == "Denegado"){
+      Prestamo.remove({_id: req.params.id}, (error) => {
+         if(error){
+            return res.status(500).send({message: 'Error al eliminar el préstamo'});
+         }else{
+            return res.status(200).send({message: 'Eliminado correctamente el préstamo'});
+         }
+      });
+    }else{
+      return res.status(404).send({message: 'Este préstamo aún no se puede borrar'});
+    }
+  });
+};
+
 
 
 
 //Función para cálcular el monto todal que el cliente va a pagar tomando como parámetros los ingresados.
 function calculoPrestamo(monto_original, duracion, metodo_pago){
   if(metodo_pago == "dia"){
-    let monto_total = monto_original * (Math.pow(1+(0.6/360), duracion));
+    let monto_total = monto_original * (Math.pow(1+(0.60/360), duracion));
+    return monto_total;
+  }
+  if(metodo_pago == "semanal"){
+    let monto_total = monto_original * (Math.pow(1+(0.65/360), duracion));
+    return monto_total;
+  }
+  if(metodo_pago == "quincenal"){
+    let monto_total = monto_original * (Math.pow(1+(0.68/360), duracion));
     return monto_total;
   }else{
-    let monto_total = monto_original * (Math.pow(1+(0.65/360), duracion));
+    let monto_total = monto_original * (Math.pow(1+(0.70/360), duracion));
     return monto_total;
   }
 

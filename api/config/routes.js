@@ -29,16 +29,7 @@ const md_upload = multipart({uploadDir: './uploads/teams'});
 		app.post('/api/add-prestamo', md_auth.ensureAuth, PrestamoController.addPrestamo);
 		app.get('/api/get-prestamos/:page', md_auth.ensureAuth, PrestamoController.getPrestamos);
 		app.put('/api/update-prestamo/:id', md_auth.ensureAuth, PrestamoController.updatePrestamo);
-
-
-
-
-
-
-
-
-
-
+		app.delete('/api/delete-prestamo/:id', md_auth.ensureAuth, PrestamoController.destroyPrestamo);
 
 
 
