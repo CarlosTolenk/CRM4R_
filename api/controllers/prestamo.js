@@ -20,39 +20,96 @@ exports.addPrestamo = (req, res, next) => {
   Cliente.findOne({ cedula: params.cedula })
           //Relleno todo los datos del cliente en la variable result
          .populate('Cliente')
-           .exec((err, result) => {
+           .exec((err, cliente) => {
              if(err) return res.status(500).send({message: 'Error en la petición del cliente para el  Prestamo'});
+             if(cliente){
+                 //Hacer todos los calculos y guardarlo en variables para luego guardarlo en base de datos
+                 let monto_total = calculoPrestamo(params.monto_original, params.duracion, params.metodo_pago);
+                 let interes = calculoInteres(monto_total, params.monto_original, params.duracion);
+                 let cuota = calculoCuota(monto_total, params.metodo_pago, params.duracion);
 
-             //Hacer todos los calculos y guardarlo en variables para luego guardarlo en base de datos
-             let monto_total = calculoPrestamo(params.monto_original, params.duracion, params.metodo_pago);
-             let interes = calculoInteres(monto_total, params.monto_original, params.duracion);
-             let cuota = calculoCuota(monto_total, params.metodo_pago, params.duracion);
+                 prestamo.cliente = cliente;
+                 prestamo.monto_original = params.monto_original;
+                 prestamo.metodo_pago = params.metodo_pago;
+                 prestamo.duracion = params.duracion;
+                 prestamo.interes = interes;
+                 prestamo.garante = params.garante;
+                 prestamo.monto_total = monto_total;
+                 prestamo.estado = "En Proceso";
+                 prestamo.cuotas = cuota;
+                 prestamo.fecha = moment().format('LL');
 
-             prestamo.cliente = result;
-             prestamo.monto_original = params.monto_original;
-             prestamo.metodo_pago = params.metodo_pago;
-             prestamo.duracion = params.duracion;
-             prestamo.interes = interes;
-             prestamo.garante = params.garante;
-             prestamo.monto_total = monto_total;
-             prestamo.estado = "En Proceso";
-             prestamo.cuotas = cuota;
-             prestamo.fecha = moment().format('LL');
+                 //Aplicar el método para salvar todos los datos del préstamo y el cliente vinculado
+                 prestamo.save((err, prestamoStore) => {
+                   if(err) return res.status(500).send({message: 'Error al guardar el nuevo prestamo'});
 
-             //Aplicar el método para salvar todos los datos del préstamo y el cliente vinculado
-             prestamo.save((err, prestamoStore) => {
-               if(err) return res.status(500).send({message: 'Error al guardar el nuevo prestamo'});
-
-               if(prestamoStore){
-                 res.status(200).send({prestamo: prestamoStore});
+                   if(prestamoStore){
+                     res.status(200).send({prestamo: prestamoStore});
+                   }else{
+                     res.status(404).send({message: 'No se ha podido registrar el nuevo Prestamo'});
+                   }
+                 }); //save
                }else{
-                 res.status(404).send({message: 'No se ha podido registrar el nuevo Prestamo'});
+                 return res.status(404).send({message: 'Error, ese cliente no existe'});
                }
-             }); //save
-           }); //.exec
+             }); //.exec
+
 
 };
 
+//Listar todos los préstamos por páginas
+exports.getPrestamos  = (req, res) => {
+
+  let identity_team_id = req.user.sub;
+  let page = 1;
+
+  if(req.params.page){
+    page = req.params.page;
+  }
+
+  let itemsPerPage = 5;
+
+  Prestamo.find().populate({path: 'cliente'}).paginate(page, itemsPerPage, (err, prestamos, total) => {
+     if(err) return res.status(500).send({message: 'Error en la petición'});
+
+     if(!prestamos) return status(404).send({message: 'No hay Prestamos disponibles'});
+
+          return res.status(200).send({
+            prestamos,
+            total,
+            pages: Math.ceil(total/itemsPerPage),
+          });
+      });
+  };
+
+
+exports.updatePrestamo = (req, res) => {
+
+  let prestamoId = req.params.id;
+  let params = req.body;
+  let update;
+
+  Prestamo.findById(prestamoId, (err, prestamo) => {
+    if(err) return res.status(500).send({message: 'Error en la peteción'});
+
+    let interes = calculoInteres(prestamo.monto_total, prestamo.monto_original, params.duracion);
+    let cuota = calculoCuota(prestamo.monto_total, params.metodo_pago, params.duracion);
+    prestamo.metodo_pago = params.metodo_pago;
+    prestamo.duracion = params.duracion;
+    prestamo.interes = interes;
+    prestamo.cuotas = cuota;
+    update = prestamo;
+
+    Prestamo.findByIdAndUpdate(prestamoId, update, {new: true}, (err, prestamoUpdated) => {
+      if(err) return res.status(500).send({message: 'Error en la peteción'});
+
+      if(!prestamoUpdated) return res.status(404).send({message: 'No se ha podido actualizar el préstamo'});
+
+       return res.status(200).send({prestamo: prestamoUpdated});
+    });
+  });
+
+};
 
 
 

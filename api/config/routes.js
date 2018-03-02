@@ -26,13 +26,16 @@ const md_upload = multipart({uploadDir: './uploads/teams'});
 		app.put('/api/update-cliente/:id', md_auth.ensureAuth, ClienteController.updateCliente);
 		app.delete('/api/delete-cliente/:id', md_auth.ensureAuth, ClienteController.destroyCliente);
 		//Rutas para los préstamos
-		app.post('/api/add-prestamo', PrestamoController.addPrestamo);
+		app.post('/api/add-prestamo', md_auth.ensureAuth, PrestamoController.addPrestamo);
+		app.get('/api/get-prestamos/:page', md_auth.ensureAuth, PrestamoController.getPrestamos);
+		app.put('/api/update-prestamo/:id', md_auth.ensureAuth, PrestamoController.updatePrestamo);
 
 
 
 
 
-		
+
+
 
 
 

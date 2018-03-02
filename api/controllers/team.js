@@ -67,10 +67,10 @@ exports.loginTeam = (req, res) => {
   //Obtener toda la informacion de la petición
   let params = req.body;
 
-  let email = params.email;
+  let nombre_usuario = params.nombre_usuario;
   let password = params.password;
 
-    Team.findOne({email: email}, (err, team) => {
+    Team.findOne({nombre_usuario: nombre_usuario}, (err, team) => {
     if(err) return res.status(500).send({message: 'Error en la peticion'});
 
     if(team){

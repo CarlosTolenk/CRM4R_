@@ -34,7 +34,7 @@ exports.saveCliente = (req, res, next) => {
       ]}).exec((err, clientes) => {
         if(err) return res.status(500).send({message: 'Error en la petición del cliente'});
 
-        if( clientes && clientes.length >= 1){
+        if(clientes){
           return res.status(200).send({message: 'El cliente que intenta registrar, ya existe!!'});
         }else{
             //Aplicar el guardado a la base de dato por medio del metodo save de mongoose
