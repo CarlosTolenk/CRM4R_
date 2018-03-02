@@ -91,16 +91,68 @@ exports.getClientes  = (req, res) => {
 exports.updateCliente = (req, res) => {
   let clienteId = req.params.id;
   let update = req.body;
+  let avg = 0;
 
-  Cliente.findByIdAndUpdate(clienteId, update, {new: true}, (err, clienteUpdated) => {
-    if(err) return res.status(500).send({message: 'Error en la peteción'});
+    if(update.scoreData){
+        avg = calcularAvg(update.scoreData, clienteId).then((value) => {
 
-    if(!clienteUpdated) return res.status(404).send({message: 'No se ha podido actualizar el miembro del equipo'});
+                update.avg = value;
+                console.log(update);
 
-    return res.status(200).send({cliente: clienteUpdated});
-  });
+          Cliente.findByIdAndUpdate(clienteId, update, {new: true}, (err, clienteUpdated) => {
+            if(err) return res.status(500).send({message: 'Error en la peteción'});
+
+            if(!clienteUpdated) return res.status(404).send({message: 'No se ha podido actualizar el miembro del equipo'});
+
+              return res.status(200).send({cliente: clienteUpdated});
+          });
+        });
+      }else{
+        Cliente.findByIdAndUpdate(clienteId, update, {new: true}, (err, clienteUpdated) => {
+          if(err) return res.status(500).send({message: 'Error en la peteción'});
+
+          if(!clienteUpdated) return res.status(404).send({message: 'No se ha podido actualizar el miembro del equipo'});
+
+            return res.status(200).send({cliente: clienteUpdated});
+        });
+      }
+
+
+      /**/
+
+
+
 
 };
+
+//Calculo para tener el avg del cliente
+async function calcularAvg(score, clienteId){
+  let avgSalario = 0;
+  //Condiciones del avg en base al data credito
+  let avgScore = (score * 80)/1600;
+  let avgTotal = 0;
+
+let avg = await Cliente.findById(clienteId, (err, cliente) =>{
+      if(err) return handleError(err);
+
+      //Condiciones del avg en base al salario
+      if(cliente.salario <= 10000) avgSalario = 2;
+      if(cliente.salario > 10001 && cliente.salario <= 20000) avgSalario = 3;
+      if(cliente.salario > 20001 && cliente.salario <= 30000) avgSalario = 5;
+      if(cliente.salario > 30001 && cliente.salario <= 40000) avgSalario = 10;
+      if(cliente.salario > 40001 && cliente.salario <= 50000) avgSalario = 15;
+      if(cliente.salario > 50001 && cliente.salario <= 60000) avgSalario = 20;
+      if(cliente.salario > 60001) avgSalario = 25;
+      avgTotal = avgScore + avgSalario;
+      return avgTotal;
+  });
+
+return avgTotal;
+
+}
+
+
+
 
 exports.destroyCliente = (req, res) => {
    Cliente.remove({_id: req.params.id}, function(error){
@@ -162,7 +214,7 @@ exports.getImageFile = (req, res) => {
   });
 };
 
-
+//Remover los archivos subidos a la carpeta upload
 function removeFilesOfUploads(res, file_path, message){
   fs.unlink(file_path, (err) => {
       return res.status(200).send({message: message});

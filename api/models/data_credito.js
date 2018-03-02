@@ -5,7 +5,8 @@ const models = require('mongoose');
 const Schema = models.Schema;
 
 let DataCreditoSchema = new Schema({
+    score: Number,
     texto: String
 });
 
-module.exports = models.molde('DataCredito', DataCreditoSchema);
+module.exports = models.model('DataCredito', DataCreditoSchema);

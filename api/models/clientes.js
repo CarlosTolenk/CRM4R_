@@ -14,6 +14,7 @@ let ClienteSchema =  new Schema({
     ocupacion: String,
     salario: Number,
     descripcion: String,
+    scoreData: Number,
     avg: Number,
     fecha: Date,
     data_credito: {type : Schema.Types.ObjectId, ref : 'DataCredito'}
