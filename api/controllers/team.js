@@ -140,22 +140,34 @@ exports.uploadImage = (req, res) => {
   let teamId = req.params.id;
 
   if(req.files){
-      let file_path = req.files.image;
-      console.log(file_path);
-      let file_split = file_path.split('\\');
 
-      let file_name = file_split[2];
-      let ext_split = file_name.split('\.');
+  //   console.log(req.files);
+      var file_path = req.files.image.path;
+  // console.log(file_path);
+      var file_split = file_path.split('\\');
+    //  console.log(file_split);
+      var file_name = file_split[3];
+      console.log(file_name);
+      var ext_split = file_name.split('\.');
       var file_ext = ext_split[1];
+      console.log(file_ext);
 
       if(teamId != req.user.sub){
-        removeFilesOfUploads(res, file_path, 'No tienes permiso para actualizar los datos del miembro');
+         return removeFilesOfUploads(res, file_path, 'No tienes permiso para actualizar los datos del miembro');
       }
 
       if(file_ext == 'png' || file_ext == 'jpg' || file_ext == 'jpeg' || file_ext == 'gif'){
         //Actualizar documento de miembro de equipo.
+
+        Team.findByIdAndUpdate(teamId, {avatar: file_name}, {new:true}, (err, userUpdated) => {
+            if(err) return res.status(500).send({message: 'Error en la peteción'});
+
+            if(!userUpdated) return res.status(404).send({message: 'No se ha podido actualizar el miembro del equipo'});
+            return res.status(200).send({user: userUpdated});
+        });
+
       }else{
-        removeFilesOfUploads(res, file_path, 'Extensión no válida');
+      return  removeFilesOfUploads(res, file_path, 'Extensión no válida');
       }
 
 
@@ -164,8 +176,23 @@ exports.uploadImage = (req, res) => {
   }
 };
 
+exports.getImageFile = (req, res) => {
+  let image_file = req.params.imageFile;
+  let path_file = 'api/uploads/teams/' + image_file;
+  console.log(path_file);
+
+  fs.exists(path_file, (exists) => {
+    if(exists){
+      res.sendFile(path.resolve(path_file));
+    }else{
+      res.status(200).send({message: 'No existe la imagen..'});
+    }
+  });
+};
+
+
 function removeFilesOfUploads(res, file_path, message){
-  fs.unlick(file_path, (err) => {
+  fs.unlink(file_path, (err) => {
       return res.status(200).send({message: message});
   });
 }

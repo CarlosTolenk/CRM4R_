@@ -10,7 +10,7 @@ const md_auth = require('../middlewares/authenticated');
 //Requiriendo modulos necesarios para la implementaciones de los métodos
 const path = require('path');
 const multipart = require('connect-multiparty');
-const md_upload = multipart({uploadDir: './uploads/teams'});
+let md_upload = multipart({uploadDir: 'api/uploads/teams'});
 
 
 	module.exports = function(app){
@@ -20,6 +20,7 @@ const md_upload = multipart({uploadDir: './uploads/teams'});
 		app.get('/api/team/:id', md_auth.ensureAuth, TeamController.getTeam);
 		app.put('/api/update-team/:id',md_auth.ensureAuth, TeamController.updateTeam);
 		app.post('/api/upload-image-team/:id', [md_auth.ensureAuth, md_upload], TeamController.uploadImage);
+		app.get('/api/get-image-team/:imageFile', TeamController.getImageFile);
 		//Rutas para los clientes
 		app.post('/api/add-cliente', md_auth.ensureAuth, ClienteController.saveCliente);
 		app.get('/api/get-clientes/:page', md_auth.ensureAuth, ClienteController.getClientes);
