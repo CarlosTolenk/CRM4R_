@@ -15,30 +15,70 @@ exports.saveCierre = (req, res) => {
   let abono = req.body.abono;
   let fecha = moment().format('LL');
 
-  Prestamo.findById(prestamoId).populate({path: 'cliente'}).exec((err, prestamos, total) => {
+  Prestamo.findById(prestamoId).populate({path: 'cliente'}).exec((err, prestamo, total) => {
      if(err) return res.status(500).send({message: 'Error en la petición'});
 
-     if(!prestamos) return status(404).send({message: 'No hay Prestamos disponibles'});
+     if(!prestamo) return status(404).send({message: 'No hay Prestamos disponibles'});
 
-          return res.status(200).send({
-            prestamos
+     if(pago_realizado == "true"){
+       realizarPago(prestamo, abono);
+       return res.status(200).send({message: 'El cliente ha pagado'});
+     }else{
+       return res.status(200).send({message: 'El cliente NO ha pagado'});
+     }
 
-          });
-      });
-  };
-
-
-
-
-
-/*User.findById(id, function (err, user) {
-  var opts = [
-      { path: 'company', match: { x: 1 }, select: 'name' }
-    , { path: 'notes', options: { limit: 10 }, model: 'override' }
-  ]
-
-  User.populate(user, opts, function (err, user) {
-    console.log(user);
   });
-});
-*/
+
+};
+
+async function realizarPago(prestamo, abono){
+
+  let monto_total = prestamo.monto_total;
+  let cuota = prestamo.cuotas;
+
+  if(cuota - abono <= 0){
+      //Pagoo totalmente la cuota
+      prestamo.monto_total = prestamo.monto_total - cuota;
+      prestamo.cliente.avg++;
+
+     Cliente.findByIdAndUpdate(prestamo.cliente._id, {avg: prestamo.cliente.avg}, {new:true}, (err, clienteUpdated) => {
+        if(err) return console.log(err);
+        if(!clienteUpdated) return console.log('No se ha podido actualizar el cliente');
+      //  return console.log(clienteUpdated);
+     });
+
+     Prestamo.findByIdAndUpdate(prestamo._id, {monto_total: prestamo.monto_total}, {new:true}, (err, prestamoUpdated) =>{
+       if(err) return console.log(err);
+       if(!prestamoUpdated) return console.log('No se ha podido actualizar el prestamo');
+      // return console.log(prestamoUpdated);
+     });
+      console.log("Perfecto");
+  }else{
+      //Si no pagoo completamente la cuota y se le  recarga una mora
+      let diferencia = prestamo.cuotas - abono;
+      let mora = diferencia * 0.20;
+      prestamo.monto_total -= abono;
+      prestamo.monto_total += mora;      
+      prestamo.cliente.avg -= 0.5;
+
+      Cliente.findByIdAndUpdate(prestamo.cliente._id, {avg: prestamo.cliente.avg}, {new:true}, (err, clienteUpdated) => {
+         if(err) return console.log(err);
+         if(!clienteUpdated) return console.log('No se ha podido actualizar el cliente');
+       //  return console.log(clienteUpdated);
+      });
+
+      Prestamo.findByIdAndUpdate(prestamo._id, {monto_total: prestamo.monto_total}, {new:true}, (err, prestamoUpdated) =>{
+        if(err) return console.log(err);
+        if(!prestamoUpdated) return console.log('No se ha podido actualizar el prestamo');
+       // return console.log(prestamoUpdated);
+      });
+
+      console.log("Aun debe");
+  }
+
+
+
+
+
+
+}
