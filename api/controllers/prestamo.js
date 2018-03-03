@@ -31,6 +31,7 @@ exports.addPrestamo = (req, res, next) => {
                  prestamo.cliente = cliente;
                  prestamo.monto_original = params.monto_original;
                  prestamo.metodo_pago = params.metodo_pago;
+                 prestamo.descripcion = params.descripcion;
                  prestamo.duracion = params.duracion;
                  prestamo.interes = interes;
                  prestamo.garante = params.garante;
@@ -59,8 +60,6 @@ exports.addPrestamo = (req, res, next) => {
 
 //Listar todos los préstamos por páginas
 exports.getPrestamos  = (req, res) => {
-
-  let identity_team_id = req.user.sub;
   let page = 1;
 
   if(req.params.page){

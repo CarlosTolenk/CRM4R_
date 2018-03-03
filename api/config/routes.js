@@ -4,6 +4,7 @@
 const TeamController = require('../controllers/team');
 const ClienteController = require('../controllers/cliente');
 const PrestamoController = require('../controllers/prestamo');
+const CierreController = require('../controllers/cierre');
 
 //Middlewares autentificación
 const md_auth = require('../middlewares/authenticated');
@@ -34,7 +35,8 @@ let md_uploadCliente = multipart({uploadDir: 'api/uploads/clientes'});
 		app.get('/api/get-prestamos/:page', md_auth.ensureAuth, PrestamoController.getPrestamos);
 		app.put('/api/update-prestamo/:id', md_auth.ensureAuth, PrestamoController.updatePrestamo);
 		app.delete('/api/delete-prestamo/:id', md_auth.ensureAuth, PrestamoController.destroyPrestamo);
-
+		//Rutas para los cierres
+		app.post('/api/save-cierre/:id', md_auth.ensureAuth, CierreController.saveCierre);
 
 
 	};

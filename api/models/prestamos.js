@@ -8,6 +8,7 @@ let PrestamoSchema = new Schema({
     cliente: {type: Schema.Types.ObjectId, ref: 'Cliente'},
     monto_original: Number,
     metodo_pago: String,
+    descripcion: String,
     duracion: Number,
     interes: Number,
     garante: String,
