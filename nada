@@ -1,0 +1,39 @@
+//Declaracion de variables, ya estan requirido todos los modelos
+let factura = new Factura();
+let pagoId = req.params.id;
+let pago_realizado = req.body.pago_realizado;
+let abono = req.body.abono;
+let fecha = moment().format('LL');
+
+
+Pago.findById(pagoId).populate({path: 'cliente'}).exec((err, pago) => {
+   if(err) return res.status(500).send({message: 'Error en la petición de búsqueda del préstamo'});
+   if(!pago){
+     return res.status(404).send({message: 'No hay Prestamos disponibles'});
+   } else{
+       if(pago_realizado == "true"){
+         //Esta es la funcion donde guardo actualizo información del Shema pago y cliente
+         realizarPago(prestamo, abono);
+         //Salvar todos los datos del pago para generar un historial
+         factura.prestamo = pago._id;
+         factura.cliente = pago.cliente._id;
+         factura.pago_realizado = true;
+         factura.completado = true;
+         factura.abono = abono;
+         factura.fecha = fecha;
+
+          Factura.save((err, facturaStore) => {
+          console.log('Tengo la información del historial');
+           if(err) return res.status(500).send({message: 'Error en la petición de salvar el pago del cliente'});
+           if(facturaStore){
+             return res.status(200).send({factura: facturaStore});
+           }else{
+             return res.status(404).send({message: 'No se ha podido registrar el nuevo pago del cliente'});
+           }
+         });
+
+       }else{
+         return res.status(200).send({message: 'El cliente NO ha pagado'});
+       }
+    }
+});

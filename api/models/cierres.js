@@ -6,9 +6,11 @@ const Schema = models.Schema;
 
 let CierreSchema = new Schema({
     prestamo: {type: Schema.Types.ObjectId, ref: 'Prestamo'},
+    cliente: {type: Schema.Types.ObjectId, ref: 'Cliente'},
     pago_realizado: Boolean,
     fecha: Date,
     abono: Number,
+    completado: Boolean,
     mora: Number
 });
 

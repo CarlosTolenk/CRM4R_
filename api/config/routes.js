@@ -11,8 +11,9 @@ const md_auth = require('../middlewares/authenticated');
 //Requiriendo modulos necesarios para la implementaciones de los métodos
 const path = require('path');
 const multipart = require('connect-multiparty');
-let md_upload = multipart({uploadDir: 'api/uploads/teams'});
+let md_uploadTeam = multipart({uploadDir: 'api/uploads/teams'});
 let md_uploadCliente = multipart({uploadDir: 'api/uploads/clientes'});
+let md_uploadRecurso = multipart({uploadDir: 'api/uploads/recursos'});
 
 
 	module.exports = function(app){
@@ -21,7 +22,7 @@ let md_uploadCliente = multipart({uploadDir: 'api/uploads/clientes'});
 		app.post('/api/login', TeamController.loginTeam);
 		app.get('/api/team/:id', md_auth.ensureAuth, TeamController.getTeam);
 		app.put('/api/update-team/:id',md_auth.ensureAuth, TeamController.updateTeam);
-		app.post('/api/upload-image-team/:id', [md_auth.ensureAuth, md_upload], TeamController.uploadImage);
+		app.post('/api/upload-image-team/:id', [md_auth.ensureAuth, md_uploadTeam], TeamController.uploadImage);
 		app.get('/api/get-image-team/:imageFile', TeamController.getImageFile);
 		//Rutas para los clientes
 		app.post('/api/add-cliente', md_auth.ensureAuth, ClienteController.saveCliente);
@@ -37,6 +38,8 @@ let md_uploadCliente = multipart({uploadDir: 'api/uploads/clientes'});
 		app.delete('/api/delete-prestamo/:id', md_auth.ensureAuth, PrestamoController.destroyPrestamo);
 		//Rutas para los cierres
 		app.post('/api/save-cierre/:id', md_auth.ensureAuth, CierreController.saveCierre);
+		app.get('/api/get-historial/:id', md_auth.ensureAuth, CierreController.getHistorial);
+
 
 
 	};
