@@ -49,6 +49,9 @@ exports.addPrestamo = (req, res, next) => {
                    }else{
                      res.status(404).send({message: 'No se ha podido registrar el nuevo Prestamo'});
                    }
+
+                    //Crear el ticket que se genera con la creación del préstamo
+
                  }); //save
                }else{
                  return res.status(404).send({message: 'Error, ese cliente no existe'});
