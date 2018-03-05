@@ -5,12 +5,12 @@ const models = require('mongoose');
 const Schema = models.Schema;
 
 let TicketsSchema = new Schema({
-    titulo: String,
+    tipo: String,
     descripcion: String,
     prestamo: {type: Schema.Types.ObjectId, ref: 'Prestamo'},
-    validacion: Number,
+    votos: Number,
     comentarios: {type: Schema.Types.ObjectId, ref: 'Comentario'},
-    conclusion: Boolean,
+    estado: String,
     fecha: Date
 });
 

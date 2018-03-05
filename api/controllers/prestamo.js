@@ -3,6 +3,7 @@
 // Registrar los controladores para los modelos
 const Cliente = require('../models/clientes');
 const Prestamo = require('../models/prestamos');
+const Ticket = require('../models/tickets');
 //Requerir modulos necesarios para las funciones
 const mongoosePaginate = require('mongoose-pagination');
 const moment = require('moment');
@@ -15,6 +16,7 @@ exports.addPrestamo = (req, res, next) => {
   //Instanciar una variable para el cliente y los datos del préstamo
   let prestamo = new Prestamo();
   let cliente = new Cliente();
+  let ticket = new Ticket();
 
   //Busco en la base de dato la cédula del cliente para obtener toda su información
   Cliente.findOne({ cedula: params.cedula })
@@ -33,11 +35,11 @@ exports.addPrestamo = (req, res, next) => {
                  prestamo.metodo_pago = params.metodo_pago;
                  prestamo.descripcion = params.descripcion;
                  prestamo.duracion = params.duracion;
-                 prestamo.interes = interes;
+                 prestamo.interes = interes.toFixed(4);
                  prestamo.garante = params.garante;
-                 prestamo.monto_total = monto_total;
-                 prestamo.estado = "En Proceso";
-                 prestamo.cuotas = cuota;
+                 prestamo.monto_total = Math.round(monto_total);
+                 prestamo.estado = "Pendiente";
+                 prestamo.cuotas = Math.round(cuota);
                  prestamo.fecha = moment().format('LL');
 
                  //Aplicar el método para salvar todos los datos del préstamo y el cliente vinculado
@@ -45,14 +47,70 @@ exports.addPrestamo = (req, res, next) => {
                    if(err) return res.status(500).send({message: 'Error al guardar el nuevo prestamo'});
 
                    if(prestamoStore){
-                     res.status(200).send({prestamo: prestamoStore});
+                    // res.status(200).send({prestamo: prestamoStore});
                    }else{
                      res.status(404).send({message: 'No se ha podido registrar el nuevo Prestamo'});
                    }
 
                     //Crear el ticket que se genera con la creación del préstamo
+                    ticket.tipo = "Prestamo";
+                    ticket.descripcion = "Solicitud de Préstamo de " + prestamo.cliente.nombre + " " + prestamo.cliente.apellido;
+                    ticket.prestamo = prestamoStore._id;
+                    ticket.fecha = moment().format('LL');
+                    ticket.votos = 0;
 
-                 }); //save
+                    //Realizar la pre-seleccion del estado del ticket evaluando si es rentable o no el cliente
+                    //Evaluar el 40% del salrio del cliente
+                    let evaluacion = prestamo.cliente.salario * 0.40;
+                    // Un perso
+                    if(prestamo.cuotas <= evaluacion && prestamo.monto_original <= 30000){
+                      if(prestamo.cliente.avg >= 65){
+                        ticket.estado = "PRE-APROBADO";
+                        ticket.votos++;
+                      }else{
+                        ticket.estado = "PRE-DENEGADO";
+                      }
+                    }
+
+                    if(prestamo.cuotas <= evaluacion && prestamo.monto_original >= 30001 && prestamo.monto_original <= 50000){
+                      if(prestamo.cliente.avg >= 75){
+                        ticket.estado = "PRE-APROBADO";
+                        ticket.votos++;
+                      }else{
+                        ticket.estado = "PRE-DENEGADO";
+                      }
+                    }
+
+                    if(prestamo.cuotas <= evaluacion && prestamo.monto_original >= 50001 && prestamo.monto_original <= 80000){
+                      if(prestamo.cliente.avg >= 85){
+                        ticket.estado = "PRE-APROBADO";
+                        ticket.votos++;
+                      }else{
+                        ticket.estado = "PRE-DENEGADO";
+                      }
+                    }
+
+                    if(prestamo.cuotas <= evaluacion && prestamo.monto_original >= 80001){
+                      if(prestamo.cliente.avg >= 90){
+                        ticket.estado = "PRE-APROBADO";
+                        ticket.votos++;
+                      }else{
+                        ticket.estado = "PRE-DENEGADO";
+                      }
+                    }
+
+
+
+                      ticket.save((err, ticketStore) => {
+                        if(err) return res.status(500).send({message: 'Error al guardar el nuevo ticket'});
+
+                        if(prestamoStore){
+                          res.status(200).send({ticket: ticketStore});
+                        }else{
+                          res.status(404).send({message: 'No se ha podido registrar el nuevo Ticket'});
+                        }
+                      }); //save ticket
+                 }); //save préstamo
                }else{
                  return res.status(404).send({message: 'Error, ese cliente no existe'});
                }
