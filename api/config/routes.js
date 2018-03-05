@@ -5,6 +5,7 @@ const TeamController = require('../controllers/team');
 const ClienteController = require('../controllers/cliente');
 const PrestamoController = require('../controllers/prestamo');
 const CierreController = require('../controllers/cierre');
+const TicketController = require('../controllers/ticket');
 
 //Middlewares autentificación
 const md_auth = require('../middlewares/authenticated');
@@ -39,7 +40,10 @@ let md_uploadRecurso = multipart({uploadDir: 'api/uploads/recursos'});
 		//Rutas para los cierres
 		app.post('/api/save-cierre/:id', md_auth.ensureAuth, CierreController.saveCierre);
 		app.get('/api/get-historial/:id', md_auth.ensureAuth, CierreController.getHistorial);
-
+		//Rutas para los tickets
+		app.post('/api/add-ticket', md_auth.ensureAuth, TicketController.addTicket);
+		app.get('/api/get-tickets', md_auth.ensureAuth, TicketController.getTickets);
+		app.put('/api/edit-tickets/:id', md_auth.ensureAuth, TicketController.editTicket);
 
 
 	};

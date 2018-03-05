@@ -6,6 +6,7 @@ const Schema = models.Schema;
 
 let ComentariosSchema = new Schema({
     equipo: {type: Schema.Types.ObjectId, ref: 'Team'},
+    ticket: {type: Schema.Types.ObjectId, ref: 'Ticket'},
     texto: String
 });
 

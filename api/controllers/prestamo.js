@@ -104,7 +104,7 @@ exports.addPrestamo = (req, res, next) => {
                       ticket.save((err, ticketStore) => {
                         if(err) return res.status(500).send({message: 'Error al guardar el nuevo ticket'});
 
-                        if(prestamoStore){
+                        if(ticketStore){
                           res.status(200).send({ticket: ticketStore});
                         }else{
                           res.status(404).send({message: 'No se ha podido registrar el nuevo Ticket'});
