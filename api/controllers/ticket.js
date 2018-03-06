@@ -14,13 +14,13 @@ exports.addTicket = (req, res) => {
 
   Cliente.findOne({ cedula: params.cedula })
     .exec((err, cliente) => {
-      if(err) return res.status(500).send({message: 'Error en la petición del cliente para el  Prestamo'});
+      if(err) return res.status(500).send({message: 'Error en la petición del cliente para el  ticket'});
       if(cliente){
 
         ticket.tipo = params.tipo;
         ticket.descripcion = params.descripcion;
         ticket.cliente = cliente._id;
-        ticket.estado = "En Proceso";
+        ticket.estado = "EN PROCESO";
         ticket.fecha = moment().format('LL');
 
         ticket.save((err, ticketStore) => {
@@ -63,22 +63,52 @@ exports.editTicket = (req, res) => {
 
     if(!ticketUpdated) return res.status(404).send({message: 'No se ha podido actualizar el ticket'});
 
-    if(ticketUpdated.votos >= 3){
-      ticketUpdated.estado = "Completado";
-      update = ticketUpdated.estado;
-      console.log(update + ticketUpdated.votos );
+      if(ticketUpdated.tipo == "Prestamo"){
+        update = estadoCompletado(ticketUpdated).then((value) => {
+            ticketUpdated.estado = value;
+            console.log(ticketUpdated);
 
-      Ticket.findByIdAndUpdate(ticketId, update, {new: true}, (err, nuevoticketUpdated) => {
-        if(err) return res.status(500).send({message: 'Error en la peteción'});
+            Ticket.findByIdAndUpdate(ticketId, ticketUpdated, {new: true}, (err, nuevoticketUpdated) => {
+              if(err) return res.status(500).send({message: 'Error en la peteción'});
 
-        if(!nuevoticketUpdated) return res.status(404).send({message: 'No se ha podido actualizar el ticket'});
+              if(!nuevoticketUpdated) return res.status(404).send({message: 'No se ha podido actualizar el ticket'});
+            //  console.log(nuevoticketUpdated);
+              return res.status(200).send({ticket: nuevoticketUpdated});
+            });
+        });
 
-        return res.status(200).send({ticket: nuevoticketUpdated});
-      });
+      }else{
+        return res.status(200).send({ticket: ticketUpdated});
+      }
 
-    }else{
-      return res.status(200).send({ticket: ticketUpdated});
-    }
   });
 
+};
+//Funcion ASync para poder obtener la actualizaciín y verificar los votos del ticket
+async function estadoCompletado(ticket){
+  if(ticket.votos >= 3){
+    return ticket.estado = "COMPLETADO";
+  }else{
+    return ticket.estado = "EN PROCESO";
+  }
+}
+
+
+exports.destroyTicket = (req, res) => {
+
+  Ticket.findById(req.params.id, (err, ticket) => {
+    if(err) return res.status(500).send({message: 'Error en la peteción'});
+
+    if(ticket.estado == "COMPLETADO"){
+      Ticket.remove({_id: req.params.id}, (error) => {
+         if(error){
+            return res.status(500).send({message: 'Error al eliminar el ticket'});
+         }else{
+            return res.status(200).send({message: 'Eliminado correctamente el ticket'});
+         }
+      });
+    }else{
+      return res.status(404).send({message: 'Este ticket aún no se puede borrar'});
+    }
+  });
 };

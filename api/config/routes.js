@@ -6,6 +6,7 @@ const ClienteController = require('../controllers/cliente');
 const PrestamoController = require('../controllers/prestamo');
 const CierreController = require('../controllers/cierre');
 const TicketController = require('../controllers/ticket');
+const ComentarioController = require('../controllers/comentario');
 
 //Middlewares autentificación
 const md_auth = require('../middlewares/authenticated');
@@ -44,6 +45,9 @@ let md_uploadRecurso = multipart({uploadDir: 'api/uploads/recursos'});
 		app.post('/api/add-ticket', md_auth.ensureAuth, TicketController.addTicket);
 		app.get('/api/get-tickets', md_auth.ensureAuth, TicketController.getTickets);
 		app.put('/api/edit-tickets/:id', md_auth.ensureAuth, TicketController.editTicket);
-
+		app.delete('/api/delete-ticket/:id', md_auth.ensureAuth, TicketController.destroyTicket);
+		//Rutas para los comentarios
+		app.post('/api/add-comentario/:id', md_auth.ensureAuth, ComentarioController.addComentario);
+		app.get('/api/get-comentario/:id', md_auth.ensureAuth, ComentarioController.getComentarios);
 
 	};
