@@ -7,6 +7,7 @@ const PrestamoController = require('../controllers/prestamo');
 const CierreController = require('../controllers/cierre');
 const TicketController = require('../controllers/ticket');
 const ComentarioController = require('../controllers/comentario');
+const RecursoController = require('../controllers/recurso');
 
 //Middlewares autentificación
 const md_auth = require('../middlewares/authenticated');
@@ -26,28 +27,36 @@ let md_uploadRecurso = multipart({uploadDir: 'api/uploads/recursos'});
 		app.put('/api/update-team/:id',md_auth.ensureAuth, TeamController.updateTeam);
 		app.post('/api/upload-image-team/:id', [md_auth.ensureAuth, md_uploadTeam], TeamController.uploadImage);
 		app.get('/api/get-image-team/:imageFile', TeamController.getImageFile);
+
 		//Rutas para los clientes
 		app.post('/api/add-cliente', md_auth.ensureAuth, ClienteController.saveCliente);
 		app.get('/api/get-clientes/:page', md_auth.ensureAuth, ClienteController.getClientes);
 		app.put('/api/update-cliente/:id', md_auth.ensureAuth, ClienteController.updateCliente);
 		app.delete('/api/delete-cliente/:id', md_auth.ensureAuth, ClienteController.destroyCliente);
 		app.post('/api/upload-image-cliente/:id', [md_auth.ensureAuth, md_uploadCliente], ClienteController.uploadImage);
+
 		app.get('/api/get-image-cliente/:imageFile', ClienteController.getImageFile);
 		//Rutas para los préstamos
 		app.post('/api/add-prestamo', md_auth.ensureAuth, PrestamoController.addPrestamo);
 		app.get('/api/get-prestamos/:page', md_auth.ensureAuth, PrestamoController.getPrestamos);
 		app.put('/api/update-prestamo/:id', md_auth.ensureAuth, PrestamoController.updatePrestamo);
 		app.delete('/api/delete-prestamo/:id', md_auth.ensureAuth, PrestamoController.destroyPrestamo);
+
 		//Rutas para los cierres
 		app.post('/api/save-cierre/:id', md_auth.ensureAuth, CierreController.saveCierre);
 		app.get('/api/get-historial/:id', md_auth.ensureAuth, CierreController.getHistorial);
+
 		//Rutas para los tickets
 		app.post('/api/add-ticket', md_auth.ensureAuth, TicketController.addTicket);
 		app.get('/api/get-tickets', md_auth.ensureAuth, TicketController.getTickets);
 		app.put('/api/edit-tickets/:id', md_auth.ensureAuth, TicketController.editTicket);
 		app.delete('/api/delete-ticket/:id', md_auth.ensureAuth, TicketController.destroyTicket);
+
 		//Rutas para los comentarios
 		app.post('/api/add-comentario/:id', md_auth.ensureAuth, ComentarioController.addComentario);
 		app.get('/api/get-comentario/:id', md_auth.ensureAuth, ComentarioController.getComentarios);
 
+		//Rutas para los recursos
+		app.post('/api/add-recurso', [md_auth.ensureAuth, md_uploadRecurso], RecursoController.addRecurso);
+		app.get('/api/get-recurso/:recursoFile', RecursoController.getRecurso);
 	};
