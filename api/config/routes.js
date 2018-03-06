@@ -8,6 +8,7 @@ const CierreController = require('../controllers/cierre');
 const TicketController = require('../controllers/ticket');
 const ComentarioController = require('../controllers/comentario');
 const RecursoController = require('../controllers/recurso');
+const DashboardController = require('../controllers/dashboard')
 
 //Middlewares autentificación
 const md_auth = require('../middlewares/authenticated');
@@ -59,4 +60,9 @@ let md_uploadRecurso = multipart({uploadDir: 'api/uploads/recursos'});
 		//Rutas para los recursos
 		app.post('/api/add-recurso', [md_auth.ensureAuth, md_uploadRecurso], RecursoController.addRecurso);
 		app.get('/api/get-recurso/:recursoFile', RecursoController.getRecurso);
+
+
+		//Generales, conteo de todos la base de datos
+		app.get('/api/get-count', md_auth.ensureAuth, DashboardController.getCount);
+
 	};

@@ -207,8 +207,6 @@ exports.destroyPrestamo = (req, res) => {
 };
 
 
-
-
 //Función para cálcular el monto todal que el cliente va a pagar tomando como parámetros los ingresados.
 function calculoPrestamo(monto_original, duracion, metodo_pago){
   if(metodo_pago == "dia"){
