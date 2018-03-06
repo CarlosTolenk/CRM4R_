@@ -1,0 +1,59 @@
+<div class="col-lg-6 offset-lg-4 login">
+  <h2>Registrar miembros del equipo</h2>
+
+  <div class="alert alert-success col-lg-6" *ngIf="status == 'success'">
+      Registro Completado Correctamente.
+  </div>
+
+  <div class="alert alert-danger col-lg-6" *ngIf="status == 'error'">
+        El Registro no se ha podido completar, quizas tu email o tu usuario ya está en uso, intentalo de nuevo con otros datos.
+  </div>
+
+  <form class="col-lg-6 formulario" #registroForm="ngForm" (ngSubmit)="onSubmit(registroForm)">
+    <p>
+        <label>Nombre:</label>
+        <input type="text" name="nombre" #nombre="ngModel" [(ngModel)]="team.nombre" class="form-control" required>
+        <span *ngIf="!nombre.valid && nombre.touched">
+          El nombre de usuario es obligatorio!!
+        </span>
+    </p>
+    <p>
+        <label>Apellido:</label>
+        <input type="text" name="apellido" #apellido="ngModel" [(ngModel)]="team.apellido" class="form-control" required>
+        <span *ngIf="!apellido.valid && apellido.touched">
+          El nombre de usuario es obligatorio!!
+        </span>
+    </p>
+    <p>
+        <label>Usuario:</label>
+        <input type="text" name="nombre_usuario" #nombre_usuario="ngModel" [(ngModel)]="team.nombre_usuario" class="form-control" required>
+        <span *ngIf="!nombre_usuario.valid && nombre_usuario.touched">
+          El nombre de usuario es obligatorio!!
+        </span>
+    </p>
+    <p>
+        <label>Email:</label>
+        <input type="email" name="email" #email="ngModel" [(ngModel)]="team.email" class="form-control" required pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}">
+        <span *ngIf="!email.valid && email.touched">
+          El nombre de usuario es obligatorio!!
+        </span>
+    </p>
+    <p>
+        <label>Password:</label>
+        <input type="text" name="password" #password="ngModel" [(ngModel)]="team.password" class="form-control" required>
+        <span *ngIf="!password.valid && password.touched">
+          El password es obligatorio!!
+        </span>
+    </p>
+    <p>
+        <label>Role:</label>
+        <select name="role" [(ngModel)]="team.role" class="form-control" required>
+          <option value="ROLE_TEAM">ROLE_TEAM</option>
+          <option value="ROLE_EMPL">ROLE_EMPL</option>
+        </select>
+    </p>
+
+      <input type="submit" value="{{title}}" class="btn btn-warning col-lg-12 " [disabled]="!registroForm.form.valid">
+  </form>
+
+</div>

@@ -1,0 +1,23 @@
+<div class="col-lg-6 offset-lg-4 login">
+  <img src="../../../../assets/images/logo-4r.png" alt="logo-4r">
+
+  <form class="col-lg-6 formulario" #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
+      <p>
+          <label>Usuario:</label>
+          <input type="text" name="nombre_usuario" #nombre_usuario="ngModel" [(ngModel)]="team.nombre_usuario" class="form-control" required>
+          <span *ngIf="!nombre_usuario.valid && nombre_usuario.touched">
+            El nombre de usuario es obligatorio!!
+          </span>
+      </p>
+      <p>
+          <label>Password:</label>
+          <input type="password" name="password" #password="ngModel" [(ngModel)]="team.password" class="form-control" required>
+          <span *ngIf="!password.valid && password.touched">
+            El password es obligatorio!!
+          </span>
+      </p>
+
+      <input type="submit" value="{{title}}" class="btn btn-warning col-lg-12 " [disabled]="!loginForm.form.valid">
+  </form>
+
+</div>

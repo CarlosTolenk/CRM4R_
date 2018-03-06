@@ -1,0 +1,24 @@
+.formulario{
+  margin-left: 4%;
+}
+.alert{
+  margin-left: 4%!important;
+}
+
+p{
+  color: white;
+  font-size: 22px;
+}
+
+span{
+  color: red;
+  font-size: 17px;
+}
+ .btn{
+   color: white!important;
+ }
+
+.btn{
+  margin-top: 10px!important;
+  font-size: 22px;
+}

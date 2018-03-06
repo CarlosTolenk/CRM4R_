@@ -1,0 +1,15 @@
+i{
+  color: #FFCA27;
+  font-size: 20px!important;
+}
+.navigation{
+  margin: 0;
+  padding: 0px;
+}
+
+.navbar.navbar-expand-lg{
+  padding: 15px;
+}
+.nav-link{
+  color: white!important;
+}

@@ -23,7 +23,7 @@ exports.saveTeam = (req, res, next) => {
       team.apellido = params.apellido;
       team.nombre_usuario = params.nombre_usuario;
       team.email = params.email;
-      team.role = 'ROLE_TEAM';
+      team.role = params.role;
       team.avatar = null;
 
       //Controlar los miembros del equipo duplicados

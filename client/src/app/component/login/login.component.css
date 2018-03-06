@@ -1,0 +1,60 @@
+@media only screen and (max-width: 500px) {
+    img {
+        width: 80%!important;
+        margin: 20% 0 15% 10%!important;
+    }
+
+    p{
+      color: white;
+      font-size: 18px!important;
+    }
+
+    span{
+      color: red;
+      font-size: 12px!important;
+    }
+     .btn{
+       color: white!important;
+     }
+
+    .btn{
+      margin-top: 10px!important;
+      font-size: 17px!important;
+    }
+}
+
+@media only screen and (max-width: 1200px ) {
+    img {
+        width: 60%!important;
+        margin: 20% 0 15% 10%!important;
+    }
+}
+
+
+
+img{
+  width: 40%;
+  height: auto;
+  margin: 20% 0 5% 9%;
+}
+.formulario{
+  margin-left: 4%;
+}
+
+p{
+  color: white;
+  font-size: 22px;
+}
+
+span{
+  color: red;
+  font-size: 17px;
+}
+ .btn{
+   color: white!important;
+ }
+
+.btn{
+  margin-top: 10px!important;
+  font-size: 22px;
+}
