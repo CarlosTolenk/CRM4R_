@@ -19,4 +19,15 @@ export class TeamService{
 
       return this._http.post(this.url + 'register', params, {headers: headers});
     }
+
+    signup(team: Team, gettoken = null):Observable<any>{
+      if(gettoken != null){
+        team.gettoken = gettoken;
+      }
+
+      let params = JSON.stringify(team);
+      let headers = new HttpHeaders().set('Content-Type', 'application/json');
+
+      return this._http.post(this.url + 'login', params, {headers: headers});
+    }
 }

@@ -21,12 +21,25 @@
       margin-top: 10px!important;
       font-size: 17px!important;
     }
+
+    .alert{
+      margin-left: 7%!important;
+      width: 90%!important;
+    }
 }
 
 @media only screen and (max-width: 1200px ) {
     img {
-        width: 60%!important;
+        width: 70%!important;
         margin: 20% 0 15% 10%!important;
+    }
+    .alert{
+      margin-left: 1%!important;
+      width: 85%!important;
+    }
+    .formulario{
+      margin-left: 4%;
+      width: 90%;
     }
 }
 
@@ -39,6 +52,10 @@ img{
 }
 .formulario{
   margin-left: 4%;
+}
+.alert{
+  margin-left: 5%!important;
+  width: 90%!important;
 }
 
 p{

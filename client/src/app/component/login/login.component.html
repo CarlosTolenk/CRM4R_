@@ -1,6 +1,14 @@
 <div class="col-lg-6 offset-lg-4 login">
   <img src="../../../../assets/images/logo-4r.png" alt="logo-4r">
 
+  <div class="alert alert-success col-lg-6" *ngIf="status == 'success'">
+      Te has identificado correctamente.
+  </div>
+
+  <div class="alert alert-danger col-lg-6" *ngIf="status == 'error'">
+      No te haz podido identificar correctamente.
+  </div>
+
   <form class="col-lg-6 formulario" #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
       <p>
           <label>Usuario:</label>
