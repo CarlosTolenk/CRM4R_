@@ -13,6 +13,8 @@ import { LoginComponent } from './component/login/login.component';
 import { DashboardComponent } from './component/dashboard/dashboard.component';
 import { RegistroComponent } from './component/registro/registro.component';
 import { SidebarComponent } from './component/sidebar/sidebar.component';
+import { GeneralComponent } from './component/general/general.component';
+import { PerfilComponent } from './component/perfil/perfil.component';
 
 
 @NgModule({
@@ -22,7 +24,9 @@ import { SidebarComponent } from './component/sidebar/sidebar.component';
     LoginComponent,
     DashboardComponent,
     RegistroComponent,
-    SidebarComponent
+    SidebarComponent,
+    GeneralComponent,
+    PerfilComponent
   ],
   imports: [
     BrowserModule,

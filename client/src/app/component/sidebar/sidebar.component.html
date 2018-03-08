@@ -2,11 +2,11 @@
   <div class="sidebar">
     <ul class="list-group">
       <li class="list-group-item titulo-menu"><h3>Menu</h3></li>
-      <li class="list-group-item" *ngIf="admin">
-        <a href="#"><i class="fa fa-address-book"></i>Registar</a>
+      <li class="list-group-item" *ngIf="admin" routerLinkActive="">
+        <a [routerLink]="['registro']"><i class="fa fa-address-book" ></i>Registar</a>
       </li>
-        <li class="list-group-item">
-          <a href="#"><i class="fa fa-tachometer"></i>General</a>
+        <li class="list-group-item" routerLinkActive="active">
+          <a [routerLink]="['general']"><i class="fa fa-tachometer"></i>General</a>
         </li>
         <li class="list-group-item">
           <a href="#"><i class="fa fa-users"></i>Clientes</a>

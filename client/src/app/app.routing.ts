@@ -5,11 +5,19 @@ import { Routes, RouterModule } from '@angular/router';
 import { NavbarComponent } from './component/navbar/navbar.component';
 import { LoginComponent } from './component/login/login.component';
 import { DashboardComponent } from './component/dashboard/dashboard.component';
+import { dashboard_routes } from './component/dashboard/dashboard.routes';
+
+
+
 
 const appRoutes: Routes = [
     { path: '', component: LoginComponent },
     { path: 'login', component: LoginComponent },
-    { path: 'home', component: DashboardComponent }
+    { path: 'home',
+     component: DashboardComponent,
+     children: dashboard_routes
+    },
+    { path: '**', pathMatch: 'full', redirectTo: 'home' }
 
 ];
 
