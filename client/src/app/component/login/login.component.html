@@ -1,11 +1,11 @@
 <div class="col-lg-6 offset-lg-4 login">
   <img src="../../../../assets/images/logo-4r.png" alt="logo-4r">
 
-  <div class="alert alert-success col-lg-6" *ngIf="status == 'success'">
+  <div class="alert alert-success col-lg-6" *ngIf="status == 'success'" role="alert">
       Te has identificado correctamente.
   </div>
 
-  <div class="alert alert-danger col-lg-6" *ngIf="status == 'error'">
+  <div class="alert alert-danger col-lg-6" *ngIf="status == 'error'" role="alert">
       No te haz podido identificar correctamente.
   </div>
 

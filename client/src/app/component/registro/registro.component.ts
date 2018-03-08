@@ -20,7 +20,7 @@ export class RegistroComponent implements OnInit {
     private _teamService: TeamService
    ) {
       this.title = 'REGISTRAR';
-      this.team = new Team("","","","","","","","");
+      this.team = new Team("","","","","","","","","");
  }
 
   ngOnInit() {

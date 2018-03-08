@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
 
   ){
      this.title = 'INGRESAR';
-     this.team = new Team("","","","","","","","");
+     this.team = new Team('','','','','','','','','');
   }
 
   ngOnInit() {
@@ -39,7 +39,10 @@ export class LoginComponent implements OnInit {
               this.status = 'error'
             }else{
               this.status = 'success';
+              this._router.navigate(['home']);
+
               //Persistir datos del usuario
+              localStorage.setItem('identity', JSON.stringify(this.identity));
 
               //Conseguir token
               this.getToken();
@@ -57,32 +60,31 @@ export class LoginComponent implements OnInit {
     );
   }
 
-  getToken(){
-    this._teamService.signup(this.team, 'true').subscribe(
-      response => {
-          this.token = response.token;
-          console.log(this.token);
+    getToken(){
+      this._teamService.signup(this.team, 'true').subscribe(
+        response => {
+            this.token = response.token;
+            console.log(this.token);
 
-          if(!this.token.length <= 0){
-            this.status = 'error'
-          }else{
-            this.status = 'success';
-            //Persistir el token
+            if(this.token.length <= 0){
+                this.status = 'error'
+            }else{
+              this.status = 'success';
+              //Persistir el token
+              localStorage.setItem('token', this.token);
+              //Conseguir los marcadores o estadisticas del usuario
+            }
 
-            //Conseguir los marcadores o estadisticas del usuario
-          }
+        },
+        error => {
+            var errorMessage = <any>error;
+            console.log(errorMessage);
 
-      },
-      error => {
-          var errorMessage = <any>error;
-          console.log(errorMessage);
-
-          if(errorMessage != null){
-            this.status = 'error';
-          }
-      }
-  );
+            if(errorMessage != null){
+              this.status = 'error';
+            }
+        }
+    );
   }
-
 
 }

@@ -7,7 +7,8 @@ export class Team{
     public email: String,
     public avatar: String,
     public password: String,
-    public role: String
+    public role: String,
+    public gettoken: any 
 
   ){}
 }

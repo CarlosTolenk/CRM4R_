@@ -1,0 +1,43 @@
+.sidebar{
+  width: 70%;
+  height: 100vh;
+}
+
+.list-group{
+  width: 100%!important;
+  margin: 0!important;
+  padding: 0!important;
+}
+
+.list-group-item.titulo-menu{
+  background-color: #2F55B5;
+  color: #FFCA27;
+  text-align: center;
+}
+
+.list-group-item.titulo-menu h3{
+  font-size: 23px!important;
+}
+
+
+.list-group-item{
+  background-color: #0E1831;
+}
+
+.list-group-item:hover{
+  background-color: #2F55B5;
+}
+
+.list-group-item a{
+  color: white;
+  text-align: center;
+  font-size: 18px!important;
+  text-decoration: none;
+}
+
+.list-group-item a i {
+  color: #FFCA27;
+  font-size: 15px!important;
+  margin-right: 10px;
+  margin-left: 15px;
+}
