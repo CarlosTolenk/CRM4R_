@@ -9,7 +9,7 @@
 
       <ul class="nav navbar-nav ml-auto navbar-right navbar-menu" *ngIf="identity">
         <li class="avatar">
-          <!-- Imagen del miembro del equipo -->
+          <img src="{{url + 'get-image-team/' + identity.avatar }}" class="rounded-circle" alt="imagen-team" *ngIf="identity && identity.avatar">
         </li>
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">

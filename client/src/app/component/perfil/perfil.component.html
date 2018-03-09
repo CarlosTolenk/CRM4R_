@@ -1,10 +1,62 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col col-lg-10">
-      <h1 style="text-align: center; color:white;">Perfil</h1>
-
+    <div class="col col-sm-12">
+      <h1 style="text-align: center; color:white;">{{title}}</h1>
     </div>
-
   </div>
+  <div class="row contenido-formulario">
+    <div class="col col-lg-10 col-md-10 col-sm-10 offset-1">
+      <form #teamPerfil="ngForm" (ngSubmit)="onSubmit()" class="col-lg-12 formulario">
+        <div class="row avatar">
+          <div class="col col-lg-2 col-md-2 col-sm-10 avatar-contenido">
+            <div  class="avatar-img" *ngIf="team.avatar">
+                <img *ngIf="!imagenTemp" class="rounded-circle" src="{{url + 'get-image-team/' + team.avatar}}" alt="{{identity.avatar}}">
+                <img *ngIf="imagenTemp" [src]="imagenTemp" class="rounded-circle">
+            </div>
+            <p>
+              <label for="subirFoto"><i class="fa fa-upload"></i>Upload</label>
+              <input type="file" id="subirFoto" (change)="fileChangeEvent($event)">
+            </p>
+          </div>
+        </div>
+        <div class="informacion row">
+          <div class="col col-lg-9 col-md-9 col-sm-12">
+            <p>
+                <label>Nombre:</label>
+                <input type="text" name="nombre" #nombre="ngModel" [(ngModel)]="team.nombre"  class="form-control" required>
+                <span *ngIf="!nombre.valid && nombre.touched">Este campo es requierido</span>
+            </p>
+            <p>
+                <label>Apellido:</label>
+                <input type="text" name="apellido" #apellido="ngModel" [(ngModel)]="team.apellido" class="form-control" required>
+                <span *ngIf="!apellido.valid && apellido.touched">Este campo es requierido</span>
+            </p>
+            <p>
+                <label>Usuario:</label>
+                <input type="text" name="nombre_usuario" #nombre_usuario="ngModel" [(ngModel)]="team.nombre_usuario" class="form-control" required>
+                <span *ngIf="!nombre_usuario.valid && nombre_usuario.touched">Este campo es requierido</span>
+            </p>
+            <p>
+                <label>Correo Electrónico:</label>
+                <input type="text" name="email" #email="ngModel" [(ngModel)]="team.email" class="form-control" required>
+                <span *ngIf="!email.valid && email.touched">Este campo es requierido</span>
+            </p>
 
+            <input type="submit" value="{{title}}" class="btn btn-warning" [disabled]="teamPerfil.form.valud">
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="row alert-update">
+    <div class="col col-lg-10 offset-2">
+      <div class="alert alert-success" *ngIf="status == 'success'">
+          Se han actualizado tus datos correctamente.
+      </div>
+
+      <div class="alert alert-danger" *ngIf="status == 'error'">
+          No se han podido actualizar tus datos correctamente.
+      </div>
+    </div>
+  </div>
 </div>

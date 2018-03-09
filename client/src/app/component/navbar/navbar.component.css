@@ -11,6 +11,21 @@ i{
   padding: 0px;
 }
 
+.avatar{
+  width: 37px;
+  height: 37px;
+  border-radius: 200px;
+  overflow: hidden;
+  margin-right: 10px;
+}
+
+.avatar img{
+  height: 40px;
+  margin-right: 40px;
+  text-align: center;
+}
+
+
 .navbar.navbar-expand-lg{
   padding: 15px;
 }

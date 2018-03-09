@@ -9,6 +9,7 @@ export class TeamService{
   public url:string;
   public identity;
   public token;
+  public stats;
 
   constructor(
     public _http: HttpClient){
@@ -55,5 +56,35 @@ export class TeamService{
       }
 
       return this.token;
+    }
+
+    getStats(){
+      let stats = JSON.parse(localStorage.getItem('stats'));
+
+      if(stats != "undefined"){
+        this.stats = stats;
+      }else{
+        this.stats = null;
+      }
+
+      return this.stats;
+    }
+
+    getCounters(): Observable<any>   {
+      let headers = new HttpHeaders().set('Content-Type', 'application/json')
+                                     .set('Authorization', this.getToken());
+
+      return this._http.get(this.url + 'get-count', {headers: headers});
+    }
+
+    updateTeam(team: Team): Observable<any>{
+      let params = JSON.stringify(team);
+
+      let headers = new HttpHeaders().set('Content-Type', 'application/json')
+                                     .set('Authorization', this.getToken());
+                                     //update-team/:id
+                                    
+
+      return this._http.put(this.url + 'update-team/' + team._id, params, {headers: headers});
     }
 }

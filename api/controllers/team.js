@@ -125,12 +125,24 @@ exports.updateTeam = (req, res) => {
     return res.status(500).send({message: 'No tienes permiso para actualizar los datos del miembro'});
   }
 
-  Team.findByIdAndUpdate(teamId, update, {new: true}, (err, userUpdated) => {
-    if(err) return res.status(500).send({message: 'Error en la peteción'});
+  Team.find({ $or: [
+            {email: update.email.toLowerCase()},
+            {nombre_usuario: update.nombre_usuario.toLowerCase()}
+          ]}).exec((err, teams) => {
+            var team_isset = false;
+            teams.forEach((teams) => {
+              if(teams && teams._id != teamId) team_isset = true;
+            });
 
-    if(!userUpdated) return res.status(404).send({message: 'No se ha podido actualizar el miembro del equipo'});
+      if(team_isset) return res.status(200).send({message: 'Los datos de usuario o email estan en uso actualmente'});
 
-    return res.status(200).send({user: userUpdated});
+    Team.findByIdAndUpdate(teamId, update, {new: true}, (err, userUpdated) => {
+      if(err) return res.status(500).send({message: 'Error en la peteción'});
+
+      if(!userUpdated) return res.status(404).send({message: 'No se ha podido actualizar el miembro del equipo'});
+
+      return res.status(200).send({team: userUpdated});
+    });
   });
 
 };
@@ -163,7 +175,7 @@ exports.uploadImage = (req, res) => {
             if(err) return res.status(500).send({message: 'Error en la peteción'});
 
             if(!userUpdated) return res.status(404).send({message: 'No se ha podido actualizar el miembro del equipo'});
-            return res.status(200).send({user: userUpdated});
+            return res.status(200).send({team: userUpdated});
         });
 
       }else{

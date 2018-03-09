@@ -1,10 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 //import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { routing, appRoutingProviders } from './app.routing';
+import { CommonModule } from '@angular/common';
 
 //Componentes
 import { AppComponent } from './app.component';
@@ -31,9 +32,11 @@ import { PerfilComponent } from './component/perfil/perfil.component';
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     AngularFontAwesomeModule,
     routing,
-    HttpClientModule
+    HttpClientModule,
+    CommonModule
   ],
   providers: [
     appRoutingProviders

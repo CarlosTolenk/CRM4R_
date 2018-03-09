@@ -34,13 +34,10 @@ export class LoginComponent implements OnInit {
       this._teamService.signup(this.team).subscribe(
         response => {
             this.identity = response.team;
-            console.log(this.identity);
+            //console.log(this.identity);
             if(!this.identity || !this.identity._id){
               this.status = 'error'
             }else{
-              this.status = 'success';
-              this._router.navigate(['home']);
-
               //Persistir datos del usuario
               localStorage.setItem('identity', JSON.stringify(this.identity));
 
@@ -64,15 +61,17 @@ export class LoginComponent implements OnInit {
       this._teamService.signup(this.team, 'true').subscribe(
         response => {
             this.token = response.token;
-            console.log(this.token);
+            //console.log(this.token);
 
             if(this.token.length <= 0){
                 this.status = 'error'
             }else{
-              this.status = 'success';
               //Persistir el token
               localStorage.setItem('token', this.token);
               //Conseguir los marcadores o estadisticas del usuario
+              this.getCounters();
+              //Ir hacia el home con toda la informáciones
+
             }
 
         },
@@ -86,5 +85,22 @@ export class LoginComponent implements OnInit {
         }
     );
   }
+
+  getCounters(){
+      this._teamService.getCounters().subscribe(
+
+          response => {
+            console.log(response);
+            localStorage.setItem('stats', JSON.stringify(response));
+            this.status = 'success';
+            this._router.navigate(['home']);
+          },
+          error => {
+            console.log(<any>error);
+          }
+      )
+  }
+
+
 
 }
