@@ -1,30 +1,29 @@
+/**************First Mobile ******************/
 h1,h2,h3,p,label{
   font-family: 'Comfortaa', cursive;
 }
+ h1{
+   font-size: 1.5em;
+   text-align: center;
+   margin-top: -45px;
+ }
+
+ p{
+   text-align: justify;
+ }
+ .container-fluid{
+   margin-top: 80px;
+ }
 
 .avatar-img{
   width: 80%;
-  margin-left: -50px;
-}
-
-.avatar-img h3{
-  text-align: center!important;
-  color: white;
-  margin-bottom: 30px!important;
+  text-align: center;
 }
 
 .avatar-img img {
-  width: 350px;
-  height: 350px;
-}
-
-.avatar-contenido input{
-  margin-top: 30px;
-  color: red;
-}
-
-.container-fluid{
-  margin-top: 80px;
+  width: 100%;
+  height: 175px;
+  margin-left: 35px;
 }
 
 .contenido-formulario{
@@ -32,29 +31,32 @@ h1,h2,h3,p,label{
   width: 100%;
 }
 
-.formulario{
-  position: relative;
-}
 .avatar{
-  position: absolute;
-  left: 100px;
-  top:0px;
   width: 100%;
 }
 
 .informacion{
-  position: absolute;
-  left: 500px;
-  top:0px;
-  width: 60%;
+  width: 100%;
+  text-align: center;
+  margin-top: 20px;
+  margin-left: 15px;
 }
 
-.informacion input{
-  width: 100%;
+.informacion label{
+  margin-left: 22px;
+}
+
+.informacion  input{
+  width: 300px;
+  margin-bottom: 20px;
+}
+
+.informacion p input{
+  width: 300px;
 }
 
 input[type="file"]{
-  width: 100.1px;
+  width: 1.1px;
   height: 0.1px;
   opacity: 1;
   position: absolute;
@@ -71,12 +73,12 @@ label[for="subirFoto"]{
   display: inline-block;
   transition: all .5s;
   cursor: pointer;
-  padding: 15px 40px !important;
+  padding: 10px 25px !important;
   text-transform: uppercase;
   width: fit-content;
   text-align: center;
   margin-top: 20px;
-  margin-left:40px;
+  margin-left:105px;
 }
 
 label[for="subirFoto"] i{
@@ -85,9 +87,164 @@ label[for="subirFoto"] i{
 }
 
 .alert-update{
-  position: absolute;
-  top: 650px;
-  left: 120px;
-  width: 65%;
+  width: 100%;
   text-align: center;
+}
+/************** Mobile Large ******************/
+@media screen and (min-width: 400px) and (max-width: 767px){
+
+  h1{
+    font-size: 1.5em;
+    text-align: center;
+    margin-top: 45px;
+  }
+
+  .container-fluid{
+    margin: 0px!important;
+    padding: 0px!important;
+  }
+
+  .informacion{
+    width: 100%;
+    text-align: inherit;
+    margin-left: 45px!important;
+  }
+
+  .informacion label{
+    margin-left: 22px;
+  }
+
+  .informacion p input {
+    width: 310px;
+  }
+
+  .avatar-img img {
+    width: 100%;
+    height: 255px;
+    margin-left: 50px;
+  }
+
+  input[type="file"]{
+    width: 1.1px;
+    height: 0.1px;
+    opacity: 1;
+    position: absolute;
+    margin-top: 40px!important;
+    overflow: hidden;
+    z-index: -1;
+  }
+
+  label[for="subirFoto"]{
+    margin-top: 20px;
+  }
+
+  .informacion input{
+    margin-bottom: 20px!important;
+  }
+
+}
+
+/************** Tablet ******************/
+@media screen and (min-width: 767px) and (max-width: 1023px){
+
+
+  h1{
+    font-size: 2em;
+    text-align: center!important;
+    margin: 0px;
+    margin-left: 30px;
+
+  }
+
+ .avatar-img{
+   width: 100%;
+   text-align: center;
+ }
+
+ .avatar-img img {
+   width: 100%;
+   height: 175px;
+   margin:0;
+ }
+
+ .contenido-formulario{
+   margin-top: 35px;
+ }
+
+  .informacion input p{
+    width: 300px;
+    margin: 0 auto;
+  }
+
+  .informacion input:last-child{
+    margin-bottom: 10px;
+    margin-left: -5px!important;
+  }
+
+  label[for="subirFoto"]{
+    margin-top: 20px;
+    margin-left:10px;
+  }
+  .informacion{
+    width: 100%;
+    text-align: inherit;
+    margin-left: 45px!important;
+  }
+
+}
+
+/************** Desktop**************/
+@media screen and (min-width: 1024px){
+
+  .contenido-formulario{
+    width: 100%;
+  }
+
+  h1{
+    font-size: 3em;
+  }
+
+  .avatar-img{
+    width: 80%;
+    text-align: center;
+  }
+  .avatar-img img {
+    width: 100%;
+    height: 325px;
+  }
+
+  label[for="subirFoto"]{
+    margin-left:50px;
+  }
+
+  .informacion p {
+    margin: 0px;
+    width: 60%;
+  }
+
+  .informacion{
+    width: 100%;
+    text-align: inherit;
+    margin-left: 45px!important;
+  }
+
+  .informacion label{
+    margin: 0;
+  }
+
+  .informacion p input{
+    width: 100%;
+  }
+  .informacion  input{
+    width: 60%;
+    margin-top: 20px;
+  }
+
+  label[for="subirFoto"]{
+    margin-top: 20px;
+    margin-left:135px;
+  }
+
+
+
 }

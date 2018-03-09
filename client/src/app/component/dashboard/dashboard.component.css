@@ -1,11 +1,19 @@
-.col.sidebar{
+.sidebar{
   width: 100%;
   position: fixed;
   margin: 0;
   padding: 0;
+  left: 0;
 }
 
-.general{
-  height:100vh;
-  background: linear-gradient(-45deg, #C3D2DA, #9DB9C5);
+
+.general-dashboard{
+    background: linear-gradient(-45deg, #C3D2DA, #9DB9C5);
+    min-height: 100%;
+    min-width: 100%;
+    width: 102%;
+    height: auto !important;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
 }

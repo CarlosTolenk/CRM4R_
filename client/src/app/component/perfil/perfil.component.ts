@@ -21,6 +21,7 @@ export class PerfilComponent implements OnInit {
   public repeatPassword:string;
   public url:string;
   public imagenTemp:string;
+  public closeModal:boolean;
 
   constructor(
     private _route: ActivatedRoute,
@@ -36,6 +37,7 @@ export class PerfilComponent implements OnInit {
     this.token = this._teamServices.getToken();
     this.repeatPassword = '';
     this.url = GLOBAL.url;
+    this.closeModal = false;
   }
 
   ngOnInit() {
@@ -60,6 +62,7 @@ export class PerfilComponent implements OnInit {
                               this.team.avatar = result.team.avatar;
                               localStorage.setItem('identity', JSON.stringify(this.team));
                               console.log(this.team);
+                              this.closeModal=true;
                           });
               }
             },
