@@ -1,0 +1,30 @@
+.title{
+  margin: 1rem;
+  padding: 2rem;
+  /* IMPORTANTE */
+  text-align: center;
+}
+
+.title h1{
+  color: white;
+  text-align: center!important;
+  font-size: 2em;
+}
+
+.box-content{
+  width: 100%;
+  padding: 1rem;
+  margin: 1rem;
+  box-shadow: 5px 5px 40px #888888;
+  position: relative;
+}
+
+.box-content::before{
+  position: absolute;
+  content: url('/assets/Icon/stack-of-coins-and-dollar.png');
+  color: red;
+  width: 10px!important;
+  height: 10px;
+  left: -60px;
+  top: -80px;
+}
