@@ -1,30 +1,186 @@
-.title{
-  margin: 1rem;
-  padding: 2rem;
-  /* IMPORTANTE */
-  text-align: center;
+
+/* Creacion de la plantilla con css GRID */
+
+.grid-container{
+  margin-top: 12vh;
+  width: 95%;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  grid-template-rows: repeat(2, fit-content);
+  grid-auto-flow: row;
+  justify-content:  space-between;
+  grid-gap: 12vh 6em;
+  grid-template-areas: 'cierre clientes estadisticas'
+                       'prestamos tickets estadisticas';
 }
 
-.title h1{
-  color: white;
-  text-align: center!important;
-  font-size: 2em;
-}
+.grid-item-cierre { grid-area: cierre; }
+.grid-item-clientes { grid-area: clientes; }
+.grid-item-estadisticas {grid-area: estadisticas;}
+.grid-item-prestamos { grid-area: prestamos;}
+.grid-item-tickets { grid-area: tickets; }
 
-.box-content{
+
+/* background de las cajitas */
+  /* background cierre */
+  .bg-background-cierre{
+    width: 100%;
+    background: url("/assets/images/bg-cierres.jpg");
+    background-repeat: no-repeat;
+    background-size: auto;
+  }
+
+  .bg-background-cierre::before{
+    position: absolute;
+    content: url('/assets/Icon/stack-of-coins-and-dollar.svg');
+    display:block;
+    max-width: 10px;
+    height: auto;
+    left: -40px;
+    top: -40px;
+  }
+
+  /* background clientes */
+
+.bg-background-clientes{
   width: 100%;
-  padding: 1rem;
-  margin: 1rem;
-  box-shadow: 5px 5px 40px #888888;
+  background: url("/assets/images/bg-cierres.jpg");
+  background-repeat: no-repeat;
+  background-size: auto;
+  position: relative;
+  padding: 4em;
+}
+
+.bg-background-clientes::before{
+  position: absolute;
+  content: url('/assets/Icon/multiple-users-silhouette.svg');
+  display:block;
+  max-width: 10px;
+  height: auto;
+  left: -40px;
+  top: -40px;
+}
+
+/* background Estadisticas */
+
+.bg-background-estadisticas{
+  width: 100%;
+  background: linear-gradient(-135deg, #526EC2, #1B2645);
   position: relative;
 }
 
-.box-content::before{
+.bg-background-estadisticas::before{
   position: absolute;
-  content: url('/assets/Icon/stack-of-coins-and-dollar.png');
-  color: red;
-  width: 10px!important;
-  height: 10px;
-  left: -60px;
-  top: -80px;
+  content: url('/assets/Icon/progress-report.svg');
+  display:block;
+  max-width: 100px;
+  left: -40px;
+  top: -40px;
+}
+
+
+
+/* Prestamos */
+.bg-background-prestamos{
+  width: 100%;
+  background: url("/assets/images/bg-prestamos.jpg");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  position: relative;
+  padding: 10em;
+}
+
+.bg-background-prestamos::before{
+  position: absolute;
+  content: url('/assets/Icon/dollar-symbol.svg');
+  display:block;
+  max-width: 10px;
+  height: auto;
+  left: -40px;
+  top: -40px;
+}
+
+/* Tickets */
+.bg-background-tickets{
+  width: 100%;
+  background: url("/assets/images/bg-tickets.jpg");
+  background-repeat: no-repeat;
+  background-size: auto;
+  position: relative;
+  padding: 10em;
+}
+
+.bg-background-tickets::before{
+  position: absolute;
+  content: url('/assets/Icon/clipboard.svg');
+  display:block;
+  max-width: 10px;
+  height: auto;
+  left: -40px;
+  top: -40px;
+}
+
+
+
+
+/* Estilos generales para todas las cajas */
+.box-content{
+  padding: 2rem;
+  box-shadow: 5px 5px 40px #888888;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 20px;
+}
+
+.box-content-title{
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-size: 2em;
+  color: #D4A820;
+}
+
+.box-content-title h3{
+  color: white;
+  font-size: 1.2em;
+}
+.box-content-title h3 i{
+  margin-right: 0.5em;
+}
+
+.box-content-body{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.box-content-body h4{
+  font-size: 1.5em;
+  color: #D4A820;
+  text-align: center;
+}
+
+.box-content-body p,
+.box-content-body span{
+  font-size: 1.2em;
+  color: #fff;
+  text-align: center;
+}
+
+.box-content-body p i{
+  margin-right: 0.5em;
+  font-size: 1.5em;
+}
+
+.box-content-body span{
+  font-weight: 600;
+}
+
+/* Prestamos */
+
+
+.prestamos{
+  padding-bottom: 1em;
+  padding-left:  1em;
+  padding-right: 1em;
 }

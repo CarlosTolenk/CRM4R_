@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import { DeprecatedCurrencyPipe } from '@angular/common';
 import { GLOBAL } from '../../services/global';
 
 @Component({
