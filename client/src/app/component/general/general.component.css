@@ -1,18 +1,22 @@
-
-/* Creacion de la plantilla con css GRID */
-
 .grid-container{
-  margin-top: 12vh;
-  width: 95%;
+  margin: 0;
+  width: 100%;
+  padding: 3.5em;
+  margin-top: 1.5em;
   display: grid;
-  grid-template-columns: 1.5fr 1fr 1fr;
-  grid-template-rows: repeat(2, fit-content);
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(5, fit-content);
   grid-auto-flow: row;
-  justify-content:  space-between;
-  grid-gap: 12vh 6em;
-  grid-template-areas: 'cierre clientes estadisticas'
-                       'prestamos tickets estadisticas';
+  justify-content: space-between;
+  grid-gap: 1em 1em;
+
+  grid-template-areas: 'cierre '
+                       'clientes'
+                       'prestamos'
+                       'tickets'
+                       'estadisticas'
 }
+
 
 .grid-item-cierre { grid-area: cierre; }
 .grid-item-clientes { grid-area: clientes; }
@@ -20,6 +24,55 @@
 .grid-item-prestamos { grid-area: prestamos;}
 .grid-item-tickets { grid-area: tickets; }
 
+
+/* Creacion de la plantilla con css GRID */
+@media only screen and (min-width: 1024px) {
+  .grid-container{
+    margin: 0;
+    margin-top: 2.5em;
+    padding-right: 4em;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(3, fit-content);
+    grid-auto-flow: row;
+    justify-content:  space-around;
+    grid-gap: 2em 2em;
+    grid-template-areas: 'cierre clientes'
+                         'prestamos tickets'
+                         'estadisticas estadisticas';
+  }
+
+  .grid-item-cierre { grid-area: cierre; }
+  .grid-item-clientes { grid-area: clientes; }
+  .grid-item-estadisticas {grid-area: estadisticas;}
+  .grid-item-prestamos { grid-area: prestamos;}
+  .grid-item-tickets { grid-area: tickets; }
+}
+
+@media only screen and (min-width: 1500px) {
+  .grid-container{
+    margin: 0;
+    margin-top: 2.5em;
+    padding-right: 4em;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr;
+    grid-template-rows: repeat(2, fit-content);
+    grid-auto-flow: row;
+    justify-content:  space-between;
+    align-content: center;
+    grid-gap: 4em 4em;
+    grid-template-areas: 'cierre clientes estadisticas'
+                         'prestamos tickets estadisticas';
+  }
+
+  .grid-item-cierre { grid-area: cierre; }
+  .grid-item-clientes { grid-area: clientes; }
+  .grid-item-estadisticas {grid-area: estadisticas;}
+  .grid-item-prestamos { grid-area: prestamos;}
+  .grid-item-tickets { grid-area: tickets; }
+}
 
 /* background de las cajitas */
   /* background cierre */
@@ -77,8 +130,6 @@
   left: -40px;
   top: -40px;
 }
-
-
 
 /* Prestamos */
 .bg-background-prestamos{

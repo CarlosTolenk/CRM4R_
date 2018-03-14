@@ -27,7 +27,7 @@ i{
 
 
 .navbar.navbar-expand-lg{
-  padding: 15px;
+  /* padding: 15px; */
 }
 .nav-link{
   color: white!important;
@@ -89,7 +89,7 @@ i{
 
 @media only screen and (max-width: 500px) {
   .navbar-brand{
-    margin-left: 15px!important;
+    /* margin-left: 15px!important; */
   }
 
   .navbar-brand img{
@@ -116,7 +116,7 @@ i{
   }
 
   .dropdown{
-    margin-right: 10px!important;
+    /* margin-right: 10px!important; */
   }
 
 }

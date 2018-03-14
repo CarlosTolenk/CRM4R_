@@ -1,13 +1,32 @@
 <!-- Navbar -->
-<app-navbar></app-navbar>
+<!-- <app-navbar></app-navbar> -->
 <!-- Sidebar con el 33% -->
 
-<div class="row general-dashboard">
+<!-- <div class="row general-dashboard">
   <div class="col col-lg-2 col-md-2 d-none d-md-block d-lg-block">
     <app-sidebar></app-sidebar>
   </div>
-<!--  El workspace -->
+
+
+
+
   <div class="container-fluid col col-lg-10 col-md-10 col-sm-12 ">
     <router-outlet></router-outlet>
   </div>
+
+</div> -->
+
+<div class="dashboard-grid general-dashboard ">
+  <div class="dashboard-grid-item-navbar">
+    <app-navbar></app-navbar>
+  </div>
+
+  <div class="dashboard-grid-item-sidebar">
+    <app-sidebar></app-sidebar>
+  </div>
+
+  <div class="dashboard-grid-item-general">
+    <router-outlet></router-outlet>
+  </div>
+
 </div>
