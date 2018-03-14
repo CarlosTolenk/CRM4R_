@@ -9,6 +9,8 @@
   grid-template-columns: 1fr;
   grid-template-rows: repeat(2, auto);
   grid-auto-flow: row;
+  justify-content: space-around;
+  align-content: center;
   grid-template-areas: 'navbar '
                        'general';
 
@@ -16,11 +18,13 @@
 
 .dashboard-grid-item-navbar{
   grid-area: navbar;
-  width: 100%;
+  max-width: 100%;
+
 }
 .dashboard-grid-item-general{
   grid-area: general;
   width: 100%;
+
 }
 
 
