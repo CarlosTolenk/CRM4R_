@@ -17,6 +17,8 @@ exports.addPrestamo = (req, res, next) => {
   let prestamo = new Prestamo();
   let cliente = new Cliente();
   let ticket = new Ticket();
+  let update;
+  let clienteId;
 
   //Busco en la base de dato la cédula del cliente para obtener toda su información
   Cliente.findOne({ cedula: params.cedula })
@@ -29,6 +31,7 @@ exports.addPrestamo = (req, res, next) => {
                  let monto_total = calculoPrestamo(params.monto_original, params.duracion, params.metodo_pago);
                  let interes = calculoInteres(monto_total, params.monto_original, params.duracion);
                  let cuota = calculoCuota(monto_total, params.metodo_pago, params.duracion);
+
 
                  prestamo.cliente = cliente;
                  prestamo.monto_original = params.monto_original;
@@ -98,18 +101,26 @@ exports.addPrestamo = (req, res, next) => {
                         ticket.estado = "PRE-DENEGADO";
                       }
                     }
+                    
+                    update = cliente;
+                    Cliente.findByIdAndUpdate(update._id, { activo: 'true'}, {new: true}, (err, clienteUpdated) => {
+                      if(err) return res.status(500).send({message: 'Error en la peteción'});
 
 
+                      if(!clienteUpdated) return res.status(404).send({message: 'No se ha podido actualizar el miembro del equipo'});
+                      console.log(clienteUpdated);
+                    });
 
-                      ticket.save((err, ticketStore) => {
-                        if(err) return res.status(500).send({message: 'Error al guardar el nuevo ticket'});
 
-                        if(ticketStore){
-                          res.status(200).send({ticket: ticketStore});
-                        }else{
-                          res.status(404).send({message: 'No se ha podido registrar el nuevo Ticket'});
-                        }
-                      }); //save ticket
+                    ticket.save((err, ticketStore) => {
+                      if(err) return res.status(500).send({message: 'Error al guardar el nuevo ticket'});
+
+                      if(ticketStore){
+                        res.status(200).send({ticket: ticketStore});
+                      }else{
+                        res.status(404).send({message: 'No se ha podido registrar el nuevo Ticket'});
+                      }
+                    }); //save ticket
                  }); //save préstamo
                }else{
                  return res.status(404).send({message: 'Error, ese cliente no existe'});

@@ -1,16 +1,16 @@
 
 
 <div class="dashboard-grid general-dashboard ">
-  <div class="dashboard-grid-item-navbar">
+  <div class="dashboard-grid-item-navbar" >
     <app-navbar></app-navbar>
   </div>
 
-  <div class="dashboard-grid-item-sidebar">
+  <div class="dashboard-grid-item-sidebar" [class]="toggle">
     <app-sidebar></app-sidebar>
   </div>
 
   <div class="dashboard-grid-item-general">
     <router-outlet></router-outlet>
+    <a class="btn-floating btn-circle" (click)="toggleSidebar($event)"><i class="fas fa-bars"></i></a>
   </div>
-
 </div>

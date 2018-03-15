@@ -1,3 +1,7 @@
+.title-general{
+  display: none;
+}
+
 .grid-container{
   margin: 0;
   width: 100%;
@@ -162,7 +166,7 @@
   text-align: center;
 }
 .box-content-title h3 i{
-  margin-right: 0.2rem;
+  margin-right: 0.5rem;
 }
 
 .box-content-body{
@@ -195,12 +199,13 @@
 .box-content-body span{
   font-weight: 500;
   justify-content: flex-start;
+  font-size: 1.1rem;
 }
 
 /* Cierre */
 
 .dinero-cierre{
-  font-size: 1rem!important;
+  font-size: 0.9rem!important;
 }
 
 /* Prestamos */
@@ -215,6 +220,10 @@
 
 /* Creacion de la plantilla con css GRID */
 @media only screen and (min-width: 1024px) {
+
+  .title-general{
+    display: none;
+  }
   .grid-container{
     margin: 0;
     margin-top: 2.5em;
@@ -222,7 +231,7 @@
     width: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: repeat(3, fit-content);
+    grid-template-rows: repeat(3, fit-content)!important;
     grid-auto-flow: column;
     justify-content:  space-around;
     grid-gap: 2em 2em;
@@ -236,17 +245,33 @@
   .grid-item-estadisticas {grid-area: estadisticas;}
   .grid-item-prestamos { grid-area: prestamos;}
   .grid-item-tickets { grid-area: tickets; }
+
+
+
+
 }
 
 @media only screen and (min-width: 1500px) {
+
+  .title-general{
+    text-align: center;
+    margin-top: 4em;
+    display: block;
+    font-family: 'Comfortaa', cursive;
+    color: white;
+    background: linear-gradient(-135deg, #526EC2, #1B2645);
+    width: 96%;
+    padding: 1em;
+    display: none;
+  }
   .grid-container{
     margin: 0;
-    margin-top: 2.5em;
+    margin-top: 10em;
     padding-right: 4em;
     width: 100%;
     display: grid;
     grid-template-columns: 1.5fr 1fr 1fr;
-    grid-template-rows: repeat(2, fit-content);
+    grid-template-rows: repeat(2, auto)!important;
     grid-auto-flow: column;
     justify-content:  space-between;
     align-content: center;
@@ -260,4 +285,86 @@
   .grid-item-estadisticas {grid-area: estadisticas;}
   .grid-item-prestamos { grid-area: prestamos;}
   .grid-item-tickets { grid-area: tickets; }
+
+  .box-content{
+    padding: 1.1rem;
+    max-width: 100%;
+    box-shadow: 5px 5px 40px #888888;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+  }
+
+  .box-content-body-item{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .box-content-title{
+    /* margin-bottom: 1.2rem; */
+    text-align: center;
+    font-size: 1.2em;
+    color: #D4A820;
+  }
+
+  .cierre{
+    /* margin-bottom: 1.8rem; */
+  }
+
+  .box-content-title h2{
+    font-size: 1.8rem;
+  }
+
+  .box-content-title h3{
+    color: white;
+    font-size: 1.5rem;
+    text-align: center;
+  }
+  .box-content-title h3 i{
+    margin-right: 0.2rem;
+  }
+
+  .box-content-body{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+  }
+
+  .box-content-body h4{
+    font-size: 1.5rem;
+    color: #D4A820;
+    text-align: center;
+
+  }
+
+  .box-content-body p,
+  .box-content-body span{
+    font-size: 1.5rem;
+    color: #fff;
+    text-align: center;
+  }
+
+  .box-content-body p i{
+    margin: 0;
+    margin-right: 0.2rem;
+    font-size: 1.3rem;
+  }
+
+  .box-content-body span{
+    font-weight: 500;
+    justify-content: flex-start;
+  }
+
+  /* Cierre */
+
+  .dinero-cierre{
+    font-size: 1.3rem!important;
+  }
+
+
+
+
+
 }

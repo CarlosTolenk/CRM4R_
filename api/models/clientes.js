@@ -17,6 +17,7 @@ let ClienteSchema =  new Schema({
     scoreData: Number,
     avg: Number,
     fecha: Date,
+    activo: String,
     data_credito: {type : Schema.Types.ObjectId, ref : 'DataCredito'}
 });
 

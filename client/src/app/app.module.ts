@@ -7,6 +7,7 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { routing, appRoutingProviders } from './app.routing';
 import { CommonModule } from '@angular/common';
 
+
 //Componentes
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './component/navbar/navbar.component';
@@ -37,6 +38,7 @@ import { PerfilComponent } from './component/perfil/perfil.component';
     routing,
     HttpClientModule,
     CommonModule
+
   ],
   providers: [
     appRoutingProviders

@@ -50,3 +50,31 @@
     </ul>
   </div>
 </div>
+
+
+<div class="d-block d-sm-none">
+  <ul class="list-group">
+    <li class="list-group-item titulo-menu"><h3>Menu</h3></li>
+    <li class="list-group-item" *ngIf="admin" routerLinkActive="active">
+      <a [routerLink]="['registro']"><i class="fa fa-address-book" ></i>Registar</a>
+    </li>
+      <li class="list-group-item" routerLinkActive="active">
+        <a [routerLink]="['general']"><i class="fa fa-tachometer"></i>General</a>
+      </li>
+      <li class="list-group-item">
+        <a href="#"><i class="fa fa-users"></i>Clientes</a>
+      </li>
+      <li class="list-group-item">
+        <a href="#"><i class="fa fa-calculator"></i>Préstamos</a>
+      </li>
+      <li class="list-group-item">
+        <a href="#"><i class="fa fa-book"></i>Cierres</a>
+      </li>
+      <li class="list-group-item">
+        <a href="#"><i class="fa fa-ticket"></i>Tickets</a>
+      </li>
+      <li class="list-group-item">
+        <a href="#"><i class="fa fa-share"></i>Recursos</a>
+      </li>
+  </ul>
+</div>

@@ -1,8 +1,7 @@
 
 .general-dashboard {
     background: linear-gradient(-45deg, #C3D2DA, #9DB9C5);
-    width: 105%;
-
+    width: 100%;
 }
 
 .dashboard-grid{
@@ -13,26 +12,104 @@
   grid-auto-flow: row;
   justify-content: space-around;
   align-content: center;
-  grid-template-areas: 'navbar '
+  grid-template-areas: 'navbar'
                        'general';
 
 }
 
 .dashboard-grid-item-navbar{
   grid-area: navbar;
+  position: sticky;
+
 }
 .dashboard-grid-item-general{
   grid-area: general;
 }
+.dashboard-grid-item-sidebar{
+  grid-area: sidebar;
+
+}
+
+.toggle-disactive{
+  position: fixed;
+  top: 70px;
+  bottom: 0;
+  width: 80%;
+  z-index: 9999;
+  transition: transform .3s ease-out;
+  transform: translateX(-100%);
+}
+
+.toggle-active{
+  position: fixed;
+  top: 70px;
+  bottom: 0;
+  height: 100vh;
+  width: 80%;
+  z-index: 9999;
+  transition: transform .3s ease-out;
+  transform: translateX(0);
+}
 
 
+.dashboard-grid-item-sidebar:target{
+  transform: translateX(0);
+}
 
-@media only screen and (min-width: 1024px) {
+.btn-circle {
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  padding: 6px 0;
+  font-size: 12px;
+  line-height: 1.428571429;
+  border-radius: 50px;
+}
+
+.btn-floating{
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
+  position: fixed;
+  background: linear-gradient(-135deg, #526EC2, #1B2645);
+  box-shadow: 5px 5px 40px #1111;
+}
+
+.btn-floating i{
+  margin-top: 10px;
+  color: #D4A820;
+  font-size: 1.2rem;
+}
+
+@media only screen and (min-width: 600px) {
+  .toggle-disactive{
+    position: fixed;
+    top: 85px;
+    bottom: 0;
+    width: 60%;
+    z-index: 9999;
+    transition: transform .3s ease-out;
+    transform: translateX(-100%);
+  }
+
+  .toggle-active{
+    position: fixed;
+    top: 85px;
+    bottom: 0;
+    width: 60%;
+    z-index: 9999;
+    transition: transform .3s ease-out;
+    transform: translateX(0);
+  }
+}
+
+
+@media only screen and (min-width: 1400px) {
   .dashboard-grid {
     display: grid;
     width: 100%;
     grid-template-columns: 0.5fr 1fr 1fr ;
-    grid-template-rows: repeat(2, auto);
+    grid-template-rows: repeat(2, fit-content);
     grid-auto-flow: row;
     grid-template-areas: 'navbar navbar navbar'
                          'sidebar general general ';
@@ -41,10 +118,23 @@
   .dashboard-grid-item-navbar{
     grid-area: navbar;
   }
+
   .dashboard-grid-item-sidebar{
     grid-area: sidebar;
   }
+
   .dashboard-grid-item-general{
     grid-area: general;
   }
+
+  .toggle-disactive{
+    position: static;
+    transform: translateX(0);
+    width: 100%;
+  }
+
+  .btn-floating{
+    display: none;
+  }
+
 }
