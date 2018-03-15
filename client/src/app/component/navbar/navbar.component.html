@@ -6,6 +6,9 @@
       </a>
 
         <ul class="nav navbar-nav ml-auto navbar-right navbar-menu" *ngIf="identity">
+          <li class="notification">
+           <i class="fas fa-bell"><span>!</span></i>
+          </li>
           <li class="avatar">
             <img src="{{url + 'get-image-team/' + identity.avatar }}" class="rounded-circle" alt="imagen-team" *ngIf="identity && identity.avatar">
           </li>

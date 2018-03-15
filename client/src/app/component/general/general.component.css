@@ -192,7 +192,7 @@
 
 .box-content-body p i{
   margin: 0;
-  margin-right: 0.2rem;
+  margin-right: 0.5rem;
   font-size: 1.2rem;
 }
 
@@ -253,17 +253,25 @@
 
 @media only screen and (min-width: 1500px) {
 
+
   .title-general{
     text-align: center;
-    margin-top: 4em;
     display: block;
     font-family: 'Comfortaa', cursive;
     color: white;
     background: linear-gradient(-135deg, #526EC2, #1B2645);
-    width: 96%;
+    width: 100%;
+    position: fixed;
+    left: 80px;
     padding: 1em;
-    display: none;
+    display: block;
   }
+
+  .title-general h2{
+    color: white;
+    font-size: 2.1em;
+  }
+
   .grid-container{
     margin: 0;
     margin-top: 10em;
@@ -322,7 +330,7 @@
     text-align: center;
   }
   .box-content-title h3 i{
-    margin-right: 0.2rem;
+    margin-right: 0.5rem;
   }
 
   .box-content-body{
@@ -348,7 +356,7 @@
 
   .box-content-body p i{
     margin: 0;
-    margin-right: 0.2rem;
+    margin-right: 0.5rem;
     font-size: 1.3rem;
   }
 

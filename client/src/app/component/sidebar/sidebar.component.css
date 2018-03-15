@@ -1,5 +1,5 @@
 .sidebar{
-  width: 80%;  
+  width: 80%;
 }
 
 .list-group{
@@ -39,4 +39,17 @@
   font-size: 15px!important;
   margin-right: 10px;
   margin-left: 15px;
+}
+
+.notification{
+  color: red!important;
+  background-color: white;
+  border-radius: 100%;
+  margin-left: 3.5em!important;
+  float: right;
+
+}
+
+.fa-exclamation-circle:before{
+  font-size: 1.2em;
 }

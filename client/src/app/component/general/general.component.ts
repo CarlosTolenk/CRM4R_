@@ -26,7 +26,9 @@ export class GeneralComponent implements OnInit {
    }
 
   ngOnInit() {
+
     this.stats = this._teamService.getStats();
+    console.log(this.stats.Clientes.clientes_activos);
     console.log(this.stats);
   }
 
