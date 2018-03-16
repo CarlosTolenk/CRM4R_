@@ -46,6 +46,8 @@ i{
 .navigation{
   margin: 0;
   padding: 0px;
+  position: sticky;
+  z-index: 24;
 }
 
 .avatar{
@@ -80,6 +82,7 @@ i{
 
 .dropdown{
   margin-right: 20px!important;
+  z-index: 24;
 }
 
 .nav-link {
@@ -100,6 +103,8 @@ i{
 .dropdown a{
   color: white;
   font-size: 20px;
+
+
 }
 
 .dropdown-toggle{
@@ -113,10 +118,13 @@ i{
 
 .navigation .dropdown-menu{
   background-color: #12224B!important;
-  position: absolute;
   width:100%;
-  left: auto;
+}
 
+.dropdown-menu{
+  position: relative;
+  top: 40px;
+  z-index: 100!important;
 }
 
 .pointer{
@@ -156,7 +164,7 @@ i{
     margin-right: 10px!important;
   }
 
-  notification{
+  .notification{
     align-items: center;
     justify-content: center;
     margin-top: 5px;

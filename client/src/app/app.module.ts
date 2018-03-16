@@ -17,6 +17,7 @@ import { RegistroComponent } from './component/registro/registro.component';
 import { SidebarComponent } from './component/sidebar/sidebar.component';
 import { GeneralComponent } from './component/general/general.component';
 import { PerfilComponent } from './component/perfil/perfil.component';
+import { ClienteComponent } from './component/cliente/cliente.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { PerfilComponent } from './component/perfil/perfil.component';
     RegistroComponent,
     SidebarComponent,
     GeneralComponent,
-    PerfilComponent
+    PerfilComponent,
+    ClienteComponent
   ],
   imports: [
     BrowserModule,

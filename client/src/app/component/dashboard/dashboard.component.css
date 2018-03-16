@@ -20,6 +20,7 @@
 .dashboard-grid-item-navbar{
   grid-area: navbar;
   position: sticky;
+  z-index: 100;
 
 }
 .dashboard-grid-item-general{
