@@ -73,7 +73,7 @@ exports.getClientes  = (req, res) => {
     page = req.params.page;
   }
 
-  let itemsPerPage = 5;
+  let itemsPerPage = 10;
 
   Cliente.find().sort('_id').paginate(page, itemsPerPage, (err, clientes, total) => {
      if(err) return res.status(500).send({message: 'Error en la petición'});

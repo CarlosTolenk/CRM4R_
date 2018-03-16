@@ -10,6 +10,7 @@ export class Cliente{
     public salario: Number,
     public descripcion: String,
     public scoreDate: Number,
+    public activo: String,
     public avg: Number,
     public fecha: Date,
     public data_credito: String

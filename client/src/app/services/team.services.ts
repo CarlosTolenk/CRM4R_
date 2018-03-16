@@ -12,7 +12,7 @@ export class TeamService{
   public stats;
 
   constructor(
-    public _http: HttpClient){
+      public _http: HttpClient){
       this.url = GLOBAL.url;
     }
 
@@ -83,7 +83,7 @@ export class TeamService{
       let headers = new HttpHeaders().set('Content-Type', 'application/json')
                                      .set('Authorization', this.getToken());
                                      //update-team/:id
-                                    
+
 
       return this._http.put(this.url + 'update-team/' + team._id, params, {headers: headers});
     }

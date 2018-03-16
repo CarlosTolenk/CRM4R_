@@ -20,7 +20,7 @@ export class AppComponent {
 
   ngOnInit(){
     this.identity = this._teamService.getIdentity();
-    console.log(this.identity);
+    // console.log(this.identity);
   }
 
 
