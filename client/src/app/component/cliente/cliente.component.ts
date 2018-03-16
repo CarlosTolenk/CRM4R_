@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { ClienteService } from '../../services/cliente.services';
+import { Cliente } from '../../models/cliente';
 import { GLOBAL } from '../../services/global';
 
 @Component({
@@ -12,6 +13,9 @@ import { GLOBAL } from '../../services/global';
 export class ClienteComponent implements OnInit {
   public title:string;
   public status:string;
+  public listCliente;
+  public cliente:Cliente;
+  public page:Number;
 
 
   constructor(
@@ -20,13 +24,18 @@ export class ClienteComponent implements OnInit {
     private _clienteService: ClienteService
   ) {
     this.title = "Clientes";
+    this.cliente = new Cliente('', '', '', '', '', '', '', 0, '', 0, '', 0, '', '');
    }
 
   ngOnInit() {
     //Loguear el usuario y conseguir sus datos
     this._clienteService.getclientes(null).subscribe(
       response => {
-        console.log(response);
+
+        this.page = response.pages;
+        this.listCliente = response.clientes;
+        console.log(this.page);
+        console.log(this.listCliente);
 
       },
       error => {

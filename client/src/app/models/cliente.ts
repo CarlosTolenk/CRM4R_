@@ -1,4 +1,4 @@
-export class Cliente{
+export class Cliente {
   constructor(
     public _id: String,
     public nombre: String,
@@ -12,7 +12,7 @@ export class Cliente{
     public scoreDate: Number,
     public activo: String,
     public avg: Number,
-    public fecha: Date,
+    public fecha: String,
     public data_credito: String
   ){}
 }

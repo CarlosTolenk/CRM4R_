@@ -97,4 +97,18 @@
     font-family: 'Comfortaa', cursive;
   }
 
+  .table{
+    margin-top: 3em;
+    width: 92%;
+  }
+
+  .btn-circle{
+    background: linear-gradient(-135deg, #223568, #20315b);
+    border-radius: 100%;
+  }
+
+  .btn-circle i{
+    color: #ffca27;
+  }
+
 }

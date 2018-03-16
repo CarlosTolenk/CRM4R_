@@ -16,13 +16,15 @@ exports.saveCliente = (req, res, next) => {
   let cliente = new Cliente();
  //Verificar si se han enviado todos los parámetros
   if(params.nombre && params.apellido && params.cedula && params.email && params.direccion
-      && params.ocupacion && params.salario && params.descripcion){
+      && params.ocupacion && params.salario && params.descripcion && params.telefono && params.sector){
       //Pasar todo los campos de la peticion al miembro del team
       cliente.nombre = params.nombre;
       cliente.apellido = params.apellido;
       cliente.cedula = params.cedula;
       cliente.email = params.email;
+      cliente.telefono = params.telefono;
       cliente.direccion = params.direccion;
+      cliente.sector = params.sector;
       cliente.ocupacion = params.ocupacion;
       cliente.salario = params.salario;
       cliente.descripcion = params.descripcion;
@@ -73,7 +75,7 @@ exports.getClientes  = (req, res) => {
     page = req.params.page;
   }
 
-  let itemsPerPage = 10;
+  let itemsPerPage = 8;
 
   Cliente.find().sort('_id').paginate(page, itemsPerPage, (err, clientes, total) => {
      if(err) return res.status(500).send({message: 'Error en la petición'});
