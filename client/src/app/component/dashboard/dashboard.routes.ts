@@ -8,7 +8,8 @@ import { ClienteComponent } from '../cliente/cliente.component';
 export const dashboard_routes: Routes = [
     { path: 'perfil', component: PerfilComponent },
     { path: 'general', component: GeneralComponent },
-    { path: 'cliente', component: ClienteComponent },
+    { path: 'clientes', component: ClienteComponent },
+    { path: 'clientes/:page', component: ClienteComponent },
     { path: 'registro', component: RegistroComponent },
-    { path: '**', pathMatch: 'full', redirectTo: 'general' }
+    { path: '**', component: GeneralComponent }
 ];

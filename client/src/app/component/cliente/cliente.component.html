@@ -48,24 +48,24 @@
   </table>
 </div>
 
-
-
-
-
-
-
-
 <!-- Paginacion por medio de botones, usando ng repeat-->
-<!-- <div class="navagation-page">
-    <div class="btn-group btn-group-toggle" data-toggle="buttons">
-    <label class="btn btn-secondary active">
-      <input type="radio" autocomplete="off" checked> <
-    </label>
-    <label class="btn btn-secondary" ng-repeat="page">
-      <input type="radio" autocomplete="off"> {{page}}
-    </label>
-    <label class="btn btn-secondary">
-      <input type="radio" autocomplete="off">  >
-    </label>
-  </div>
-</div> -->
+<div class="navagation-page">
+  <ul class="pagination pull-right">
+      <li *ngIf="page > 1">
+        <a [routerLink]="['prev_page']" >Anterior</a>
+      </li>
+      <li *ngIf="pages != page ">
+        <a [routerLink]="[next_page]">Siguiente</a>
+      </li>
+  </ul>
+</div>
+
+<!--
+
+ <a routerLink="/crisis-center" routerLinkActive="active">Crisis Center</a> -->
+
+<!--
+
+<a [routerLink]="['/user/bob']" [queryParams]="{debug: true}" queryParamsHandling="merge">
+link to user component
+</a>  -->

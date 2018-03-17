@@ -13,9 +13,13 @@ import { GLOBAL } from '../../services/global';
 export class ClienteComponent implements OnInit {
   public title:string;
   public status:string;
-  public listCliente;
+  public listCliente: Cliente[];
   public cliente:Cliente;
-  public page:Number;
+  public page;
+  public pages;
+  public total;
+  public next_page;
+  public prev_page;
 
 
   constructor(
@@ -28,14 +32,52 @@ export class ClienteComponent implements OnInit {
    }
 
   ngOnInit() {
-    //Loguear el usuario y conseguir sus datos
-    this._clienteService.getclientes(null).subscribe(
-      response => {
+    this.actualPage();
+  }
 
-        this.page = response.pages;
-        this.listCliente = response.clientes;
-        console.log(this.page);
-        console.log(this.listCliente);
+
+  actualPage(){
+      this._route.params.subscribe(params =>{
+        let page = +params['page']; //Convertido a entero
+        this.page = page;
+
+        if(!params['page']){
+          page = 1;
+        }
+
+        if(!page){
+          page = 1;
+        }else{
+          this.next_page = page+1;
+          this.prev_page = page-1;
+
+          if(this.prev_page <= 0){
+            this.prev_page = 1;
+          }
+        }
+        //Devolver listado de clientes
+        this.getClientes(page);
+      });
+  }
+
+  getClientes(page){
+
+    //Conseguir todos los datos del cliente
+    this._clienteService.getClientes(page).subscribe(
+      response => {
+        if(!response.clientes){
+          this.status = 'error';
+        }else{
+          this.pages = response.pages;
+          this.listCliente = response.clientes;
+          this.total = response.total;
+          console.log(this.pages);
+          console.log(this.listCliente);
+
+          if(page > this.pages){
+            this._router.navigate(['/cliente', 1]);
+          }
+        }
 
       },
       error => {
@@ -46,6 +88,9 @@ export class ClienteComponent implements OnInit {
           }
       }
   );
+
+
+
   }
 
 }
