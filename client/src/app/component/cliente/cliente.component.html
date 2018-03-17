@@ -5,11 +5,7 @@
       <li class="navbar-cliente-item">
         <a class="btn btn-circle"><i class="fas fa-plus"></i></a>
         <span>Cliente</span>
-      </li>
-      <li class="navbar-cliente-item">
-        <a class="btn btn-circle"><i class="fas fa-plus"></i></a>
-        <span>Candidato</span>
-      </li>
+      </li>    
     </ul>
     <div class="search">
       <input type="text" name="" class="form-control" placeholder="Buscar Cliente">
@@ -46,26 +42,17 @@
       </tr>
     </tbody>
   </table>
+
+  <!-- Paginacion por medio de botones, usando ng repeat-->
+  <div class="navagation-page">
+    <ul class="pagination pull-right">
+        <li class="prev-page" *ngIf="page > 1">
+          <button class="btn btn-primary" (click)="PrevPage()">Anterior</button>
+        </li>
+        <li  class="next-page" *ngIf="pages != page ">
+          <button class="btn btn-primary"  (click)="NextPage()">Siguiente</button>
+        </li>
+    </ul>
+  </div>
+
 </div>
-
-<!-- Paginacion por medio de botones, usando ng repeat-->
-<div class="navagation-page">
-  <ul class="pagination pull-right">
-      <li *ngIf="page > 1">
-        <a [routerLink]="['prev_page']" >Anterior</a>
-      </li>
-      <li *ngIf="pages != page ">
-        <a [routerLink]="[next_page]">Siguiente</a>
-      </li>
-  </ul>
-</div>
-
-<!--
-
- <a routerLink="/crisis-center" routerLinkActive="active">Crisis Center</a> -->
-
-<!--
-
-<a [routerLink]="['/user/bob']" [queryParams]="{debug: true}" queryParamsHandling="merge">
-link to user component
-</a>  -->

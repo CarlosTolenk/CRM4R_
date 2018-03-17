@@ -103,12 +103,46 @@
   }
 
   .btn-circle{
-    background: linear-gradient(-135deg, #223568, #20315b);
+    background: linear-gradient(-135deg, #223568, #2F55B5);
     border-radius: 100%;
   }
 
   .btn-circle i{
     color: #ffca27;
   }
+
+  .list-content{
+    position: relative;
+  }
+
+  .navagation-page{
+    position: absolute;
+    top: 40em;
+    left: 30em;
+  }
+
+  .pagination{
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .pagination li{
+    justify-content: space-around;
+    margin-left: 5em;
+  }
+
+  .prev-page{
+    position: fixed;
+    top: 52em;
+    left: 50em;
+  }
+
+  .next-page{
+    position: fixed;
+    top: 52em;
+    left: 60em;
+  }
+
+
 
 }

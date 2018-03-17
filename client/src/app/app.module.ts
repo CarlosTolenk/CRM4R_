@@ -18,6 +18,7 @@ import { SidebarComponent } from './component/sidebar/sidebar.component';
 import { GeneralComponent } from './component/general/general.component';
 import { PerfilComponent } from './component/perfil/perfil.component';
 import { ClienteComponent } from './component/cliente/cliente.component';
+import { BuscadorComponent } from './component/cliente/buscador/buscador.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { ClienteComponent } from './component/cliente/cliente.component';
     SidebarComponent,
     GeneralComponent,
     PerfilComponent,
-    ClienteComponent
+    ClienteComponent,
+    BuscadorComponent
   ],
   imports: [
     BrowserModule,

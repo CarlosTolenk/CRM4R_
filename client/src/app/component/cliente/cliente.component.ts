@@ -64,33 +64,36 @@ export class ClienteComponent implements OnInit {
 
     //Conseguir todos los datos del cliente
     this._clienteService.getClientes(page).subscribe(
-      response => {
-        if(!response.clientes){
-          this.status = 'error';
-        }else{
-          this.pages = response.pages;
-          this.listCliente = response.clientes;
-          this.total = response.total;
-          console.log(this.pages);
-          console.log(this.listCliente);
-
-          if(page > this.pages){
-            this._router.navigate(['/cliente', 1]);
-          }
-        }
-
-      },
-      error => {
-            var errorMessage = <any>error;
-            console.log(errorMessage);
-            if(errorMessage != null){
+          response => {
+            if(!response.clientes){
               this.status = 'error';
+            }else{
+              this.pages = response.pages;
+              this.listCliente = response.clientes;
+              this.total = response.total;
+
+              if(page > this.pages){              
+                this._router.navigate(['home/clientes', 1]);
+              }
+            }
+
+          },
+          error => {
+                var errorMessage = <any>error;
+                console.log(errorMessage);
+                if(errorMessage != null){
+                  this.status = 'error';
+              }
           }
-      }
-  );
+      );
 
+  }
+  PrevPage(){
+    this._router.navigate(['home/clientes', this.prev_page]);
+  }
 
-
+  NextPage(){
+    this._router.navigate(['home/clientes', this.next_page]);
   }
 
 }

@@ -16,8 +16,8 @@ const appRoutes: Routes = [
     { path: 'home',
      component: DashboardComponent,
      children: dashboard_routes
-    },
-    { path: '**', pathMatch: 'full', redirectTo: 'home' }
+    }
+
 
 ];
 
