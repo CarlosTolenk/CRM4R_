@@ -6,6 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { routing, appRoutingProviders } from './app.routing';
 import { CommonModule } from '@angular/common';
+import { NgxPaginationModule} from 'ngx-pagination';
 
 
 //Componentes
@@ -41,7 +42,8 @@ import { BuscadorComponent } from './component/cliente/buscador/buscador.compone
     AngularFontAwesomeModule,
     routing,
     HttpClientModule,
-    CommonModule
+    CommonModule,
+    NgxPaginationModule
 
   ],
   providers: [

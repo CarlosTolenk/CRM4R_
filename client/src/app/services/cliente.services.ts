@@ -10,6 +10,8 @@ import { Cliente } from '../models/cliente';
 export class ClienteService{
   public url:string;
   public token;
+  public busquedaCliente;
+
 
   constructor(
     public _http: HttpClient,
@@ -20,12 +22,12 @@ export class ClienteService{
   }
 
 
-  getClientes(page = null): Observable<any>{
+  getClientes(): Observable<any>{
 
     let headers = new HttpHeaders().set('Content-Type', 'application/json')
                                    .set('Authorization', this.token);
 
-    return this._http.get(this.url + 'get-clientes/'+ page, {headers: headers});
+    return this._http.get(this.url + 'get-clientes', {headers: headers});
   }
 
   //get-clientes/:page
@@ -41,6 +43,15 @@ export class ClienteService{
   //   return this._http.get(this.url + 'get-cliente/'+ id, {headers: headers});
   // }
 
+  buscadorCliente(clientes){
+    this.busquedaCliente = clientes;
+  }
+
+  getBuscadorCliente(){
+    console.log("GetBuscardorCliente")
+    console.log(this.busquedaCliente);
+    return this.busquedaCliente;
+  }
 
 
 

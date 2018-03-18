@@ -5,19 +5,17 @@
       <li class="navbar-cliente-item">
         <a class="btn btn-circle"><i class="fas fa-plus"></i></a>
         <span>Cliente</span>
-      </li>    
+      </li>
     </ul>
     <div class="search">
-      <input type="text" name="" class="form-control" placeholder="Buscar Cliente">
+      <input type="text" class="form-control" placeholder="Buscar Cliente" (keyup.enter)="buscarCliente(buscar.value)"   #buscar>
     </div>
   </div>
 </div>
 
 
 <div class="list-content">
-  <!-- <li *ngFor="let cliente of listCliente">
-    {{cliente.nombre}}
-  </li> -->
+
   <table class="table table-hover">
     <thead class="thead-dark">
       <tr>
@@ -31,7 +29,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let cliente of listCliente">
+      <tr *ngFor="let cliente of listCliente | paginate: { itemsPerPage: 9, currentPage: p }  ">
         <th scope="row">{{cliente.cedula}}</th>
         <td>{{cliente.nombre+ ' ' +cliente.apellido}}</td>
         <td>{{cliente.telefono}}</td>
@@ -43,16 +41,20 @@
     </tbody>
   </table>
 
-  <!-- Paginacion por medio de botones, usando ng repeat-->
-  <div class="navagation-page">
-    <ul class="pagination pull-right">
-        <li class="prev-page" *ngIf="page > 1">
-          <button class="btn btn-primary" (click)="PrevPage()">Anterior</button>
-        </li>
-        <li  class="next-page" *ngIf="pages != page ">
-          <button class="btn btn-primary"  (click)="NextPage()">Siguiente</button>
-        </li>
-    </ul>
-  </div>
 
+  <div class="container-fluid">
+    <div id="foot" class="row">
+      <pagination-controls style="margin: 0 auto;"  (pageChange)="p = $event"></pagination-controls>
+    </div>
+  </div>
 </div>
+
+<!-- Se debe de crear otro componente llamado en listarCliente, ese tendra las tablas de todos los
+ Cliente y tambien tendra el buscador interno, y por medio de un ngIf poner una tabla o la otra.
+ Y en ese compontente solo dejar el router-outlet ya que será el principal para seguir mostrando
+ los demás componentes del cliente, como editar y ver el cliente.
+
+
+
+ -->
+<router-outlet></router-outlet>

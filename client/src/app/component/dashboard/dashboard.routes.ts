@@ -9,11 +9,10 @@ import { cliente_routes } from '../cliente/cliente.routes';
 export const dashboard_routes: Routes = [
     { path: 'perfil', component: PerfilComponent },
     { path: 'general', component: GeneralComponent },
-    { path: 'clientes', component: ClienteComponent},
-    { path: 'clientes/:page',
+    { path: 'clientes',
      component: ClienteComponent,
      children: cliente_routes
     },
-    { path: 'registro', component: RegistroComponent },
-    { path: '**', component: GeneralComponent }
+    { path: 'registro', component: RegistroComponent }
+
 ];

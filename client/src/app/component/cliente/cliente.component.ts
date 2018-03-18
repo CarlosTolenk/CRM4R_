@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import { NgxPaginationModule} from 'ngx-pagination';
 import { ClienteService } from '../../services/cliente.services';
 import { Cliente } from '../../models/cliente';
 import { GLOBAL } from '../../services/global';
@@ -32,49 +33,18 @@ export class ClienteComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.actualPage();
+      this.getClientes();
   }
 
-
-  actualPage(){
-      this._route.params.subscribe(params =>{
-        let page = +params['page']; //Convertido a entero
-        this.page = page;
-
-        if(!params['page']){
-          page = 1;
-        }
-
-        if(!page){
-          page = 1;
-        }else{
-          this.next_page = page+1;
-          this.prev_page = page-1;
-
-          if(this.prev_page <= 0){
-            this.prev_page = 1;
-          }
-        }
-        //Devolver listado de clientes
-        this.getClientes(page);
-      });
-  }
-
-  getClientes(page){
+  getClientes(){
 
     //Conseguir todos los datos del cliente
-    this._clienteService.getClientes(page).subscribe(
+    this._clienteService.getClientes().subscribe(
           response => {
             if(!response.clientes){
               this.status = 'error';
             }else{
-              this.pages = response.pages;
               this.listCliente = response.clientes;
-              this.total = response.total;
-
-              if(page > this.pages){              
-                this._router.navigate(['home/clientes', 1]);
-              }
             }
 
           },
@@ -88,12 +58,26 @@ export class ClienteComponent implements OnInit {
       );
 
   }
-  PrevPage(){
-    this._router.navigate(['home/clientes', this.prev_page]);
+
+  buscarCliente(termino:string){
+
+    let clientesArr:Cliente[] = [];
+    termino = termino.toLowerCase();
+
+    for(let cliente of this.listCliente){
+      let nombre = cliente.nombre.toLowerCase();
+
+      if(nombre.indexOf(termino) >= 0 ){
+        clientesArr.push(cliente);
+      }
+    }
+    console.log(clientesArr);
+      this._clienteService.buscadorCliente(clientesArr);
+      this._router.navigate(['/home/clientes/buscar']);
   }
 
-  NextPage(){
-    this._router.navigate(['home/clientes', this.next_page]);
-  }
+
+
+
 
 }

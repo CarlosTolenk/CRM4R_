@@ -68,25 +68,12 @@ exports.saveCliente = (req, res, next) => {
 
 exports.getClientes  = (req, res) => {
 
-  let identity_team_id = req.user.sub;
-  let page = 1;
-
-  if(req.params.page){
-    page = req.params.page;
-  }
-
-  let itemsPerPage = 8;
-
-  Cliente.find().sort('_id').paginate(page, itemsPerPage, (err, clientes, total) => {
+  Cliente.find().sort('nombre').exec((err, clientes) => {
      if(err) return res.status(500).send({message: 'Error en la petición'});
 
      if(!clientes) return status(404).send({message: 'No hay clientes disponibles'});
 
-     return res.status(200).send({
-       clientes,
-       total,
-       pages: Math.ceil(total/itemsPerPage),
-     })
+     return res.status(200).send({clientes});
   });
 };
 
