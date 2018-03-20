@@ -10,7 +10,7 @@ import { Cliente } from '../models/cliente';
 export class ClienteService{
   public url:string;
   public token;
-  public busquedaCliente;
+
 
 
   constructor(
@@ -43,15 +43,6 @@ export class ClienteService{
   //   return this._http.get(this.url + 'get-cliente/'+ id, {headers: headers});
   // }
 
-  buscadorCliente(clientes){
-    this.busquedaCliente = clientes;
-  }
-
-  getBuscadorCliente(){
-    console.log("GetBuscardorCliente")
-    console.log(this.busquedaCliente);
-    return this.busquedaCliente;
-  }
 
 
 

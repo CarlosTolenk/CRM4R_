@@ -8,13 +8,21 @@
       </li>
     </ul>
     <div class="search">
-      <input type="text" class="form-control" placeholder="Buscar Cliente" (keyup.enter)="buscarCliente(buscar.value)"   #buscar>
+      <input type="text" class="form-control" placeholder="Buscar Cliente" (keyup.enter)="buscarCliente(buscar.value)" #buscar  [value]="terminoB"    >
     </div>
   </div>
 </div>
 
 
-<div class="list-content">
+<div style="margin-top: 50px;">
+  <a (click)="getClientesTodos()"> Todos</a>
+  <a (click)="getClientesActivos()"> Activos</a>
+  <a (click)="getClientesCandidatos()"> Candidatos</a>
+</div>
+
+
+<!-- Ver todos los clientes sin importar nada  -->
+<div class="list-content" *ngIf="!busqueda && !activo && !candidato">
 
   <table class="table table-hover">
     <thead class="thead-dark">
@@ -48,13 +56,120 @@
     </div>
   </div>
 </div>
-
-<!-- Se debe de crear otro componente llamado en listarCliente, ese tendra las tablas de todos los
- Cliente y tambien tendra el buscador interno, y por medio de un ngIf poner una tabla o la otra.
- Y en ese compontente solo dejar el router-outlet ya que será el principal para seguir mostrando
- los demás componentes del cliente, como editar y ver el cliente.
+<!-- Cierre del ciclo de ver todos los clientes sin importar nada -->
 
 
+<!-- Ver todos los clientes que son activos  -->
+<div class="list-content" *ngIf="!busqueda && activo && !candidato">
+  <h1>Activos</h1>
 
- -->
-<router-outlet></router-outlet>
+  <table class="table table-hover">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Cédula</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Teléfono</th>
+        <th scope="col">Sector</th>
+        <th scope="col">Ocupacion</th>
+        <th scope="col">Salario</th>
+        <th scope="col">Editar</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let cliente of busquedaActivos | paginate: { itemsPerPage: 9, currentPage: p }  ">
+        <th scope="row">{{cliente.cedula}}</th>
+        <td>{{cliente.nombre+ ' ' +cliente.apellido}}</td>
+        <td>{{cliente.telefono}}</td>
+        <td>{{cliente.sector}}</td>
+        <td>{{cliente.ocupacion}}</td>
+        <td>{{cliente.salario}}</td>
+        <td><a class="btn btn-circle"><i class="fas fa-pencil-alt"></i></a></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div class="container-fluid">
+    <div id="foot" class="row">
+      <pagination-controls style="margin: 0 auto;"  (pageChange)="p = $event"></pagination-controls>
+    </div>
+  </div>
+</div>
+<!-- Cierre del ciclo de ver todos los clientes que son activos -->
+
+
+
+<!-- Ver todos los clientes que son activos  -->
+<div class="list-content" *ngIf="!busqueda && !activo && candidato">
+  <h1>Candidatos</h1>
+
+  <table class="table table-hover">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Cédula</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Teléfono</th>
+        <th scope="col">Sector</th>
+        <th scope="col">Ocupacion</th>
+        <th scope="col">Salario</th>
+        <th scope="col">Editar</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let cliente of busquedaCandidatos | paginate: { itemsPerPage: 9, currentPage: p }  ">
+        <th scope="row">{{cliente.cedula}}</th>
+        <td>{{cliente.nombre+ ' ' +cliente.apellido}}</td>
+        <td>{{cliente.telefono}}</td>
+        <td>{{cliente.sector}}</td>
+        <td>{{cliente.ocupacion}}</td>
+        <td>{{cliente.salario}}</td>
+        <td><a class="btn btn-circle"><i class="fas fa-pencil-alt"></i></a></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div class="container-fluid">
+    <div id="foot" class="row">
+      <pagination-controls style="margin: 0 auto;"  (pageChange)="p = $event"></pagination-controls>
+    </div>
+  </div>
+</div>
+<!-- Cierre del ciclo de ver todos los clientes que son candidatos -->
+
+
+<!-- Ver los clientes acorde a la búsqueda -->
+<div class="" *ngIf="busqueda">
+  <a (click)="volver()"> Volver</a>
+  <h1>Hay busqueda</h1>
+
+  <div class="list-content" >
+
+    <table class="table table-hover">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Cédula</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Teléfono</th>
+          <th scope="col">Sector</th>
+          <th scope="col">Ocupacion</th>
+          <th scope="col">Salario</th>
+          <th scope="col">Editar</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cliente of busquedaCliente   ">
+          <th scope="row">{{cliente.cedula}}</th>
+          <td>{{cliente.nombre+ ' ' +cliente.apellido}}</td>
+          <td>{{cliente.telefono}}</td>
+          <td>{{cliente.sector}}</td>
+          <td>{{cliente.ocupacion}}</td>
+          <td>{{cliente.salario}}</td>
+          <td><a class="btn btn-circle"><i class="fas fa-pencil-alt"></i></a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Cierre del ciclo del filtro de la búsqueda -->

@@ -16,11 +16,14 @@ export class ClienteComponent implements OnInit {
   public status:string;
   public listCliente: Cliente[];
   public cliente:Cliente;
-  public page;
-  public pages;
-  public total;
-  public next_page;
-  public prev_page;
+  public busquedaCliente:Cliente[];
+  public busquedaActivos:Cliente[];
+  public busquedaCandidatos:Cliente[];
+  public activo:Boolean;
+  public candidato:Boolean;
+  public busqueda:Boolean;
+  public terminoB:string;
+
 
 
   constructor(
@@ -29,11 +32,17 @@ export class ClienteComponent implements OnInit {
     private _clienteService: ClienteService
   ) {
     this.title = "Clientes";
+    this.terminoB = "";
+    this.busqueda = false;
+    this.activo = false;
+    this.candidato = false;
     this.cliente = new Cliente('', '', '', '', '', '', '', 0, '', 0, '', 0, '', '');
    }
 
   ngOnInit() {
       this.getClientes();
+      console.log(this.terminoB);
+
   }
 
   getClientes(){
@@ -59,8 +68,50 @@ export class ClienteComponent implements OnInit {
 
   }
 
+  getClientesTodos(){
+    this.activo = false;
+    this.candidato = false;
+  }
+
+
+  getClientesActivos(){
+    this.candidato = false;
+    this.activo = true;
+
+
+    let clientesArr:Cliente[] = [];
+
+    for(let cliente of this.listCliente){
+
+      if(cliente.activo == "true" ){
+        clientesArr.push(cliente);
+      }
+    }
+
+    this.busquedaActivos = clientesArr;
+  }
+
+  getClientesCandidatos(){
+    this.activo = false;
+    this.candidato = true;
+
+    let clientesArr:Cliente[] = [];
+
+    for(let cliente of this.listCliente){
+
+      if(cliente.activo != "true" ){
+        clientesArr.push(cliente);
+      }
+    }
+
+    this.busquedaCandidatos = clientesArr;
+
+  }
+
   buscarCliente(termino:string){
 
+    this.busqueda = true;
+    this.terminoB = termino;
     let clientesArr:Cliente[] = [];
     termino = termino.toLowerCase();
 
@@ -71,9 +122,14 @@ export class ClienteComponent implements OnInit {
         clientesArr.push(cliente);
       }
     }
-    console.log(clientesArr);
-      this._clienteService.buscadorCliente(clientesArr);
-      this._router.navigate(['/home/clientes/buscar']);
+
+    this.busquedaCliente = clientesArr;
+  }
+
+  volver(){
+    this.terminoB = "";
+    this.busqueda = false;
+
   }
 
 

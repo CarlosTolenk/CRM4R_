@@ -13,6 +13,7 @@ export const dashboard_routes: Routes = [
      component: ClienteComponent,
      children: cliente_routes
     },
-    { path: 'registro', component: RegistroComponent }
+    { path: 'registro', component: RegistroComponent },
+    {path: '**', component: GeneralComponent }
 
 ];

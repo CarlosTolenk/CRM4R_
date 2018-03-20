@@ -19,7 +19,7 @@ import { SidebarComponent } from './component/sidebar/sidebar.component';
 import { GeneralComponent } from './component/general/general.component';
 import { PerfilComponent } from './component/perfil/perfil.component';
 import { ClienteComponent } from './component/cliente/cliente.component';
-import { BuscadorComponent } from './component/cliente/buscador/buscador.component';
+
 
 
 @NgModule({
@@ -32,8 +32,8 @@ import { BuscadorComponent } from './component/cliente/buscador/buscador.compone
     SidebarComponent,
     GeneralComponent,
     PerfilComponent,
-    ClienteComponent,
-    BuscadorComponent
+    ClienteComponent
+
   ],
   imports: [
     BrowserModule,
