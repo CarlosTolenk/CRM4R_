@@ -19,6 +19,12 @@ import { SidebarComponent } from './component/sidebar/sidebar.component';
 import { GeneralComponent } from './component/general/general.component';
 import { PerfilComponent } from './component/perfil/perfil.component';
 import { ClienteComponent } from './component/cliente/cliente.component';
+import { AgregarClienteComponent } from './component/cliente/agregarcliente/agregarcliente.component';
+import { ListaClienteComponent } from './component/cliente/lista-cliente/lista-cliente.component';
+import { VerClienteComponent } from './component/cliente/ver-cliente/ver-cliente.component';
+import { EditarClienteComponent } from './component/cliente/editar-cliente/editar-cliente.component';
+
+
 
 
 
@@ -32,7 +38,13 @@ import { ClienteComponent } from './component/cliente/cliente.component';
     SidebarComponent,
     GeneralComponent,
     PerfilComponent,
-    ClienteComponent
+    ClienteComponent,
+    AgregarClienteComponent,
+    ListaClienteComponent,
+    VerClienteComponent,
+    EditarClienteComponent,
+
+
 
   ],
   imports: [

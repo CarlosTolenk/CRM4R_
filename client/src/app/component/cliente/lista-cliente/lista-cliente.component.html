@@ -1,7 +1,5 @@
-<router-outlet></router-outlet>
 
-
-<!-- <div class="navbar">
+<div class="navbar">
   <div class="navbar-content">
     <ul class="navbar-cliente">
       <li class="navbar-cliente-item">
@@ -20,11 +18,11 @@
   <a class="btn btn-tabs tabs" (click)="getClientesTodos()" [ngStyle]="{'background-color': !busqueda && !activo && !candidato  ? '#12224B' : '#2F55B5'}"> Todos</a>
   <a class="btn btn-tabs tabs" (click)="getClientesActivos()" [ngStyle]="{'background-color': !busqueda && activo && !candidato  ? '#12224B' : '#2F55B5'}"> Activos</a>
   <a class="btn btn-tabs tabs" (click)="getClientesCandidatos()" [ngStyle]="{'background-color': !busqueda && !activo && candidato  ? '#12224B' : '#2F55B5'}"> Candidatos</a>
-</div> -->
+</div>
 
 
 <!-- Ver todos los clientes sin importar nada  -->
-<!-- <div class="list-content" *ngIf="!busqueda && !activo && !candidato">
+<div class="list-content" *ngIf="!busqueda && !activo && !candidato">
 
   <table class="table table-hover">
     <thead class="thead">
@@ -35,6 +33,7 @@
         <th scope="col">Sector</th>
         <th scope="col">Ocupación</th>
         <th scope="col">Salario</th>
+        <th scope="col">Ver</th>
         <th scope="col">Editar</th>
       </tr>
     </thead>
@@ -46,7 +45,8 @@
         <td>{{cliente.sector}}</td>
         <td>{{cliente.ocupacion}}</td>
         <td>{{cliente.salario}}</td>
-        <td><a class="btn btn-circle"><i class="fas fa-pencil-alt"></i></a></td>
+        <td><a class="btn btn-circle" routerLink="ver"><i class="fas fa-user"></i></a></td>
+        <td><a class="btn btn-circle" routerLink="editar"><i class="fas fa-pencil-alt"></i></a></td>
       </tr>
     </tbody>
   </table>
@@ -58,13 +58,12 @@
     </div>
   </div>
 
-</div> -->
-
+</div>
 <!-- Cierre del ciclo de ver todos los clientes sin importar nada -->
 
 
 <!-- Ver todos los clientes que son activos  -->
-<!-- <div class="list-content" *ngIf="!busqueda && activo && !candidato">
+<div class="list-content" *ngIf="!busqueda && activo && !candidato">
 
 
   <table class="table table-hover">
@@ -76,6 +75,7 @@
         <th scope="col">Sector</th>
         <th scope="col">Ocupación</th>
         <th scope="col">Salario</th>
+        <th scope="col">Ver</th>
         <th scope="col">Editar</th>
       </tr>
     </thead>
@@ -87,7 +87,9 @@
         <td>{{cliente.sector}}</td>
         <td>{{cliente.ocupacion}}</td>
         <td>{{cliente.salario}}</td>
-        <td><a class="btn btn-circle"><i class="fas fa-pencil-alt"></i></a></td>
+        <td><a class="btn btn-circle" routerLink="ver"><i class="fas fa-user"></i></a></td>
+        <td><a class="btn btn-circle" routerLink="editar"><i class="fas fa-pencil-alt"></i></a></td>
+
       </tr>
     </tbody>
   </table>
@@ -98,14 +100,13 @@
       <pagination-controls style="margin: 0 auto;"  (pageChange)="p = $event"></pagination-controls>
     </div>
   </div>
-</div> -->
-
+</div>
 <!-- Cierre del ciclo de ver todos los clientes que son activos -->
 
 
 
 <!-- Ver todos los clientes que son activos  -->
-<!-- <div class="list-content" *ngIf="!busqueda && !activo && candidato">
+<div class="list-content" *ngIf="!busqueda && !activo && candidato">
 
 
   <table class="table table-hover">
@@ -117,6 +118,7 @@
         <th scope="col">Sector</th>
         <th scope="col">Ocupación</th>
         <th scope="col">Salario</th>
+        <th scope="col">Ver</th>
         <th scope="col">Editar</th>
       </tr>
     </thead>
@@ -128,7 +130,8 @@
         <td>{{cliente.sector}}</td>
         <td>{{cliente.ocupacion}}</td>
         <td>{{cliente.salario}}</td>
-        <td><a class="btn btn-circle"><i class="fas fa-pencil-alt"></i></a></td>
+        <td><a class="btn btn-circle" routerLink="ver"><i class="fas fa-user"></i></a></td>
+        <td><a class="btn btn-circle" routerLink="editar"><i class="fas fa-pencil-alt"></i></a></td>
       </tr>
     </tbody>
   </table>
@@ -139,13 +142,12 @@
       <pagination-controls style="margin: 0 auto;"  (pageChange)="p = $event"></pagination-controls>
     </div>
   </div>
-</div> -->
-
+</div>
 <!-- Cierre del ciclo de ver todos los clientes que son candidatos -->
 
 
 <!-- Ver los clientes acorde a la búsqueda -->
-<!-- <div class="" *ngIf="busqueda">
+<div class="" *ngIf="busqueda">
   <a class="btn btn-circle-atras" (click)="volver()"><i class="far fa-arrow-alt-circle-left"></i></a>
   <h3>Búsqueda del cliente: {{terminoB}}</h3>
 
@@ -160,6 +162,7 @@
           <th scope="col">Sector</th>
           <th scope="col">Ocupación</th>
           <th scope="col">Salario</th>
+          <th scope="col">Ver</th>
           <th scope="col">Editar</th>
         </tr>
       </thead>
@@ -171,11 +174,12 @@
           <td>{{cliente.sector}}</td>
           <td>{{cliente.ocupacion}}</td>
           <td>{{cliente.salario}}</td>
-          <td><a class="btn btn-circle"><i class="fas fa-pencil-alt"></i></a></td>
+          <td><a class="btn btn-circle" routerLink="ver"><i class="fas fa-user"></i></a></td>
+          <td><a class="btn btn-circle" routerLink="editar"><i class="fas fa-pencil-alt"></i></a></td>
         </tr>
       </tbody>
     </table>
   </div>
-</div> -->
+</div>
 
 <!-- Cierre del ciclo del filtro de la búsqueda -->
