@@ -115,34 +115,46 @@
     position: relative;
   }
 
-  .navagation-page{
-    position: absolute;
-    top: 40em;
-    left: 30em;
+  .thead{
+    background-color: #2F55B5;
+  }
+
+  .thead tr th{
+    color: #ffff;
+  }
+
+  .tabs-navigation{
+    margin-top: 2em;
+    width: 88%;
+    display: flex;
+    justify-content: center;
+  }
+
+  
+
+  .tabs{
+    margin-left: 1em;
+    background-color: #2F55B5;
+    color: #ffff!important;
   }
 
   .pagination{
+    width: 80%;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
   }
 
-  .pagination li{
-    justify-content: space-around;
-    margin-left: 5em;
+  .btn-circle-atras{
+    background: #2F55B5;
+    border-radius: 50%;
+    margin-top: 2em;
   }
 
-  .prev-page{
-    position: fixed;
-    top: 52em;
-    left: 50em;
+  .btn-circle-atras i{
+    color: #ffff;
+    font-size: 1.5rem;
+    margin-top: 2px;
   }
-
-  .next-page{
-    position: fixed;
-    top: 52em;
-    left: 60em;
-  }
-
 
 
 }
