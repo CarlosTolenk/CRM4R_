@@ -21,7 +21,7 @@ export class ClienteService{
     this.token = _teamService.getToken();
   }
 
-
+// Obtener todos los datos de todos los clientes
   getClientes(): Observable<any>{
 
     let headers = new HttpHeaders().set('Content-Type', 'application/json')
@@ -30,18 +30,15 @@ export class ClienteService{
     return this._http.get(this.url + 'get-clientes', {headers: headers});
   }
 
-  //get-clientes/:page
+
 
   // Obtener todos los datos de un cliente únicamente
+  getCliente(id): Observable<any>{
+    let headers = new HttpHeaders().set('Content-Type', 'application/json')
+                                   .set('Authorization', this.token);
 
-  // Aun no he desarrollado ese método en el API así que ojo
-  // getcliente(id): Observable<any>{
-  //
-  //   let headers = new HttpHeaders().set('Content-Type', 'application/json')
-  //                                  .set('Authorization', this.token);
-  //
-  //   return this._http.get(this.url + 'get-cliente/'+ id, {headers: headers});
-  // }
+    return this._http.get(this.url + 'get-cliente/'+ id, {headers: headers});
+  }
 
 
 

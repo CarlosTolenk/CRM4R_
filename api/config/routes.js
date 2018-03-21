@@ -32,6 +32,7 @@ let md_uploadRecurso = multipart({uploadDir: 'api/uploads/recursos'});
 		//Rutas para los clientes
 		app.post('/api/add-cliente', md_auth.ensureAuth, ClienteController.saveCliente);
 		app.get('/api/get-clientes', md_auth.ensureAuth, ClienteController.getClientes);
+		app.get('/api/get-cliente/:id', md_auth.ensureAuth, ClienteController.getCliente);
 		app.put('/api/update-cliente/:id', md_auth.ensureAuth, ClienteController.updateCliente);
 		app.delete('/api/delete-cliente/:id', md_auth.ensureAuth, ClienteController.destroyCliente);
 		app.post('/api/upload-image-cliente/:id', [md_auth.ensureAuth, md_uploadCliente], ClienteController.uploadImage);

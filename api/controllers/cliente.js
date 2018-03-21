@@ -62,10 +62,7 @@ exports.saveCliente = (req, res, next) => {
   }
 };
 
-
-
-
-
+//Obtener todos los clientes
 exports.getClientes  = (req, res) => {
 
   Cliente.find().sort('nombre').exec((err, clientes) => {
@@ -75,6 +72,20 @@ exports.getClientes  = (req, res) => {
 
      return res.status(200).send({clientes});
   });
+};
+
+//Obtener solo un cliente por medio de un id
+exports.getCliente = (req, res) => {
+    //Guardar el id que nos llega por la url
+    let clienteId = req.params.id;
+
+    Cliente.findById(clienteId, (err, cliente) => {
+      if(err) return res.status(500).send({message: 'Error en la peteción'});
+
+      if(!cliente) return res.status(404).send({message: 'Usuario no existe'});
+
+      return res.status(200).send({cliente});
+    });
 };
 
 exports.updateCliente = (req, res) => {
@@ -108,9 +119,6 @@ exports.updateCliente = (req, res) => {
 
 
       /**/
-
-
-
 
 };
 

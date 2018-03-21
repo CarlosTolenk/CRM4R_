@@ -10,7 +10,7 @@ import { EditarClienteComponent } from './editar-cliente/editar-cliente.componen
 export const cliente_routes: Routes = [
     { path: 'agregar', component: AgregarClienteComponent },
     { path: 'listar', component: ListaClienteComponent},
-    { path: 'ver', component: VerClienteComponent},
+    { path: 'ver/:id', component: VerClienteComponent},
     { path: 'editar', component: EditarClienteComponent},
     { path: '**', component: ListaClienteComponent}
 

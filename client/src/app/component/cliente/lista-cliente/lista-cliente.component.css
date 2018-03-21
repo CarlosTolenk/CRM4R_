@@ -125,12 +125,10 @@
 
   .tabs-navigation{
     margin-top: 2em;
-    width: 88%;
+    width: 86%;
     display: flex;
     justify-content: center;
   }
-
-
 
   .tabs{
     margin-left: 1em;
@@ -139,7 +137,7 @@
   }
 
   .pagination{
-    width: 80%;
+    width: 78%;
     display: flex;
     justify-content: center;
   }
