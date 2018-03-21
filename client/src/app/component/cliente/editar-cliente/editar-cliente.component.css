@@ -1,20 +1,73 @@
+.navbar{
+  background: #2F55B5;
+  width: 100%;
+  z-index: 2!important;
+  box-shadow: 0px 10px 18px #888888;
+}
+
+.navbar-content{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.navbar-cliente{
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  list-style-type: none;
+}
+
+.navbar-cliente-item{
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 5px;
+}
+
+.navbar-cliente-item a{
+  background: linear-gradient(-135deg, #223568, #20315b);
+  border-radius: 100%;
+}
+
+.navbar-cliente-item a i{
+  color: #ffca27;
+}
+
+.info-cliente{
+  width: 100%;
+  margin-top: 3em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.avatar-cliente{
+  width: 80%;
+  margin-left: 7em;
+  justify-content: space-between;
+}
+
+.avatar-cliente img{
+  width: 50%;
+  height: auto;
+}
+
 @media only screen and (min-width: 1100px) {
 
   .navbar{
     background: #2F55B5;
     width: 104.55%;
     height: 62px;
-
     position: relative;
     left: -70px;
-    display: block;
     z-index: 2!important;
     box-shadow: 0px 10px 18px #888888;
   }
 
   .navbar-content{
     width: 100%;
-    display: flex;
     flex-direction: row;
     justify-content: space-between;
   }
@@ -34,21 +87,165 @@
     margin-top: 5px;
   }
 
-  .navbar-cliente-item a{
-    background: linear-gradient(-135deg, #223568, #20315b);
-    border-radius: 100%;
+  .info-cliente{
+    display: grid;
+    width: 100%;
+    margin-top: 5em;
+    grid-template-columns: 0.5fr 1fr 1fr;
+    grid-template-rows: repeat(3, fit-content);
+    grid-auto-flow: row;
+    justify-content: space-around;
+    align-content: center;
+    grid-row-gap: 5em;
+    grid-column-gap: 5em;
+    grid-template-areas: 'avatar basica interna'
+                         '. data-credito .'
+                         '. . accion';
   }
 
-  .navbar-cliente-item a i{
-    color: #ffca27;
-  }
-
-  .navbar-cliente-item span{
-    color: white;
-    font-size: 1.1em;
-    margin-top: 20px!important;
+  .info-cliente h3{
+    color: #12224B;
+    font-size: 1.7em;
     font-family: 'Comfortaa', cursive;
+    margin-bottom: .7em;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  .info-cliente p{
+    font-weight: bold;
+    font-size: 1.2em;
+    font-family: 'Comfortaa', cursive;
+  }
+
+  .info-cliente p span{
+    font-weight:normal;
 
   }
+
+  .avatar-cliente{
+    grid-area: avatar;
+    width: 100%;
+    height: auto;
+
+  }
+
+  .avatar-cliente img{
+    width: 70%;
+    height: auto;
+    margin-left: -2em;
+
+  }
+  input[type="file"]{
+    width: 1.1px;
+    height: 0.1px;
+    opacity: 1;
+    position: absolute;
+    margin-top: 10px!important;
+    overflow: hidden;
+    z-index: -1;
+  }
+
+  label[for="subirFoto"]{
+    font-size: 14px;
+    font-family: 'Comfortaa', cursive;
+    color: #fff;
+    background-color: #12224B;
+    display: inline-block;
+    transition: all .5s;
+    cursor: pointer;
+    padding: 10px 25px !important;
+    text-transform: uppercase;
+    width: fit-content;
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  label[for="subirFoto"] i{
+    display:inline;
+    margin-right: 10px;
+  }
+
+  .info-basica{
+    grid-area: basica;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .info-basica-item{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .info-basica p{
+    display: flex;
+    position: relative;
+  }
+
+  .info-basica p input{
+    width: 65%;
+    position: absolute;
+    top: -5px;
+    left: 12em;
+  }
+
+  .info-interna{
+    grid-area: interna;
+  }
+
+  .info-interna p{
+    position: relative;
+  }
+
+  .info-interna input{
+    width: 65%;
+    position: absolute;
+    top: -5px;
+    left: 8em;
+  }
+
+  .info-interna textarea{
+    width: 65%;
+    height: 100px;
+  }
+
+
+  .info-dataCredito{
+    grid-area: data-credito;
+  }
+
+  .info-dataCredito h3{
+    text-align: left!important;
+  }
+
+  .accion{
+    grid-area: accion;
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 4em;
+
+  }
+
+  .accion{
+    color:#fff;
+    border-radius: 100%;
+    margin-left: 1.5em;
+  }
+
+  .accion .btn{
+    margin-left: 2em;
+  }
+
+  .accion .btn a i{
+    color: #fff;
+    margin-left: 1em;
+    font-size: 1.2em;
+  }
+
+  .score{
+    color: red;
+    font-size: 1.5em!important;
+  }
+
 
 }

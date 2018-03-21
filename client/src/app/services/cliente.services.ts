@@ -40,6 +40,13 @@ export class ClienteService{
     return this._http.get(this.url + 'get-cliente/'+ id, {headers: headers});
   }
 
+  deleteCliente(id): Observable<any>{
+    let headers = new HttpHeaders().set('Content-Type', 'application/json')
+                                   .set('Authorization', this.token);
+
+    return this._http.delete(this.url + 'delete-cliente/'+ id, {headers: headers});
+  }
+
 
 
 

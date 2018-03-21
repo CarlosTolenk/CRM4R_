@@ -6,7 +6,102 @@
       </li>
     </ul>
 </div>
+<form class="form-inline" #ClienteEditar="ngForm" (ngSubmit)="onSubmit()">
+  <div class="info-cliente">
+    <div class="avatar-cliente" *ngIf="!cliente.avatar">
+      <img src="assets/images/default-user.png" alt="default-user">
+      <p>
+        <label for="subirFoto"><i class="fa fa-upload"></i>Upload</label>
+        <input type="file" id="subirFoto" (change)="fileChangeEvent($event)">
+      </p>
+    </div>
+    <div class="avatar-cliente" *ngIf="cliente.avatar">
+      <img src="{{url + 'get-image-cliente/' + cliente.avatar }}" alt="default-user">
+      <p>
+        <label for="subirFoto"><i class="fa fa-upload"></i>Upload</label>
+        <input type="file" id="subirFoto" (change)="fileChangeEvent($event)">
+      </p>
+    </div>
 
-<p>
-  editar-cliente works!
-</p>
+    <div class="info-basica">
+      <h3>Información Básica</h3>
+        <p> Nombre:
+            <input type="text" name="nombre" #nombre="ngModel" [(ngModel)]="cliente.nombre"  class="form-control" required>
+            <span *ngIf="!nombre.valid && nombre.touched">Este campo es requierido</span>
+        </p>
+        <p> Apellido:
+            <input type="text" name="apellido" #apellido="ngModel" [(ngModel)]="cliente.apellido"  class="form-control" required>
+            <span *ngIf="!apellido.valid && nombre.touched">Este campo es requierido</span>
+        </p>
+        <p> Cédula:
+            <input type="text" name="cedula" #cedula="ngModel" [(ngModel)]="cliente.cedula"  class="form-control" required>
+            <span *ngIf="!cedula.valid && cedula.touched">Este campo es requierido</span>
+        </p>
+        <p> Ocupación:
+            <input type="text" name="ocupacion" #ocupacion="ngModel" [(ngModel)]="cliente.ocupacion"  class="form-control" required>
+            <span *ngIf="!ocupacion.valid && ocupacion.touched">Este campo es requierido</span>
+        </p>
+        <p> Salario:
+            <input type="number" name="salario" #salario="ngModel" [(ngModel)]="cliente.salario"  class="form-control" required>
+            <span *ngIf="!salario.valid && salario.touched">Este campo es requierido</span>
+        </p>
+        <p> Lugar de trabajo:
+            <input type="text" name="trabajo" #trabajo="ngModel" [(ngModel)]="cliente.trabajo"  class="form-control" required>
+            <span *ngIf="!trabajo.valid && trabajo.touched">Este campo es requierido</span>
+        </p>
+    </div>
+
+    <div class="info-interna">
+      <h3>Información Interna</h3>
+      <p> Teléfono:
+          <input type="text" name="telefono" #telefono="ngModel" [(ngModel)]="cliente.telefono"  class="form-control" required>
+          <span *ngIf="!telefono.valid && telefono.touched">Este campo es requierido</span>
+      </p>
+      <p> Dirección:
+          <input type="text" name="direccion" #direccion="ngModel" [(ngModel)]="cliente.direccion"  class="form-control" required>
+          <span *ngIf="!direccion.valid && direccion.touched">Este campo es requierido</span>
+      </p>
+      <p> Sector:
+          <input type="text" name="sector" #sector="ngModel" [(ngModel)]="cliente.sector"  class="form-control" required>
+          <span *ngIf="!sector.valid && sector.touched">Este campo es requierido</span>
+      </p>
+      <p> Descripción:
+          <textarea  type="text" name="descripcion" #descripcion="ngModel" [(ngModel)]="cliente.descripcion"  class="form-control" required></textarea>
+          <span *ngIf="!descripcion.valid && descripcion.touched">Este campo es requierido</span>
+      </p>
+
+    </div>
+    <div class="info-dataCredito">
+      <h3>Información Data Crédito</h3>
+      <p> Score:
+          <input type="number" name="score" #score="ngModel" [(ngModel)]="cliente.score"  class="form-control" required>
+          <span *ngIf="!score.valid && score.touched">Este campo es requierido</span>
+      </p>
+    </div>
+
+    <div class="accion">
+      <a class="btn btn-danger" data-toggle="modal" data-target="#borrarCliente"><i class="fas fa-times-circle"></i>Borrar Cliente</a>
+      <a class="btn btn-success"><i class="fas fa-pencil-alt"></i>Actualizar Cliente</a>
+    </div>
+  </div>
+</form>
+<!-- Modal -->
+<div class="modal fade" id="borrarCliente" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Eliminar Cliente</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Está seguro de eliminar este cliente de la base de dato, al ejecutar esta acción no podrá recuperar esta Información?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <a class="btn btn-danger" (click)="eliminarCliente(cliente._id)"><i class="fas fa-times-circle"></i>Eliminar Cliente</a>
+      </div>
+    </div>
+  </div>
+</div>

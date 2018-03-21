@@ -102,6 +102,25 @@
                            '. accion . ';
     }
 
+    .info-cliente h3{
+      color: #12224B;
+      font-size: 1.7em;
+      font-family: 'Comfortaa', cursive;
+      margin-bottom: .7em;
+      font-weight: bold;
+    }
+
+    .info-cliente p{
+      font-weight: bold;
+      font-size: 1.2em;
+      font-family: 'Comfortaa', cursive;
+    }
+
+    .info-cliente p span{
+      font-weight:normal;
+
+    }
+
     .avatar-cliente{
       grid-area: avatar;
       width: 85%;
@@ -148,6 +167,11 @@
     .accion .btn i{
       color: #fff;
       font-size: 1em;
+    }
+
+    .score{
+      color: red;
+      font-size: 1.5em!important;
     }
 
 

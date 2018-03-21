@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DatePipe } from '@angular/common';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { ClienteService } from '../../../services/cliente.services';
 import { Cliente } from '../../../models/cliente';
@@ -24,7 +25,6 @@ export class VerClienteComponent implements OnInit {
     //Darle estado inicial a las variables
     this.cliente = new Cliente('', '', '', '', '', '', '', 0, '', 0, '', 0, '', '');
     this.url = GLOBAL.url;
-
   }
 
   ngOnInit() {
@@ -35,7 +35,6 @@ export class VerClienteComponent implements OnInit {
             this.status = 'error';
           }else{
             this.cliente = response.cliente;
-            console.log(this.cliente);
           }
 
         },
@@ -50,6 +49,34 @@ export class VerClienteComponent implements OnInit {
       );
     });
 
+  }
+
+  eliminarCliente(id){
+    this._clienteService.deleteCliente(id).subscribe(
+      response => {
+        if(!response.message){
+          this.status = 'error';
+        }else{
+          console.log(response.message);
+          this._router.navigate(['home/clientes']);
+        }
+
+      },
+      error => {
+            var errorMessage = <any>error;
+            console.log(errorMessage);
+            if(errorMessage != null){
+              this.status = 'error';
+          }
+      }
+
+    );
+
+  }
+
+  irEditar(){
+    console.log("En editar");
+    this._router.navigate(['home/clientes/editar/' + this.cliente._id]);
   }
 
   volverListar(){

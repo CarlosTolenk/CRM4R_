@@ -11,7 +11,7 @@ export const cliente_routes: Routes = [
     { path: 'agregar', component: AgregarClienteComponent },
     { path: 'listar', component: ListaClienteComponent},
     { path: 'ver/:id', component: VerClienteComponent},
-    { path: 'editar', component: EditarClienteComponent},
+    { path: 'editar/:id', component: EditarClienteComponent},
     { path: '**', component: ListaClienteComponent}
 
 ];

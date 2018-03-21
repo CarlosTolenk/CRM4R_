@@ -7,45 +7,66 @@
       </ul>
   </div>
 </div>
+  <div class="info-cliente">
+    <div class="avatar-cliente" *ngIf="!cliente.avatar">
+      <img src="assets/images/default-user.png" alt="default-user">
+    </div>
+    <div class="avatar-cliente" *ngIf="cliente.avatar">
+      <img src="{{url + 'get-image-cliente/' + cliente.avatar }}" alt="default-user">
+    </div>
+    <div class="info-basica">
+      <h3>Información Básica</h3>
+        <p>Nombre: <span>{{cliente.nombre}}</span></p>
+        <p>Apellido: <span>{{cliente.apellido}}</span></p>
+        <p>Cédula: <span>{{cliente.cedula}}</span></p>
+    </div>
+    <div class="info-laboral">
+      <h3>Información Laboral</h3>
+        <p>Ocupación: <span>{{cliente.ocupacion}}</span></p>
+        <p>Salario: <span>{{cliente.salario}}</span></p>
+        <p>Trabajo: <span>Donde el tipo trabaja</span></p>
+    </div>
+    <div class="info-contactos">
+      <h3>Contactos</h3>
+        <p>Dirección: <span>{{cliente.direccion}}</span></p>
+        <p>Teléfono: <span>{{cliente.telefono}}</span></p>
+        <p>Sector: <span>{{cliente.sector}}</span></p>
+    </div>
+    <div class="info-interna">
+      <h3>Información Interna</h3>
+        <p>Descripción: <span>{{cliente.descripcion}}</span></p>
+        <p>Fecha de inicio: <span>{{cliente.fecha | date}}</span></p>
+        <p class="score">Avg: <span>{{cliente.avg}}</span></p>
+    </div>
+    <div class="info-dataCredito">
+      <h3>Información Data Crédito</h3>
+        <p class="score">Score: <span>{{cliente.scoreData}}</span></p>
+    </div>
 
-<div class="info-cliente">
-  <div class="avatar-cliente" *ngIf="!cliente.avatar">
-    <img src="assets/images/default-user.png" alt="default-user">
-  </div>
-  <div class="avatar-cliente" *ngIf="cliente.avatar">
-    <img src="{{url + 'get-image-cliente/' + cliente.avatar }}" alt="default-user">
-  </div>
-  <div class="info-basica">
-    <h3>Información Básica</h3>
-      <p>Nombre: <span>{{cliente.nombre}}</span></p>
-      <p>Apellido: <span>{{cliente.apellido}}</span></p>
-      <p>Cédula: <span>{{cliente.cedula}}</span></p>
-  </div>
-  <div class="info-laboral">
-    <h3>Información Laboral</h3>
-      <p>Ocupación: <span>{{cliente.ocupacion}}</span></p>
-      <p>Salario: <span>{{cliente.salario}}</span></p>
-      <p>Trabajo: <span>Donde el tipo trabaja</span></p>
-  </div>
-  <div class="info-contactos">
-    <h3>Contactos</h3>
-      <p>Dirección: <span>{{cliente.direccion}}</span></p>
-      <p>Teléfono: <span>{{cliente.telefono}}</span></p>
-      <p>Sector: <span>{{cliente.sector}}</span></p>
-  </div>
-  <div class="info-interna">
-    <h3>Información Interna</h3>
-      <p>Descripción: <span>{{cliente.descripcion}}</span></p>
-      <p>Fecha de inicio: <span>{{cliente.fecha}}</span></p>
-      <p>Avg: <span>{{cliente.avg}}</span></p>
-  </div>
-  <div class="info-dataCredito">
-    <h3>Información Data Crédito</h3>
-      <p>Score: <span>{{cliente.scoreData}}</span></p>
+    <div class="accion">
+      <a class="btn btn-danger" data-toggle="modal" data-target="#borrarCliente"><i class="fas fa-times-circle"></i></a>
+      <a class="btn btn-success" (click)="irEditar()"><i class="fas fa-pencil-alt"></i></a>
+    </div>
   </div>
 
-  <div class="accion">
-    <a class="btn btn-danger"><i class="fas fa-times-circle"></i></a>
-    <a class="btn btn-success"><i class="fas fa-pencil-alt"></i></a>
+
+<!-- Modal -->
+<div class="modal fade" id="borrarCliente" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Eliminar Cliente</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Está seguro de eliminar este cliente de la base de dato, al ejecutar esta acción no podrá recuperar esta Información?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <a class="btn btn-danger" (click)="eliminarCliente(cliente._id)"><i class="fas fa-times-circle"></i>Eliminar Cliente</a>
+      </div>
+    </div>
   </div>
 </div>
