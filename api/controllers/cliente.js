@@ -145,6 +145,7 @@ let avg = await Cliente.findById(clienteId, (err, cliente) =>{
       if(cliente.salario > 80001 && cliente.salario <= 90000) avgSalario = 45;
       if(cliente.salario > 90001 && cliente.salario <= 100000) avgSalario = 50;
 
+
       avgTotal = avgScore + avgSalario;
       return avgTotal;
   });
@@ -189,7 +190,7 @@ exports.uploadImage = (req, res) => {
             if(err) return res.status(500).send({message: 'Error en la peteción'});
 
             if(!clienteUpdated) return res.status(404).send({message: 'No se ha podido actualizar el cliente'});
-            return res.status(200).send({user: clienteUpdated});
+            return res.status(200).send({cliente: clienteUpdated});
         });
 
       }else{

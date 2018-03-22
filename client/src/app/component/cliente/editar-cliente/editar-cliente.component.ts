@@ -3,11 +3,13 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { ClienteService } from '../../../services/cliente.services';
 import { Cliente } from '../../../models/cliente';
 import { GLOBAL } from '../../../services/global';
+import { UploadServices } from '../../../services/upload.services';
+import { TeamService } from '../../../services/team.services';
 
 @Component({
   selector: 'app-editar-cliente',
   templateUrl: './editar-cliente.component.html',
-  providers: [ClienteService],
+  providers: [ClienteService,UploadServices,TeamService],
   styleUrls: ['./editar-cliente.component.css']
 })
 export class EditarClienteComponent implements OnInit {
@@ -16,16 +18,19 @@ export class EditarClienteComponent implements OnInit {
   public status:string;
   public url:string;
   public imagenTemp:string;
+  public token;
 
   constructor(
     private _route: ActivatedRoute,
     private _router: Router,
-    private _clienteService: ClienteService
+    private _clienteService: ClienteService,
+    private _uploadService: UploadServices,
+    private _teamServices: TeamService
   ) {
     //Darle estado inicial a las variables
     this.cliente = new Cliente('', '', '', '', '', '', '', 0, '', '', '', 0, '', 0, '', '');
     this.url = GLOBAL.url;
-
+    this.token = this._teamServices.getToken();
   }
 
   ngOnInit() {
@@ -60,6 +65,12 @@ export class EditarClienteComponent implements OnInit {
         }else{
           console.log(response.cliente);
           this.cliente = response.cliente;
+          //Subida de imagen de Cliente // upload-image-cliente/:id'
+          this._uploadService.makeFileRequest(this.url + 'upload-image-cliente/' + this.cliente._id, [], this.fileToUpload, this.token, 'image')
+                    .then((result: any) => {
+                        this.cliente.avatar = result.cliente.avatar;
+                        console.log(this.cliente);
+                    });
 
         }
 

@@ -2,7 +2,66 @@
   <div class="navbar-content">
     <ul class="navbar-cliente">
       <li class="navbar-cliente-item">
-        <a class="btn btn-circle" (click)="volverListar()"><i class="fas fa-arrow-left"></i></a>        
+        <a class="btn btn-circle" (click)="volverListar()"><i class="fas fa-arrow-left"></i></a>
       </li>
     </ul>
 </div>
+
+
+<form class="form-inline" #ClienteEditar="ngForm" (ngSubmit)="onSubmit()">
+  <div class="info-cliente">
+    <div class="info-basica">
+      <h3>Información Básica</h3>
+        <p> Nombre:
+            <input type="text" name="nombre" #nombre="ngModel" [(ngModel)]="cliente.nombre"  class="form-control" required>
+            <span *ngIf="!nombre.valid && nombre.touched">Este campo es requierido</span>
+        </p>
+        <p> Apellido:
+            <input type="text" name="apellido" #apellido="ngModel" [(ngModel)]="cliente.apellido"  class="form-control" required>
+            <span *ngIf="!apellido.valid && nombre.touched">Este campo es requierido</span>
+        </p>
+        <p> Cédula:
+            <input type="text" name="cedula" #cedula="ngModel" [(ngModel)]="cliente.cedula"  class="form-control" required>
+            <span *ngIf="!cedula.valid && cedula.touched">Este campo es requierido</span>
+        </p>
+        <p> Ocupación:
+            <input type="text" name="ocupacion" #ocupacion="ngModel" [(ngModel)]="cliente.ocupacion"  class="form-control" required>
+            <span *ngIf="!ocupacion.valid && ocupacion.touched">Este campo es requierido</span>
+        </p>
+        <p> Salario:
+            <input type="number" name="salario" #salario="ngModel" [(ngModel)]="cliente.salario"  class="form-control" required>
+            <span *ngIf="!salario.valid && salario.touched">Este campo es requierido</span>
+        </p>
+        <p> Lugar de trabajo:
+            <input type="text" name="trabajo" #trabajo="ngModel" [(ngModel)]="cliente.trabajo"  class="form-control" required>
+            <span *ngIf="!trabajo.valid && trabajo.touched">Este campo es requierido</span>
+        </p>
+    </div>
+
+    <div class="info-interna">
+      <h3>Información Interna</h3>
+      <p> Teléfono:
+          <input type="text" name="telefono" #telefono="ngModel" [(ngModel)]="cliente.telefono"  class="form-control" required>
+          <span *ngIf="!telefono.valid && telefono.touched">Este campo es requierido</span>
+      </p>
+      <p> Dirección:
+          <input type="text" name="direccion" #direccion="ngModel" [(ngModel)]="cliente.direccion"  class="form-control" required>
+          <span *ngIf="!direccion.valid && direccion.touched">Este campo es requierido</span>
+      </p>
+      <p> Sector:
+          <input type="text" name="sector" #sector="ngModel" [(ngModel)]="cliente.sector"  class="form-control" required>
+          <span *ngIf="!sector.valid && sector.touched">Este campo es requierido</span>
+      </p>
+      <p> Descripción:
+          <textarea  type="text" name="descripcion" #descripcion="ngModel" [(ngModel)]="cliente.descripcion"  class="form-control" required></textarea>
+          <span *ngIf="!descripcion.valid && descripcion.touched">Este campo es requierido</span>
+      </p>
+
+    </div>
+
+    <div class="accion">
+      <a class="btn btn-danger" data-toggle="modal" data-target="#borrarCliente"><i class="fas fa-times-circle"></i>Borrar Cliente</a>
+      <button type="submit"class="btn btn-success"><i class="fas fa-pencil-alt"></i>Actualizar Cliente</button>
+    </div>
+  </div>
+</form>

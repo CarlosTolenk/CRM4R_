@@ -50,8 +50,8 @@
   }
 
   .avatar-cliente img{
-    width: 50%;
-    height: auto;
+    width: 100%;
+
   }
 
   @media only screen and (min-width: 1100px) {
@@ -123,13 +123,11 @@
 
     .avatar-cliente{
       grid-area: avatar;
-      width: 85%;
-      height: auto;
-
+      margin: 0;
     }
 
     .avatar-cliente img{
-      width: 50%;
+      width: 80%;
       height: auto;
     }
 
