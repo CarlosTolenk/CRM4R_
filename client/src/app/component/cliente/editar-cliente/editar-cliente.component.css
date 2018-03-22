@@ -1,7 +1,6 @@
 .navbar{
   background: #2F55B5;
   width: 100%;
-  z-index: 2!important;
   box-shadow: 0px 10px 18px #888888;
 }
 
@@ -61,8 +60,7 @@
     width: 104.55%;
     height: 62px;
     position: relative;
-    left: -70px;
-    z-index: 2!important;
+    left: -70px;  
     box-shadow: 0px 10px 18px #888888;
   }
 

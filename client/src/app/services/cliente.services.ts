@@ -40,6 +40,17 @@ export class ClienteService{
     return this._http.get(this.url + 'get-cliente/'+ id, {headers: headers});
   }
 
+  updateCliente(cliente: Cliente): Observable<any>{
+    let params = JSON.stringify(cliente);
+
+    let headers = new HttpHeaders().set('Content-Type', 'application/json')
+                                   .set('Authorization', this.token);
+
+
+
+    return this._http.put(this.url + 'update-cliente/' + cliente._id, params, {headers: headers});
+  }
+
   deleteCliente(id): Observable<any>{
     let headers = new HttpHeaders().set('Content-Type', 'application/json')
                                    .set('Authorization', this.token);

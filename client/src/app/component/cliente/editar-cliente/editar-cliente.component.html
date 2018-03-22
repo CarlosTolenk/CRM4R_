@@ -9,14 +9,16 @@
 <form class="form-inline" #ClienteEditar="ngForm" (ngSubmit)="onSubmit()">
   <div class="info-cliente">
     <div class="avatar-cliente" *ngIf="!cliente.avatar">
-      <img src="assets/images/default-user.png" alt="default-user">
+      <img *ngIf="!imagenTemp" src="assets/images/default-user.png" alt="default-user">
+      <img *ngIf="imagenTemp" [src]="imagenTemp" >
       <p>
         <label for="subirFoto"><i class="fa fa-upload"></i>Upload</label>
         <input type="file" id="subirFoto" (change)="fileChangeEvent($event)">
       </p>
     </div>
     <div class="avatar-cliente" *ngIf="cliente.avatar">
-      <img src="{{url + 'get-image-cliente/' + cliente.avatar }}" alt="default-user">
+      <img *ngIf="!imagenTemp" src="{{url + 'get-image-cliente/' + cliente.avatar }}" alt="default-user">
+      <img *ngIf="imagenTemp" [src]="imagenTemp" >
       <p>
         <label for="subirFoto"><i class="fa fa-upload"></i>Upload</label>
         <input type="file" id="subirFoto" (change)="fileChangeEvent($event)">
@@ -81,10 +83,11 @@
 
     <div class="accion">
       <a class="btn btn-danger" data-toggle="modal" data-target="#borrarCliente"><i class="fas fa-times-circle"></i>Borrar Cliente</a>
-      <a class="btn btn-success"><i class="fas fa-pencil-alt"></i>Actualizar Cliente</a>
+      <button type="submit"class="btn btn-success"><i class="fas fa-pencil-alt"></i>Actualizar Cliente</button>
     </div>
   </div>
 </form>
+
 <!-- Modal -->
 <div class="modal fade" id="borrarCliente" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">

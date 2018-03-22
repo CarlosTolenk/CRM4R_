@@ -93,8 +93,8 @@ exports.updateCliente = (req, res) => {
   let update = req.body;
   let avg = 0;
 
-    if(update.scoreData){
-        avg = calcularAvg(update.scoreData, clienteId).then((value) => {
+    if(update.score){
+        avg = calcularAvg(update.score, clienteId).then((value) => {
 
                 update.avg = value;
                 console.log(update);
@@ -127,6 +127,7 @@ async function calcularAvg(score, clienteId){
   let avgSalario = 0;
   //Condiciones del avg en base al data credito
   let avgScore = (score * 50)/2000;
+  console.log(avgScore);
   let avgTotal = 0;
 
 let avg = await Cliente.findById(clienteId, (err, cliente) =>{

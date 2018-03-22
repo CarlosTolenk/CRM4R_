@@ -35,7 +35,7 @@ export class ListaClienteComponent implements OnInit {
     this.busqueda = false;
     this.activo = false;
     this.candidato = false;
-    this.cliente = new Cliente('', '', '', '', '', '', '', 0, '', 0, '', 0, '', '');
+    this.cliente = new Cliente('', '', '', '', '', '', '', 0, '', '', '', 0, '', 0, '', '');
    }
 
    ngOnInit() {

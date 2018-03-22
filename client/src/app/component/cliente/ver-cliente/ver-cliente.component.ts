@@ -23,7 +23,7 @@ export class VerClienteComponent implements OnInit {
     private _clienteService: ClienteService
   ) {
     //Darle estado inicial a las variables
-    this.cliente = new Cliente('', '', '', '', '', '', '', 0, '', 0, '', 0, '', '');
+    this.cliente = new Cliente('', '', '', '', '', '', '', 0, '', '', '', 0, '', 0, '', '');
     this.url = GLOBAL.url;
   }
 
