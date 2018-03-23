@@ -24,10 +24,11 @@
       <h3>Información Laboral</h3>
         <p>Ocupación: <span>{{cliente.ocupacion}}</span></p>
         <p>Salario: <span>{{cliente.salario}}</span></p>
-        <p>Trabajo: <span>Donde el tipo trabaja</span></p>
+        <p>Trabajo: <span>{{cliente.trabajo}}</span></p>
     </div>
     <div class="info-contactos">
       <h3>Contactos</h3>
+        <p>Email: <span>{{cliente.email}}</span></p>
         <p>Dirección: <span>{{cliente.direccion}}</span></p>
         <p>Teléfono: <span>{{cliente.telefono}}</span></p>
         <p>Sector: <span>{{cliente.sector}}</span></p>
@@ -44,8 +45,8 @@
     </div>
 
     <div class="accion">
-      <a class="btn btn-danger" data-toggle="modal" data-target="#borrarCliente"><i class="fas fa-times-circle"></i></a>
-      <a class="btn btn-success" (click)="irEditar()"><i class="fas fa-pencil-alt"></i></a>
+      <a class="btn btn-danger" data-toggle="modal" data-target="#borrarCliente"><i class="fas fa-times-circle"></i>Borrar</a>
+      <a class="btn btn-success" (click)="irEditar()"><i class="fas fa-pencil-alt"></i>Editar</a>
     </div>
   </div>
 

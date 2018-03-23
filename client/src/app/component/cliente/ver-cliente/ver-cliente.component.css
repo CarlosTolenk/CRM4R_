@@ -127,8 +127,8 @@
     }
 
     .avatar-cliente img{
-      width: 80%;
-      height: auto;
+      width: 350px;
+      height: 200px;
     }
 
     .info-basica{
@@ -158,13 +158,19 @@
     }
 
     .accion .btn{
-      border-radius: 100%;
-      margin-left: 1.5em;
+      /* border-radius: 100%;
+      margin-left: 1.5em; */
+    }
+    .accion a{
+      color:#fff!important;
+      font-size: 1em;
+      font-family: 'Comfortaa', cursive;
     }
 
-    .accion .btn i{
+    .accion .btn a i{
       color: #fff;
       font-size: 1em;
+      margin-left: 1em;
     }
 
     .score{

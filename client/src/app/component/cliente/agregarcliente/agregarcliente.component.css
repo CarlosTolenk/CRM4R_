@@ -8,8 +8,8 @@
     position: relative;
     left: -70px;
     display: block;
-    z-index: 2!important;
-    box-shadow: 0px 10px 18px #888888;
+    z-index: 1;
+    box-shadow: 0px 10px 20px #888888;
   }
 
   .navbar-content{
@@ -49,6 +49,94 @@
     margin-top: 20px!important;
     font-family: 'Comfortaa', cursive;
 
+  }
+
+
+  .info-cliente{
+    margin-top: 4em;
+    margin-left: 5em;
+    width: 80%;
+    display: grid;
+    grid-template-columns: 1fr 1fr ;
+    grid-template-rows: repeat(3, auto);
+    justify-content: space-around;
+    align-content: space-around;
+    grid-row-gap: 3em;
+    grid-column-gap: 7em;
+    grid-template-areas: ' title .'
+                         ' basica interna'
+                         ' . accion';
+
+  }
+
+  .title{
+    grid-area: title;
+  }
+
+  .title h2{
+    color: #12224B;
+    font-size: 2em;
+    font-family: 'Comfortaa', cursive;
+    margin-left: -5em;
+    text-align: right!important;
+  }
+
+  .info-basica{
+    grid-area: basica;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .info-basica h3{
+    text-align: center;
+  }
+
+  .info-basica p{
+    display: flex;
+    position: relative;
+    font-size: 1.2em;
+    font-family: 'Comfortaa', cursive;
+
+  }
+
+  .info-basica p input{
+    width: 65%;
+    position: absolute;
+    top: -5px;
+    left: 12em;
+  }
+
+  .info-interna{
+    grid-area: interna;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .info-interna p{
+    display: flex;
+    position: relative;
+    font-size: 1.2em;
+    font-family: 'Comfortaa', cursive;
+  }
+
+  .info-interna p input{
+    width: 65%;
+    position: absolute;
+    top: -5px;
+    left: 9em;
+  }
+
+  .info-interna p textarea{
+    width: 65%;
+    position: absolute;
+    top: -5px;
+    left: 9em;
+  }
+
+  .accion{
+    grid-area: accion;
+    display: flex;
+    justify-content: flex-end;
   }
 
 }

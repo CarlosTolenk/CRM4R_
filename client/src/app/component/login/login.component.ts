@@ -69,7 +69,7 @@ export class LoginComponent implements OnInit {
               //Persistir el token
               localStorage.setItem('token', this.token);
               //Conseguir los marcadores o estadisticas del usuario
-              this.getCounters();
+              // this.getCounters();
               //Ir hacia el home con toda la informáciones
 
             }
@@ -86,20 +86,20 @@ export class LoginComponent implements OnInit {
     );
   }
 
-  getCounters(){
-      this._teamService.getCounters().subscribe(
-
-          response => {
-            console.log(response);
-            localStorage.setItem('stats', JSON.stringify(response));
-            this.status = 'success';
-            this._router.navigate(['home']);
-          },
-          error => {
-            console.log(<any>error);
-          }
-      )
-  }
+  // getCounters(){
+  //     this._teamService.getCounters().subscribe(
+  //
+  //         response => {
+  //           console.log(response);
+  //           localStorage.setItem('stats', JSON.stringify(response));
+  //           this.status = 'success';
+  //           this._router.navigate(['home']);
+  //         },
+  //         error => {
+  //           console.log(<any>error);
+  //         }
+  //     )
+  // }
 
 
 

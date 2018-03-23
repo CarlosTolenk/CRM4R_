@@ -23,6 +23,7 @@ exports.saveCliente = (req, res, next) => {
       cliente.cedula = params.cedula;
       cliente.email = params.email;
       cliente.telefono = params.telefono;
+      cliente.trabajo = params.trabajo;
       cliente.direccion = params.direccion;
       cliente.sector = params.sector;
       cliente.ocupacion = params.ocupacion;

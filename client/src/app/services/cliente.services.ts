@@ -21,6 +21,15 @@ export class ClienteService{
     this.token = _teamService.getToken();
   }
 
+  addCliente(cliente: Cliente): Observable<any>{
+    let params = JSON.stringify(cliente);
+
+    let headers = new HttpHeaders().set('Content-Type', 'application/json')
+                                   .set('Authorization', this.token);
+
+    return this._http.post(this.url + 'add-cliente', params, {headers: headers});
+  }
+
 // Obtener todos los datos de todos los clientes
   getClientes(): Observable<any>{
 

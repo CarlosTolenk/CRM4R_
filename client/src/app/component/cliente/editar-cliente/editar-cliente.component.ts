@@ -65,12 +65,19 @@ export class EditarClienteComponent implements OnInit {
         }else{
           console.log(response.cliente);
           this.cliente = response.cliente;
+
           //Subida de imagen de Cliente // upload-image-cliente/:id'
+          if(this.fileToUpload){
           this._uploadService.makeFileRequest(this.url + 'upload-image-cliente/' + this.cliente._id, [], this.fileToUpload, this.token, 'image')
                     .then((result: any) => {
                         this.cliente.avatar = result.cliente.avatar;
                         console.log(this.cliente);
+                        this._router.navigate(['home/clientes/ver/', this.cliente._id]);
                     });
+        }else{
+          this._router.navigate(['home/clientes/ver/', this.cliente._id]);
+        }
+
 
         }
 

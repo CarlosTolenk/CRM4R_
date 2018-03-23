@@ -6,10 +6,13 @@
       </li>
     </ul>
 </div>
+</div>
 
-
-<form class="form-inline" #ClienteEditar="ngForm" (ngSubmit)="onSubmit()">
+<form class="form-inline" #addCliente="ngForm" (ngSubmit)="onSubmit();  addCliente.reset()">
   <div class="info-cliente">
+    <div class="title">
+      <h2>Agregar un Nuevo Cliente</h2>
+    </div>
     <div class="info-basica">
       <h3>Información Básica</h3>
         <p> Nombre:
@@ -40,6 +43,10 @@
 
     <div class="info-interna">
       <h3>Información Interna</h3>
+      <p> Email:
+          <input type="email" name="email" #email="ngModel" [(ngModel)]="cliente.email"  class="form-control" required>
+          <span *ngIf="!email.valid && email.touched">Este campo es requierido</span>
+      </p>
       <p> Teléfono:
           <input type="text" name="telefono" #telefono="ngModel" [(ngModel)]="cliente.telefono"  class="form-control" required>
           <span *ngIf="!telefono.valid && telefono.touched">Este campo es requierido</span>
@@ -60,8 +67,19 @@
     </div>
 
     <div class="accion">
-      <a class="btn btn-danger" data-toggle="modal" data-target="#borrarCliente"><i class="fas fa-times-circle"></i>Borrar Cliente</a>
-      <button type="submit"class="btn btn-success"><i class="fas fa-pencil-alt"></i>Actualizar Cliente</button>
+      <input type="submit" class="btn btn-success" [disabled]="!addCliente.form.valid" >
     </div>
   </div>
 </form>
+
+<div class="row alert-update">
+  <div class="col col-lg-12 col-md-12 col-sm-12 ">
+    <div class="alert alert-success" *ngIf="status == 'success'">
+        Se han agregado correctamente el nuevo cliente.
+    </div>
+
+    <div class="alert alert-danger" *ngIf="status == 'error'">
+        No se han podido agregar correctamente el cliente.
+    </div>
+  </div>
+</div>
