@@ -1,5 +1,15 @@
 @media only screen and (min-width: 1100px) {
 
+  .bg-agregar-cliente{
+    background-color: white;
+    width: 104.55%;
+    position: relative;
+    left: -70px;
+    display: block;
+    z-index: 1;
+    height: 100vh;
+  }
+
   .navbar{
     background: #2F55B5;
     width: 104.55%;
@@ -31,12 +41,13 @@
     justify-content: space-between;
     align-items: center;
     margin-left: 1em;
-    margin-top: 5px;
+    margin-top: 1px;
   }
 
-  .navbar-cliente-item a{
-    background: linear-gradient(-135deg, #223568, #20315b);
-    border-radius: 100%;
+  .btn-circle{
+    padding: .75em;
+    background: linear-gradient(-135deg, #223568, #2F55B5);
+    border-radius:100%!important;
   }
 
   .navbar-cliente-item a i{
@@ -51,7 +62,25 @@
 
   }
 
+  .card{
+    padding: 1em;
+    position: relative;
+  }
 
+  .card-title{
+    position: absolute;
+    top: -35px;
+    left: 27px;
+    background-color: #2F55B5;
+    text-align: center;
+    height: 5vh;
+    width: 90%;
+    padding: .5em;
+    color: #fff;
+    box-shadow: 0px 10px 20px #e5e5e5;
+    border-radius: 2px;
+
+  }
   .info-cliente{
     margin-top: 4em;
     margin-left: 5em;
@@ -63,14 +92,17 @@
     align-content: space-around;
     grid-row-gap: 3em;
     grid-column-gap: 7em;
-    grid-template-areas: ' title .'
-                         ' basica interna'
-                         ' . accion';
-
+    grid-template-areas: 'basica interna'
+                         'contactos  .'
+                         '. accion';
   }
 
   .title{
     grid-area: title;
+  }
+
+  span{
+    color: red;
   }
 
   .title h2{
@@ -104,6 +136,23 @@
     position: absolute;
     top: -5px;
     left: 12em;
+
+  }
+
+  .md-form input{
+    width: 80%;
+    border-bottom: 0.5px solid #000!important;
+  }
+
+  .md-form label{
+    font-size: 1.1em;
+    font-family: 'Comfortaa', cursive;
+    color: #000;
+    font-weight: 300;
+  }
+
+  .info-contatos{
+    grid-area: contactos;
   }
 
   .info-interna{

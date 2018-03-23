@@ -28,7 +28,6 @@
 }
 .dashboard-grid-item-sidebar{
   grid-area: sidebar;
-
 }
 
 .toggle-disactive{
@@ -108,6 +107,7 @@
 @media only screen and (min-width: 1400px) {
   .dashboard-grid {
     display: grid;
+    position: relative;
     width: 100%;
     grid-template-columns: 0.5fr 1fr 1fr ;
     grid-template-rows: repeat(2, fit-content);
@@ -118,10 +118,17 @@
 
   .dashboard-grid-item-navbar{
     grid-area: navbar;
+    /* position: fixed;
+    top:0;
+    left:0;
+    width: 100%; */
   }
 
   .dashboard-grid-item-sidebar{
     grid-area: sidebar;
+
+    position: fixed;
+    top: 450px!important;
   }
 
   .dashboard-grid-item-general{

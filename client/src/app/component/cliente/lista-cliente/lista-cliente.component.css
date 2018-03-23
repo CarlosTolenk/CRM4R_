@@ -57,10 +57,6 @@
     margin-top: 5px;
   }
 
-  .navbar-cliente-item a{
-    background: linear-gradient(-135deg, #223568, #20315b);
-    border-radius: 100%;
-  }
 
   .navbar-cliente-item a i{
     color: #ffca27;
@@ -75,37 +71,46 @@
   }
 
   .search{
-    width: 25%;
+    width: 20%;
     justify-content: flex-end;
-    margin-right: 15px;
   }
 
   .search input{
     border: none;
+    height: 20px!important;
     background: linear-gradient(135deg, #223568, #20315b);
+    border-radius: 100px;
+    text-align: center;
 
-    margin-top: 5px;
     color: white;
     font-size: 1em;
     font-family: 'Comfortaa', cursive;
   }
 
   .search input::placeholder{
-    margin-left: 15px;
+    text-align: center;
     color: white;
     font-size: 1em;
     font-family: 'Comfortaa', cursive;
+
   }
 
   .table{
-    margin-top: 3em;
+    margin-top: 2em;
     width: 92%;
   }
 
-  .btn-circle{
-    background: linear-gradient(-135deg, #223568, #2F55B5);
-    border-radius: 100%;
+  .btn{
+    border-radius:5px;
   }
+
+  .btn-circle{
+    padding: .75em;
+    background: linear-gradient(-135deg, #223568, #2F55B5);
+    border-radius:100%!important;
+  }
+
+
 
   .btn-circle i{
     color: #ffca27;
@@ -117,10 +122,18 @@
 
   .thead{
     background-color: #2F55B5;
+    font-family: 'Comfortaa', cursive;
   }
 
   .thead tr th{
     color: #ffff;
+    font-family: 'Comfortaa', cursive;
+    font-size: 1em;
+  }
+
+  .tbody tr td{
+    font-family: 'Comfortaa', cursive;
+    font-size: 1em;
   }
 
   .tabs-navigation{
@@ -144,7 +157,8 @@
 
   .btn-circle-atras{
     background: #2F55B5;
-    border-radius: 50%;
+    padding: .75em;
+    border-radius:100%!important;
     margin-top: 2em;
   }
 
@@ -152,6 +166,10 @@
     color: #ffff;
     font-size: 1.5rem;
     margin-top: 2px;
+  }
+
+  .terminoBusqueda{
+    margin-top: 1em;
   }
 
 

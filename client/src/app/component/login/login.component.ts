@@ -69,7 +69,8 @@ export class LoginComponent implements OnInit {
               //Persistir el token
               localStorage.setItem('token', this.token);
               //Conseguir los marcadores o estadisticas del usuario
-              // this.getCounters();
+              this.status = 'success';
+              this._router.navigate(['home']);
               //Ir hacia el home con toda la informáciones
 
             }

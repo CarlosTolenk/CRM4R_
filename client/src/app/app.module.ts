@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 //import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
@@ -7,6 +7,9 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { routing, appRoutingProviders } from './app.routing';
 import { CommonModule } from '@angular/common';
 import { NgxPaginationModule} from 'ngx-pagination';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
+
+
 
 
 //Componentes
@@ -55,9 +58,12 @@ import { EditarClienteComponent } from './component/cliente/editar-cliente/edita
     routing,
     HttpClientModule,
     CommonModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    MDBBootstrapModule.forRoot()
 
   ],
+  schemas: [ NO_ERRORS_SCHEMA ],
+
   providers: [
     appRoutingProviders
   ],

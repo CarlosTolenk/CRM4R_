@@ -3,14 +3,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { ClienteService } from '../../../services/cliente.services';
 import { Cliente } from '../../../models/cliente';
 import { GLOBAL } from '../../../services/global';
-// import {
-//     ReactiveFormsModule,
-//     FormsModule,
-//     FormGroup,
-//     FormControl,
-//     Validators,
-//     FormBuilder
-// } from '@angular/forms';
+
 
 @Component({
   selector: 'app-agregarcliente',
@@ -21,7 +14,7 @@ import { GLOBAL } from '../../../services/global';
 export class AgregarClienteComponent implements OnInit {
   public cliente:Cliente;
   public status:string;
-  // public myform: FormGroup;
+
 
   constructor(
     private _route: ActivatedRoute,
@@ -61,6 +54,7 @@ export class AgregarClienteComponent implements OnInit {
   }
 
   volverListar(){
+    console.log('Presionando');
     this._router.navigate(['home/clientes']);
   }
 

@@ -3,7 +3,7 @@
   <div class="navbar-content">
     <ul class="navbar-cliente">
       <li class="navbar-cliente-item">
-        <a class="btn btn-circle" routerLink="agregar"><i class="fas fa-plus"></i></a>
+        <a class=" btn-circle" routerLink="agregar"><i class="fas fa-plus"></i></a>
         <span>Cliente</span>
       </li>
     </ul>
@@ -37,8 +37,8 @@
         <th scope="col">Editar</th>
       </tr>
     </thead>
-    <tbody>
-      <tr *ngFor="let cliente of listCliente | paginate: { itemsPerPage: 8, currentPage: p }  ">
+    <tbody class="tbody">
+      <tr *ngFor="let cliente of listCliente | paginate: { itemsPerPage: 7, currentPage: p }  ">
         <th scope="row">{{cliente.cedula}}</th>
         <td>{{cliente.nombre+ ' ' +cliente.apellido}}</td>
         <td>{{cliente.telefono}}</td>
@@ -79,8 +79,8 @@
         <th scope="col">Editar</th>
       </tr>
     </thead>
-    <tbody>
-      <tr *ngFor="let cliente of busquedaActivos | paginate: { itemsPerPage: 8, currentPage: p }  ">
+    <tbody class="tbody">
+      <tr *ngFor="let cliente of busquedaActivos | paginate: { itemsPerPage: 7, currentPage: p }  ">
         <th scope="row">{{cliente.cedula}}</th>
         <td>{{cliente.nombre+ ' ' +cliente.apellido}}</td>
         <td>{{cliente.telefono}}</td>
@@ -122,8 +122,8 @@
         <th scope="col">Editar</th>
       </tr>
     </thead>
-    <tbody>
-      <tr *ngFor="let cliente of busquedaCandidatos | paginate: { itemsPerPage: 8, currentPage: p }  ">
+    <tbody class="tbody">
+      <tr *ngFor="let cliente of busquedaCandidatos | paginate: { itemsPerPage: 7, currentPage: p }  ">
         <th scope="row">{{cliente.cedula}}</th>
         <td>{{cliente.nombre+ ' ' +cliente.apellido}}</td>
         <td>{{cliente.telefono}}</td>
@@ -149,7 +149,7 @@
 <!-- Ver los clientes acorde a la búsqueda -->
 <div class="" *ngIf="busqueda">
   <a class="btn btn-circle-atras" (click)="volver()"><i class="far fa-arrow-alt-circle-left"></i></a>
-  <h3>Búsqueda del cliente: {{terminoB}}</h3>
+  <h3 class="terminoBusqueda">Búsqueda del cliente: {{terminoB}}</h3>
 
   <div class="list-content" >
 
@@ -166,7 +166,7 @@
           <th scope="col">Editar</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody class="tbody">
         <tr *ngFor="let cliente of busquedaCliente   ">
           <th scope="row">{{cliente.cedula}}</th>
           <td>{{cliente.nombre+ ' ' +cliente.apellido}}</td>
