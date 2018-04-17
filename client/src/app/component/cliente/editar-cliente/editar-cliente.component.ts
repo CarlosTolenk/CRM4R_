@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { ClienteService } from '../../../services/cliente.services';
+import { ToastService } from '../../../services/toast-service.service';
 import { Cliente } from '../../../models/cliente';
 import { GLOBAL } from '../../../services/global';
 import { UploadServices } from '../../../services/upload.services';
@@ -9,7 +10,7 @@ import { TeamService } from '../../../services/team.services';
 @Component({
   selector: 'app-editar-cliente',
   templateUrl: './editar-cliente.component.html',
-  providers: [ClienteService,UploadServices,TeamService],
+  providers: [ClienteService,UploadServices,TeamService,ToastService],
   styleUrls: ['./editar-cliente.component.css']
 })
 export class EditarClienteComponent implements OnInit {
@@ -25,7 +26,8 @@ export class EditarClienteComponent implements OnInit {
     private _router: Router,
     private _clienteService: ClienteService,
     private _uploadService: UploadServices,
-    private _teamServices: TeamService
+    private _teamServices: TeamService,
+    private _toastService: ToastService
   ) {
     //Darle estado inicial a las variables
     this.cliente = new Cliente('', '', '', '', '', '', '', 0, '', '', '', 0, '', 0, '', '');
@@ -57,13 +59,11 @@ export class EditarClienteComponent implements OnInit {
   }
 
   onSubmit(){
-    console.log(this.cliente);
     this._clienteService.updateCliente(this.cliente).subscribe(
       response => {
         if(!response.cliente){
           this.status = 'error';
         }else{
-          console.log(response.cliente);
           this.cliente = response.cliente;
 
           //Subida de imagen de Cliente // upload-image-cliente/:id'
@@ -71,10 +71,11 @@ export class EditarClienteComponent implements OnInit {
           this._uploadService.makeFileRequest(this.url + 'upload-image-cliente/' + this.cliente._id, [], this.fileToUpload, this.token, 'image')
                     .then((result: any) => {
                         this.cliente.avatar = result.cliente.avatar;
-                        console.log(this.cliente);
+                        this._toastService.Success("El Cliente","La actualización ha sido exitosa");
                         this._router.navigate(['home/clientes/ver/', this.cliente._id]);
                     });
         }else{
+          this._toastService.Success("El cliente se ha actualizado correctamente", "Acción Completada");
           this._router.navigate(['home/clientes/ver/', this.cliente._id]);
         }
 

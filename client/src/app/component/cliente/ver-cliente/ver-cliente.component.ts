@@ -2,15 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { ClienteService } from '../../../services/cliente.services';
+import { ToastService } from '../../../services/toast-service.service';
 import { Cliente } from '../../../models/cliente';
 import { GLOBAL } from '../../../services/global';
-
 
 
 
 @Component({
   selector: 'app-ver-cliente',
   templateUrl: './ver-cliente.component.html',
+  providers: [ClienteService, ToastService],
   styleUrls: ['./ver-cliente.component.css']
 })
 export class VerClienteComponent implements OnInit {
@@ -23,6 +24,7 @@ export class VerClienteComponent implements OnInit {
     private _route: ActivatedRoute,
     private _router: Router,
     private _clienteService: ClienteService,
+    private _toastService: ToastService
   ) {
     //Darle estado inicial a las variables
     this.cliente = new Cliente('', '', '', '', '', '', '', 0, '', '', '', 0, '', 0, '', '');
@@ -61,6 +63,7 @@ export class VerClienteComponent implements OnInit {
           this.status = 'error';
         }else{
           console.log(response.message);
+          this._toastService.Success("Acción Completada", "El cliente ha sido borrado exitosamente");
           this._router.navigate(['home/clientes']);
         }
 

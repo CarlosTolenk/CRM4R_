@@ -9,7 +9,7 @@ import { CommonModule } from '@angular/common';
 import { NgxPaginationModule} from 'ngx-pagination';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ToasterModule, ToasterService } from 'angular2-toaster';
+
 
 
 
@@ -66,8 +66,8 @@ import { EditarClienteComponent } from './component/cliente/editar-cliente/edita
     CommonModule,
     NgxPaginationModule,
     MDBBootstrapModule.forRoot(),
-    BrowserAnimationsModule,
-    ToasterModule.forRoot()
+    BrowserAnimationsModule
+
 
 
 

@@ -94,11 +94,12 @@ exports.updateCliente = (req, res) => {
   let update = req.body;
   let avg = 0;
 
-    if(update.score){
-        avg = calcularAvg(update.score, clienteId).then((value) => {
 
-                update.avg = value;
-                console.log(update);
+
+    if(update.score){
+        avg = calcularAvg(update.score, update.salario, clienteId).then((value) => {
+
+        update.avg = value;
 
           Cliente.findByIdAndUpdate(clienteId, update, {new: true}, (err, clienteUpdated) => {
             if(err) return res.status(500).send({message: 'Error en la peteción'});
@@ -124,27 +125,26 @@ exports.updateCliente = (req, res) => {
 };
 
 //Calculo para tener el avg del cliente
-async function calcularAvg(score, clienteId){
+async function calcularAvg(score, salario, clienteId){
   let avgSalario = 0;
   //Condiciones del avg en base al data credito
   let avgScore = (score * 50)/2000;
-  console.log(avgScore);
   let avgTotal = 0;
 
 let avg = await Cliente.findById(clienteId, (err, cliente) =>{
       if(err) return handleError(err);
 
       //Condiciones del avg en base al salario
-      if(cliente.salario <= 10000) avgSalario = 5;  // Maximo un 40% cuotas de la prestamo
-      if(cliente.salario > 10001 && cliente.salario <= 20000) avgSalario = 10;
-      if(cliente.salario > 20001 && cliente.salario <= 30000) avgSalario = 15;
-      if(cliente.salario > 30001 && cliente.salario <= 40000) avgSalario = 20;
-      if(cliente.salario > 40001 && cliente.salario <= 50000) avgSalario = 25;
-      if(cliente.salario > 50001 && cliente.salario <= 60000) avgSalario = 30;
-      if(cliente.salario > 60001 && cliente.salario <= 70000) avgSalario = 35;
-      if(cliente.salario > 70001 && cliente.salario <= 80000) avgSalario = 40;
-      if(cliente.salario > 80001 && cliente.salario <= 90000) avgSalario = 45;
-      if(cliente.salario > 90001 && cliente.salario <= 100000) avgSalario = 50;
+      if(salario <= 10000) avgSalario = 5;  // Maximo un 40% cuotas de la prestamo
+      if(salario > 10001 && salario <= 20000) avgSalario = 10;
+      if(salario > 20001 && salario <= 30000) avgSalario = 15;
+      if(salario > 30001 && salario <= 40000) avgSalario = 20;
+      if(salario > 40001 && salario <= 50000) avgSalario = 25;
+      if(salario > 50001 && salario <= 60000) avgSalario = 30;
+      if(salario > 60001 && salario <= 70000) avgSalario = 35;
+      if(salario > 70001 && salario <= 80000) avgSalario = 40;
+      if(salario > 80001 && salario <= 90000) avgSalario = 45;
+      if(salario > 90001 && salario <= 100000) avgSalario = 50;
 
 
       avgTotal = avgScore + avgSalario;
