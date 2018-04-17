@@ -255,9 +255,9 @@
 
   .title-general{
     background: linear-gradient(135deg, #223568, #20315b);
-    width: 104.55%;
+    width: 108%;
     position: relative;
-    left: -70px;
+    left: -75px;
     padding: 1em;
     display: block;
     z-index: 2!important;

@@ -5,10 +5,12 @@ import { ClienteService } from '../../../services/cliente.services';
 import { Cliente } from '../../../models/cliente';
 import { GLOBAL } from '../../../services/global';
 
+
+
+
 @Component({
   selector: 'app-ver-cliente',
   templateUrl: './ver-cliente.component.html',
-  providers: [ClienteService],
   styleUrls: ['./ver-cliente.component.css']
 })
 export class VerClienteComponent implements OnInit {
@@ -20,11 +22,12 @@ export class VerClienteComponent implements OnInit {
   constructor(
     private _route: ActivatedRoute,
     private _router: Router,
-    private _clienteService: ClienteService
+    private _clienteService: ClienteService,
   ) {
     //Darle estado inicial a las variables
     this.cliente = new Cliente('', '', '', '', '', '', '', 0, '', '', '', 0, '', 0, '', '');
     this.url = GLOBAL.url;
+
   }
 
   ngOnInit() {

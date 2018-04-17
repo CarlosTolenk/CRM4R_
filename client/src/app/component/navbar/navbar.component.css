@@ -68,7 +68,7 @@ i{
 .navbar.navbar-expand-lg{
   padding: 15px;
 }
-.nav-link{
+.dropdown-item{
   color: white!important;
 }
 
@@ -85,13 +85,13 @@ i{
   z-index: 24;
 }
 
-.nav-link {
+.dropdown-item{
   padding-right: .5rem !important;
   padding-left: .5rem !important;
   text-align: center;
 }
 
-.nav-link:hover{
+.dropdown-item:hover{
   background: #B9931D;
 }
 
@@ -100,15 +100,15 @@ i{
   padding: 5px;
 }
 
-.dropdown a{
-  color: white;
+.btn-group a{
+  color: white!important;
   font-size: 20px;
-
-
 }
 
 .dropdown-toggle{
-  margin-top: 15px;
+  margin-top: 5px!important;
+  color: white!important;
+  font-size: 20px;
 }
 
 .dropdown-toggle a:hover{

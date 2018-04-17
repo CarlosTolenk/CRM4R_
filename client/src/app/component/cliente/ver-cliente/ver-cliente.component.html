@@ -45,29 +45,35 @@
     </div>
 
     <div class="accion">
-      <a class="btn btn-danger" data-toggle="modal" data-target="#borrarCliente"><i class="fas fa-times-circle"></i>Borrar</a>
+      <a class="btn btn-danger" data-toggle="modal" (click)="style.show()" mdbRippleRadius><i class="fas fa-times-circle"></i>Borrar</a>
       <a class="btn btn-success" (click)="irEditar()"><i class="fas fa-pencil-alt"></i>Editar</a>
     </div>
   </div>
 
 
-<!-- Modal -->
-<div class="modal fade" id="borrarCliente" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Eliminar Cliente</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+  <!--Modal  -->
+
+  <div mdbModal #style="mdb-modal" class="modal fade right show" id="SideModalSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-side modal-bottom-right modal-notify modal-info " role="document">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <p class="heading lead">Eliminar Cliente</p>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="style.hide()">
+                      <span aria-hidden="true" class="white-text">×</span>
+                  </button>
+              </div>
+              <div class="modal-body">
+                  <div class="text-center">
+                      <i class="fas fa-trash-alt fa-4x mb-3 animated rotateIn"></i>
+                      <p>Al momento de eliminar al cliente de la base de datos no podrá recuperar la información de este cliente.
+                        Estás seguro de eliminar su información
+                      </p>
+                  </div>
+              </div>
+              <div class="modal-footer justify-content-center">
+                  <a type="button" class="btn btn-outline-secondary-modal" data-dismiss="modal" (click)="style.hide()" mdbRippleRadius>Cancelar</a>
+                  <a type="button" class="btn btn-primary-modal waves-light" data-dismiss="modal" (click)="style.hide()" (click)="eliminarCliente(cliente._id)" mdbRippleRadius>Eliminar<i class="fas fa-ban ml-1"></i></a>
+              </div>
+          </div>
       </div>
-      <div class="modal-body">
-        Está seguro de eliminar este cliente de la base de dato, al ejecutar esta acción no podrá recuperar esta Información?
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <a class="btn btn-danger" (click)="eliminarCliente(cliente._id)"><i class="fas fa-times-circle"></i>Eliminar Cliente</a>
-      </div>
-    </div>
   </div>
-</div>

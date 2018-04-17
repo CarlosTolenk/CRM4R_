@@ -1,7 +1,6 @@
 
 .general-dashboard {
     background: linear-gradient(-45deg, #C3D2DA, #9DB9C5);
-    width: 100%;
 }
 
 .dashboard-grid{
@@ -28,6 +27,7 @@
 }
 .dashboard-grid-item-sidebar{
   grid-area: sidebar;
+
 }
 
 .toggle-disactive{
@@ -107,38 +107,48 @@
 @media only screen and (min-width: 1400px) {
   .dashboard-grid {
     display: grid;
-    position: relative;
     width: 100%;
     grid-template-columns: 0.5fr 1fr 1fr ;
-    grid-template-rows: repeat(2, fit-content);
+    grid-template-rows: repeat(2, auto);
     grid-auto-flow: row;
+    grid-column-gap: 0px;
     grid-template-areas: 'navbar navbar navbar'
                          'sidebar general general ';
   }
 
   .dashboard-grid-item-navbar{
     grid-area: navbar;
-    /* position: fixed;
-    top:0;
-    left:0;
-    width: 100%; */
+    position: sticky;
+    left: 0;
+    top: 0;
   }
 
   .dashboard-grid-item-sidebar{
     grid-area: sidebar;
-
     position: fixed;
-    top: 450px!important;
+    left: 0;
+    bottom: 0;
+    height: 95vh;
   }
 
   .dashboard-grid-item-general{
     grid-area: general;
+    position: relative;
+    height: 90vh;
+    width: 100%;
+    margin: 0;
+    margin-left: -40px;
+  }
+
+  .toggle-active{
+    position: inherit
   }
 
   .toggle-disactive{
-    position: static;
+    position:fixed;
     transform: translateX(0);
-    width: 100%;
+    width: 20%;
+
   }
 
   .btn-floating{

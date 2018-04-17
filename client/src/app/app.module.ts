@@ -8,6 +8,11 @@ import { routing, appRoutingProviders } from './app.routing';
 import { CommonModule } from '@angular/common';
 import { NgxPaginationModule} from 'ngx-pagination';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToasterModule, ToasterService } from 'angular2-toaster';
+
+
+
 
 
 
@@ -45,7 +50,8 @@ import { EditarClienteComponent } from './component/cliente/editar-cliente/edita
     AgregarClienteComponent,
     ListaClienteComponent,
     VerClienteComponent,
-    EditarClienteComponent,
+    EditarClienteComponent
+
 
 
 
@@ -59,7 +65,11 @@ import { EditarClienteComponent } from './component/cliente/editar-cliente/edita
     HttpClientModule,
     CommonModule,
     NgxPaginationModule,
-    MDBBootstrapModule.forRoot()
+    MDBBootstrapModule.forRoot(),
+    BrowserAnimationsModule,
+    ToasterModule.forRoot()
+
+
 
   ],
   schemas: [ NO_ERRORS_SCHEMA ],

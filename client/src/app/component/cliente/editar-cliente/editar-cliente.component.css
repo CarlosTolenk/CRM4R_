@@ -24,10 +24,9 @@
   align-items: center;
 }
 
-
-
 .btn-circle{
-  padding: .75em;
+  margin-left: 40px;
+  padding: 1em!important;
   margin-top: -1px;
   background: linear-gradient(-135deg, #223568, #2F55B5);
   border-radius:100%!important;
@@ -60,10 +59,10 @@
 
   .navbar{
     background: #2F55B5;
-    width: 104.55%;
+    width: 107.5%;
     height: 62px;
     position: relative;
-    left: -70px;
+    left: -75px;
     box-shadow: 0px 10px 18px #888888;
   }
 
@@ -100,8 +99,8 @@
     grid-row-gap: 5em;
     grid-column-gap: 4em;
     grid-template-areas: 'avatar basica interna'
-                         '. data-credito .'
-                         '. . accion';
+                         '. data-credito accion';
+
   }
 
   .info-cliente h3{
@@ -221,6 +220,7 @@
   }
 
   .accion{
+    max-height: 75px;
     grid-area: accion;
     display: flex;
     justify-content: flex-end;
@@ -242,6 +242,7 @@
     color: #fff;
     margin-left: 1em;
     font-size: 1.2em;
+
   }
 
   .score{
