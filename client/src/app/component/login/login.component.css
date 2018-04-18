@@ -1,6 +1,6 @@
 @media only screen and (max-width: 500px) {
     img {
-        width: 80%!important;
+        width: 60%!important;
         margin: 20% 0 15% 10%!important;
     }
 
@@ -45,33 +45,51 @@
 
 
 
-img{
-  width: 40%;
-  height: auto;
-  margin: 20% 0 5% 9%;
-}
-.formulario{
-  margin-left: 4%;
-}
-.alert{
-  margin-left: 5%!important;
-  width: 90%!important;
-}
+    img{
+      width: 40%;
+      height: auto;
+      margin: 15% 0 5% 9%;
+    }
+    .formulario{
+      margin-left: 4%;
+    }
+    .alert{
+      margin-left: 5%!important;
+      width: 90%!important;
+    }
 
-p{
-  color: white;
-  font-size: 22px;
-}
+    p{
+      color: white;
+      font-size: 18px;
+    }
 
-span{
-  color: red;
-  font-size: 17px;
-}
- .btn{
-   color: white!important;
- }
+    span{
+      color: red;
+      font-size: 17px;
+    }
 
-.btn{
-  margin-top: 10px!important;
-  font-size: 22px;
-}
+    .md-form{
+      margin-left: 25px;
+    }
+
+    .md-form input{
+      width: 325px;
+    }
+
+    .md-form label{
+      color: white;
+      font-size: 1.2em;
+    }
+
+    .md-form i{
+      color: white;
+      font-size: 1.5em;
+    }
+
+
+     .btn{
+       color: white!important;
+       background: #ffca27;
+       margin-top: 10px!important;
+       font-size: 18px;
+     }

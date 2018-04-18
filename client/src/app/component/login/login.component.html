@@ -9,23 +9,22 @@
       No te haz podido identificar correctamente.
   </div>
 
-  <form class="col-lg-6 formulario" #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
-      <p>
-          <label>Usuario:</label>
-          <input type="text" name="nombre_usuario" #nombre_usuario="ngModel" [(ngModel)]="team.nombre_usuario" class="form-control" required>
-          <span *ngIf="!nombre_usuario.valid && nombre_usuario.touched">
-            El nombre de usuario es obligatorio!!
-          </span>
-      </p>
-      <p>
-          <label>Password:</label>
-          <input type="password" name="password" #password="ngModel" [(ngModel)]="team.password" class="form-control" required>
-          <span *ngIf="!password.valid && password.touched">
-            El password es obligatorio!!
-          </span>
-      </p>
-
-      <input type="submit" value="{{title}}" class="btn btn-warning col-lg-12 " [disabled]="!loginForm.form.valid">
+  <form class="col-lg-6 formulario form-inline" #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
+      <div class="md-form">
+        <i class="fa fa-user prefix"></i>
+        <input mdbActive type="text" id="nombre_usuario" name="nombre_usuario" #nombre_usuario="ngModel" [(ngModel)]="team.nombre_usuario"  class="form-control" required>
+        <label for="nombre_usuario" class="">Usuario:</label>
+        <br>
+        <span *ngIf="!nombre_usuario.valid && nombre_usuario.touched">*El nombre de usuario es obligatorio*</span>
+      </div>
+      <div class="md-form">
+        <i class="fas fa-key prefix"></i>
+        <input mdbActive type="password" id="password" name="password" #password="ngModel" [(ngModel)]="team.password"  class="form-control" required>
+        <label for="password" class="">Password:</label>
+        <br>
+        <span *ngIf="!password.valid && password.touched">*El nombre de usuario es obligatorio*</span>
+      </div>
+      <input type="submit" value="{{title}}" class="btn  col-lg-12 " [disabled]="!loginForm.form.valid">
   </form>
 
 </div>

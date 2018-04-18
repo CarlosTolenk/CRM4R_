@@ -67,7 +67,7 @@
 
   .navbar{
     background: #2F55B5;
-    width: 107.5%;
+    width: 104.65%;
     height: 62px;
     position: relative;
     left: -75px;
@@ -99,13 +99,14 @@
     display: grid;
     width: 100%;
     margin-top: 5em;
+    margin-right: 2em;
     grid-template-columns: .7fr 1fr 1fr;
     grid-template-rows: repeat(3, fit-content);
     grid-auto-flow: row;
     justify-content: space-around;
     align-content: center;
     grid-row-gap: 5em;
-    grid-column-gap: 4em;
+    grid-column-gap: 2em;
     grid-template-areas: 'avatar basica interna'
                          '. data-credito accion';
 
@@ -168,6 +169,7 @@
     width: fit-content;
     text-align: center;
     margin-top: 20px;
+    margin-left: 2.5em;
   }
 
   label[for="subirFoto"] i{
@@ -184,18 +186,6 @@
   .info-basica-item{
     display: flex;
     flex-direction: column;
-  }
-
-  .info-basica p{
-    display: flex;
-    position: relative;
-  }
-
-  .info-basica p input{
-    width: 65%;
-    position: absolute;
-    top: -5px;
-    left: 12em;
   }
 
   .md-form input{
@@ -224,9 +214,7 @@
 
   .info-interna input{
     width: 65%;
-    position: absolute;
-    top: -5px;
-    left: 8em;
+
   }
 
   .info-interna textarea{
@@ -280,22 +268,23 @@
     display: flex;
     justify-content: flex-end;
     margin-right: 4em;
+    margin-top: 4em;
 
   }
 
   .accion{
     color:#fff;
-    border-radius: 100%;
-    margin-left: 1.5em;
+    height: 60px;
   }
 
   .accion .btn{
     margin-left: 2em;
+    font-size: 1em;
   }
 
   .accion .btn a i{
     color: #fff;
-    margin-left: 1em;
+    margin-right: 1em;
     font-size: 1.2em;
 
   }

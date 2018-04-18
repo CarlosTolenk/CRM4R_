@@ -14,110 +14,157 @@
    </div>
 </div>
 
-<form class="form-inline" #ClienteEditar="ngForm" (ngSubmit)="onSubmit()">
-  <div class="info-cliente">
-    <div class="avatar-cliente" *ngIf="!cliente.avatar">
-      <img *ngIf="!imagenTemp" src="assets/images/default-user.png" alt="default-user">
-      <img *ngIf="imagenTemp" [src]="imagenTemp" >
-      <p>
-        <label for="subirFoto"><i class="fa fa-upload"></i>Upload</label>
-        <input type="file" id="subirFoto" (change)="fileChangeEvent($event)">
-      </p>
-    </div>
-    <div class="avatar-cliente" *ngIf="cliente.avatar">
-      <img *ngIf="!imagenTemp" src="{{url + 'get-image-cliente/' + cliente.avatar }}" alt="default-user">
-      <img *ngIf="imagenTemp" [src]="imagenTemp" >
-      <p>
-        <label for="subirFoto"><i class="fa fa-upload"></i>Upload</label>
-        <input type="file" id="subirFoto" (change)="fileChangeEvent($event)">
-      </p>
-    </div>
-
-    <div class="info-basica">
-      <div class="card">
-        <h4 class="card-title">Información Básica</h4>
-          <div class="md-form">
-            <i class="fa fa-user prefix"></i>
-            <input mdbActive type="text" id="nombre" name="nombre" #nombre="ngModel" [(ngModel)]="cliente.nombre"  class="form-control" required>
-            <label for="nombre" class="">Nombre</label>
-            <br>
-            <span *ngIf="!nombre.valid && nombre.touched">*Este campo es requerido*</span>
-         </div>
-          <div class="md-form">
-            <i class="fa fa-user prefix"></i>
-            <input mdbActive type="text" id="apellido" name="apellido" #apellido="ngModel" [(ngModel)]="cliente.apellido"  class="form-control" required>
-            <label for="apellido" class="">Apellido</label>
-            <br>
-            <span *ngIf="!apellido.valid && apellido.touched">*Este campo es requerido*</span>
-          </div>
-          <div class="md-form">
-            <i class="fa fa-id-card prefix"></i>
-            <input mdbActive type="text" id="cedula" name="cedula" #cedula="ngModel" [(ngModel)]="cliente.cedula"  class="form-control" required>
-            <label for="cedula" class="">Cédula</label>
-            <br>
-            <span *ngIf="!cedula.valid && cedula.touched">*Este campo es requerido*</span>
-          </div>
-          <div class="md-form">
-            <i class="fa fa-graduation-cap prefix"></i>
-            <input mdbActive type="text" id="ocupacion" name="ocupacion" #ocupacion="ngModel" [(ngModel)]="cliente.ocupacion"  class="form-control" required>
-            <label for="ocupacion" class="">Ocupación</label>
-            <br>
-            <span *ngIf="!ocupacion.valid && ocupacion.touched">*Este campo es requerido*</span>
-         </div>
-         <div class="md-form">
-           <i class="far fa-money-bill-alt prefix"></i>
-           <input mdbActive type="number" id="salario" name="salario" #salario="ngModel" [(ngModel)]="cliente.salario"  class="form-control" required>
-           <label for="salario" class="">Salario</label>
-           <br>
-           <span *ngIf="!salario.valid && salario.touched">*Este campo es requerido*</span>
-         </div>
-         <div class="md-form">
-           <i class="fas fa-briefcase prefix"></i>
-           <input mdbActive type="text" id="trabajo" name="trabajo" #trabajo="ngModel" [(ngModel)]="cliente.trabajo"  class="form-control" required>
-           <label for="trabajo" class="">Lugar de Trabajo</label>
-           <br>
-           <span *ngIf="!trabajo.valid && trabajo.touched">*Este campo es requerido*</span>
-         </div>
+  <form class="form-inline" #ClienteEditar="ngForm" (ngSubmit)="onSubmit()">
+    <div class="info-cliente">
+        <div class="avatar-cliente" *ngIf="!cliente.avatar">
+          <img *ngIf="!imagenTemp" src="assets/images/default-user.png" alt="default-user">
+          <img *ngIf="imagenTemp" [src]="imagenTemp" >
+          <p>
+            <label for="subirFoto"><i class="fa fa-upload"></i>Upload</label>
+            <input type="file" id="subirFoto" (change)="fileChangeEvent($event)">
+          </p>
+        </div>
+      <div class="avatar-cliente" *ngIf="cliente.avatar">
+        <img *ngIf="!imagenTemp" src="{{url + 'get-image-cliente/' + cliente.avatar }}" alt="default-user">
+        <img *ngIf="imagenTemp" [src]="imagenTemp" >
+        <p>
+          <label for="subirFoto"><i class="fa fa-upload"></i>Upload</label>
+          <input type="file" id="subirFoto" (change)="fileChangeEvent($event)">
+        </p>
       </div>
 
-    </div>
+      <div class="info-basica">
+        <div class="card">
+          <h4 class="card-title">Información Básica</h4>
+            <div class="md-form">
+              <i class="fa fa-user prefix"></i>
+              <input mdbActive type="text" id="nombre" name="nombre" #nombre="ngModel" [(ngModel)]="cliente.nombre"  class="form-control" required>
+              <label for="nombre" class="">Nombre</label>
+              <br>
+              <span *ngIf="!nombre.valid && nombre.touched">*Este campo es requerido*</span>
+           </div>
+            <div class="md-form">
+              <i class="fa fa-user prefix"></i>
+              <input mdbActive type="text" id="apellido" name="apellido" #apellido="ngModel" [(ngModel)]="cliente.apellido"  class="form-control" required>
+              <label for="apellido" class="">Apellido</label>
+              <br>
+              <span *ngIf="!apellido.valid && apellido.touched">*Este campo es requerido*</span>
+            </div>
+            <div class="md-form">
+              <i class="fa fa-id-card prefix"></i>
+              <input mdbActive type="text" id="cedula" name="cedula" #cedula="ngModel" [(ngModel)]="cliente.cedula"  class="form-control" required>
+              <label for="cedula" class="">Cédula</label>
+              <br>
+              <span *ngIf="!cedula.valid && cedula.touched">*Este campo es requerido*</span>
+            </div>
+            <div class="md-form">
+              <i class="fa fa-graduation-cap prefix"></i>
+              <input mdbActive type="text" id="ocupacion" name="ocupacion" #ocupacion="ngModel" [(ngModel)]="cliente.ocupacion"  class="form-control" required>
+              <label for="ocupacion" class="">Ocupación</label>
+              <br>
+              <span *ngIf="!ocupacion.valid && ocupacion.touched">*Este campo es requerido*</span>
+           </div>
+           <div class="md-form">
+             <i class="far fa-money-bill-alt prefix"></i>
+             <input mdbActive type="number" id="salario" name="salario" #salario="ngModel" [(ngModel)]="cliente.salario"  class="form-control" required>
+             <label for="salario" class="">Salario</label>
+             <br>
+             <span *ngIf="!salario.valid && salario.touched">*Este campo es requerido*</span>
+           </div>
+           <div class="md-form">
+             <i class="fas fa-briefcase prefix"></i>
+             <input mdbActive type="text" id="trabajo" name="trabajo" #trabajo="ngModel" [(ngModel)]="cliente.trabajo"  class="form-control" required>
+             <label for="trabajo" class="">Lugar de Trabajo</label>
+             <br>
+             <span *ngIf="!trabajo.valid && trabajo.touched">*Este campo es requerido*</span>
+           </div>
+        </div>
+      </div>
 
-    <div class="info-interna">
-      <h3>Información Interna</h3>
-      <p> Email:
-          <input type="email" name="email" #email="ngModel" [(ngModel)]="cliente.email"  class="form-control" required>
-          <span *ngIf="!email.valid && email.touched">Este campo es requierido</span>
-      </p>
-      <p> Teléfono:
-          <input type="text" name="telefono" #telefono="ngModel" [(ngModel)]="cliente.telefono"  class="form-control" required>
-          <span *ngIf="!telefono.valid && telefono.touched">Este campo es requierido</span>
-      </p>
-      <p> Dirección:
-          <input type="text" name="direccion" #direccion="ngModel" [(ngModel)]="cliente.direccion"  class="form-control" required>
-          <span *ngIf="!direccion.valid && direccion.touched">Este campo es requierido</span>
-      </p>
-      <p> Sector:
-          <input type="text" name="sector" #sector="ngModel" [(ngModel)]="cliente.sector"  class="form-control" required>
-          <span *ngIf="!sector.valid && sector.touched">Este campo es requierido</span>
-      </p>
-      <p> Descripción:
-          <textarea  type="text" name="descripcion" #descripcion="ngModel" [(ngModel)]="cliente.descripcion"  class="form-control" required></textarea>
-          <span *ngIf="!descripcion.valid && descripcion.touched">Este campo es requierido</span>
-      </p>
+      <div class="info-interna">
+        <div class="card">
+          <h4 class="card-title">Información Interna</h4>
+              <div class="md-form">
+                <i class="fas fa-envelope prefix"></i>
+                <input mdbActive type="email" id="email" name="email" #email="ngModel" [(ngModel)]="cliente.email"  class="form-control" required  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+                <label for="email" class="">Email</label>
+                <br>
+                <span *ngIf="!email.valid && email.touched">*Este campo es requerido*</span>
+             </div>
+             <div class="md-form">
+               <i class="fas fa-phone prefix"></i>
+               <input mdbActive type="text" id="telefono" name="telefono" #telefono="ngModel" [(ngModel)]="cliente.telefono"  class="form-control" required  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+               <label for="telefono" class="">Teléfono</label>
+               <br>
+               <span *ngIf="!telefono.valid && telefono.touched">*Este campo es requerido*</span>
+            </div>
+            <div class="md-form">
+              <i class="fas fa-location-arrow prefix"></i>
+              <input mdbActive type="text" id="direccion" name="direccion" #direccion="ngModel" [(ngModel)]="cliente.direccion"  class="form-control" required  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+              <label for="direccion" class="">Dirección</label>
+              <br>
+              <span *ngIf="!direccion.valid && direccion.touched">*Este campo es requerido*</span>
+           </div>
+           <div class="md-form">
+             <i class="fas fa-map-marker-alt prefix"></i>
+             <input mdbActive type="text" id="sector" name="sector" #sector="ngModel" [(ngModel)]="cliente.sector"  class="form-control" required  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+             <label for="sector" class="">Sector</label>
+             <br>
+             <span *ngIf="!sector.valid && sector.touched">*Este campo es requerido*</span>
+          </div>
+          <div class="md-form">
+            <i class="fas fa-comments prefix"></i>
+            <input mdbActive type="text" id="descripcion" name="descripcion" #descripcion="ngModel" [(ngModel)]="cliente.descripcion"  class="form-control" required  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+            <label for="descripcion" class="">Descripción</label>
+            <br>
+            <span *ngIf="!descripcion.valid && descripcion.touched">*Este campo es requerido*</span>
+         </div>
+        </div>
+      </div>
 
-    </div>
-    <div class="info-dataCredito">
-      <h3>Información Data Crédito</h3>
-      <p> Score:
-          <input type="number" name="score" #score="ngModel" [(ngModel)]="cliente.score"  class="form-control" required>
-          <span *ngIf="!score.valid && score.touched">Este campo es requierido</span>
-      </p>
-    </div>
+      <div class="info-dataCredito">
+        <div class="card">
+          <h4 class="card-title">Información Data Crédito</h4>
+            <div class="md-form">
+              <i class="fas fa-chart-line prefix"></i>
+              <input mdbActive type="number" id="score" name="score" #score="ngModel" [(ngModel)]="cliente.score"  class="form-control" required  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+              <label for="score" class="">Score</label>
+              <br>
+              <span *ngIf="!score.valid && score.touched">*Este campo es requerido*</span>
+           </div>
+        </div>
+      </div>
 
-    <div class="accion">
-      <button type="submit"class="btn btn-success"><i class="fas fa-pencil-alt"></i>Actualizar Cliente</button>
+      <div class="accion">
+        <a class="btn btn-success" data-toggle="modal" (click)="style.show()" mdbRippleRadius><i class="fas fa-pencil-alt"></i>Actualizar Cliente</a>
+        <!-- <button type="submit"class="btn btn-success"><i class="fas fa-pencil-alt"></i>Actualizar Cliente</button> -->
+     </div>
     </div>
-  </div>
-</form>
+  </form>
+</div>
 
+<!--Modal  -->
+
+<div mdbModal #style="mdb-modal" class="modal fade right show" id="SideModalSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-side modal-bottom-right modal-notify modal-info " role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="heading lead">Actualizar Cliente</p>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="style.hide()">
+                    <span aria-hidden="true" class="white-text">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="text-center">
+                    <i class="fas fa-redo-alt fa-4x mb-3 animated rotateIn"></i>
+                    <p>Estás seguro de querer actualizar la información del cliente, una vez hecha esta acción no se podrá volver atrás
+                    </p>
+                </div>
+            </div>
+            <div class="modal-footer justify-content-center">
+                <a type="button" class="btn btn-outline-secondary-modal" data-dismiss="modal" (click)="style.hide()" mdbRippleRadius>Cancelar</a>
+                <button type="submit" class="btn btn-primary-modal waves-light" data-dismiss="modal" (click)="style.hide()" (click)="onSubmit()"  mdbRippleRadius>Actualizar<i class="fas fa-edit ml-1"></i></button>
+            </div>
+        </div>
+    </div>
 </div>

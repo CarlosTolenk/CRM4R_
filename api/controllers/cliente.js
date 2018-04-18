@@ -140,7 +140,7 @@ let avg = await Cliente.findById(clienteId, (err, cliente) =>{
       if(salario > 20001 && salario <= 30000) avgSalario = 15;
       if(salario > 30001 && salario <= 40000) avgSalario = 20;
       if(salario > 40001 && salario <= 50000) avgSalario = 25;
-      if(salario > 50001 && salario <= 60000) avgSalario = 30;
+      if(salario > 50001 && salario <= 60000) avgSalario = 30
       if(salario > 60001 && salario <= 70000) avgSalario = 35;
       if(salario > 70001 && salario <= 80000) avgSalario = 40;
       if(salario > 80001 && salario <= 90000) avgSalario = 45;
