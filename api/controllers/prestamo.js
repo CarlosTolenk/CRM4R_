@@ -101,7 +101,7 @@ exports.addPrestamo = (req, res, next) => {
                         ticket.estado = "PRE-DENEGADO";
                       }
                     }
-                    
+
                     update = cliente;
                     Cliente.findByIdAndUpdate(update._id, { activo: 'true'}, {new: true}, (err, clienteUpdated) => {
                       if(err) return res.status(500).send({message: 'Error en la peteción'});
@@ -132,24 +132,13 @@ exports.addPrestamo = (req, res, next) => {
 
 //Listar todos los préstamos por páginas
 exports.getPrestamos  = (req, res) => {
-  let page = 1;
 
-  if(req.params.page){
-    page = req.params.page;
-  }
-
-  let itemsPerPage = 5;
-
-  Prestamo.find().populate({path: 'cliente'}).paginate(page, itemsPerPage, (err, prestamos, total) => {
+  Prestamo.find().populate({path: 'cliente'}).exec((err, prestamos, total) => {
      if(err) return res.status(500).send({message: 'Error en la petición'});
 
      if(!prestamos) return status(404).send({message: 'No hay Prestamos disponibles'});
 
-          return res.status(200).send({
-            prestamos,
-            total,
-            pages: Math.ceil(total/itemsPerPage),
-          });
+          return res.status(200).send({prestamos});
       });
   };
 

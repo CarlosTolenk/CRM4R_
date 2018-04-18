@@ -31,6 +31,11 @@ import { AgregarClienteComponent } from './component/cliente/agregarcliente/agre
 import { ListaClienteComponent } from './component/cliente/lista-cliente/lista-cliente.component';
 import { VerClienteComponent } from './component/cliente/ver-cliente/ver-cliente.component';
 import { EditarClienteComponent } from './component/cliente/editar-cliente/editar-cliente.component';
+import { PrestamosComponent } from './component/prestamos/prestamos.component';
+import { AgregarPrestamosComponent } from './component/prestamos/agregar-prestamos/agregar-prestamos.component';
+import { ListaPrestamosComponent } from './component/prestamos/lista-prestamos/lista-prestamos.component';
+import { VerPrestamosComponent } from './component/prestamos/ver-prestamos/ver-prestamos.component';
+import { EditarPrestamosComponent } from './component/prestamos/editar-prestamos/editar-prestamos.component';
 
 
 
@@ -50,7 +55,12 @@ import { EditarClienteComponent } from './component/cliente/editar-cliente/edita
     AgregarClienteComponent,
     ListaClienteComponent,
     VerClienteComponent,
-    EditarClienteComponent
+    EditarClienteComponent,
+    PrestamosComponent,
+    AgregarPrestamosComponent,
+    ListaPrestamosComponent,
+    VerPrestamosComponent,
+    EditarPrestamosComponent
 
 
 
