@@ -1,14 +1,16 @@
 <div class="bg-agregar-cliente">
 
-
 <div class="navbar">
   <div class="navbar-content">
     <ul class="navbar-cliente">
       <li class="navbar-cliente-item">
         <a class="btn btn-circle" (click)="volverListar()"><i class="fas fa-arrow-left"></i></a>
       </li>
+      <li class="navbar-cliente-item">
+          <h4>Agregar Cliente</h4>
+      </li>
     </ul>
-    <h2>Agregar Cliente</h2>
+
 </div>
 </div>
 
@@ -38,28 +40,28 @@
           <span *ngIf="!cedula.valid && cedula.touched">*Este campo es requerido*</span>
         </div>
         <div class="md-form">
-          <i class="fa fa-user prefix"></i>
-          <input mdbActive type="text" id="email" name="email" #email="ngModel" [(ngModel)]="cliente.email"  class="form-control" required>
+          <i class="fas fa-envelope prefix"></i>
+          <input mdbActive type="email" id="email" name="email" #email="ngModel" [(ngModel)]="cliente.email"  class="form-control" required  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
           <label for="email" class="">Email</label>
           <br>
-          <span *ngIf="!email.valid && email.touched">*Este campo es requerido*</span>
+          <span *ngIf="!email.valid && email.touched">*Este campo es requerido y debe ser un email válido*</span>
        </div>
         <div class="md-form">
-          <i class="fa fa-user prefix"></i>
+          <i class="fas fa-phone prefix"></i>
           <input mdbActive type="text" id="telefono" name="telefono" #telefono="ngModel" [(ngModel)]="cliente.telefono"  class="form-control" required>
           <label for="telefono" class="">Teléfono</label>
           <br>
           <span *ngIf="!telefono.valid && telefono.touched">*Este campo es requerido*</span>
         </div>
         <div class="md-form">
-          <i class="fa fa-id-card prefix"></i>
+          <i class="fas fa-location-arrow prefix"></i>
           <input mdbActive type="text" id="direccion" name="direccion" #direccion="ngModel" [(ngModel)]="cliente.direccion"  class="form-control" required>
           <label for="direccion" class="">Dirección</label>
           <br>
           <span *ngIf="!direccion.valid && direccion.touched">*Este campo es requerido*</span>
         </div>
         <div class="md-form">
-          <i class="fa fa-id-card prefix"></i>
+          <i class="fas fa-map-marker-alt prefix"></i>
           <input mdbActive type="text" id="sector" name="sector" #sector="ngModel" [(ngModel)]="cliente.sector"  class="form-control" required>
           <label for="sector" class="">Sector</label>
           <br>
@@ -67,112 +69,76 @@
         </div>
     </div>
 
+    <div class="info-interna card">
+      <h4 class="card-title">Información Intera</h4>
+      <div class="md-form">
+        <i class="fa fa-graduation-cap prefix"></i>
+        <input mdbActive type="text" id="ocupacion" name="ocupacion" #ocupacion="ngModel" [(ngModel)]="cliente.ocupacion"  class="form-control" required>
+        <label for="ocupacion" class="">Ocupación</label>
+        <br>
+        <span *ngIf="!ocupacion.valid && ocupacion.touched">*Este campo es requerido*</span>
+     </div>
+      <div class="md-form">
+        <i class="far fa-money-bill-alt prefix"></i>
+        <input mdbActive type="number" id="salario" name="salario" #salario="ngModel" [(ngModel)]="cliente.salario"  class="form-control" required>
+        <label for="salario" class="">Salario</label>
+        <br>
+        <span *ngIf="!salario.valid && salario.touched">*Este campo es requerido*</span>
+      </div>
+      <div class="md-form">
+        <i class="fas fa-briefcase prefix"></i>
+        <input mdbActive type="text" id="trabajo" name="trabajo" #trabajo="ngModel" [(ngModel)]="cliente.trabajo"  class="form-control" required>
+        <label for="trabajo" class="">Lugar de Trabajo</label>
+        <br>
+        <span *ngIf="!trabajo.valid && trabajo.touched">*Este campo es requerido*</span>
+      </div>
+      <div class="md-form">
+        <i class="fas fa-comments prefix"></i>
+        <textarea mdbActive type="text" id="descripcion" name="descripcion" #descripcion="ngModel" [(ngModel)]="cliente.descripcion"  class="form-control" required></textarea>
+        <label for="descripcion" class="">Descripción</label>
+        <br>
+        <span *ngIf="!descripcion.valid && descripcion.touched">*Este campo es requerido*</span>
+      </div>
+    </div>
 
-    <!-- <div class="md-form">
-      <i class="fas fa-briefcase prefix"></i>
-      <input mdbActive type="text" id="ocupacion" name="ocupacion" #ocupacion="ngModel" [(ngModel)]="cliente.ocupacion"  class="form-control" required>
-      <label for="ocupacion" class="">Ocupación</label>
-      <br>
-      <span *ngIf="!ocupacion.valid && ocupacion.touched">*Este campo es requierido*</span>
-    </div>
-    <div class="md-form">
-      <i class="fas fa-money-bill-alt prefix"></i>
-      <input mdbActive type="number" id="salario" name="salario" #salario="ngModel" [(ngModel)]="cliente.salario"  class="form-control" required>
-      <label for="salario" class="">Salario</label>
-      <br>
-      <span *ngIf="!salario.valid && salario.touched">*Este campo es requierido*</span>
-    </div>
-    <div class="md-form">
-      <i class="fas fa-briefcase prefix"></i>
-      <input mdbActive type="text" id="trabajo" name="trabajo" #trabajo="ngModel" [(ngModel)]="cliente.trabajo"  class="form-control" required>
-      <label for="trabajo" class="">Lugar de Trabajo</label>
-      <br>
-      <span *ngIf="!trabajo.valid && trabajo.touched">*Este campo es requierido*</span>
+
+    <!-- <div class="info-interna card">
+      <h4 class="card-title">Información Intera</h4>
+      <div class="md-form">
+        <i class="fa fa-user prefix"></i>
+        <input mdbActive type="text" id="ocupacion" name="ocupacion" #ocupacion="ngModel" [(ngModel)]="cliente.ocupacion"  class="form-control" required>
+        <label for="ocupacion" class="">Ocupación</label>
+        <br>
+        <span *ngIf="!ocupacion.valid && ocupacion.touched">*Este campo es requerido*</span>
+     </div>
+      <div class="md-form">
+        <i class="fa fa-user prefix"></i>
+        <input mdbActive type="number" id="salario" name="salario" #salario="ngModel" [(ngModel)]="cliente.salario"  class="form-control" required>
+        <label for="salario" class="">Salario</label>
+        <br>
+        <span *ngIf="!salario.valid && salario.touched">*Este campo es requerido*</span>
+      </div>
+      <div class="md-form">
+        <i class="fa fa-id-card prefix"></i>
+        <input mdbActive type="text" id="trabajo" name="trabajo" #trabajo="ngModel" [(ngModel)]="cliente.trabajo"  class="form-control" required>
+        <label for="trabajo" class="">Lugar de Trabajo</label>
+        <br>
+        <span *ngIf="!trabajo.valid && trabajo.touched">*Este campo es requerido*</span>
+      </div>
+      <div class="md-form">
+        <i class="fa fa-id-card prefix"></i>
+        <textarea mdbActive type="text" id="descripcion" name="descripcion" #descripcion="ngModel" [(ngModel)]="cliente.descripcion"  class="form-control" required></textarea>
+        <label for="descripcion" class="">Descripción</label>
+        <br>
+        <span *ngIf="!descripcion.valid && descripcion.touched">*Este campo es requerido*</span>
+      </div>
     </div> -->
 
 
-    <div class="info-interna card">
-      <h4 class="card-title">Información Intera</h4>
-      <div class="md-form">
-        <i class="fa fa-user prefix"></i>
-        <input mdbActive type="text" id="ocupacion" name="ocupacion" #ocupacion="ngModel" [(ngModel)]="cliente.ocupacion"  class="form-control" required>
-        <label for="ocupacion" class="">Ocupación</label>
-        <br>
-        <span *ngIf="!ocupacion.valid && ocupacion.touched">*Este campo es requerido*</span>
-     </div>
-      <div class="md-form">
-        <i class="fa fa-user prefix"></i>
-        <input mdbActive type="number" id="salario" name="salario" #salario="ngModel" [(ngModel)]="cliente.salario"  class="form-control" required>
-        <label for="salario" class="">Salario</label>
-        <br>
-        <span *ngIf="!salario.valid && salario.touched">*Este campo es requerido*</span>
-      </div>
-      <div class="md-form">
-        <i class="fa fa-id-card prefix"></i>
-        <input mdbActive type="text" id="trabajo" name="trabajo" #trabajo="ngModel" [(ngModel)]="cliente.trabajo"  class="form-control" required>
-        <label for="trabajo" class="">Lugar de Trabajo</label>
-        <br>
-        <span *ngIf="!trabajo.valid && trabajo.touched">*Este campo es requerido*</span>
-      </div>
-      <div class="md-form">
-        <i class="fa fa-id-card prefix"></i>
-        <textarea mdbActive type="text" id="descripcion" name="descripcion" #descripcion="ngModel" [(ngModel)]="cliente.descripcion"  class="form-control" required></textarea>
-        <label for="descripcion" class="">Descripción</label>
-        <br>
-        <span *ngIf="!descripcion.valid && descripcion.touched">*Este campo es requerido*</span>
+      <div class="accion">
+        <input type="submit" class="btn btn-success" [disabled]="!addCliente.form.valid" >
       </div>
     </div>
-
-
-    <div class="info-interna card">
-      <h4 class="card-title">Información Intera</h4>
-      <div class="md-form">
-        <i class="fa fa-user prefix"></i>
-        <input mdbActive type="text" id="ocupacion" name="ocupacion" #ocupacion="ngModel" [(ngModel)]="cliente.ocupacion"  class="form-control" required>
-        <label for="ocupacion" class="">Ocupación</label>
-        <br>
-        <span *ngIf="!ocupacion.valid && ocupacion.touched">*Este campo es requerido*</span>
-     </div>
-      <div class="md-form">
-        <i class="fa fa-user prefix"></i>
-        <input mdbActive type="number" id="salario" name="salario" #salario="ngModel" [(ngModel)]="cliente.salario"  class="form-control" required>
-        <label for="salario" class="">Salario</label>
-        <br>
-        <span *ngIf="!salario.valid && salario.touched">*Este campo es requerido*</span>
-      </div>
-      <div class="md-form">
-        <i class="fa fa-id-card prefix"></i>
-        <input mdbActive type="text" id="trabajo" name="trabajo" #trabajo="ngModel" [(ngModel)]="cliente.trabajo"  class="form-control" required>
-        <label for="trabajo" class="">Lugar de Trabajo</label>
-        <br>
-        <span *ngIf="!trabajo.valid && trabajo.touched">*Este campo es requerido*</span>
-      </div>
-      <div class="md-form">
-        <i class="fa fa-id-card prefix"></i>
-        <textarea mdbActive type="text" id="descripcion" name="descripcion" #descripcion="ngModel" [(ngModel)]="cliente.descripcion"  class="form-control" required></textarea>
-        <label for="descripcion" class="">Descripción</label>
-        <br>
-        <span *ngIf="!descripcion.valid && descripcion.touched">*Este campo es requerido*</span>
-      </div>
-    </div>
-
-
-    <div class="accion">
-      <input type="submit" class="btn btn-success" [disabled]="!addCliente.form.valid" >
-    </div>
-  </div>
-</form>
-
-<div class="row alert-update">
-  <div class="col col-lg-12 col-md-12 col-sm-12 ">
-    <div class="alert alert-success" *ngIf="status == 'success'">
-        Se han agregado correctamente el nuevo cliente.
-    </div>
-
-    <div class="alert alert-danger" *ngIf="status == 'error'">
-        No se han podido agregar correctamente el cliente.
-    </div>
-  </div>
-</div>
+  </form>
 
 </div>

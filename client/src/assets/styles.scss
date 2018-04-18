@@ -1,9 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
 body {
-  background: linear-gradient(to bottom right, #12224A, #060C19);
+  // background: linear-gradient(to bottom right, #12224A, #060C19);
+  // background: linear-gradient(45deg, #C3D2DA, #9DB9C5);
+  background: white!important;
+  background-size: cover;
   width: 100%;
+  min-height: 100vh;
+
 }
 
-h1,h2,h3,h4,a{
+h1,h2,h3,h4,h5,a,p{
   font-family: 'Comfortaa', cursive!important;
 }

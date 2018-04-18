@@ -63,7 +63,7 @@ export class VerClienteComponent implements OnInit {
           this.status = 'error';
         }else{
           console.log(response.message);
-          this._toastService.Success("Acción Completada", "El cliente ha sido borrado exitosamente");
+          this._toastService.Success("El cliente ha sido borrado exitosamente", "Acción Completada");
           this._router.navigate(['home/clientes']);
         }
 

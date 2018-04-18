@@ -25,6 +25,13 @@
     align-items: center;
     margin-top: 5px;
   }
+  .navbar-cliente-item h4{
+    text-align: center;
+    color:white;
+    justify-content: center;
+    margin-left: 10px;
+    margin-top: 5px;
+  }
 
   .navbar-cliente-item a{
     background: linear-gradient(-135deg, #223568, #20315b);
@@ -33,6 +40,27 @@
 
   .navbar-cliente-item a i{
     color: #ffca27;
+  }
+
+  .card{
+    padding: 1em;
+    padding-top: 1em;
+    position: relative;
+  }
+
+  .card-title{
+    position: absolute;
+    top: -40px;
+    left: 25px;
+    background-color: #2F55B5;
+    text-align: center;
+    height: 5vh;
+    width: 90%;
+    /* margin-bottom: 5em; */
+    padding: .5em;
+    color: #fff;
+    box-shadow: 2px 2px 10px gray;
+    border-radius: 2px;
   }
 
   .info-cliente{
@@ -98,19 +126,20 @@
     .info-cliente{
       display: grid;
       width: 100%;
+      margin-top: 5em;
       grid-template-columns: 1fr 1fr 1fr;
       grid-template-rows: repeat(3, auto);
       grid-auto-flow: row;
       justify-content: space-around;
       align-content: center;
-      grid-row-gap: 5em;
+      grid-row-gap: 7em;
       grid-column-gap: 5em;
       grid-template-areas: 'avatar basica laboral'
                            'contactos interna data-credito'
                            '. accion . ';
     }
 
-    .info-cliente h3{
+    .info-cliente h4{
       color: #12224B;
       font-size: 1.7em;
       font-family: 'Comfortaa', cursive;
@@ -135,8 +164,8 @@
     }
 
     .avatar-cliente img{
-      width: 350px;
-      height: 200px;
+      width: 450px;
+      height: 175px;
     }
 
     .info-basica{

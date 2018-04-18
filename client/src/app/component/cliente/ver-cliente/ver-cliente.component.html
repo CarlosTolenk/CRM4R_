@@ -4,6 +4,9 @@
         <li class="navbar-cliente-item">
           <a class="btn btn-circle" (click)="volverListar()"><i class="fas fa-arrow-left"></i></a>
         </li>
+        <li class="navbar-cliente-item">
+          <h4>Información Cliente</h4>
+        </li>
       </ul>
   </div>
 </div>
@@ -15,33 +18,49 @@
       <img src="{{url + 'get-image-cliente/' + cliente.avatar }}" alt="default-user">
     </div>
     <div class="info-basica">
-      <h3>Información Básica</h3>
-        <p>Nombre: <span>{{cliente.nombre}}</span></p>
-        <p>Apellido: <span>{{cliente.apellido}}</span></p>
-        <p>Cédula: <span>{{cliente.cedula}}</span></p>
+      <div class="card">
+        <h5 class="card-title">Información Básica</h5>
+          <p>Nombre: <span>{{cliente.nombre}}</span></p>
+          <p>Apellido: <span>{{cliente.apellido}}</span></p>
+          <p>Cédula: <span>{{cliente.cedula}}</span></p>
+      </div>
     </div>
-    <div class="info-laboral">
-      <h3>Información Laboral</h3>
-        <p>Ocupación: <span>{{cliente.ocupacion}}</span></p>
-        <p>Salario: <span>{{cliente.salario}}</span></p>
-        <p>Trabajo: <span>{{cliente.trabajo}}</span></p>
+
+
+      <div class="info-laboral">
+        <div class="card">
+          <h5 class="card-title">Información Laboral</h5>
+            <p>Ocupación: <span>{{cliente.ocupacion}}</span></p>
+            <p>Salario: <span>{{cliente.salario}}</span></p>
+            <p>Trabajo: <span>{{cliente.trabajo}}</span></p>
+       </div>
     </div>
+
     <div class="info-contactos">
-      <h3>Contactos</h3>
-        <p>Email: <span>{{cliente.email}}</span></p>
-        <p>Dirección: <span>{{cliente.direccion}}</span></p>
-        <p>Teléfono: <span>{{cliente.telefono}}</span></p>
-        <p>Sector: <span>{{cliente.sector}}</span></p>
+      <div class="card">
+        <h5 class="card-title">Contactos</h5>
+          <p>Email: <span>{{cliente.email}}</span></p>
+          <p>Dirección: <span>{{cliente.direccion}}</span></p>
+          <p>Teléfono: <span>{{cliente.telefono}}</span></p>
+          <p>Sector: <span>{{cliente.sector}}</span></p>
+      </div>
+
     </div>
     <div class="info-interna">
-      <h3>Información Interna</h3>
-        <p>Descripción: <span>{{cliente.descripcion}}</span></p>
-        <p>Fecha de inicio: <span>{{cliente.fecha | date}}</span></p>
-        <p class="score">Avg: <span>{{cliente.avg}}</span></p>
+      <div class="card">
+        <h5 class="card-title">Información Interna</h5>
+          <p>Descripción: <span>{{cliente.descripcion}}</span></p>
+          <p>Fecha de inicio: <span>{{cliente.fecha | date}}</span></p>
+          <p class="score">Avg: <span>{{cliente.avg}}</span></p>
+      </div>
+
     </div>
     <div class="info-dataCredito">
-      <h3>Información Data Crédito</h3>
-        <p class="score">Score: <span>{{cliente.score}}</span></p>
+      <div class="card">
+        <h5 class="card-title">Información Data Crédito</h5>
+          <p class="score">Score: <span>{{cliente.score}}</span></p>
+      </div>
+
     </div>
 
     <div class="accion">

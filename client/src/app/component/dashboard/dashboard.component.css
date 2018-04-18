@@ -1,6 +1,9 @@
 
 .general-dashboard {
-    background: linear-gradient(-45deg, #C3D2DA, #9DB9C5);
+  background: white;
+    /* background: linear-gradient(-45deg, #C3D2DA, #9DB9C5); */
+    /* width: 100%;
+    min-height: 100vh; */
 }
 
 .dashboard-grid{

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { ClienteService } from '../../../services/cliente.services';
+import { ToastService } from '../../../services/toast-service.service';
 import { Cliente } from '../../../models/cliente';
 import { GLOBAL } from '../../../services/global';
 
@@ -8,7 +9,7 @@ import { GLOBAL } from '../../../services/global';
 @Component({
   selector: 'app-agregarcliente',
   templateUrl: './agregarcliente.component.html',
-  providers: [ClienteService],
+  providers: [ClienteService, ToastService],
   styleUrls: ['./agregarcliente.component.css']
 })
 export class AgregarClienteComponent implements OnInit {
@@ -19,7 +20,8 @@ export class AgregarClienteComponent implements OnInit {
   constructor(
     private _route: ActivatedRoute,
     private _router: Router,
-    private _clienteService: ClienteService
+    private _clienteService: ClienteService,
+    private _toastService: ToastService
   ) {
     this.cliente = new Cliente('', '', '', '', '', '', '', 0, '', '', '', 0, '', 0, '', '');
    }
@@ -35,7 +37,8 @@ export class AgregarClienteComponent implements OnInit {
          }else{
            this.cliente = response.cliente;
            this.status = 'success';
-           // this.myform.reset();
+           this._toastService.Success("El cliente se ha sido creado correctamente", "Acción Completada");
+             this._router.navigate(['home/clientes/ver/', this.cliente._id]);
          }
 
        },
