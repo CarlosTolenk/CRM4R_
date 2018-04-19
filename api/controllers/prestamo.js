@@ -32,7 +32,6 @@ exports.addPrestamo = (req, res, next) => {
                  let interes = calculoInteres(monto_total, params.monto_original, params.duracion);
                  let cuota = calculoCuota(monto_total, params.metodo_pago, params.duracion);
 
-
                  prestamo.cliente = cliente;
                  prestamo.monto_original = params.monto_original;
                  prestamo.metodo_pago = params.metodo_pago;
@@ -41,7 +40,8 @@ exports.addPrestamo = (req, res, next) => {
                  prestamo.interes = interes.toFixed(4);
                  prestamo.garante = params.garante;
                  prestamo.monto_total = Math.round(monto_total);
-                 prestamo.estado = "Pendiente";
+                 prestamo.estado = "PENDIENTE";
+                 prestamo.tipo = params.tipo;
                  prestamo.cuotas = Math.round(cuota);
                  prestamo.fecha = moment().format('LL');
 

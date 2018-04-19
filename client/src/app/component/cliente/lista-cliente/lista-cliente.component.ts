@@ -8,7 +8,7 @@ import { GLOBAL } from '../../../services/global';
 @Component({
   selector: 'app-lista-cliente',
   templateUrl: './lista-cliente.component.html',
-    providers: [ClienteService],
+  providers: [ClienteService],
   styleUrls: ['./lista-cliente.component.css']
 })
 export class ListaClienteComponent implements OnInit {

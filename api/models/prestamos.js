@@ -14,6 +14,7 @@ let PrestamoSchema = new Schema({
     garante: String,
     monto_total: Number,
     estado: String,
+    tipo: String,
     cuotas: Number,
     fecha: Date,
     garantia: {type: Schema.Types.ObjectId, ref: 'Garantia'}

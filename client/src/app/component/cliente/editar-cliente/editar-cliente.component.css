@@ -24,6 +24,7 @@
   align-items: center;
 }
 
+
 .navbar-cliente-item h4{
   text-align: center;
   color:white;
@@ -33,7 +34,7 @@
 }
 
 .btn-circle{
-  margin-left: 40px;
+  margin-left: 100px!important;
   padding: 1em!important;
   margin-top: -1px;
   background: linear-gradient(-135deg, #223568, #2F55B5);
