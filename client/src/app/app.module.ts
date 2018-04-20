@@ -9,6 +9,8 @@ import { CommonModule } from '@angular/common';
 import { NgxPaginationModule} from 'ngx-pagination';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgSelectModule } from '@ng-select/ng-select';
+
 
 
 
@@ -63,8 +65,6 @@ import { EditarPrestamosComponent } from './component/prestamos/editar-prestamos
     EditarPrestamosComponent
 
 
-
-
   ],
   imports: [
     BrowserModule,
@@ -76,8 +76,8 @@ import { EditarPrestamosComponent } from './component/prestamos/editar-prestamos
     CommonModule,
     NgxPaginationModule,
     MDBBootstrapModule.forRoot(),
-    BrowserAnimationsModule
-
+    BrowserAnimationsModule,
+    NgSelectModule
 
 
 

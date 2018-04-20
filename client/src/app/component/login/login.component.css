@@ -4,15 +4,6 @@
         margin: 20% 0 15% 10%!important;
     }
 
-    p{
-      color: white;
-      font-size: 18px!important;
-    }
-
-    span{
-      color: red;
-      font-size: 12px!important;
-    }
      .btn{
        color: white!important;
      }
@@ -43,8 +34,6 @@
     }
 }
 
-
-
     img{
       width: 40%;
       height: auto;
@@ -58,22 +47,13 @@
       width: 90%!important;
     }
 
-    p{
-      color: white;
-      font-size: 18px;
-    }
-
-    span{
-      color: red;
-      font-size: 17px;
-    }
-
     .md-form{
       margin-left: 25px;
     }
 
     .md-form input{
       width: 325px;
+      color: white;
     }
 
     .md-form label{
@@ -84,6 +64,9 @@
     .md-form i{
       color: white;
       font-size: 1.5em;
+    }
+    .md-form span{
+      color: red;
     }
 
 

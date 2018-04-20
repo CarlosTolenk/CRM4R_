@@ -1,18 +1,17 @@
 <div class="bg-agregar-cliente">
 
-<div class="navbar">
-  <div class="navbar-content">
-    <ul class="navbar-cliente">
-      <li class="navbar-cliente-item">
-        <a class="btn btn-circle" (click)="volverListar()"><i class="fas fa-arrow-left"></i></a>
-      </li>
-      <li class="navbar-cliente-item">
-          <h4>Agregar Cliente</h4>
-      </li>
-    </ul>
-
-</div>
-</div>
+  <div class="navbar">
+    <div class="navbar-content">
+      <ul class="navbar-cliente">
+        <li class="navbar-cliente-item">
+          <a class="btn btn-circle" (click)="volverListar()"><i class="fas fa-arrow-left"></i></a>
+        </li>
+        <li class="navbar-cliente-item">
+            <h4>Agregar Cliente</h4>
+        </li>
+      </ul>
+   </div>
+ </div>
 
 <form class="form-inline" #addCliente="ngForm" (ngSubmit)="onSubmit();  addCliente.reset()">
   <div class="info-cliente">

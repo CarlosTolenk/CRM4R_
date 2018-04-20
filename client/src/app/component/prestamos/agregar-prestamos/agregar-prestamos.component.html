@@ -1,3 +1,41 @@
-<p>
-  agregar-prestamos works!
-</p>
+<div class="bg-agregar-cliente">
+<!-- Navbar opciones  -->
+  <div class="navbar">
+    <div class="navbar-content">
+      <ul class="navbar-cliente">
+        <li class="navbar-cliente-item">
+          <a class="btn btn-circle" (click)="volverListar()"><i class="fas fa-arrow-left"></i></a>
+        </li>
+        <li class="navbar-cliente-item">
+            <h4>Agregar Préstamo</h4>
+        </li>
+      </ul>
+   </div>
+ </div>
+<!--Close Navbar  -->
+
+<br>
+<br>
+<br>
+
+  <div class="info-prestamo">
+    <div class="info-cliente">
+      <div class="card">
+        <h4 class="card-title">Selección Cliente</h4>
+        <p class="nombre-cliente">
+               Cédula: {{selectedCliente}}
+
+        </p>
+        <ng-select [items]="listCliente" [(ngModel)]="selectedCliente" bindLabel="cedula" bindValue="cedula" placeholder="Seleccione el cliente">
+            <ng-template ng-label-tmp let-item="item">
+                {{item.nombre + " "+ item.apellido + " "+ "Avg: " + item.avg}}
+            </ng-template>
+        </ng-select>
+      </div>
+    </div>
+  </div>
+
+
+
+
+</div>
