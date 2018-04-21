@@ -69,17 +69,122 @@
     font-family: 'Comfortaa', cursive;
 
   }
+  .info-prestamo-s{
+    display: grid;
+    width: 100%;
 
-    .card{
-      padding: 1em;
-      padding-top: 1em;
+    justify-content: space-around;
+    align-content: center;
+    grid-row-gap: 5em!important;
+    grid-template-areas: 'cliente'
+                         'prestamo';
+  }
+
+  .info-cliente{
+    grid-area: cliente;
+    z-index: 100;
+    display: grid;
+    width: 100%;
+    grid-template-columns: 1fr 0.8fr;
+    grid-template-rows: repeat(1, auto);
+    justify-content: space-around;
+    align-content: center;
+    grid-template-areas: 'cedula seleccion';
+  }
+
+  .prestamo{
+    grid-area: prestamo;
+    width: 100%;
+  }
+
+  .contenido-prestamo{
+    display: grid;
+    width: 100%;
+    grid-template-columns: 1fr 0.8fr;
+    grid-template-rows: repeat(4, auto);
+    justify-content: space-around;
+    grid-column-gap: 2em;
+    grid-row-gap: 2em;
+    align-content: center;
+    grid-template-areas: 'tipo-2 duracion'
+                         'monto metodo'
+                         'garantia descripcion'
+                         '. accion';
+  }
+
+  .nombre-cliente{
+    grid-area: cedula;
+    margin-top: 2em;
+  }
+
+  .avatar-cliente img{
+    width: 400px;
+    height: 200px;
+  }
+
+  .nombre-cliente p{
+    margin-top: 1em;
+    font-size: 1.2em;
+    font-weight: 600;
+  }
+
+  .nombre-cliente p span{
+    margin-top: 0.5em!important;
+    font-size: 1em!important;
+    font-weight: 400!important;
+  }
+
+  .seleccion-cliente{
+    grid-area: seleccion;
+  }
+
+  .tipo-prestamo{
+      grid-area: tipo-2;
+
+  }
+
+  .duracion-prestamo{
+      grid-area: duracion;
+
+  }
+
+  .garantia-prestamo{
+    grid-area: garantia;
+
+  }
+
+  .monto-prestamo{
+    grid-area: monto;
+
+  }
+
+  .metodo-pago-prestamo{
+    grid-area: metodo;
+
+  }
+
+  .descripcion-prestamo{
+    grid-area: descripcion;
+
+  }
+
+  .accion{
+   grid-area: accion;
+   float: left;
+   width: 50%;
+  }
+
+    .card.seleccion{
+      width: 80%;
+      margin-left: 7em;
+      padding: 1em 5em;
       position: relative;
     }
 
     .card-title{
       position: absolute;
       top: -40px;
-      left: 27px;
+      left: 65px;
       background-color: #2F55B5;
       text-align: center;
       height: 5vh;
@@ -91,27 +196,210 @@
       border-radius: 2px;
     }
 
-  .ng-select{
-    border:0;
-    min-height: 10px;
-    border-radius: 0;
-    color: blue;
- }
-  .ng-select .ng-select-container  {
-      min-height: 0px;
+    .ng-select{
+      font-family: 'Comfortaa', cursive!important;
+      margin-top: 2em;
+      border:0;
+      min-height: 10px;
       border-radius: 0;
-      background: red;
-      padding: 1em;
+      color: blue;
+   }
+    .ng-select .ng-select-container  {
+        min-height: 0px;
+        border-radius: 0;
+        background: red;
+        padding: 1em;
+    }
+
+    .ng-template{
+      position: fixed;
+    }
+    .ng-select.ng-invalid.ng-touched .ng-select-container {
+      border-color: #dc3545;
+      box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 0 3px #fde6e8;
   }
-  .ng-select.ng-invalid.ng-touched .ng-select-container {
-    border-color: #dc3545;
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 0 3px #fde6e8;
+
+  /* select starting stylings ------------------------------*/
+  .select {
+    margin-top: 1em;
+    font-family: 'Comfortaa', cursive!important;
+  	position: relative;
+  	width: 350px;
+  }
+
+  .select-text {
+  	position: relative;
+  	font-family: inherit;
+  	background-color: transparent;
+  	width: 350px;
+  	padding: 10px 10px 10px 0;
+  	font-size: 1em;
+  	border-radius: 0;
+  	border: none;
+  	border-bottom: 1px solid rgba(0,0,0, 0.5);
+  }
+
+  /* Remove focus */
+  .select-text:focus {
+  	outline: none;
+  	border-bottom: 1px solid rgba(0,0,0, 0.5);
+  }
+
+  	/* Use custom arrow */
+  .select .select-text {
+  	appearance: none;
+  	-webkit-appearance:none
+  }
+
+  .select:after {
+  	position: absolute;
+  	top: 18px;
+  	right: 10px;
+  	/* Styling the down arrow */
+  	width: 0;
+  	height: 0;
+  	padding: 0;
+  	content: '';
+  	border-left: 6px solid transparent;
+  	border-right: 6px solid transparent;
+  	border-top: 6px solid rgba(0, 0, 0, 0.5);
+  	pointer-events: none;
+  }
+
+
+  /* LABEL ======================================= */
+  .select-label {
+  	color: rgba(0,0,0, 0.5);
+    font-size: 1em;
+  	font-weight: normal;
+  	position: absolute;
+  	pointer-events: none;
+  	left: 0;
+  	top: 10px;
+  	transition: 0.2s ease all;
+  }
+
+  /* active state */
+  .select-text:focus ~ .select-label, .select-text:valid ~ .select-label {
+    // EL azul del hover
+  	color: #2F80ED;
+  	top: -20px;
+  	transition: 0.2s ease all;
+  	font-size: 14px;
+  }
+
+  /* BOTTOM BARS ================================= */
+  .select-bar {
+  	position: relative;
+  	display: block;
+  	width: 350px;
+  }
+
+  .select-bar:before, .select-bar:after {
+  	content: '';
+  	height: 2px;
+  	width: 0;
+  	bottom: 1px;
+  	position: absolute;
+  	background: #2F80ED;
+  	transition: 0.2s ease all;
+  }
+
+  .select-bar:before {
+  	left: 50%;
+  }
+
+  .select-bar:after {
+  	right: 50%;
+  }
+
+  /* active state */
+  .select-text:focus ~ .select-bar:before, .select-text:focus ~ .select-bar:after {
+  	width: 50%;
+  }
+
+  /* HIGHLIGHTER ================================== */
+  .select-highlight {
+  	position: absolute;
+  	height: 60%;
+  	width: 100px;
+  	top: 25%;
+  	left: 0;
+  	pointer-events: none;
+  	opacity: 0.5;
+  }
+
+$md-radio-checked-color: rgb(51, 122, 183);
+$md-radio-border-color: rgba(0, 0, 0, 0.54);
+$md-radio-size: 20px;
+$md-radio-checked-size: 10px;
+$md-radio-ripple-size: 15px;
+
+@keyframes ripple {
+  0% {
+    box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.0);
+  }
+  50% {
+    box-shadow: 0px 0px 0px $md-radio-ripple-size rgba(0, 0, 0, 0.1);
+  }
+  100% {
+    box-shadow: 0px 0px 0px $md-radio-ripple-size rgba(0, 0, 0, 0);
+  }
 }
 
-  .ng-option{
-    background: red!important;
-    padding: 2em;
-    color: red;
+  .md-radio {
+    margin: 16px 0;
+
+    &.md-radio-inline {
+        display: inline-block;
+    }
+
+    input[type="radio"] {
+        display: none;
+        &:checked + label:before {
+            border-color: $md-radio-checked-color;
+            animation: ripple 0.2s linear forwards;
+        }
+        &:checked + label:after {
+            transform: scale(1);
+        }
+    }
+
+    label {
+        display: inline-block;
+        height:$md-radio-size;
+        position: relative;
+        padding: 0 ($md-radio-size + 10px);
+        margin-bottom: 0;
+        cursor: pointer;
+        vertical-align: bottom;
+        &:before, &:after {
+            position: absolute;
+            content: '';
+            border-radius: 50%;
+            transition: all .3s ease;
+            transition-property: transform, border-color;
+        }
+        &:before {
+            left: 0;
+            top: 0;
+            width: $md-radio-size;
+            height: $md-radio-size;
+            border: 2px solid $md-radio-border-color;
+        }
+        &:after {
+            top: $md-radio-size / 2 - $md-radio-checked-size / 2;
+            left: $md-radio-size / 2 - $md-radio-checked-size / 2;
+            width:$md-radio-checked-size;
+            height:$md-radio-checked-size;
+            transform: scale(0);
+            background:$md-radio-checked-color;
+         }
+      }
   }
+
+
+
+
 
 }

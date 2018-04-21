@@ -18,24 +18,140 @@
 <br>
 <br>
 
-  <div class="info-prestamo">
-    <div class="info-cliente">
-      <div class="card">
-        <h4 class="card-title">Selección Cliente</h4>
-        <p class="nombre-cliente">
-               Cédula: {{selectedCliente}}
-
-        </p>
-        <ng-select [items]="listCliente" [(ngModel)]="selectedCliente" bindLabel="cedula" bindValue="cedula" placeholder="Seleccione el cliente">
-            <ng-template ng-label-tmp let-item="item">
-                {{item.nombre + " "+ item.apellido + " "+ "Avg: " + item.avg}}
-            </ng-template>
-        </ng-select>
+  <div class="info-prestamo-s">
+    <div class="card seleccion">
+      <h4 class="card-title">Selección Cliente</h4>
+      <div class="info-cliente">
+        <div class="nombre-cliente animated fadeInLeft" *ngIf="selectedCliente">
+            <div class="avatar-cliente" *ngIf="!selectedFull.avatar">
+              <img src="assets/images/default-user.png" alt="default-user">
+            </div>
+            <div class="avatar-cliente" *ngIf="selectedFull.avatar">
+              <img src="{{url + 'get-image-cliente/' + selectedFull.avatar }}" alt="default-user">
+            </div>
+            <p>Nombre: <span>{{selectedFull.nombre +" "+ selectedFull.apellido}}</span></p>
+            <p>Avg: <span>{{selectedFull.avg}}</span></p>
+        </div>
+        <div class="seleccion-cliente animated fadeInLeft">
+          <ng-select [items]="listCliente" [(ngModel)]="selectedCliente" bindLabel="cedula" bindValue="cedula" placeholder="Seleccione el cliente">
+              <ng-template ng-label-tmp let-item="item">
+                  {{item.cedula}}
+              </ng-template>
+          </ng-select>
+        </div>
       </div>
+      <!-- Seleccionador de cliente -->
     </div>
+
+
+    <div class="prestamo">
+      <div class="card seleccion">
+      <div class="contenido-prestamo">
+        <h4 class="card-title">Selección de Opciones</h4>
+        <form class="form-inline" #addPrestamo="ngForm" (ngSubmit)="onSubmit();  addPrestamo.reset()">
+          <div class="tipo-prestamo">
+            <div class="select">
+               <select class="select-text" required>
+                 <option value="" disabled selected></option>
+                 <option value="Personal">Personal</option>
+                 <option value="Empresarial">Empresarial</option>
+                 <option value="Inmobiliario">Inmobiliario</option>
+               </select>
+             <span class="select-highlight"></span>
+             <span class="select-bar"></span>
+             <label class="select-label">Tipo de Préstamo</label>
+           </div>
+          </div>
+
+
+         <div class="metodo-pago-prestamo">
+           <div class="md-radio md-radio-inline">
+             <input id="3" type="radio" name="g2" checked>
+             <label for="3">Diario</label>
+           </div>
+           <div class="md-radio md-radio-inline">
+             <input id="4" type="radio" name="g2" checked>
+             <label for="4">Semanal</label>
+           </div>
+           <div class="md-radio md-radio-inline">
+             <input id="5" type="radio" name="g2" checked>
+             <label for="5">Mensual</label>
+           </div>
+         </div>
+          <div class="garantia-prestamo">
+            <div class="select">
+               <select class="select-text" required>
+                 <option value="" disabled selected></option>
+                 <option value="Personal">Personal</option>
+                 <option value="Empresarial">Empresarial</option>
+                 <option value="Inmobiliario">Inmobiliario</option>
+               </select>
+             <span class="select-highlight"></span>
+             <span class="select-bar"></span>
+             <label class="select-label">Garantia Préstamo</label>
+           </div>
+          </div>
+
+          <div class="monto-prestamo">
+            <div class="md-form input-group ">
+               <div class="input-group-prepend">
+                   <span class="input-group-text">RD$</span>
+               </div>
+               <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+               <div class="input-group-append">
+                   <span class="input-group-text">.00</span>
+               </div>
+             </div>
+          </div>
+
+          <div class="duracion-prestamo">
+            <fieldset>
+              <h4>Duración</h4>
+              <div class="md-radio md-radio-inline">
+                <input id="6" type="radio" name="g2" checked>
+                <label for="6">46 días</label>
+              </div>
+              <div class="md-radio md-radio-inline">
+                <input id="7" type="radio" name="g2" checked>
+                <label for="7">60 días</label>
+              </div>
+              <div class="md-radio md-radio-inline">
+                <input id="8" type="radio" name="g2" checked>
+                <label for="8">90 días</label>
+              </div>
+              <div class="md-radio md-radio-inline">
+                <input id="9" type="radio" name="g2" checked>
+                <label for="9">120 días</label>
+              </div>
+            </fieldset>
+          </div>
+
+          <div class="descripcion-prestamo">
+            <div class="md-form ">
+              <i class="fas fa-comments prefix"></i>
+              <textarea mdbInputDirective type="text" id="form8" class="md-textarea form-control" rows="3" ></textarea>
+              <label for="form8">Descripción</label>
+            </div>
+          </div>
+
+
+          <div class="accion">
+            <input type="submit" class="btn btn-success" [disabled]="addPrestamo.form.valid" >
+          </div>
+        </form>
+      </div>
+     </div>
+    </div>
+
+
+
+
+
+
+    <!-- Contenedor Contenido -->
   </div>
 
 
 
-
+  <!--Container full  -->
 </div>

@@ -1,6 +1,7 @@
 import { Component, OnInit , ChangeDetectionStrategy, EventEmitter, ChangeDetectorRef} from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
+import { ToastService } from '../../../services/toast-service.service';
 import { ClienteService } from '../../../services/cliente.services';
 import { Cliente } from '../../../models/cliente';
 import { GLOBAL } from '../../../services/global';
@@ -11,23 +12,28 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-agregar-prestamos',
   templateUrl: './agregar-prestamos.component.html',
-  providers: [ClienteService],
+  providers: [ClienteService,ToastService],
   styleUrls: ['./agregar-prestamos.component..scss']
 })
 export class AgregarPrestamosComponent implements OnInit {
 
+  public url:string;
   public listCliente: Cliente[];
   public status:String;
-  public selectedCliente:Object;
-  // public nombre_completo:[];
+  public selectedCliente:String;
+  public selectedFull:Cliente;
+
+
 
 
   constructor(
     private _route: ActivatedRoute,
     private _router: Router,
-    private _clienteService: ClienteService
+    private _clienteService: ClienteService,
+    private _toastService: ToastService
 
   ){
+    this.url = GLOBAL.url;
 
    }
 
@@ -38,7 +44,7 @@ export class AgregarPrestamosComponent implements OnInit {
               if(!response.clientes){
                 this.status = 'error';
               }else{
-                this.listCliente = response.clientes;          
+                this.listCliente = response.clientes;
              }
 
             },
@@ -50,6 +56,20 @@ export class AgregarPrestamosComponent implements OnInit {
                 }
             }
         );
+
+
+  }
+
+  ngDoCheck(){
+    for(let i=0; i<this.listCliente.length; i++){
+      if( this.selectedCliente === this.listCliente[i].cedula ){
+        this.selectedFull = this.listCliente[i];
+      }
+    }
+  }
+
+  onsubmit(){
+
   }
 
 
