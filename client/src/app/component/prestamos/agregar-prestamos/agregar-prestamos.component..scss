@@ -71,11 +71,10 @@
   }
   .info-prestamo-s{
     display: grid;
-    width: 100%;
-
+    width: 95%;
     justify-content: space-around;
     align-content: center;
-    grid-row-gap: 5em!important;
+    grid-row-gap: 5em;
     grid-template-areas: 'cliente'
                          'prestamo';
   }
@@ -84,7 +83,7 @@
     grid-area: cliente;
     z-index: 100;
     display: grid;
-    width: 100%;
+    width: 100%!important;
     grid-template-columns: 1fr 0.8fr;
     grid-template-rows: repeat(1, auto);
     justify-content: space-around;
@@ -94,20 +93,21 @@
 
   .prestamo{
     grid-area: prestamo;
+    margin: 0!important;
+    padding: 0!important;
     width: 100%;
   }
 
   .contenido-prestamo{
     display: grid;
-    width: 100%;
-    grid-template-columns: 1fr 0.8fr;
+    grid-template-columns: 0.7fr 2fr;
     grid-template-rows: repeat(4, auto);
     justify-content: space-around;
-    grid-column-gap: 2em;
-    grid-row-gap: 2em;
+    grid-column-gap: 8em;
+    grid-row-gap: 5em;
     align-content: center;
-    grid-template-areas: 'tipo-2 duracion'
-                         'monto metodo'
+    grid-template-areas: 'tipo metodo'
+                         'monto duracion'
                          'garantia descripcion'
                          '. accion';
   }
@@ -139,39 +139,61 @@
   }
 
   .tipo-prestamo{
-      grid-area: tipo-2;
-
+      grid-area: tipo;
+      margin-top: 1em;
+      text-align: center;
   }
 
   .duracion-prestamo{
       grid-area: duracion;
+      text-align: center;
+  }
 
+  .duracion-prestamo.md-radio input{
+    // width: 50%;
+    margin-left: 5em!important;
   }
 
   .garantia-prestamo{
     grid-area: garantia;
+    text-align: center;
+    margin-top: 1em;
+
 
   }
 
   .monto-prestamo{
     grid-area: monto;
+    text-align: center;
+    // margin-top: 2em;
 
   }
 
+  .monto-prestamo input{
+    // width: 70%;
+  }
+
   .metodo-pago-prestamo{
+    margin-top: 1em;
+    text-align: center;
     grid-area: metodo;
 
   }
 
   .descripcion-prestamo{
+    text-align: center;
     grid-area: descripcion;
+
+
+
 
   }
 
   .accion{
    grid-area: accion;
-   float: left;
-   width: 50%;
+   position: relative;
+   left: 400px;
+
   }
 
     .card.seleccion{

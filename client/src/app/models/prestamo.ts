@@ -3,6 +3,7 @@ export class Prestamo {
     public _id: String,
     public cliente: String,
     public monto_original: Number,
+    public tipo:String,
     public metodo_pago: String,
     public descripcion: String,
     public duracion: Number,

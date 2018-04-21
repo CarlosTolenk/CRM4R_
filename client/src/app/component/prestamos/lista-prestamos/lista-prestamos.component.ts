@@ -21,7 +21,7 @@ export class ListaPrestamosComponent implements OnInit {
     private _router: Router,
     private _prestamosService: PrestamosService
   ) {
-    this.prestamo = new Prestamo("","",0,"","",0,0,"",0,"",0,"","");
+    this.prestamo = new Prestamo("","",0,"","", "",0,0,"",0,"",0,"","");
    }
 
 

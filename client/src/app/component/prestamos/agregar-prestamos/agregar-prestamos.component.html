@@ -46,12 +46,14 @@
 
     <div class="prestamo">
       <div class="card seleccion">
-      <div class="contenido-prestamo">
         <h4 class="card-title">Selección de Opciones</h4>
-        <form class="form-inline" #addPrestamo="ngForm" (ngSubmit)="onSubmit();  addPrestamo.reset()">
+        <form class="form-inline" #addPrestamo="ngForm" (ngSubmit)="onSubmit();">
+
+        <div class="contenido-prestamo">
           <div class="tipo-prestamo">
+            <h4>Seleccione</h4>
             <div class="select">
-               <select class="select-text" required>
+               <select class="select-text" name="tipo" [(ngModel)]="prestamo.tipo" required>
                  <option value="" disabled selected></option>
                  <option value="Personal">Personal</option>
                  <option value="Empresarial">Empresarial</option>
@@ -65,39 +67,42 @@
 
 
          <div class="metodo-pago-prestamo">
+           <h4>Método de Pago</h4>
            <div class="md-radio md-radio-inline">
-             <input id="3" type="radio" name="g2" checked>
-             <label for="3">Diario</label>
+             <input id="1" type="radio" name="metodo" value="Diario" [(ngModel)]="prestamo.metodo_pago" checked>
+             <label for="1">Diario</label>
            </div>
            <div class="md-radio md-radio-inline">
-             <input id="4" type="radio" name="g2" checked>
+             <input id="4" type="radio" name="metodo" value="Semanal" [(ngModel)]="prestamo.metodo_pago"  checked>
              <label for="4">Semanal</label>
            </div>
            <div class="md-radio md-radio-inline">
-             <input id="5" type="radio" name="g2" checked>
+             <input id="5" type="radio" name="metodo" value="Mensual" [(ngModel)]="prestamo.metodo_pago"  checked>
              <label for="5">Mensual</label>
            </div>
          </div>
+
           <div class="garantia-prestamo">
+            <h4>Seleccione</h4>
             <div class="select">
                <select class="select-text" required>
                  <option value="" disabled selected></option>
-                 <option value="Personal">Personal</option>
-                 <option value="Empresarial">Empresarial</option>
-                 <option value="Inmobiliario">Inmobiliario</option>
+                 <option value="Hipotecarias">Hipotecarias</option>
+                 <option value="Prendarias">Prendarias</option>
                </select>
              <span class="select-highlight"></span>
              <span class="select-bar"></span>
-             <label class="select-label">Garantia Préstamo</label>
+             <label class="select-label">Garantia de Préstamo</label>
            </div>
           </div>
 
           <div class="monto-prestamo">
+            <h4>Monto del Préstamo</h4>
             <div class="md-form input-group ">
                <div class="input-group-prepend">
                    <span class="input-group-text">RD$</span>
                </div>
-               <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+               <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" >
                <div class="input-group-append">
                    <span class="input-group-text">.00</span>
                </div>
@@ -109,19 +114,19 @@
               <h4>Duración</h4>
               <div class="md-radio md-radio-inline">
                 <input id="6" type="radio" name="g2" checked>
-                <label for="6">46 días</label>
+                <label for="6">{{duracionP.a}}</label>
               </div>
               <div class="md-radio md-radio-inline">
                 <input id="7" type="radio" name="g2" checked>
-                <label for="7">60 días</label>
+                <label for="7">{{duracionP.b}}</label>
               </div>
               <div class="md-radio md-radio-inline">
                 <input id="8" type="radio" name="g2" checked>
-                <label for="8">90 días</label>
+                <label for="8">{{duracionP.c}}</label>
               </div>
               <div class="md-radio md-radio-inline">
                 <input id="9" type="radio" name="g2" checked>
-                <label for="9">120 días</label>
+                <label for="9">{{duracionP.d}}</label>
               </div>
             </fieldset>
           </div>
@@ -129,17 +134,18 @@
           <div class="descripcion-prestamo">
             <div class="md-form ">
               <i class="fas fa-comments prefix"></i>
-              <textarea mdbInputDirective type="text" id="form8" class="md-textarea form-control" rows="3" ></textarea>
-              <label for="form8">Descripción</label>
+              <textarea mdbInputDirective type="text"  class="md-textarea form-control" rows="3" ></textarea>
+              <label >Descripción</label>
             </div>
           </div>
 
 
           <div class="accion">
-            <input type="submit" class="btn btn-success" [disabled]="addPrestamo.form.valid" >
+            <input type="submit" class="btn btn-success"  >
           </div>
+         </div>
         </form>
-      </div>
+
      </div>
     </div>
 
