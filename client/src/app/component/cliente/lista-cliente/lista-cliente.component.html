@@ -43,7 +43,7 @@
         <td>{{cliente.telefono}}</td>
         <td>{{cliente.sector}}</td>
         <td>{{cliente.ocupacion}}</td>
-        <td>{{cliente.salario}}</td>
+        <td>{{cliente.salario | currency:'RD$'}} </td>
         <td><a class="btn btn-circle" routerLink="ver/{{cliente._id}}"><i class="fas fa-user"></i></a></td>
         <td><a class="btn btn-circle" routerLink="editar/{{cliente._id}}"><i class="fas fa-pencil-alt"></i></a></td>
       </tr>
@@ -85,7 +85,7 @@
         <td>{{cliente.telefono}}</td>
         <td>{{cliente.sector}}</td>
         <td>{{cliente.ocupacion}}</td>
-        <td>{{cliente.salario}}</td>
+        <td>{{cliente.salario | currency:'RD$'}}</td>
         <td><a class="btn btn-circle" routerLink="ver/{{cliente._id}}"><i class="fas fa-user"></i></a></td>
         <td><a class="btn btn-circle" routerLink="editar/{{cliente._id}}"><i class="fas fa-pencil-alt"></i></a></td>
 
@@ -128,7 +128,7 @@
         <td>{{cliente.telefono}}</td>
         <td>{{cliente.sector}}</td>
         <td>{{cliente.ocupacion}}</td>
-        <td>{{cliente.salario}}</td>
+        <td>{{cliente.salario | currency:'RD$'}}</td>
         <td><a class="btn btn-circle" routerLink="ver/{{cliente._id}}"><i class="fas fa-user"></i></a></td>
         <td><a class="btn btn-circle" routerLink="editar/{{cliente._id}}"><i class="fas fa-pencil-alt"></i></a></td>
       </tr>
@@ -172,7 +172,7 @@
           <td>{{cliente.telefono}}</td>
           <td>{{cliente.sector}}</td>
           <td>{{cliente.ocupacion}}</td>
-          <td>{{cliente.salario}}</td>
+          <td>{{cliente.salario | currency:'RD$'}}</td>
           <td><a class="btn btn-circle" routerLink="ver/{{cliente._id}}"><i class="fas fa-user"></i></a></td>
           <td><a class="btn btn-circle" routerLink="editar/{{cliente._id}}"><i class="fas fa-pencil-alt"></i></a></td>
         </tr>

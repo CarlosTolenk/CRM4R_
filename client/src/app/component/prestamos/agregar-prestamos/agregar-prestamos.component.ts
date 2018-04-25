@@ -126,6 +126,7 @@ export class AgregarPrestamosComponent implements OnInit, DoCheck {
                 this.status = 'error';
               }else{
                 this._toastService.Success("El Préstamos se ha creado correctamente", "Acción Completada");
+                this._router.navigate(['home/prestamos']);
              }
 
             },

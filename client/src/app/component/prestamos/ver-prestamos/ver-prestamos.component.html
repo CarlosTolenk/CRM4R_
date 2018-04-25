@@ -17,6 +17,7 @@
 <br>
 <br>
 <br>
+<br>
 
   <div class="container-prestamo">
     <!-- Container-Cliente - Información del cliente que contiene el préstamo  -->
@@ -32,16 +33,45 @@
           <div class="info-basica-cliente">
             <p>Cédula: <span>{{prestamo.cliente.cedula}}</span></p>
             <p>Nombre: <span>{{prestamo.cliente.nombre +" "+ prestamo.cliente.apellido}}</span></p>
+            <p>Salario: <span>{{prestamo.cliente.salario | currency:'RD$'}}</span></p>
+            <p>Score: <span>{{prestamo.cliente.score}}</span></p>
             <p>Avg: <span>{{prestamo.cliente.avg}}</span></p>
           </div>
       </div>
     </div>
     <!-- End Container-Cliente -->
+    <br>
+    <br>
+    <br>
+    <br>
+    <!-- Container-Prestamo - Información del préstamo  -->
+    <div class="card">
+      <h4 class="card-title">Información del Préstamo</h4>
+      <div class="animated fadeInLeft container-prestamo">
+          <div class="info-basica-prestamo">
+            <p>Tipo de Préstamo: <span>{{prestamo.tipo}}</span></p>
+            <p>Estado del Préstamo: <span>{{prestamo.estado}}</span></p>
+            <p>Descripción: <span>{{prestamo.descripcion}}</span></p>
+            <p>Garantia del Préstamo: <span>{{prestamo.garantia}}</span></p>
+          </div>
+          <div class="info-montos-prestamos">
+            <p>Cantidad del Préstamo: <span>{{prestamo.monto_original | currency:'RD$'}}</span></p>
+            <p>Total del Préstamo: <span>{{prestamo.monto_total | currency:'RD$'}}</span></p>
+            <p>Interes: <span>{{prestamo.interes}}</span></p>
+          </div>
+          <div class="info-duracion-prestamos">
+            <p>Método de Pago: <span>{{prestamo.metodo_pago }}</span></p>
+            <p>Duración: <span>{{prestamo.duracion}}</span></p>
+            <p>Cuotas: <span>{{prestamo.cuotas | currency:'RD$'}}</span></p>
+            <p>Total de Cuotas: <span>{{prestamo.monto_total/prestamo.cuotas}}</span></p>
+            <p>Fecha de Creación: <span>{{prestamo.fecha | date }}</span></p>
+          </div>
+      </div>
+    </div>
 
+
+
+  <!--Container Prestamo -->
   </div>
-
-
-
-
-
+<!--bg-white  -->
 </div>

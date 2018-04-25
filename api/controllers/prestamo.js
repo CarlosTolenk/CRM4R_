@@ -249,12 +249,18 @@ function calculoInteres(total_monto, monto_original, duracion){
 
 //Función para cálcular las cuotas que el cliente va a efectuar
 function calculoCuota(monto_total, metodo_pago, duracion){
-  if(metodo_pago == "dia"){
+  if(metodo_pago == "Diario"){
     let cuota = monto_total/duracion;
     return cuota;
-  }else{
+  }
+  if(metodo_pago == "Semanal"){
     let duracion_semana = duracion/7;
     let cuota = monto_total/duracion_semana;
+    return cuota;
+  }
+  if(metodo_pago == "Mensual"){
+    let duracion_mensual = duracion/30;
+    let cuota = monto_total/duracion_mensual;
     return cuota;
   }
 }

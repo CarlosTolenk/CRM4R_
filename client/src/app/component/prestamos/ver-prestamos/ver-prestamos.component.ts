@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import { DeprecatedCurrencyPipe } from '@angular/common';
 import { ClienteService } from '../../../services/cliente.services';
 import { PrestamosService } from '../../../services/prestamos.services';
 import { ToastService } from '../../../services/toast-service.service';
