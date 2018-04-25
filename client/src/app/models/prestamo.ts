@@ -1,12 +1,12 @@
 export class Prestamo {
   constructor(
     public _id: String,
-    public cliente: String,
+    public cedula: String,
     public monto_original: Number,
     public tipo:String,
     public metodo_pago: String,
     public descripcion: String,
-    public duracion: Number,
+    public duracion: number,
     public interes: Number,
     public garante: String,
     public monto_total: Number,

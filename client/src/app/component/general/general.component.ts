@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, DoCheck } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { TeamService } from '../../services/team.services';
 import { DeprecatedCurrencyPipe } from '@angular/common';
@@ -10,7 +10,7 @@ import { GLOBAL } from '../../services/global';
   providers: [TeamService],
   styleUrls: ['./general.component.css']
 })
-export class GeneralComponent implements OnInit {
+export class GeneralComponent implements OnInit, DoCheck  {
 
   public title:string;
   public stats;

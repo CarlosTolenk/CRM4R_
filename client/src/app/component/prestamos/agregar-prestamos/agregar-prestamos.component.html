@@ -85,8 +85,9 @@
           <div class="garantia-prestamo">
             <h4>Seleccione</h4>
             <div class="select">
-               <select class="select-text" required>
+               <select class="select-text" required  name="garantia" [(ngModel)]="prestamo.garantia" >
                  <option value="" disabled selected></option>
+                 <option value="Ninguna">Niguna</option>
                  <option value="Hipotecarias">Hipotecarias</option>
                  <option value="Prendarias">Prendarias</option>
                </select>
@@ -102,7 +103,7 @@
                <div class="input-group-prepend">
                    <span class="input-group-text">RD$</span>
                </div>
-               <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" >
+               <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" name="monto_original" [(ngModel)]="prestamo.monto_original">
                <div class="input-group-append">
                    <span class="input-group-text">.00</span>
                </div>
@@ -112,21 +113,21 @@
           <div class="duracion-prestamo">
             <fieldset>
               <h4>Duración</h4>
-              <div class="md-radio md-radio-inline">
-                <input id="6" type="radio" name="g2" checked>
-                <label for="6">{{duracionP.a}}</label>
+              <div class="md-radio md-radio-inline" >
+                <input id="6" type="radio" name="g2" checked name="duracion" [(ngModel)]="prestamo.duracion" value="{{duracionP.a}}">
+                <label for="6">{{duracionP.a +duracionP.simbolo}}</label>
               </div>
               <div class="md-radio md-radio-inline">
-                <input id="7" type="radio" name="g2" checked>
-                <label for="7">{{duracionP.b}}</label>
+                <input id="7" type="radio" name="g2" checked name="duracion" [(ngModel)]="prestamo.duracion" value="{{duracionP.b}}">
+                <label for="7">{{duracionP.b +duracionP.simbolo}}</label>
               </div>
               <div class="md-radio md-radio-inline">
-                <input id="8" type="radio" name="g2" checked>
-                <label for="8">{{duracionP.c}}</label>
+                <input id="8" type="radio" name="g2" checked name="duracion" [(ngModel)]="prestamo.duracion" value="{{duracionP.c}}">
+                <label for="8">{{duracionP.c +duracionP.simbolo}}</label>
               </div>
               <div class="md-radio md-radio-inline">
-                <input id="9" type="radio" name="g2" checked>
-                <label for="9">{{duracionP.d}}</label>
+                <input id="9" type="radio" name="g2" checked name="duracion" [(ngModel)]="prestamo.duracion" value="{{duracionP.d}}">
+                <label for="9">{{duracionP.d +duracionP.simbolo}}</label>
               </div>
             </fieldset>
           </div>
@@ -134,7 +135,7 @@
           <div class="descripcion-prestamo">
             <div class="md-form ">
               <i class="fas fa-comments prefix"></i>
-              <textarea mdbInputDirective type="text"  class="md-textarea form-control" rows="3" ></textarea>
+              <textarea mdbInputDirective type="text"  class="md-textarea form-control" rows="3"  name="descripcion" [(ngModel)]="prestamo.descripcion" ></textarea>
               <label >Descripción</label>
             </div>
           </div>

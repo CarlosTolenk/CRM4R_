@@ -1,9 +1,10 @@
-import { Component, OnInit , ChangeDetectionStrategy, EventEmitter, ChangeDetectorRef} from '@angular/core';
+import { Component, OnInit , DoCheck} from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 import { ToastService } from '../../../services/toast-service.service';
 import { ClienteService } from '../../../services/cliente.services';
+import { PrestamosService } from '../../../services/prestamos.services';
 import { Cliente } from '../../../models/cliente';
 import { Prestamo } from '../../../models/prestamo';
 import { GLOBAL } from '../../../services/global';
@@ -14,10 +15,10 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-agregar-prestamos',
   templateUrl: './agregar-prestamos.component.html',
-  providers: [ClienteService,ToastService],
+  providers: [ClienteService,ToastService,PrestamosService],
   styleUrls: ['./agregar-prestamos.component..scss']
 })
-export class AgregarPrestamosComponent implements OnInit {
+export class AgregarPrestamosComponent implements OnInit, DoCheck {
 
   public url:string;
   public prestamo:Prestamo;
@@ -26,35 +27,17 @@ export class AgregarPrestamosComponent implements OnInit {
   public selectedCliente:String;
   public selectedFull:Cliente;
   public duracionP:Object;
+  public totalDia;
 
   constructor(
     private _route: ActivatedRoute,
     private _router: Router,
     private _clienteService: ClienteService,
+    private _prestamoService: PrestamosService,
     private _toastService: ToastService
 
   ){
     this.url = GLOBAL.url;
-    // this.duracionP = {
-    //   "diario": {
-    //     "a" :46,
-    //     "b" :60,
-    //     "c" :90,
-    //     "d" :120
-    //   },
-    //   "semanal":{
-    //     "a": 10,
-    //     "b": 13,
-    //     "c": 15,
-    //     "d": 20
-    //   },
-    //   "mensual":{
-    //     "a" : 6,
-    //     "b": 8,
-    //     "c": 10,
-    //     "d": 12
-    //   }
-    // }
     this.prestamo = new Prestamo("","",0,"","Diario", "",0,0,"",0,"",0,"","");
    }
 
@@ -83,38 +66,43 @@ export class AgregarPrestamosComponent implements OnInit {
   }
 
   ngDoCheck(){
-    for(let i=0; i<this.listCliente.length; i++){
-      if( this.selectedCliente === this.listCliente[i].cedula ){
+    let len = this.listCliente.length;
+    for(let i=0; i<len; i++){
+      if( this.selectedCliente == this.listCliente[i].cedula ){
         this.selectedFull = this.listCliente[i];
+        this.prestamo.cedula = this.selectedFull.cedula;
       }
     }
-
-
     switch(this.prestamo.metodo_pago){
       case 'Diario':
           this.duracionP = {
-            "a" :'46 d',
-             "b" :'60 d',
-             "c" :'90 d',
-             "d" :'120 d'
+            "a" :46,
+             "b" :60,
+             "c" :90,
+             "d" :120,
+             "simbolo":'d'
           };
           break;
 
+
+
       case 'Semanal':
           this.duracionP = {
-            "a" :'10 s',
-             "b" :'13 s',
-             "c" :'15 s',
-             "d" :'20 s'
+            "a" :10,
+             "b" :13,
+             "c" :15,
+             "d" :20,
+            "simbolo":'s'
           };
           break;
 
       case 'Mensual':
           this.duracionP = {
-            "a" :'6 m',
-             "b" :'8 m',
-             "c" :'10 m',
-             "d" :'12 m'
+            "a" :6,
+             "b" :8,
+             "c" :10,
+             "d" :12,
+             "simbolo":'m'
           };
           break;
     }
@@ -122,12 +110,37 @@ export class AgregarPrestamosComponent implements OnInit {
 
 
 
-  onsubmit(){
-    console.log(this.prestamo);
+    onSubmit(){
+
+      switch(this.prestamo.metodo_pago){
+        case 'Semanal':
+               this.totalDia = this.prestamo.duracion*7;
+               this.prestamo.duracion = this.totalDia;
+              break;
+        case 'Mensual':
+                this.totalDia = this.prestamo.duracion*30;
+                this.prestamo.duracion = this.totalDia;
+               break;
+    }
+      this._prestamoService.addPrestamo(this.prestamo).subscribe(
+            response => {
+              if(!response.ticket){
+                this.status = 'error';
+              }else{
+                this._toastService.Success("El Préstamos se ha creado correctamente", "Acción Completada");
+             }
+
+            },
+            error => {
+                  var errorMessage = <any>error;
+                  console.log(errorMessage);
+                  if(errorMessage != null){
+                    this.status = 'error';
+                    this._toastService.Error("El Préstamos no se ha creado correctamente", "Error");
+                }
+            }
+        );
+
   }
-
-
-
-
 
 }

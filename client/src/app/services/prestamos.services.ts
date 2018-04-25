@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { TeamService } from '../services/team.services';
 import { GLOBAL } from './global';
 import { Prestamo } from '../models/prestamo';
-import { Cliente } from '../models/cliente';
+// import { Cliente } from '../models/cliente';
 
 
 @Injectable()
@@ -22,14 +22,14 @@ export class PrestamosService{
   }
 
 // Agregar un nuevo prestamos
-  // addCliente(cliente: Cliente): Observable<any>{
-  //   let params = JSON.stringify(cliente);
-  //
-  //   let headers = new HttpHeaders().set('Content-Type', 'application/json')
-  //                                  .set('Authorization', this.token);
-  //
-  //   return this._http.post(this.url + 'add-cliente', params, {headers: headers});
-  // }
+  addPrestamo(prestamo: Prestamo): Observable<any>{
+    let params = JSON.stringify(prestamo);
+
+    let headers = new HttpHeaders().set('Content-Type', 'application/json')
+                                   .set('Authorization', this.token);
+
+    return this._http.post(this.url + 'add-prestamo', params, {headers: headers});
+  }
 
 // Obtener todos los datos de todos los clientes
   getPrestamos(): Observable<any>{
