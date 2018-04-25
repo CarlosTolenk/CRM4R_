@@ -1,0 +1,160 @@
+.title-general{
+  display: none;;
+}
+
+@media only screen and (min-width: 1100px) {
+
+  .title-general{
+    background: linear-gradient(135deg, #223568, #20315b);
+    width: 104.55%;
+    position: relative;
+    padding: 1em;
+    display: block;
+    z-index: 2!important;
+    /* box-shadow: 0px 10px 18px #888888; */
+  }
+
+  .title-general h2{
+    font-family: 'Comfortaa', cursive;
+    text-align: center;
+    /* Color dorado color: #FFCA27; */
+    color: white;
+    font-size: 2.1em;
+  }
+
+  .navbar{
+    background: #2F55B5;
+    width: 107.5%;
+    height: 62px;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    left: -75px;
+    z-index: 10!important;
+    box-shadow: 0px 10px 18px #888888;
+  }
+
+  .navbar-content{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .navbar-cliente{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    list-style-type: none;
+  }
+
+  .navbar-cliente-item{
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 1em;
+    margin-top: 18px;
+  }
+
+  .navbar-cliente-item a{
+    z-index: 20!important;
+    margin-top: 0px!important;
+    margin-left: 40px;
+    cursor: pointer;
+  }
+
+  .navbar-cliente-item h4{
+    color: white;
+  }
+
+  .navbar-cliente-item a i{
+    color: #ffca27;
+  }
+
+  .navbar-cliente-item span{
+    color: white;
+    font-size: 1.5em;
+    text-align: center;
+    font-family: 'Comfortaa', cursive;
+  }
+
+  .btn{
+    border-radius:5px;
+  }
+
+  .btn-circle{
+    padding: 1em;
+    background: linear-gradient(-135deg, #223568, #2F55B5);
+    border-radius:100%!important;
+    z-index: 100;
+
+    // position: relative;
+    // left: 40px;
+    cursor: pointer;
+  }
+  .navbar-cliente-item span{
+    margin-left: 20px;
+  }
+
+  .btn-circle i{
+    color: #ffca27;
+  }
+
+  .card{
+    width: 80%;
+    margin-left: 7em;
+    padding: 1em 5em;
+    position: relative;
+  }
+
+  .card-title{
+    position: absolute;
+    top: -40px;
+    left: 65px;
+    background-color: #2F55B5;
+    text-align: center;
+    height: 5vh;
+    width: 90%;
+    /* margin-bottom: 5em; */
+    padding: .5em;
+    color: #fff;
+    box-shadow: 2px 2px 10px gray;
+    border-radius: 2px;
+  }
+
+  .container-cliente{
+    margin-top: 1em;
+    margin-bottom: 1em;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 3em;
+    justify-content: space-around;
+    align-content: center;
+    grid-template-areas: 'avatar informacion';
+  }
+
+  .avatar-cliente{
+    grid-area: avatar;
+    margin-left: 3em;
+  }
+
+  .avatar-cliente img{
+    width: 80%;
+  }
+
+  .info-basica-cliente{
+    grid-area: informacion;
+    margin-top: 2.5em;
+  }
+
+  .info-basica-cliente p{
+    font-size: 1.2em;
+    font-weight: bold;
+  }
+
+  .info-basica-cliente p span{
+    font-size: 1em;
+    font-weight: 400;
+  }
+
+}

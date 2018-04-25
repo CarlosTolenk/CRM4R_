@@ -41,6 +41,7 @@ let md_uploadRecurso = multipart({uploadDir: 'api/uploads/recursos'});
 		//Rutas para los préstamos
 		app.post('/api/add-prestamo', md_auth.ensureAuth, PrestamoController.addPrestamo);
 		app.get('/api/get-prestamos', md_auth.ensureAuth, PrestamoController.getPrestamos);
+		app.get('/api/get-prestamo/:id', md_auth.ensureAuth, PrestamoController.getPrestamo);
 		app.put('/api/update-prestamo/:id', md_auth.ensureAuth, PrestamoController.updatePrestamo);
 		app.delete('/api/delete-prestamo/:id', md_auth.ensureAuth, PrestamoController.destroyPrestamo);
 

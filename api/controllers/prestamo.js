@@ -143,6 +143,21 @@ exports.getPrestamos  = (req, res) => {
   };
 
 
+  //Obtener la información del clientes
+  exports.getPrestamo = (req, res) => {
+      //Guardar el id que nos llega por la url
+      let prestamoId = req.params.id;
+
+      Prestamo.findById(prestamoId) .populate({path: 'cliente'}).exec((err, prestamo) => {
+        if(err) return res.status(500).send({message: 'Error en la peteción'});
+
+        if(!prestamo) return res.status(404).send({message: 'Usuario no existe'});
+
+        return res.status(200).send({prestamo});
+      });
+  };
+
+
 exports.updatePrestamo = (req, res) => {
 
   let prestamoId = req.params.id;

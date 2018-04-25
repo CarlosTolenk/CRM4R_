@@ -1,3 +1,47 @@
-<p>
-  ver-prestamos works!
-</p>
+<div class="bg-agregar-cliente">
+<!-- Navbar opciones  -->
+  <div class="navbar">
+    <div class="navbar-content">
+      <ul class="navbar-cliente">
+        <li class="navbar-cliente-item">
+          <a class="btn btn-circle" (click)="volverListar()"><i class="fas fa-arrow-left"></i></a>
+        </li>
+        <li class="navbar-cliente-item">
+            <h4>Ver Préstamo</h4>
+        </li>
+      </ul>
+   </div>
+ </div>
+<!--Close Navbar  -->
+
+<br>
+<br>
+<br>
+
+  <div class="container-prestamo">
+    <!-- Container-Cliente - Información del cliente que contiene el préstamo  -->
+    <div class="card">
+      <h4 class="card-title">Información del Cliente</h4>
+      <div class="animated fadeInLeft container-cliente">
+          <div class="avatar-cliente" *ngIf="!prestamo.cliente.avatar">
+            <img src="assets/images/default-user.png" alt="default-user">
+          </div>
+          <div class="avatar-cliente" *ngIf="prestamo.cliente.avatar">
+            <img src="{{url + 'get-image-cliente/' + prestamo.cliente.avatar }}" alt="default-user">
+          </div>
+          <div class="info-basica-cliente">
+            <p>Cédula: <span>{{prestamo.cliente.cedula}}</span></p>
+            <p>Nombre: <span>{{prestamo.cliente.nombre +" "+ prestamo.cliente.apellido}}</span></p>
+            <p>Avg: <span>{{prestamo.cliente.avg}}</span></p>
+          </div>
+      </div>
+    </div>
+    <!-- End Container-Cliente -->
+
+  </div>
+
+
+
+
+
+</div>

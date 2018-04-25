@@ -42,13 +42,13 @@ export class PrestamosService{
 
 
 
-  // Obtener todos los datos de un cliente únicamente
-  // getCliente(id): Observable<any>{
-  //   let headers = new HttpHeaders().set('Content-Type', 'application/json')
-  //                                  .set('Authorization', this.token);
-  //
-  //   return this._http.get(this.url + 'get-cliente/'+ id, {headers: headers});
-  // }
+  // Obtener todos los datos de un préstamo únicamente
+  getPrestamo(id): Observable<any>{
+    let headers = new HttpHeaders().set('Content-Type', 'application/json')
+                                   .set('Authorization', this.token);
+
+    return this._http.get(this.url + 'get-prestamo/'+ id, {headers: headers});
+  }
 
   //Actualizar los prestamos
   // updateCliente(cliente: Cliente): Observable<any>{

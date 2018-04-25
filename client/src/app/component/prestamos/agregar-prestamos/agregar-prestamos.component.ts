@@ -84,8 +84,6 @@ export class AgregarPrestamosComponent implements OnInit, DoCheck {
           };
           break;
 
-
-
       case 'Semanal':
           this.duracionP = {
             "a" :10,
@@ -141,6 +139,10 @@ export class AgregarPrestamosComponent implements OnInit, DoCheck {
             }
         );
 
+  }
+
+  volverListar(){
+    this._router.navigate(['home/prestamos']);
   }
 
 }
