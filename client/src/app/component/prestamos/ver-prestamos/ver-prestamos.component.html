@@ -47,12 +47,13 @@
     <!-- Container-Prestamo - Información del préstamo  -->
     <div class="card">
       <h4 class="card-title">Información del Préstamo</h4>
-      <div class="animated fadeInLeft container-prestamo">
+      <div class="animated fadeInLeft container-prestamo-info">
           <div class="info-basica-prestamo">
             <p>Tipo de Préstamo: <span>{{prestamo.tipo}}</span></p>
-            <p>Estado del Préstamo: <span>{{prestamo.estado}}</span></p>
-            <p>Descripción: <span>{{prestamo.descripcion}}</span></p>
+            <!-- <p>Estado del Préstamo: <span>{{prestamo.estado}}</span></p> -->
             <p>Garantia del Préstamo: <span>{{prestamo.garantia}}</span></p>
+            <p>Fecha de Creación: <span>{{prestamo.fecha | date }}</span></p>
+            <p>Descripción: <span>{{prestamo.descripcion}}</span></p>
           </div>
           <div class="info-montos-prestamos">
             <p>Cantidad del Préstamo: <span>{{prestamo.monto_original | currency:'RD$'}}</span></p>
@@ -63,12 +64,43 @@
             <p>Método de Pago: <span>{{prestamo.metodo_pago }}</span></p>
             <p>Duración: <span>{{prestamo.duracion}}</span></p>
             <p>Cuotas: <span>{{prestamo.cuotas | currency:'RD$'}}</span></p>
-            <p>Total de Cuotas: <span>{{prestamo.monto_total/prestamo.cuotas}}</span></p>
-            <p>Fecha de Creación: <span>{{prestamo.fecha | date }}</span></p>
+            <p>Total de Cuotas: <span>{{prestamo.monto_total/prestamo.cuotas |  number : '1.1'}}</span></p>
           </div>
       </div>
     </div>
+    <!-- End Container-Prestamo -->
+    <br>
+    <br>
+    <br>
 
+    <!-- Container-Historial - Mostrar el historia del pago -->
+
+    <div class="card">
+    <h4 class="card-title">Historial de Pagos</h4>
+
+    <table class="table table-hover">
+      <thead class="thead">
+        <tr>
+          <th scope="col">Cuotas</th>
+          <th scope="col">Valor Cuota</th>
+          <th scope="col">Interes</th>
+          <th scope="col">Capital</th>
+          <th scope="col">Saldo Capital</th>
+        </tr>
+      </thead>
+      <tbody class="tbody">
+        <tr *ngFor="let info of tabla; let i = index">
+          <th scope="row">{{info.cuotas}}</th>
+          <td>{{info.interes</td>
+          <!-- <td>{{prestamo.descripcion}}</td>
+          <td>{{prestamo.estado}}</td>
+          <td>{{prestamo.tipo}}</td>
+          <td>{{prestamo.metodo_pago}}</td> -->
+        </tr>
+      </tbody>
+    </table>
+    <button type="button" name="button" (click)="generarTabla()" class="btn btn-success"></button>
+    </div>
 
 
   <!--Container Prestamo -->

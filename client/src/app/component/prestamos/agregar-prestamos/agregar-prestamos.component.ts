@@ -1,6 +1,6 @@
 import { Component, OnInit , DoCheck} from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 import { ToastService } from '../../../services/toast-service.service';
 import { ClienteService } from '../../../services/cliente.services';
@@ -9,7 +9,7 @@ import { Cliente } from '../../../models/cliente';
 import { Prestamo } from '../../../models/prestamo';
 import { GLOBAL } from '../../../services/global';
 import { NgSelectModule } from '@ng-select/ng-select';
-import { FormsModule } from '@angular/forms';
+
 
 
 @Component({

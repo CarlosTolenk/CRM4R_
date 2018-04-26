@@ -17,7 +17,7 @@ let PrestamoSchema = new Schema({
     tipo: String,
     cuotas: Number,
     fecha: Date,
-    garantia: {type: Schema.Types.ObjectId, ref: 'Garantia'}
+    garantia: String
 });
 
 module.exports = models.model('Prestamo', PrestamoSchema);

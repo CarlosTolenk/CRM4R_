@@ -39,6 +39,7 @@ exports.addPrestamo = (req, res, next) => {
                  prestamo.duracion = params.duracion;
                  prestamo.interes = interes.toFixed(4);
                  prestamo.garante = params.garante;
+                 prestamo.garantia = params.garantia;
                  prestamo.monto_total = Math.round(monto_total);
                  prestamo.estado = "PENDIENTE";
                  prestamo.tipo = params.tipo;

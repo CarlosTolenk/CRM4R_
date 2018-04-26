@@ -143,6 +143,26 @@
     grid-template-areas: 'avatar informacion';
   }
 
+  .container-prestamo-info{
+    margin-top: 1em;
+    margin-bottom: 1em;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr;
+    grid-column-gap: 3em;
+    justify-content: space-around;
+    align-content: center;
+  }
+
+  .container-prestamo-info p{
+    font-size: 1.2em;
+    font-weight: bold;
+  }
+
+  .container-prestamo-info p span{
+    font-size: 1em;
+    font-weight: 400;
+  }
+
   .avatar-cliente{
     grid-area: avatar;
     margin-left: 5em;

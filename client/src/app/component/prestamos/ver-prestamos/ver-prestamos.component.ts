@@ -7,6 +7,7 @@ import { PrestamosService } from '../../../services/prestamos.services';
 import { ToastService } from '../../../services/toast-service.service';
 import { Cliente } from '../../../models/cliente';
 import { Prestamo } from '../../../models/prestamo';
+import { TablaM } from '../../../models/tablaM';
 import { GLOBAL } from '../../../services/global';
 
 @Component({
@@ -20,6 +21,7 @@ export class VerPrestamosComponent implements OnInit {
   public prestamo:Prestamo;
   public status:string;
   public url:string;
+  public tabla:TablaM[];
 
   constructor(
     private _route: ActivatedRoute,
@@ -34,6 +36,7 @@ export class VerPrestamosComponent implements OnInit {
    }
 
   ngOnInit() {
+    // Petición de la información del préstamo
     this._route.params.subscribe(res => {
       this._prestamoService.getPrestamo(res.id).subscribe(
         response => {
@@ -41,7 +44,8 @@ export class VerPrestamosComponent implements OnInit {
             this.status = 'error';
           }else{
             this.prestamo = response.prestamo;
-            console.log(this.prestamo);
+
+            // console.log(this.prestamo);
           }
 
         },
@@ -55,9 +59,32 @@ export class VerPrestamosComponent implements OnInit {
 
       );
     });
+
+
+
+        // console.log(this.tabla);
   }
 
 
+
+  generarTabla(){
+    this.calcularTabla(this.prestamo.cuotas, this.prestamo.monto_total, this.prestamo.interes);
+  }
+
+  //Cáculo del historial de tabla
+  calcularTabla(cuotas, monto_total, interes){
+  let numCuota = Math.round(monto_total/cuotas);
+  let capital = monto_total - (monto_total*interes);
+
+
+    for (let i = 1; i <= numCuota; i++) {
+      this.tabla[i].cuota = cuotas;
+      this.tabla[i].interes = monto_total*interes;
+      this.tabla[i].capital = monto_total - (monto_total*interes);
+      this.tabla[i].saldoCapital = monto_total;
+    }
+    console.log(this.tabla);
+}
 
   volverListar(){
     this._router.navigate(['home/prestamos']);
