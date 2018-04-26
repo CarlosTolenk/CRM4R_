@@ -228,10 +228,13 @@ function calculoPrestamo(monto_original, duracion, metodo_pago){
   if(metodo_pago == "Diario"){
     let monto_total = monto_original * (Math.pow(1+(0.60/360), duracion));
     return monto_total;
+
+  // 50,000 (1+ ())
   }
   if(metodo_pago == "Semanal"){
     let monto_total = monto_original * (Math.pow(1+(0.65/360), duracion));
     return monto_total;
+
   }
   if(metodo_pago == "Mensual"){
     let monto_total = monto_original * (Math.pow(1+(0.68/360), duracion));

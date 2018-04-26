@@ -78,32 +78,55 @@
     <div class="card">
     <h4 class="card-title">Historial de Pagos</h4>
 
-    <table class="table table-hover">
-      <thead class="thead">
-        <tr>
-          <th scope="col">Cuotas</th>
-          <th scope="col">Valor Cuota</th>
-          <th scope="col">Interes</th>
-          <th scope="col">Capital</th>
-          <th scope="col">Saldo Capital</th>
-        </tr>
-      </thead>
-      <tbody class="tbody">
-        <tr *ngFor="let info of tabla; let i = index">
-          <th scope="row">{{info.cuotas}}</th>
-          <td>{{info.interes</td>
-          <!-- <td>{{prestamo.descripcion}}</td>
-          <td>{{prestamo.estado}}</td>
-          <td>{{prestamo.tipo}}</td>
-          <td>{{prestamo.metodo_pago}}</td> -->
-        </tr>
-      </tbody>
-    </table>
-    <button type="button" name="button" (click)="generarTabla()" class="btn btn-success"></button>
+
+    <button type="button" class="btn btn-primary waves-light" data-toggle="modal" data-target="#basicExample" (click)="demoBasic.show()" (click)="generarTabla()" mdbWavesEffect>
+    Tabla de Amortización
+</button>
+    <!-- <button type="button" name="button" (click)="generarTabla()" class="btn btn-success"></button> -->
     </div>
 
 
   <!--Container Prestamo -->
   </div>
 <!--bg-white  -->
+</div>
+
+
+<div mdbModal #demoBasic="mdb-modal" class="modal fade" id="basicExample" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" overflow="auto">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title w-200" id="myModalLabel">Tabla de Amortización</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="demoBasic.hide()">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+              <table class="table table-hover">
+                <thead class="thead">
+                  <tr>
+                    <th scope="col">Cuotas</th>
+                    <th scope="col">Valor Cuota</th>
+                    <th scope="col">Interes</th>
+                    <th scope="col">Capital</th>
+                    <th scope="col">Saldo Capital</th>
+                  </tr>
+                </thead>
+                <tbody class="tbody">
+                  <tr *ngFor="let info of tabla; let i = index">
+                    <th scope="row">{{i}}</th>
+                    <td>{{info.cuota}}</td>
+                    <td>{{info.interes}}</td>
+                    <td>{{info.capital}}</td>
+                    <td>{{info.saldoCapital}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-sm waves-light" data-dismiss="modal" (click)="demoBasic.hide()" mdbWavesEffect>Cerrar</button>
+                <button type="button" class="btn btn-primary btn-sm waves-light" mdbWavesEffect>Descargar</button>
+            </div>
+        </div>
+    </div>
 </div>

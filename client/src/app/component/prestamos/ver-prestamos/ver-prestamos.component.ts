@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { DatePipe } from '@angular/common';
+import { DatePipe, DeprecatedCurrencyPipe } from '@angular/common';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { DeprecatedCurrencyPipe } from '@angular/common';
 import { ClienteService } from '../../../services/cliente.services';
 import { PrestamosService } from '../../../services/prestamos.services';
 import { ToastService } from '../../../services/toast-service.service';
@@ -13,7 +12,7 @@ import { GLOBAL } from '../../../services/global';
 @Component({
   selector: 'app-ver-prestamos',
   templateUrl: './ver-prestamos.component.html',
-  providers: [ClienteService, ToastService,PrestamosService ],
+  providers: [ToastService,PrestamosService,ClienteService ],
   styleUrls: ['./ver-prestamos.component..scss']
 })
 export class VerPrestamosComponent implements OnInit {
@@ -21,7 +20,8 @@ export class VerPrestamosComponent implements OnInit {
   public prestamo:Prestamo;
   public status:string;
   public url:string;
-  public tabla:TablaM[];
+  public amortizacion:TablaM;
+  public tabla: TablaM[];
 
   constructor(
     private _route: ActivatedRoute,
@@ -33,6 +33,7 @@ export class VerPrestamosComponent implements OnInit {
     this.cliente = new Cliente('', '', '', '', '', '', '', 0, '', '', '', 0, '', 0, '', '');
     this.prestamo = new Prestamo("","",0,"","Diario", "",0,0,"",0,"",0,"","");
     this.url = GLOBAL.url;
+    this.tabla = new Array<TablaM>();
    }
 
   ngOnInit() {
@@ -44,6 +45,13 @@ export class VerPrestamosComponent implements OnInit {
             this.status = 'error';
           }else{
             this.prestamo = response.prestamo;
+            if(this.prestamo.metodo_pago == 'Semanal'){
+              this.prestamo.duracion = this.prestamo.duracion/7;
+            }
+            if(this.prestamo.metodo_pago == 'Mensual'){
+              this.prestamo.duracion = this.prestamo.duracion/30;
+            }
+
 
             // console.log(this.prestamo);
           }
@@ -68,23 +76,40 @@ export class VerPrestamosComponent implements OnInit {
 
 
   generarTabla(){
-    this.calcularTabla(this.prestamo.cuotas, this.prestamo.monto_total, this.prestamo.interes);
-  }
+    let numCuota = Math.round(this.prestamo.monto_total/this.prestamo.cuotas);
+    let capital = Math.round(this.prestamo.monto_total - (this.prestamo.monto_total*this.prestamo.interes));
+    let interes = Math.round(this.prestamo.monto_total*this.prestamo.interes);
 
-  //Cáculo del historial de tabla
-  calcularTabla(cuotas, monto_total, interes){
-  let numCuota = Math.round(monto_total/cuotas);
-  let capital = monto_total - (monto_total*interes);
+      for (let i = 0; i <= numCuota; i++) {
+        let monto_t = this.prestamo.monto_total - (this.prestamo.cuotas*i);
+        let capital = Math.round(monto_t - (monto_t*this.prestamo.interes));
+        let interes = monto_t*this.prestamo.interes;
+
+          this.tabla.push(new TablaM(
+              this.prestamo.cuotas,
+              interes,
+              capital,
+              monto_t
+          ));
+
+          if(i==numCuota){
+            if(monto_t < this.prestamo.cuotas){
+              let nuevaCuota = this.prestamo.cuotas + monto_t;
+              this.tabla[i].cuota = nuevaCuota;
+              this.tabla[i].saldoCapital = 0;
+            }else{
+              this.tabla[i].cuota = monto_t;
+              this.tabla[i].saldoCapital = 0;
+            }
+          }
 
 
-    for (let i = 1; i <= numCuota; i++) {
-      this.tabla[i].cuota = cuotas;
-      this.tabla[i].interes = monto_total*interes;
-      this.tabla[i].capital = monto_total - (monto_total*interes);
-      this.tabla[i].saldoCapital = monto_total;
+
+
     }
     console.log(this.tabla);
 }
+
 
   volverListar(){
     this._router.navigate(['home/prestamos']);
