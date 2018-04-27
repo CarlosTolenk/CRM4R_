@@ -226,21 +226,21 @@ exports.destroyPrestamo = (req, res) => {
 //Función para cálcular el monto todal que el cliente va a pagar tomando como parámetros los ingresados.
 function calculoPrestamo(monto_original, duracion, metodo_pago){
   if(metodo_pago == "Diario"){
-    let monto_total = monto_original * (Math.pow(1+(0.60/360), duracion));
+    let monto_total = monto_original * (Math.pow(1+(0.50/360), duracion));
     return monto_total;
 
   // 50,000 (1+ ())
   }
   if(metodo_pago == "Semanal"){
-    let monto_total = monto_original * (Math.pow(1+(0.65/360), duracion));
+    let monto_total = monto_original * (Math.pow(1+(0.55/360), duracion));
     return monto_total;
 
   }
   if(metodo_pago == "Mensual"){
-    let monto_total = monto_original * (Math.pow(1+(0.68/360), duracion));
+    let monto_total = monto_original * (Math.pow(1+(0.60/360), duracion));
     return monto_total;
   }else{
-    let monto_total = monto_original * (Math.pow(1+(0.70/360), duracion));
+    let monto_total = monto_original * (Math.pow(1+(0.65/360), duracion));
     return monto_total;
   }
 

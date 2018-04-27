@@ -84,10 +84,11 @@ export class VerPrestamosComponent implements OnInit {
         let monto_t = this.prestamo.monto_total - (this.prestamo.cuotas*i);
         let capital = Math.round(monto_t - (monto_t*this.prestamo.interes));
         let interes = monto_t*this.prestamo.interes;
+        let inT = interes.toFixed(2);
 
           this.tabla.push(new TablaM(
               this.prestamo.cuotas,
-              interes,
+              inT,
               capital,
               monto_t
           ));
