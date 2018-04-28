@@ -7,7 +7,7 @@
           <a class="btn btn-circle" (click)="volverListar()"><i class="fas fa-arrow-left"></i></a>
         </li>
         <li class="navbar-cliente-item">
-            <h4>Ver Préstamo</h4>
+            <h4>Reajuste de Préstamo</h4>
         </li>
       </ul>
    </div>
@@ -58,7 +58,7 @@
           <div class="info-montos-prestamos">
             <p>Cantidad del Préstamo: <span>{{prestamo.monto_original | currency:'RD$'}}</span></p>
             <p>Total del Préstamo: <span>{{prestamo.monto_total | currency:'RD$'}}</span></p>
-            <p>Interes: <span>{{prestamo.interes}}</span></p>
+            <p>Interes: <span>{{prestamo.interes | number : '1.4'}}</span></p> 
           </div>
           <div class="info-duracion-prestamos">
             <p>Método de Pago: <span>{{prestamo.metodo_pago }}</span></p>
@@ -173,7 +173,8 @@
 
 
           <div class="accion">
-            <input type="submit" class="btn btn-success"  >
+            <a class="btn btn-success" data-toggle="modal" (click)="style.show()" mdbRippleRadius><i class="fas fa-pencil-alt"></i>  Reajustar Préstamo</a>
+            <!-- <input type="submit" class="btn btn-success"> -->
           </div>
          </div>
         </form>
@@ -185,4 +186,31 @@
   <!--Container Prestamo -->
   </div>
 <!--bg-white  -->
+</div>
+
+
+<!--Modal  -->
+
+<div mdbModal #style="mdb-modal" class="modal fade right show" id="SideModalSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-side modal-bottom-right modal-notify modal-info " role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="heading lead">Reajuste del Préstamo</p>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="style.hide()">
+                    <span aria-hidden="true" class="white-text">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="text-center">
+                    <i class="fas fa-redo-alt fa-4x mb-3 animated rotateIn"></i>
+                    <p>Estás seguro de querer reajustar la información del préstamo, una vez hecha esta acción no se podrá volver atrás
+                    </p>
+                </div>
+            </div>
+            <div class="modal-footer justify-content-center">
+                <a type="button" class="btn btn-outline-secondary-modal" data-dismiss="modal" (click)="style.hide()" mdbRippleRadius>Cancelar</a>
+                <button type="submit" class="btn btn-primary-modal waves-light" data-dismiss="modal" (click)="style.hide()" (click)="onSubmit()"  mdbRippleRadius>Actualizar<i class="fas fa-edit ml-1"></i></button>
+            </div>
+        </div>
+    </div>
 </div>

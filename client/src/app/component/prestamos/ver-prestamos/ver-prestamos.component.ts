@@ -110,6 +110,9 @@ export class VerPrestamosComponent implements OnInit {
       }
    }
 }
+  irEditar(){
+    this._router.navigate(['home/prestamos/editar', this.prestamo._id]);
+  }
 
 
   volverListar(){

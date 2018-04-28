@@ -163,22 +163,27 @@ exports.updatePrestamo = (req, res) => {
 
   let prestamoId = req.params.id;
   let params = req.body;
-  let monto_originalNuevo;
   let update;
+
 
   Prestamo.findById(prestamoId, (err, prestamo) => {
     if(err) return res.status(500).send({message: 'Error en la peteción'});
 
-    if(params.monto_original >= 1){      
-      let monto_originalNuevo = prestamo.monto_total.toFixed(2) + params.monto_original;
-      console.log(monto_originalNuevo);
-      let monto_totalNuevo = calculoPrestamo(monto_originalNuevo, params.duracion, params.metodo_pago);
-      console.log(monto_totalNuevo);
-      let interes = calculoInteres(monto_totalNuevo, monto_originalNuevo, params.duracion);
+
+    if(params.monto_original >= 1){
+      console.log("Nuevo Monto Enviado:" + params.monto_original);
+      console.log("Monto Total Antiguo: " + prestamo.monto_total);
+      let monto_Nuevo = calcularNuevoMonto(params.monto_original, prestamo.monto_total);
+      console.log("Nuevo Monto Original" + monto_Nuevo);
+      let monto_totalNuevo = calculoPrestamo(monto_Nuevo, params.duracion, params.metodo_pago);
+      console.log("Total con intereses:" + monto_totalNuevo);
+      let interes = calculoInteres(monto_totalNuevo, monto_Nuevo, params.duracion);
       let cuota = calculoCuota(monto_totalNuevo, params.metodo_pago, params.duracion);
-      prestamo.monto_original = monto_originalNuevo;
+      prestamo.monto_original = monto_Nuevo;
       prestamo.monto_total = monto_totalNuevo;
       prestamo.metodo_pago = params.metodo_pago;
+      prestamo.tipo =  params.tipo;
+      prestamo.garantia = params.garantia;
       //descripcion
       prestamo.descripcion = params.descripcion;
       prestamo.duracion = params.duracion;
@@ -192,6 +197,9 @@ exports.updatePrestamo = (req, res) => {
       prestamo.metodo_pago = params.metodo_pago;
       prestamo.duracion = params.duracion;
       prestamo.descripcion = params.descripcion;
+      prestamo.metodo_pago = params.metodo_pago;
+      prestamo.tipo =  params.tipo;
+      prestamo.garantia = params.garantia;
       prestamo.interes = interes;
       prestamo.cuotas = cuota;
       update = prestamo;
@@ -233,18 +241,15 @@ function calculoPrestamo(monto_original, duracion, metodo_pago){
     let monto_total = monto_original * (Math.pow(1+(0.50/360), duracion));
     return monto_total;
 
-  // 50,000 (1+ ())
   }
   if(metodo_pago == "Semanal"){
     let monto_total = monto_original * (Math.pow(1+(0.55/360), duracion));
     return monto_total;
-
   }
+
   if(metodo_pago == "Mensual"){
-    let monto_total = monto_original * (Math.pow(1+(0.60/360), duracion));
-    return monto_total;
-  }else{
-    let monto_total = monto_original * (Math.pow(1+(0.65/360), duracion));
+    let monto_total = monto_original * (Math.pow(1+(0.30/360), duracion));
+    console.log("El monto original es: " + monto_total);
     return monto_total;
   }
 
@@ -271,4 +276,11 @@ function calculoCuota(monto_total, metodo_pago, duracion){
     let cuota = monto_total/duracion_mensual;
     return cuota;
   }
+}
+
+function calcularNuevoMonto(monto_original, monto_totalAnterior){
+  let num1 = parseInt(monto_original);
+  let num2 =  parseInt(monto_totalAnterior);
+  let total = num1 + num2;
+  return total;
 }

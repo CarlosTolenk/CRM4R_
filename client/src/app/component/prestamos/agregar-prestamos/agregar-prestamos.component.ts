@@ -115,6 +115,7 @@ export class AgregarPrestamosComponent implements OnInit, DoCheck {
         case 'Mensual':
                 this.totalDia = this.prestamo.duracion*30;
                 this.prestamo.duracion = this.totalDia;
+                console.log(this.prestamo.duracion);
                break;
     }
       this._prestamoService.addPrestamo(this.prestamo).subscribe(
@@ -123,7 +124,7 @@ export class AgregarPrestamosComponent implements OnInit, DoCheck {
                 this.status = 'error';
               }else{
                 this._toastService.Success("El Préstamos se ha creado correctamente", "Acción Completada");
-                this._router.navigate(['home/prestamos']);
+                this._router.navigate(['home/prestamos/ver', response.ticket.prestamo]);
              }
 
             },

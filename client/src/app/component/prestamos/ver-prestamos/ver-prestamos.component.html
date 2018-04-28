@@ -58,7 +58,7 @@
           <div class="info-montos-prestamos">
             <p>Cantidad del Préstamo: <span>{{prestamo.monto_original | currency:'RD$'}}</span></p>
             <p>Total del Préstamo: <span>{{prestamo.monto_total | currency:'RD$'}}</span></p>
-            <p>Interes: <span>{{prestamo.interes}}</span></p>
+            <p>Interes: <span>{{prestamo.interes |  number : '1.4'}}</span></p>
           </div>
           <div class="info-duracion-prestamos">
             <p>Método de Pago: <span>{{prestamo.metodo_pago }}</span></p>
@@ -67,6 +67,7 @@
             <p>Total de Cuotas: <span>{{prestamo.monto_total/prestamo.cuotas |  number : '1.1'}}</span></p>
           </div>
       </div>
+      <a class="btn btn-primary" (click)="irEditar()"><i class="fas fa-gear"></i>  Reajuste de Préstamo</a>
     </div>
     <!-- End Container-Prestamo -->
     <br>
@@ -97,7 +98,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title w-200" id="myModalLabel">Tabla de Amortización</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="demoBasic.hide()">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="tablaAmortizacion.hide()">
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
