@@ -10,8 +10,6 @@ import { Prestamo } from '../../../models/prestamo';
 import { GLOBAL } from '../../../services/global';
 import { NgSelectModule } from '@ng-select/ng-select';
 
-
-
 @Component({
   selector: 'app-agregar-prestamos',
   templateUrl: './agregar-prestamos.component.html',
@@ -43,7 +41,6 @@ export class AgregarPrestamosComponent implements OnInit, DoCheck {
 
   ngOnInit() {
     //Conseguir todos los datos del cliente
-
       this._clienteService.getClientes().subscribe(
             response => {
               if(!response.clientes){

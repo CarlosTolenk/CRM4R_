@@ -79,9 +79,9 @@
     <h4 class="card-title">Historial de Pagos</h4>
 
 
-    <button type="button" class="btn btn-primary waves-light" data-toggle="modal" data-target="#basicExample" (click)="demoBasic.show()" (click)="generarTabla()" mdbWavesEffect>
-    Tabla de Amortización
-</button>
+    <button type="button" class="btn btn-primary waves-light" data-toggle="modal" data-target="#basicExample" (click)="tablaAmortizacion.show()" (click)="generarTabla()" mdbWavesEffect>
+      Tabla de Amortización
+    </button>
     <!-- <button type="button" name="button" (click)="generarTabla()" class="btn btn-success"></button> -->
     </div>
 
@@ -92,7 +92,7 @@
 </div>
 
 
-<div mdbModal #demoBasic="mdb-modal" class="modal fade" id="basicExample" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" overflow="auto">
+<div mdbModal #tablaAmortizacion="mdb-modal" class="modal fade" id="basicExample" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" overflow="auto">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -115,16 +115,16 @@
                 <tbody class="tbody">
                   <tr *ngFor="let info of tabla; let i = index">
                     <th scope="row">{{i}}</th>
-                    <td>{{info.cuota}}</td>
-                    <td>{{info.interes}}</td>
-                    <td>{{info.capital}}</td>
-                    <td>{{info.saldoCapital}}</td>
+                    <td>{{info.cuota | currency:'RD$'}}</td>
+                    <td>{{info.interes | currency:'RD$'}}</td>
+                    <td>{{info.capital | currency:'RD$'}}</td>
+                    <td>{{info.saldoCapital | currency:'RD$'}}</td>
                   </tr>
                 </tbody>
               </table>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary btn-sm waves-light" data-dismiss="modal" (click)="demoBasic.hide()" mdbWavesEffect>Cerrar</button>
+                <button type="button" class="btn btn-info btn-sm waves-light" data-dismiss="modal" (click)="tablaAmortizacion.hide()" mdbWavesEffect>Cerrar</button>
                 <button type="button" class="btn btn-primary btn-sm waves-light" mdbWavesEffect>Descargar</button>
             </div>
         </div>

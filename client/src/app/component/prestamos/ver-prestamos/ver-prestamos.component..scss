@@ -187,11 +187,14 @@
     font-weight: 400;
   }
 
-
-
   .modal{
     overflow: auto!important;
     overflow-y: scroll!important;
+    margin-left: 8em;
+  }
+
+  .modal-title{
+    margin-left: 10em;
   }
 
 

@@ -51,16 +51,16 @@ export class PrestamosService{
   }
 
   //Actualizar los prestamos
-  // updateCliente(cliente: Cliente): Observable<any>{
-  //   let params = JSON.stringify(cliente);
-  //
-  //   let headers = new HttpHeaders().set('Content-Type', 'application/json')
-  //                                  .set('Authorization', this.token);
-  //
-  //
-  //
-  //   return this._http.put(this.url + 'update-cliente/' + cliente._id, params, {headers: headers});
-  // }
+  updatePrestamo(prestamo: Prestamo): Observable<any>{
+    let params = JSON.stringify(prestamo);
+
+    let headers = new HttpHeaders().set('Content-Type', 'application/json')
+                                   .set('Authorization', this.token);
+
+
+
+    return this._http.put(this.url + 'update-prestamo/' + prestamo._id, params, {headers: headers});
+  }
 
   //Eliminar los prestamos
   // deleteCliente(id): Observable<any>{

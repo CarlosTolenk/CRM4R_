@@ -1,3 +1,188 @@
-<p>
-  editar-prestamos works!
-</p>
+<div class="bg-agregar-cliente">
+<!-- Navbar opciones  -->
+  <div class="navbar">
+    <div class="navbar-content">
+      <ul class="navbar-cliente">
+        <li class="navbar-cliente-item">
+          <a class="btn btn-circle" (click)="volverListar()"><i class="fas fa-arrow-left"></i></a>
+        </li>
+        <li class="navbar-cliente-item">
+            <h4>Ver Préstamo</h4>
+        </li>
+      </ul>
+   </div>
+ </div>
+<!--Close Navbar  -->
+
+<br>
+<br>
+<br>
+<br>
+
+  <div class="container-prestamo">
+    <!-- Container-Cliente - Información del cliente que contiene el préstamo  -->
+    <div class="card">
+      <h4 class="card-title">Información del Cliente</h4>
+      <div class="animated fadeInLeft container-cliente">
+          <div class="avatar-cliente" *ngIf="!prestamo.cliente.avatar">
+            <img src="assets/images/default-user.png" alt="default-user">
+          </div>
+          <div class="avatar-cliente" *ngIf="prestamo.cliente.avatar">
+            <img src="{{url + 'get-image-cliente/' + prestamo.cliente.avatar }}" alt="default-user">
+          </div>
+          <div class="info-basica-cliente">
+            <p>Cédula: <span>{{prestamo.cliente.cedula}}</span></p>
+            <p>Nombre: <span>{{prestamo.cliente.nombre +" "+ prestamo.cliente.apellido}}</span></p>
+            <p>Salario: <span>{{prestamo.cliente.salario | currency:'RD$'}}</span></p>
+            <p>Score: <span>{{prestamo.cliente.score}}</span></p>
+            <p>Avg: <span>{{prestamo.cliente.avg}}</span></p>
+          </div>
+      </div>
+    </div>
+    <!-- End Container-Cliente -->
+    <br>
+    <br>
+    <br>
+    <br>
+    <!-- Container-Prestamo - Información del préstamo  -->
+    <div class="card">
+      <h4 class="card-title">Información del Préstamo</h4>
+      <div class="animated fadeInLeft container-prestamo-info">
+          <div class="info-basica-prestamo">
+            <p>Tipo de Préstamo: <span>{{prestamo.tipo}}</span></p>
+            <!-- <p>Estado del Préstamo: <span>{{prestamo.estado}}</span></p> -->
+            <p>Garantia del Préstamo: <span>{{prestamo.garantia}}</span></p>
+            <p>Fecha de Creación: <span>{{prestamo.fecha | date }}</span></p>
+            <p>Descripción: <span>{{prestamo.descripcion}}</span></p>
+          </div>
+          <div class="info-montos-prestamos">
+            <p>Cantidad del Préstamo: <span>{{prestamo.monto_original | currency:'RD$'}}</span></p>
+            <p>Total del Préstamo: <span>{{prestamo.monto_total | currency:'RD$'}}</span></p>
+            <p>Interes: <span>{{prestamo.interes}}</span></p>
+          </div>
+          <div class="info-duracion-prestamos">
+            <p>Método de Pago: <span>{{prestamo.metodo_pago }}</span></p>
+            <p>Duración: <span>{{prestamo.duracion}}</span></p>
+            <p>Cuotas: <span>{{prestamo.cuotas | currency:'RD$'}}</span></p>
+            <p>Total de Cuotas: <span>{{prestamo.monto_total/prestamo.cuotas |  number : '1.1'}}</span></p>
+          </div>
+      </div>
+    </div>
+    <!-- End Container-Prestamo -->
+    <br>
+    <br>
+    <br>
+
+    <!-- Container-Edicion - Mostrar el formulario para la edicion del préstamo -->
+
+    <div class="prestamo">
+      <div class="card seleccion">
+        <h4 class="card-title">Selección de Opciones</h4>
+        <form class="form-inline" #addPrestamo="ngForm" (ngSubmit)="onSubmit();">
+          <div class="contenido-prestamo">
+            <div class="tipo-prestamo">
+              <h4>Seleccione</h4>
+              <div class="select">
+                 <select class="select-text" name="tipo" [(ngModel)]="prestamo.tipo" required>
+                   <option value="Personal">Personal</option>
+                   <option value="Empresarial">Empresarial</option>
+                   <option value="Inmobiliario">Inmobiliario</option>
+                 </select>
+               <span class="select-highlight"></span>
+               <span class="select-bar"></span>
+               <label class="select-label">Tipo de Préstamo</label>
+             </div>
+            </div>
+
+
+             <div class="metodo-pago-prestamo">
+               <h4>Método de Pago</h4>
+               <div class="md-radio md-radio-inline">
+                 <input id="1" type="radio" name="metodo" value="Diario" [(ngModel)]="prestamo.metodo_pago" checked>
+                 <label for="1">Diario</label>
+               </div>
+               <div class="md-radio md-radio-inline">
+                 <input id="4" type="radio" name="metodo" value="Semanal" [(ngModel)]="prestamo.metodo_pago"  checked>
+                 <label for="4">Semanal</label>
+               </div>
+               <div class="md-radio md-radio-inline">
+                 <input id="5" type="radio" name="metodo" value="Mensual" [(ngModel)]="prestamo.metodo_pago"  checked>
+                 <label for="5">Mensual</label>
+               </div>
+             </div>
+
+              <div class="garantia-prestamo">
+                <h4>Seleccione</h4>
+                <div class="select">
+                   <select class="select-text" required  name="garantia" [(ngModel)]="prestamo.garantia" >
+                     <option value="" disabled selected></option>
+                     <option value="Ninguna">Niguna</option>
+                     <option value="Hipotecarias">Hipotecarias</option>
+                     <option value="Prendarias">Prendarias</option>
+                   </select>
+                 <span class="select-highlight"></span>
+                 <span class="select-bar"></span>
+                 <label class="select-label">Garantia de Préstamo</label>
+               </div>
+              </div>
+
+              <div class="monto-prestamo">
+                <input type="checkbox" id="id-name--1" name="set-name" class="switch-input" value="true" [(ngModel)]="reajuste">
+	              <label for="id-name--1" class="switch-label">Reajuste de Préstamo: <span class="toggle--on">Si</span><span class="toggle--off">No</span></label>
+                <h4 *ngIf="reajuste">Nuevo Monto del Préstamo</h4>
+                <div class="md-form input-group " *ngIf="reajuste">
+                   <div class="input-group-prepend">
+                       <span class="input-group-text">RD$</span>
+                   </div>
+                   <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" name="monto_original" [(ngModel)]="prestamo.monto_original">
+                   <div class="input-group-append">
+                       <span class="input-group-text">.00</span>
+                   </div>
+                 </div>
+              </div>
+
+              <div class="duracion-prestamo">
+                <fieldset>
+                  <h4>Duración</h4>
+                  <div class="md-radio md-radio-inline" >
+                    <input id="6" type="radio" name="g2" checked name="duracion" [(ngModel)]="prestamo.duracion" value="{{duracionP.a}}">
+                    <label for="6">{{duracionP.a +duracionP.simbolo}}</label>
+                  </div>
+                  <div class="md-radio md-radio-inline">
+                    <input id="7" type="radio" name="g2" checked name="duracion" [(ngModel)]="prestamo.duracion" value="{{duracionP.b}}">
+                    <label for="7">{{duracionP.b +duracionP.simbolo}}</label>
+                  </div>
+                  <div class="md-radio md-radio-inline">
+                    <input id="8" type="radio" name="g2" checked name="duracion" [(ngModel)]="prestamo.duracion" value="{{duracionP.c}}">
+                    <label for="8">{{duracionP.c +duracionP.simbolo}}</label>
+                  </div>
+                  <div class="md-radio md-radio-inline">
+                    <input id="9" type="radio" name="g2" checked name="duracion" [(ngModel)]="prestamo.duracion" value="{{duracionP.d}}">
+                    <label for="9">{{duracionP.d +duracionP.simbolo}}</label>
+                  </div>
+                </fieldset>
+              </div>
+
+              <div class="descripcion-prestamo">
+                <div class="md-form ">
+                  <i class="fas fa-comments prefix"></i>
+                  <textarea mdbInputDirective type="text"  class="md-textarea form-control" rows="3"  name="descripcion" [(ngModel)]="prestamo.descripcion" ></textarea>
+                  <label >Descripción</label>
+                </div>
+              </div>
+
+
+          <div class="accion">
+            <input type="submit" class="btn btn-success"  >
+          </div>
+         </div>
+        </form>
+
+     </div>
+    </div>
+
+
+  <!--Container Prestamo -->
+  </div>
+<!--bg-white  -->
+</div>

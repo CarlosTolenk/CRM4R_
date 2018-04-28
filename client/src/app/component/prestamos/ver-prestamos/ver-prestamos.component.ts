@@ -22,6 +22,7 @@ export class VerPrestamosComponent implements OnInit {
   public url:string;
   public amortizacion:TablaM;
   public tabla: TablaM[];
+  public stateTabla:boolean;
 
   constructor(
     private _route: ActivatedRoute,
@@ -34,6 +35,7 @@ export class VerPrestamosComponent implements OnInit {
     this.prestamo = new Prestamo("","",0,"","Diario", "",0,0,"",0,"",0,"","");
     this.url = GLOBAL.url;
     this.tabla = new Array<TablaM>();
+    this.stateTabla = true;
    }
 
   ngOnInit() {
@@ -76,39 +78,37 @@ export class VerPrestamosComponent implements OnInit {
 
 
   generarTabla(){
-    let numCuota = Math.round(this.prestamo.monto_total/this.prestamo.cuotas);
-    let capital = Math.round(this.prestamo.monto_total - (this.prestamo.monto_total*this.prestamo.interes));
-    let interes = Math.round(this.prestamo.monto_total*this.prestamo.interes);
+    if(this.stateTabla){
+      let numCuota = Math.round(this.prestamo.monto_total/this.prestamo.cuotas);
+      let capital = Math.round(this.prestamo.monto_total - (this.prestamo.monto_total*this.prestamo.interes));
+      let interes = Math.round(this.prestamo.monto_total*this.prestamo.interes);
 
-      for (let i = 0; i <= numCuota; i++) {
-        let monto_t = this.prestamo.monto_total - (this.prestamo.cuotas*i);
-        let capital = Math.round(monto_t - (monto_t*this.prestamo.interes));
-        let interes = monto_t*this.prestamo.interes;
-        let inT = interes.toFixed(2);
+        for (let i = 0; i <= numCuota; i++) {
+          let monto_t = this.prestamo.monto_total - (this.prestamo.cuotas*i);
+          let capital = Math.round(monto_t - (monto_t*this.prestamo.interes));
+          let interes = monto_t*this.prestamo.interes;
+          let inT = interes.toFixed(2);
 
-          this.tabla.push(new TablaM(
-              this.prestamo.cuotas,
-              inT,
-              capital,
-              monto_t
-          ));
+            this.tabla.push(new TablaM(
+                this.prestamo.cuotas,
+                inT,
+                capital,
+                monto_t
+            ));
 
-          if(i==numCuota){
-            if(monto_t < this.prestamo.cuotas){
-              let nuevaCuota = this.prestamo.cuotas + monto_t;
-              this.tabla[i].cuota = nuevaCuota;
-              this.tabla[i].saldoCapital = 0;
-            }else{
-              this.tabla[i].cuota = monto_t;
-              this.tabla[i].saldoCapital = 0;
+            if(i==numCuota){
+              if(monto_t < this.prestamo.cuotas){
+                let nuevaCuota = this.prestamo.cuotas + monto_t;
+                this.tabla[i].cuota = nuevaCuota;
+                this.tabla[i].saldoCapital = 0;
+              }else{
+                this.tabla[i].cuota = monto_t;
+                this.tabla[i].saldoCapital = 0;
+              }
             }
-          }
-
-
-
-
-    }
-    console.log(this.tabla);
+            this.stateTabla = false;
+      }
+   }
 }
 
 

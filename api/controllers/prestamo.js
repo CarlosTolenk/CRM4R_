@@ -163,21 +163,24 @@ exports.updatePrestamo = (req, res) => {
 
   let prestamoId = req.params.id;
   let params = req.body;
+  let monto_originalNuevo;
   let update;
 
   Prestamo.findById(prestamoId, (err, prestamo) => {
     if(err) return res.status(500).send({message: 'Error en la peteción'});
 
-
-    if(params.monto_original > 0){
-      let monto_originalNuevo = prestamo.monto_total + params.monto_original;
+    if(params.monto_original >= 1){      
+      let monto_originalNuevo = prestamo.monto_total.toFixed(2) + params.monto_original;
       console.log(monto_originalNuevo);
       let monto_totalNuevo = calculoPrestamo(monto_originalNuevo, params.duracion, params.metodo_pago);
+      console.log(monto_totalNuevo);
       let interes = calculoInteres(monto_totalNuevo, monto_originalNuevo, params.duracion);
       let cuota = calculoCuota(monto_totalNuevo, params.metodo_pago, params.duracion);
       prestamo.monto_original = monto_originalNuevo;
       prestamo.monto_total = monto_totalNuevo;
       prestamo.metodo_pago = params.metodo_pago;
+      //descripcion
+      prestamo.descripcion = params.descripcion;
       prestamo.duracion = params.duracion;
       prestamo.interes = interes;
       prestamo.cuotas = cuota;
@@ -188,6 +191,7 @@ exports.updatePrestamo = (req, res) => {
       let cuota = calculoCuota(prestamo.monto_total, params.metodo_pago, params.duracion);
       prestamo.metodo_pago = params.metodo_pago;
       prestamo.duracion = params.duracion;
+      prestamo.descripcion = params.descripcion;
       prestamo.interes = interes;
       prestamo.cuotas = cuota;
       update = prestamo;
