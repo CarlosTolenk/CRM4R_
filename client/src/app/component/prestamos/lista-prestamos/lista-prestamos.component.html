@@ -19,8 +19,8 @@
     <thead class="thead">
       <tr>
         <th scope="col">Cédula</th>
+        <th scope="col">Referencia</th>
         <th scope="col">Nombre</th>
-        <th scope="col">Descripción</th>
         <th scope="col">Estado</th>
         <th scope="col">Tipo</th>
         <th scope="col">Método</th>
@@ -32,8 +32,8 @@
       <tr *ngFor="let prestamo of listPrestamo | paginate: { itemsPerPage: 7, currentPage: p }  ">
 
         <th scope="row">{{prestamo.cliente.cedula}}</th>
+        <td>{{prestamo.referencia}}</td>
         <td>{{prestamo.cliente.nombre+ ' ' +prestamo.cliente.apellido}}</td>
-        <td>{{prestamo.descripcion}}</td>
         <td>{{prestamo.estado}}</td>
         <td>{{prestamo.tipo}}</td>
         <td>{{prestamo.metodo_pago}}</td>

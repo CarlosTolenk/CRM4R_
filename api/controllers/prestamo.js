@@ -27,12 +27,19 @@ exports.addPrestamo = (req, res, next) => {
            .exec((err, cliente) => {
              if(err) return res.status(500).send({message: 'Error en la petición del cliente para el  Prestamo'});
              if(cliente){
-                 //Hacer todos los calculos y guardarlo en variables para luego guardarlo en base de datos
+
+
+                //Hacer todos los calculos y guardarlo en variables para luego guardarlo en base de datos
                  let monto_total = calculoPrestamo(params.monto_original, params.duracion, params.metodo_pago);
                  let interes = calculoInteres(monto_total, params.monto_original, params.duracion);
                  let cuota = calculoCuota(monto_total, params.metodo_pago, params.duracion);
 
+                 //Generar numero random 3030
+                 let referencia = generateUUID(params.metodo_pago);
+                 // });
+
                  prestamo.cliente = cliente;
+                 prestamo.referencia = referencia;
                  prestamo.monto_original = params.monto_original;
                  prestamo.metodo_pago = params.metodo_pago;
                  prestamo.descripcion = params.descripcion;
@@ -283,4 +290,40 @@ function calcularNuevoMonto(monto_original, monto_totalAnterior){
   let num2 =  parseInt(monto_totalAnterior);
   let total = num1 + num2;
   return total;
+}
+
+
+function generateUUID(metodo_pago) {
+    let d = new Date();
+
+    if(metodo_pago == "Diario"){
+      let uuid = '01-';
+      uuid += d.getMonth() + 1;
+      uuid += d.getDay();
+      uuid += d.getSeconds();
+      uuid += d.getFullYear() - 2000;
+      uuid += d.getHours() + Math.floor(Math.random() * 11);
+      return uuid;
+    }
+    if(metodo_pago == "Semanal"){
+      let uuid = '02-';
+      uuid += d.getMonth() + 1;
+      uuid += d.getDay();
+      uuid += d.getSeconds();
+      uuid += d.getFullYear() - 2000;
+      uuid += d.getHours() + Math.floor(Math.random() * 11);
+      return uuid;
+    }
+    if(metodo_pago == "Mensual"){
+      let uuid = '03-';
+      uuid += d.getMonth() + 1;
+      uuid += d.getDay();
+      uuid += d.getSeconds();
+      uuid += d.getFullYear() - 2000;
+      uuid += d.getHours() + Math.floor(Math.random() * 11);      
+      return uuid;
+    }
+
+
+
 }
