@@ -41,7 +41,7 @@ export class ListaClienteComponent implements OnInit {
 
    ngOnInit() {
        this.getClientes();
-       console.log(this.terminoB);
+       // console.log(this.terminoB);
 
    }
 

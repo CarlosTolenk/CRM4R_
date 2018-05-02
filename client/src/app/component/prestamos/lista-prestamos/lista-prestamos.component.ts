@@ -15,13 +15,18 @@ export class ListaPrestamosComponent implements OnInit {
   public status:string;
   public prestamo:Prestamo;
   public listPrestamo: Prestamo[];
+  public busqueda:Boolean;
+  public terminoB:string;
+  public busquedaPrestamo:Prestamo[];
 
   constructor(
     private _route: ActivatedRoute,
     private _router: Router,
     private _prestamosService: PrestamosService
   ) {
-    this.prestamo = new Prestamo("","",0,"","", "",0,0,"",0,"",0,"","");
+    this.prestamo = new Prestamo({cedula:'', nombre: ''},'', '',0 ,'',"","", 0,0,'',0,'',0 ,'',"","");
+    this.terminoB = "";
+    this.busqueda = false;
    }
 
 
@@ -47,5 +52,33 @@ export class ListaPrestamosComponent implements OnInit {
           }
       );
   }
+
+    buscarCliente(termino:string){
+
+      this.busqueda = true;
+      this.terminoB = termino;
+      let prestamoSelecionado:Prestamo[] = [];
+      termino = termino.toLowerCase();
+
+      for(let prestamo of this.listPrestamo){
+        let cedula = prestamo.cliente.cedula;
+        let nombre = prestamo.referencia;
+
+        // console.log(nombre);
+        // console.log("El codigo");
+        if(cedula.indexOf(termino) >= 0  ){
+          prestamoSelecionado.push(prestamo);
+        }
+
+        if(nombre.indexOf(termino) >= 0  ){
+          prestamoSelecionado.push(prestamo);
+        }
+
+      }
+
+      this.busquedaPrestamo = prestamoSelecionado;
+      console.log(this.busquedaPrestamo);
+
+    }
 
 }

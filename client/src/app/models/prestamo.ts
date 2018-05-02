@@ -1,5 +1,9 @@
 export class Prestamo {
   constructor(
+    public cliente:{
+      cedula:String,
+      nombre:String
+    },
     public _id: String,
     public cedula: String,
     public monto_original: number,
@@ -13,6 +17,7 @@ export class Prestamo {
     public estado: String,
     public cuotas: number,
     public fecha: String,
-    public garantia: String
+    public garantia: String,
+    public referencia:String
   ){}
 }
