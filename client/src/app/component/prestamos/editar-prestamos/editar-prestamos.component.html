@@ -58,7 +58,7 @@
           <div class="info-montos-prestamos">
             <p>Cantidad del Préstamo: <span>{{prestamo.monto_original | currency:'RD$'}}</span></p>
             <p>Total del Préstamo: <span>{{prestamo.monto_total | currency:'RD$'}}</span></p>
-            <p>Interes: <span>{{prestamo.interes | number : '1.4'}}</span></p> 
+            <p>Interes: <span>{{prestamo.interes | number : '1.4'}}</span></p>
           </div>
           <div class="info-duracion-prestamos">
             <p>Método de Pago: <span>{{prestamo.metodo_pago }}</span></p>
@@ -145,20 +145,20 @@
                 <fieldset>
                   <h4>Duración</h4>
                   <div class="md-radio md-radio-inline" >
-                    <input id="6" type="radio" name="g2" checked name="duracion" [(ngModel)]="prestamo.duracion" value="{{duracionP.a}}">
-                    <label for="6">{{duracionP.a +duracionP.simbolo}}</label>
+                    <input id="6" type="radio" name="g2" checked name="duracion" [(ngModel)]="prestamo.duracion" value="{{duracionP?.a}}">
+                    <label for="6">{{duracionP?.a +duracionP?.simbolo}}</label>
                   </div>
                   <div class="md-radio md-radio-inline">
-                    <input id="7" type="radio" name="g2" checked name="duracion" [(ngModel)]="prestamo.duracion" value="{{duracionP.b}}">
-                    <label for="7">{{duracionP.b +duracionP.simbolo}}</label>
+                    <input id="7" type="radio" name="g2" checked name="duracion" [(ngModel)]="prestamo.duracion" value="{{duracionP?.b}}">
+                    <label for="7">{{duracionP?.b +duracionP?.simbolo}}</label>
                   </div>
                   <div class="md-radio md-radio-inline">
-                    <input id="8" type="radio" name="g2" checked name="duracion" [(ngModel)]="prestamo.duracion" value="{{duracionP.c}}">
-                    <label for="8">{{duracionP.c +duracionP.simbolo}}</label>
+                    <input id="8" type="radio" name="g2" checked name="duracion" [(ngModel)]="prestamo.duracion" value="{{duracionP?.c}}">
+                    <label for="8">{{duracionP?.c +duracionP?.simbolo}}</label>
                   </div>
                   <div class="md-radio md-radio-inline">
-                    <input id="9" type="radio" name="g2" checked name="duracion" [(ngModel)]="prestamo.duracion" value="{{duracionP.d}}">
-                    <label for="9">{{duracionP.d +duracionP.simbolo}}</label>
+                    <input id="9" type="radio" name="g2" checked name="duracion" [(ngModel)]="prestamo.duracion" value="{{duracionP?.d}}">
+                    <label for="9">{{duracionP?.d +duracionP?.simbolo}}</label>
                   </div>
                 </fieldset>
               </div>

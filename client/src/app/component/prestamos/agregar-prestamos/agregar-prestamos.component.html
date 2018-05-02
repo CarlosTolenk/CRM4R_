@@ -23,10 +23,10 @@
       <h4 class="card-title">Selección Cliente</h4>
       <div class="info-cliente">
         <div class="nombre-cliente animated fadeInLeft" *ngIf="selectedCliente">
-            <div class="avatar-cliente" *ngIf="!selectedFull.avatar">
+            <div class="avatar-cliente" *ngIf="!selectedFull?.avatar">
               <img src="assets/images/default-user.png" alt="default-user">
             </div>
-            <div class="avatar-cliente" *ngIf="selectedFull.avatar">
+            <div class="avatar-cliente" *ngIf="selectedFull?.avatar">
               <img src="{{url + 'get-image-cliente/' + selectedFull.avatar }}" alt="default-user">
             </div>
             <p>Nombre: <span>{{selectedFull.nombre +" "+ selectedFull.apellido}}</span></p>
@@ -114,20 +114,20 @@
             <fieldset>
               <h4>Duración</h4>
               <div class="md-radio md-radio-inline" >
-                <input id="6" type="radio" name="g2" checked name="duracion" [(ngModel)]="prestamo.duracion" value="{{duracionP.a}}">
-                <label for="6">{{duracionP.a +duracionP.simbolo}}</label>
+                <input id="6" type="radio" name="g2" checked name="duracion" [(ngModel)]="prestamo.duracion" value="{{duracionP?.a}}">
+                <label for="6">{{duracionP?.a +duracionP?.simbolo}}</label>
               </div>
               <div class="md-radio md-radio-inline">
-                <input id="7" type="radio" name="g2" checked name="duracion" [(ngModel)]="prestamo.duracion" value="{{duracionP.b}}">
-                <label for="7">{{duracionP.b +duracionP.simbolo}}</label>
+                <input id="7" type="radio" name="g2" checked name="duracion" [(ngModel)]="prestamo.duracion" value="{{duracionP?.b}}">
+                <label for="7">{{duracionP?.b +duracionP?.simbolo}}</label>
               </div>
               <div class="md-radio md-radio-inline">
-                <input id="8" type="radio" name="g2" checked name="duracion" [(ngModel)]="prestamo.duracion" value="{{duracionP.c}}">
-                <label for="8">{{duracionP.c +duracionP.simbolo}}</label>
+                <input id="8" type="radio" name="g2" checked name="duracion" [(ngModel)]="prestamo.duracion" value="{{duracionP?.c}}">
+                <label for="8">{{duracionP?.c +duracionP?.simbolo}}</label>
               </div>
               <div class="md-radio md-radio-inline">
-                <input id="9" type="radio" name="g2" checked name="duracion" [(ngModel)]="prestamo.duracion" value="{{duracionP.d}}">
-                <label for="9">{{duracionP.d +duracionP.simbolo}}</label>
+                <input id="9" type="radio" name="g2" checked name="duracion" [(ngModel)]="prestamo.duracion" value="{{duracionP?.d}}">
+                <label for="9">{{duracionP?.d +duracionP?.simbolo}}</label>
               </div>
             </fieldset>
           </div>

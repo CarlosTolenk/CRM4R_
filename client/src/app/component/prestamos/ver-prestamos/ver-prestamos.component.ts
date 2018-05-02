@@ -32,7 +32,7 @@ export class VerPrestamosComponent implements OnInit {
     private _toastService: ToastService
   ) {
     this.cliente = new Cliente('', '', '', '', '', '', '', 0, '', '', '', 0, '', 0, '', '');
-    this.prestamo = new Prestamo("","",0,"","Diario", "",0,0,"",0,"",0,"","");
+    this.prestamo = new Prestamo({cedula:''},'', '', 0 ,'','','',0,0,0,'',0 ,'','','');
     this.url = GLOBAL.url;
     this.tabla = new Array<TablaM>();
     this.stateTabla = true;

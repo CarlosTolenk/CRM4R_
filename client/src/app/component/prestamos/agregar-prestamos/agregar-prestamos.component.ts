@@ -36,7 +36,8 @@ export class AgregarPrestamosComponent implements OnInit, DoCheck {
 
   ){
     this.url = GLOBAL.url;
-    this.prestamo = new Prestamo("","",0,"","Diario", "",0,0,"",0,"",0,"","");
+    this.prestamo = new Prestamo({cedula:''},'', '', 0 ,'','','',0,0,0,'',0 ,'','','');
+    this.status = "false";
    }
 
   ngOnInit() {
@@ -47,6 +48,7 @@ export class AgregarPrestamosComponent implements OnInit, DoCheck {
                 this.status = 'error';
               }else{
                 this.listCliente = response.clientes;
+                this.status = "true";
              }
 
             },
@@ -59,48 +61,49 @@ export class AgregarPrestamosComponent implements OnInit, DoCheck {
             }
         );
 
-
   }
 
   ngDoCheck(){
-    let len = this.listCliente.length;
-    for(let i=0; i<len; i++){
-      if( this.selectedCliente == this.listCliente[i].cedula ){
-        this.selectedFull = this.listCliente[i];
-        this.prestamo.cedula = this.selectedFull.cedula;
+    if(this.status == "true"){
+      for(let i=0; i<this.listCliente.length; i++){
+        if( this.selectedCliente == this.listCliente[i].cedula ){
+          this.selectedFull = this.listCliente[i];
+          this.prestamo.cedula = this.selectedFull.cedula;
+        }
+      }
+      switch(this.prestamo.metodo_pago){
+        case 'Diario':
+            this.duracionP = {
+              "a" :46,
+               "b" :60,
+               "c" :90,
+               "d" :120,
+               "simbolo":'d'
+            };
+            break;
+
+        case 'Semanal':
+            this.duracionP = {
+              "a" :10,
+               "b" :13,
+               "c" :15,
+               "d" :20,
+              "simbolo":'s'
+            };
+            break;
+
+        case 'Mensual':
+            this.duracionP = {
+              "a" :6,
+               "b" :8,
+               "c" :10,
+               "d" :12,
+               "simbolo":'m'
+            };
+            break;
       }
     }
-    switch(this.prestamo.metodo_pago){
-      case 'Diario':
-          this.duracionP = {
-            "a" :46,
-             "b" :60,
-             "c" :90,
-             "d" :120,
-             "simbolo":'d'
-          };
-          break;
 
-      case 'Semanal':
-          this.duracionP = {
-            "a" :10,
-             "b" :13,
-             "c" :15,
-             "d" :20,
-            "simbolo":'s'
-          };
-          break;
-
-      case 'Mensual':
-          this.duracionP = {
-            "a" :6,
-             "b" :8,
-             "c" :10,
-             "d" :12,
-             "simbolo":'m'
-          };
-          break;
-    }
   }
 
 

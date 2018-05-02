@@ -24,7 +24,7 @@ export class ListaPrestamosComponent implements OnInit {
     private _router: Router,
     private _prestamosService: PrestamosService
   ) {
-    this.prestamo = new Prestamo({cedula:'', nombre: ''},'', '',0 ,'',"","", 0,0,'',0,'',0 ,'',"","");
+    this.prestamo = new Prestamo({cedula:''},'', '', 0 ,'','','',0,0,0,'',0 ,'','','');
     this.terminoB = "";
     this.busqueda = false;
    }
@@ -62,7 +62,7 @@ export class ListaPrestamosComponent implements OnInit {
 
       for(let prestamo of this.listPrestamo){
         let cedula = prestamo.cliente.cedula;
-        let nombre = prestamo.referencia;
+        let referencia = prestamo.referencia;
 
         // console.log(nombre);
         // console.log("El codigo");
@@ -70,7 +70,7 @@ export class ListaPrestamosComponent implements OnInit {
           prestamoSelecionado.push(prestamo);
         }
 
-        if(nombre.indexOf(termino) >= 0  ){
+        if(referencia.indexOf(termino) >= 0  ){
           prestamoSelecionado.push(prestamo);
         }
 
