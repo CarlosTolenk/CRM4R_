@@ -39,7 +39,6 @@ export class ListaPrestamosComponent implements OnInit {
               this.status = 'error';
             }else{
               this.listPrestamo = response.prestamos;
-              console.log(response.prestamos);
             }
 
           },
@@ -64,8 +63,7 @@ export class ListaPrestamosComponent implements OnInit {
         let cedula = prestamo.cliente.cedula;
         let referencia = prestamo.referencia;
 
-        // console.log(nombre);
-        // console.log("El codigo");
+
         if(cedula.indexOf(termino) >= 0  ){
           prestamoSelecionado.push(prestamo);
         }
@@ -76,9 +74,13 @@ export class ListaPrestamosComponent implements OnInit {
 
       }
 
-      this.busquedaPrestamo = prestamoSelecionado;
-      console.log(this.busquedaPrestamo);
+      this.busquedaPrestamo = prestamoSelecionado;   
 
+    }
+
+    volver(){
+      this.terminoB = "";
+      this.busqueda = false;
     }
 
 }

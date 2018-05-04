@@ -14,7 +14,7 @@
 </div>
 
 <!-- Ver todos los clientes sin importar nada  -->
-<div class="list-content">
+<div class="list-content" *ngIf="!busqueda">
   <table class="table table-hover">
     <thead class="thead">
       <tr>
@@ -52,3 +52,39 @@
 
 </div>
 <!-- Cierre del ciclo de ver todos los clientes sin importar nada -->
+
+<!-- Ver los clientes acorde a la búsqueda -->
+<div class="" *ngIf="busqueda">
+  <a class="btn btn-circle-atras" (click)="volver()"><i class="far fa-arrow-alt-circle-left"></i></a>
+  <h3 class="terminoBusqueda">Búsqueda del Préstamo: {{terminoB}}</h3>
+
+  <div class="list-content" >
+
+    <table class="table table-hover">
+      <thead class="thead">
+        <tr>
+          <th scope="col">Cédula</th>
+          <th scope="col">Referencia</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Estado</th>
+          <th scope="col">Tipo</th>
+          <th scope="col">Método</th>
+          <th scope="col">Ver</th>
+          <th scope="col">Reajuste</th>
+        </tr>
+      </thead>
+      <tbody class="tbody">
+        <tr *ngFor="let prestamo of busquedaPrestamo   ">
+          <th scope="row">{{prestamo.cliente.cedula}}</th>
+          <td>{{prestamo.referencia}}</td>
+          <td>{{prestamo.cliente.nombre+ ' ' +prestamo.cliente.apellido}}</td>
+          <td>{{prestamo.estado}}</td>
+          <td>{{prestamo.tipo}}</td>
+          <td>{{prestamo.metodo_pago}}</td>
+          <td><a class="btn btn-circle" routerLink="ver/{{prestamo._id}}"><i class="fas fa-user"></i></a></td>
+          <td><a class="btn btn-circle" routerLink="editar/{{prestamo._id}}"><i class="fas fa-pencil-alt"></i></a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
