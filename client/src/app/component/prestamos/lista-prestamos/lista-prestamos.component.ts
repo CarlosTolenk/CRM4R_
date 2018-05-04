@@ -32,7 +32,7 @@ export class ListaPrestamosComponent implements OnInit {
 
   ngOnInit() {
 
-    //Conseguir todos los datos del cliente
+    //Conseguir todos los datos del prestamo
     this._prestamosService.getPrestamos().subscribe(
           response => {
             if(!response.prestamos){
@@ -74,7 +74,7 @@ export class ListaPrestamosComponent implements OnInit {
 
       }
 
-      this.busquedaPrestamo = prestamoSelecionado;   
+      this.busquedaPrestamo = prestamoSelecionado;
 
     }
 

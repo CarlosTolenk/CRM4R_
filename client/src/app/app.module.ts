@@ -38,6 +38,9 @@ import { AgregarPrestamosComponent } from './component/prestamos/agregar-prestam
 import { ListaPrestamosComponent } from './component/prestamos/lista-prestamos/lista-prestamos.component';
 import { VerPrestamosComponent } from './component/prestamos/ver-prestamos/ver-prestamos.component';
 import { EditarPrestamosComponent } from './component/prestamos/editar-prestamos/editar-prestamos.component';
+import { ListaTicketsComponent } from './component/tickets/lista-tickets/lista-tickets.component';
+import { TicketsComponent } from './component/tickets/tickets.component';
+
 
 
 
@@ -62,7 +65,10 @@ import { EditarPrestamosComponent } from './component/prestamos/editar-prestamos
     AgregarPrestamosComponent,
     ListaPrestamosComponent,
     VerPrestamosComponent,
-    EditarPrestamosComponent
+    EditarPrestamosComponent,
+    ListaTicketsComponent,
+    TicketsComponent
+
 
 
   ],

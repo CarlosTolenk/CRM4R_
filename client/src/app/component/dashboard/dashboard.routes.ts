@@ -7,6 +7,8 @@ import { ClienteComponent } from '../cliente/cliente.component';
 import { cliente_routes } from '../cliente/cliente.routes';
 import { PrestamosComponent } from '../prestamos/prestamos.component';
 import { prestamos_routes } from '../prestamos/prestamos.routes';
+import { TicketsComponent } from '../tickets/tickets.component';
+import { tickets_routes } from '../tickets/tickets.routes'
 
 // PrestamosComponent
 
@@ -20,6 +22,11 @@ export const dashboard_routes: Routes = [
     { path: 'prestamos',
      component: PrestamosComponent,
      children: prestamos_routes
+    },
+    {
+      path: 'tickets',
+      component: TicketsComponent,
+      children: tickets_routes
     },
     { path: 'registro', component: RegistroComponent },
     {path: '**', component: GeneralComponent }

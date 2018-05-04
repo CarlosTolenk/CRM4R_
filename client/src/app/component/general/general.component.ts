@@ -28,8 +28,8 @@ export class GeneralComponent implements OnInit, DoCheck  {
   ngOnInit() {
     this.getCounters();
     this.stats = this._teamService.getStats();
-    console.log(this.stats.Clientes.clientes_activos);
-    console.log(this.stats);
+    // console.log(this.stats.Clientes.clientes_activos);
+    // console.log(this.stats);
   }
 
   ngDoCheck(){
@@ -40,7 +40,7 @@ export class GeneralComponent implements OnInit, DoCheck  {
       this._teamService.getCounters().subscribe(
 
           response => {
-            console.log(response);
+            // console.log(response);
             localStorage.setItem('stats', JSON.stringify(response));
           },
           error => {
