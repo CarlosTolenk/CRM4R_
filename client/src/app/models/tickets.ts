@@ -2,7 +2,7 @@ export class Ticket{
   constructor(
     public _id: String,
     public tipo: String,
-    public cliente: Object,
+    public cliente: String,
     public prestamo: Object,
     public votos: Number,
     public estado: String,

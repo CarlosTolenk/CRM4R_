@@ -13,13 +13,17 @@ import { GLOBAL } from '../../../services/global';
 })
 export class ListaTicketsComponent implements OnInit {
   public status:string;
-  public ticket:Ticket;
+  public tickets:Ticket;
+  public listTickets:Ticket[];
+  public informacionTicket;
+
   constructor(
     private _route: ActivatedRoute,
     private _router: Router,
     private _ticketService: TicketService
   ) {
-    this.ticket = new Ticket('','',{},{},0,'','');
+    this.tickets = new Ticket('','','',{},0,'','');
+    this.informacionTicket = new Array ();
 
     // public _id: String,
     // public tipo: String,
@@ -32,14 +36,21 @@ export class ListaTicketsComponent implements OnInit {
 
   ngOnInit() {
     //Conseguir todos los datos del prestamo
-    console.log("Funciona");
     this._ticketService.getTickets().subscribe(
           response => {
             if(!response.tickets){
               this.status = 'error';
             }else{
-              this.ticket = response.tickets;
-              console.log(this.ticket);
+              this.listTickets = response.tickets;
+              // for(let i=0; i<this.listTickets.length; i++){
+              //   let info = {
+              //     "tipo": this.listTickets[i].tipo,
+              //     "cliente": this.listTickets[i].prestamo.cliente,
+              //   }
+              // }
+              // this.informacionTicket = this.tickets;
+              console.log(this.listTickets);
+              // console.log(this.listTickets[2].estado);
             }
 
           },
@@ -51,6 +62,21 @@ export class ListaTicketsComponent implements OnInit {
               }
           }
       );
+  }
+
+  getColor(estado){
+    switch(estado){
+      case 'PRE-APROBADO':
+          return '#7CB342';
+      case 'APROBADO':
+          return '#2E7D32';
+      case 'PRE-DENEGADO':
+          return '#FF9800';
+      case 'DENEGADO':
+          return '#C62828';
+
+
+    }
   }
 
 }

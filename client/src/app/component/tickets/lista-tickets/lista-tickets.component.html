@@ -1,3 +1,34 @@
-<p>
-  Way lista
-</p>
+<div class="navbar">
+  <div class="navbar-content">
+    <ul class="navbar-cliente">
+      <li class="navbar-cliente-item">
+        <a class=" btn-circle" routerLink="agregar"><i class="fas fa-plus"></i></a>
+        <span>Tickets</span>
+      </li>
+    </ul>
+    <div class="search">
+      <input type="text" class="form-control" placeholder="Buscar Préstamo" (keyup.enter)="buscarCliente(buscar.value)" #buscar  [value]="terminoB"    >
+    </div>
+  </div>
+</div>
+
+<div class="card-tickets">
+  <div class="card" *ngFor="let ticket of listTickets | paginate: { itemsPerPage: 8, currentPage: p }">
+    <div class="bg-title">
+
+    </div>
+    <div class="card-title" >
+      <h4>{{ticket.tipo}}</h4>
+    </div>
+    <div class="body-card">
+      <p ><i class="fas fa-user"></i>{{ticket.cliente}}</p>
+      <p><i class="fas fa-dollar-sign"></i>{{ticket.prestamo.monto_original | currency:'RD$'}}</p>
+      <p><i class="far fa-file-alt"></i>Condiciones</p>
+    </div>
+    <div class="footer-card" [ngStyle]="{'background':getColor(ticket.estado)}">
+      <p>{{ticket.estado}}</p>
+    </div>
+
+
+  </div>
+</div>

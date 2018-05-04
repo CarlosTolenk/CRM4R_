@@ -7,7 +7,7 @@ const Schema = models.Schema;
 let TicketsSchema = new Schema({
     tipo: String,
     descripcion: String,
-    cliente: {type: Schema.Types.ObjectId, ref: 'Cliente'},
+    cliente: String,
     prestamo: {type: Schema.Types.ObjectId, ref: 'Prestamo'},
     votos: Number,
     estado: String,

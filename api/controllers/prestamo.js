@@ -66,6 +66,7 @@ exports.addPrestamo = (req, res, next) => {
                     //Crear el ticket que se genera con la creación del préstamo
                     ticket.tipo = "Prestamo";
                     ticket.descripcion = "Solicitud de Préstamo de " + prestamo.cliente.nombre + " " + prestamo.cliente.apellido;
+                    ticket.cliente = prestamo.cliente.nombre + " " + prestamo.cliente.apellido;
                     ticket.prestamo = prestamoStore._id;
                     ticket.fecha = moment().format('LL');
                     ticket.votos = 0;
@@ -320,7 +321,7 @@ function generateUUID(metodo_pago) {
       uuid += d.getDay();
       uuid += d.getSeconds();
       uuid += d.getFullYear() - 2000;
-      uuid += d.getHours() + Math.floor(Math.random() * 11);      
+      uuid += d.getHours() + Math.floor(Math.random() * 11);
       return uuid;
     }
 

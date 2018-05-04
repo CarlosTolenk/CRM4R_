@@ -43,7 +43,7 @@ exports.addTicket = (req, res) => {
 
 exports.getTickets = (req, res) => {
 
-  Ticket.find().populate({path: 'cliente prestamo'}).exec((err, tickets) => {
+  Ticket.find().populate({path: 'prestamo'}).exec((err, tickets) => {
      if(err) return res.status(500).send({message: 'Error en la petición'});
 
      if(!tickets) return status(404).send({message: 'No hay Prestamos disponibles'});
