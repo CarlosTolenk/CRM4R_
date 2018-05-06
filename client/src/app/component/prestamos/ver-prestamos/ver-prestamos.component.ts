@@ -115,8 +115,9 @@ export class VerPrestamosComponent implements OnInit {
   }
 
 
-  volverListar(){
-    this._router.navigate(['home/prestamos']);
+  volverListar() : void{
+    window.history.back();
+    // this._router.navigate(['home/prestamos']);
   }
 
 }

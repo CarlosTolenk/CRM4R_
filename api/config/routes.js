@@ -52,12 +52,13 @@ let md_uploadRecurso = multipart({uploadDir: 'api/uploads/recursos'});
 		//Rutas para los tickets
 		app.post('/api/add-ticket', md_auth.ensureAuth, TicketController.addTicket);
 		app.get('/api/get-tickets', md_auth.ensureAuth, TicketController.getTickets);
+		app.get('/api/get-ticket/:id', md_auth.ensureAuth, TicketController.getTicket);
 		app.put('/api/edit-tickets/:id', md_auth.ensureAuth, TicketController.editTicket);
 		app.delete('/api/delete-ticket/:id', md_auth.ensureAuth, TicketController.destroyTicket);
 
 		//Rutas para los comentarios
 		app.post('/api/add-comentario/:id', md_auth.ensureAuth, ComentarioController.addComentario);
-		app.get('/api/get-comentario/:id', md_auth.ensureAuth, ComentarioController.getComentarios);
+		app.get('/api/get-comentarios/:id', md_auth.ensureAuth, ComentarioController.getComentarios);
 
 		//Rutas para los recursos
 		app.post('/api/add-recurso', [md_auth.ensureAuth, md_uploadRecurso], RecursoController.addRecurso);

@@ -49,7 +49,7 @@ export class ListaTicketsComponent implements OnInit {
               //   }
               // }
               // this.informacionTicket = this.tickets;
-              console.log(this.listTickets);
+              // console.log(this.listTickets);
               // console.log(this.listTickets[2].estado);
             }
 
@@ -74,9 +74,15 @@ export class ListaTicketsComponent implements OnInit {
           return '#FF9800';
       case 'DENEGADO':
           return '#C62828';
-
+      default:
+          return '#1976D2';
 
     }
+  }
+
+  detalleTicket(id){
+    console.log("Detalle");
+    this._router.navigate(['home/tickets/detalle', id]);
   }
 
 }

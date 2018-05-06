@@ -128,23 +128,23 @@ exports.updateCliente = (req, res) => {
 async function calcularAvg(score, salario, clienteId){
   let avgSalario = 0;
   //Condiciones del avg en base al data credito
-  let avgScore = (score * 50)/2000;
+  let avgScore = (score * 30)/2000; //15
   let avgTotal = 0;
 
 let avg = await Cliente.findById(clienteId, (err, cliente) =>{
       if(err) return handleError(err);
 
       //Condiciones del avg en base al salario
-      if(salario <= 10000) avgSalario = 5;  // Maximo un 40% cuotas de la prestamo
-      if(salario > 10001 && salario <= 20000) avgSalario = 10;
-      if(salario > 20001 && salario <= 30000) avgSalario = 15;
-      if(salario > 30001 && salario <= 40000) avgSalario = 20;
-      if(salario > 40001 && salario <= 50000) avgSalario = 25;
-      if(salario > 50001 && salario <= 60000) avgSalario = 30
-      if(salario > 60001 && salario <= 70000) avgSalario = 35;
-      if(salario > 70001 && salario <= 80000) avgSalario = 40;
-      if(salario > 80001 && salario <= 90000) avgSalario = 45;
-      if(salario > 90001 && salario <= 100000) avgSalario = 50;
+      if(salario <= 10000) avgSalario = 15;  // Maximo un 40% cuotas de la prestamo
+      if(salario > 10001 && salario <= 20000) avgSalario = 25;
+      if(salario > 20001 && salario <= 30000) avgSalario = 35;
+      if(salario > 30001 && salario <= 40000) avgSalario = 45;
+      if(salario > 40001 && salario <= 50000) avgSalario = 50;
+      if(salario > 50001 && salario <= 60000) avgSalario = 60;
+      if(salario > 60001 && salario <= 70000) avgSalario = 70;
+      if(salario > 70001 && salario <= 80000) avgSalario = 75;
+      if(salario > 80001 && salario <= 90000) avgSalario = 80;
+      if(salario > 90001 && salario <= 100000) avgSalario = 90;
 
 
       avgTotal = avgScore + avgSalario;

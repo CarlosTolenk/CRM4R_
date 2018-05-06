@@ -75,8 +75,8 @@ exports.addPrestamo = (req, res, next) => {
                     //Evaluar el 40% del salrio del cliente
                     let evaluacion = prestamo.cliente.salario * 0.40;
                     // Un perso
-                    if(prestamo.cuotas <= evaluacion && prestamo.monto_original <= 30000){
-                      if(prestamo.cliente.avg >= 65){
+                    if(prestamo.cuotas <= evaluacion && prestamo.monto_original <= 20000){
+                      if(prestamo.cliente.avg >= 40){
                         ticket.estado = "PRE-APROBADO";
                         ticket.votos++;
                       }else{
@@ -84,8 +84,8 @@ exports.addPrestamo = (req, res, next) => {
                       }
                     }
 
-                    if(prestamo.cuotas <= evaluacion && prestamo.monto_original >= 30001 && prestamo.monto_original <= 50000){
-                      if(prestamo.cliente.avg >= 75){
+                    if(prestamo.cuotas <= evaluacion && prestamo.monto_original >= 20001 && prestamo.monto_original <= 40000){
+                      if(prestamo.cliente.avg >= 45){
                         ticket.estado = "PRE-APROBADO";
                         ticket.votos++;
                       }else{
@@ -93,8 +93,8 @@ exports.addPrestamo = (req, res, next) => {
                       }
                     }
 
-                    if(prestamo.cuotas <= evaluacion && prestamo.monto_original >= 50001 && prestamo.monto_original <= 80000){
-                      if(prestamo.cliente.avg >= 85){
+                    if(prestamo.cuotas <= evaluacion && prestamo.monto_original >= 40001 && prestamo.monto_original <= 60000){
+                      if(prestamo.cliente.avg >= 50){
                         ticket.estado = "PRE-APROBADO";
                         ticket.votos++;
                       }else{
@@ -102,8 +102,17 @@ exports.addPrestamo = (req, res, next) => {
                       }
                     }
 
-                    if(prestamo.cuotas <= evaluacion && prestamo.monto_original >= 80001){
-                      if(prestamo.cliente.avg >= 90){
+                    if(prestamo.cuotas <= evaluacion && prestamo.monto_original >= 70001 && prestamo.monto_original <= 90000){
+                      if(prestamo.cliente.avg >= 70){
+                        ticket.estado = "PRE-APROBADO";
+                        ticket.votos++;
+                      }else{
+                        ticket.estado = "PRE-DENEGADO";
+                      }
+                    }
+
+                    if(prestamo.cuotas <= evaluacion && prestamo.monto_original >= 90001){
+                      if(prestamo.cliente.avg >= 80){
                         ticket.estado = "PRE-APROBADO";
                         ticket.votos++;
                       }else{
@@ -152,7 +161,7 @@ exports.getPrestamos  = (req, res) => {
   };
 
 
-  //Obtener la información del clientes
+  //Obtener la información del Prestamo
   exports.getPrestamo = (req, res) => {
       //Guardar el id que nos llega por la url
       let prestamoId = req.params.id;

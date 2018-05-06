@@ -15,19 +15,24 @@
 <div class="card-tickets">
   <div class="card" *ngFor="let ticket of listTickets | paginate: { itemsPerPage: 8, currentPage: p }">
     <div class="bg-title">
-
     </div>
     <div class="card-title" >
       <h4>{{ticket.tipo}}</h4>
     </div>
-    <div class="body-card">
-      <p ><i class="fas fa-user"></i>{{ticket.cliente}}</p>
-      <p><i class="fas fa-dollar-sign"></i>{{ticket.prestamo.monto_original | currency:'RD$'}}</p>
-      <p><i class="far fa-file-alt"></i>Condiciones</p>
-    </div>
-    <div class="footer-card" [ngStyle]="{'background':getColor(ticket.estado)}">
-      <p>{{ticket.estado}}</p>
-    </div>
+      <div class="body-card" *ngIf="ticket?.tipo=='Prestamo'">
+        <p><i class="fas fa-user"></i>{{ticket.cliente}}</p>
+        <p><i class="fas fa-dollar-sign"></i>{{ticket.prestamo.monto_original | currency:'RD$'}}</p>
+        <a (click)="detalleTicket(ticket._id)"><i class="far fa-file-alt"></i>Detalles de Ticket</a>
+      </div>
+      <div class="body-card" *ngIf="ticket?.tipo=='Legal'">
+        <p><i class="fas fa-user"></i>{{ticket.cliente}}</p>
+        <p><i class="far fa-file-alt"></i>{{ticket.descripcion}}</p>
+        <a (click)="detalleTicket(ticket._id)"><i class="far fa-file-alt"></i>Detalles de Ticket</a>
+      </div>
+      <div class="footer-card" [ngStyle]="{'background':getColor(ticket.estado)}">
+        <p>{{ticket.estado}}</p>
+      </div>
+
 
 
   </div>

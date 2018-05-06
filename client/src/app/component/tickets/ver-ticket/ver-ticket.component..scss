@@ -1,0 +1,202 @@
+.title-general{
+  display: none;;
+}
+
+@media only screen and (min-width: 1100px) {
+
+  .bg-agregar-cliente{
+    background-color: white;
+    width: 107.5%;
+    position: relative;
+    left: -75px;
+    display: block;
+    z-index: 1;
+    height: 100vh;
+  }
+
+  .title-general{
+    background: linear-gradient(135deg, #223568, #20315b);
+    width: 104.55%;
+    position: relative;
+    padding: 1em;
+    display: block;
+    z-index: 2!important;
+    /* box-shadow: 0px 10px 18px #888888; */
+  }
+
+  .title-general h2{
+    font-family: 'Comfortaa', cursive;
+    text-align: center;
+    /* Color dorado color: #FFCA27; */
+    color: white;
+    font-size: 2.1em;
+  }
+
+  .navbar{
+    background: #2F55B5;
+    width: 104.65%;
+    height: 62px;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    left: -75px;
+    z-index: 10!important;
+    box-shadow: 0px 10px 18px #888888;
+  }
+
+  .navbar-content{
+    width: 100%;
+
+  }
+
+  .navbar-cliente{
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    list-style-type: none;
+  }
+
+  .navbar-cliente-item{
+    justify-content:space-around;
+    align-items: center;
+    margin-left: 1em;
+    margin-top: 18px;
+  }
+
+  .navbar-client-item-group{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .navbar-client-item-group a{
+    justify-content: flex-start;
+    z-index: 20!important;
+    margin-top: 0px!important;
+    margin-left: 120px;
+    margin-right: 50px!important;
+    cursor: pointer;
+  }
+
+  .navbar-cliente-item h4{
+    color: white;
+    font-size: 1.2em;
+  }
+
+  .btn{
+    border-radius:5px;
+  }
+
+  .like-ticket{
+    color:#7CB342;
+  }
+
+  .estado-ticket{
+    // color:#7CB342!important;
+    font-weight: bold;
+  }
+
+  .btn-circle{
+    padding: 1em;
+    background: linear-gradient(-135deg, #223568, #2F55B5);
+    border-radius:100%!important;
+    z-index: 100;
+
+    // position: relative;
+    // left: 40px;
+    cursor: pointer;
+  }
+  .navbar-cliente-item span{
+    margin-left: 20px;
+  }
+
+  .btn-circle i{
+    color: #ffca27;
+  }
+
+  .chat-container{
+    width: 75%;
+    position: relative;
+    left: 175px;
+    height: 75vh;
+    display: block;
+    z-index: 1;
+  }
+
+  .bg-title{
+    background: #2962FF;
+    height: 7px;
+  }
+
+  .title-card{
+    padding: 0.5em;
+    text-align: center;
+    background: #2979FF;
+  }
+
+  .title-card h4{
+    color: #FFFFFF!important;
+  }
+
+  .body-card{
+    padding: 2em;
+    overflow-y: scroll;
+    height: 550px;
+  }
+
+  .chat{
+    position: relative;
+    display: grid;
+    grid-template-columns: 0.1fr 1.9fr;
+    grid-template-rows: repeat(2, auto);
+    grid-column-gap: 2em;
+    grid-row-gap: -1em;
+    grid-template-areas: 'avatar nombre'
+                          '. comentario';
+  }
+
+  .team-avatar{
+    grid-area: avatar;
+    width: 65px;
+    height: 65px;
+    border-radius: 100%;
+  }
+
+  .team-name{
+    grid-area: nombre;
+  }
+
+  .team-comment{
+    grid-area: comentario;
+    padding-bottom: 1em;
+  }
+
+  .chat::after{
+    position: absolute;
+    bottom: 2px;
+    left: 20px;
+    content: '';
+    background: #EEEEEE;
+    width: 1100px!important;
+    height: 1px;
+    margin-bottom: 1em;
+  }
+
+  .footer-card{
+    position: absolute;
+    bottom: 0;
+    padding: 0.5em;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+  }
+
+  .text-comment{
+    width: 90%;
+  }
+
+
+}

@@ -52,6 +52,20 @@ exports.getTickets = (req, res) => {
 
 };
 
+//Obtener la información del Ticket
+exports.getTicket = (req, res) => {
+    //Guardar el id que nos llega por la url
+    let ticketId = req.params.id;
+
+    Ticket.findById(ticketId).populate('prestamo').exec((err, ticket) => {
+      if(err) return res.status(500).send({message: 'Error en la peteción'});
+
+      if(!ticket) return res.status(404).send({message: 'Usuario no existe'});
+
+      return res.status(200).send({ticket});
+    });
+};
+
 exports.editTicket = (req, res) => {
   let ticketId = req.params.id;
   let update = req.body;

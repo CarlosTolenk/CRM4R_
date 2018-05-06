@@ -40,6 +40,7 @@ import { VerPrestamosComponent } from './component/prestamos/ver-prestamos/ver-p
 import { EditarPrestamosComponent } from './component/prestamos/editar-prestamos/editar-prestamos.component';
 import { ListaTicketsComponent } from './component/tickets/lista-tickets/lista-tickets.component';
 import { TicketsComponent } from './component/tickets/tickets.component';
+import { VerTicketComponent } from './component/tickets/ver-ticket/ver-ticket.component';
 
 
 
@@ -67,7 +68,8 @@ import { TicketsComponent } from './component/tickets/tickets.component';
     VerPrestamosComponent,
     EditarPrestamosComponent,
     ListaTicketsComponent,
-    TicketsComponent
+    TicketsComponent,
+    VerTicketComponent
 
 
 

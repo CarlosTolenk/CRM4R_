@@ -40,6 +40,19 @@ export class TicketService{
     return this._http.get(this.url + 'get-tickets', {headers: headers});
   }
 
+  getTicket(id): Observable<any>{
+    let headers = new HttpHeaders().set('Content-Type', 'application/json')
+                                   .set('Authorization', this.token);
+
+    return this._http.get(this.url + 'get-ticket/'+ id, {headers: headers});
+  }
+
+  getComentarios(id): Observable<any>{
+    let headers = new HttpHeaders().set('Content-Type', 'application/json')
+                                   .set('Authorization', this.token);
+
+    return this._http.get(this.url + 'get-comentarios/'+ id, {headers: headers});
+  }
 
 
   // Obtener todos los datos de un préstamo únicamente

@@ -8,7 +8,7 @@ const Ticket = require('../models/tickets');
 
 exports.getCount = (req, res) => {
 
-    getCounter().then((response) => {
+    getCounter().then((response) => {    
       return res.status(200).send(response);
     });
 };

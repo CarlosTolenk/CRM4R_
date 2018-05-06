@@ -1,0 +1,94 @@
+<div class="bg-agregar-cliente">
+<!-- Navbar opciones  -->
+  <div class="navbar">
+      <ul class="navbar-cliente">
+        <li class="navbar-cliente-item">
+          <div class="navbar-client-item-group">
+            <a class="btn btn-circle" (click)="volverListar()"><i class="fas fa-arrow-left"></i></a>
+            <h4>Votos:  {{tickets?.votos}} <i class="fas fa-thumbs-up like-ticket"></i></h4>
+          </div>
+        </li>
+        <!-- <li class="navbar-cliente-item">
+
+        </li> -->
+        <li class="navbar-cliente-item">
+            <h4>Cliente: {{tickets?.cliente}}</h4>
+        </li>
+        <li class="navbar-cliente-item">
+            <h4>Estado:<span class="estado-ticket" [ngStyle]="{'color':getColor(tickets.estado)}">{{tickets?.estado}}</span></h4>
+        </li>
+      </ul>
+ </div>
+<!--Close Navbar  -->
+  <br>
+  <br>
+
+
+  <div class="card chat-container">
+    <div class="bg-title"></div>
+    <div class="title-card">
+      <h4>Condiciones del Préstamo</h4>
+    </div>
+    <div class="body-card">
+      <div class="chat">
+        <img src="assets/images/bg-tickets.jpg" class="img-fluid team-avatar" alt="Responsive image">
+        <div class="team-name">
+          <h5>Nombre Usuario</h5>
+          <p class="team-comment">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat..</p>
+        </div>
+      </div>
+      <div class="chat">
+        <img src="assets/images/bg-tickets.jpg" class="img-fluid team-avatar" alt="Responsive image">
+        <div class="team-name">
+          <h5>Nombre Usuario</h5>
+          <p class="team-comment">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat..</p>
+        </div>
+      </div>
+      <div class="chat">
+        <img src="assets/images/bg-tickets.jpg" class="img-fluid team-avatar" alt="Responsive image">
+        <div class="team-name">
+          <h5>Nombre Usuario</h5>
+          <p class="team-comment">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat..</p>
+        </div>
+      </div>
+      <div class="chat">
+        <img src="assets/images/bg-tickets.jpg" class="img-fluid team-avatar" alt="Responsive image">
+        <div class="team-name">
+          <h5>Nombre Usuario</h5>
+          <p class="team-comment">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat..</p>
+        </div>
+      </div>
+      <div class="chat">
+        <img src="assets/images/bg-tickets.jpg" class="img-fluid team-avatar" alt="Responsive image">
+        <div class="team-name">
+          <h5>Nombre Usuario</h5>
+          <p class="team-comment">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat..</p>
+        </div>
+      </div>
+      <div class="chat">
+        <img src="assets/images/bg-tickets.jpg" class="img-fluid team-avatar" alt="Responsive image">
+        <div class="team-name">
+          <h5>Nombre Usuario</h5>
+          <p class="team-comment">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat..</p>
+        </div>
+      </div>
+      <div class="chat">
+        <img src="assets/images/bg-tickets.jpg" class="img-fluid team-avatar" alt="Responsive image">
+        <div class="team-name">
+          <h5>Nombre Usuario</h5>
+          <p class="team-comment">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat..</p>
+        </div>
+      </div>
+    </div>
+    <div class="footer-card">
+      <div class="btn like">
+        <a href="#"></a>
+      </div>
+      <div class="text-comment">
+        <textarea name="name" rows="8" cols="80"></textarea>
+      </div>
+      <div class="btn send">
+        <a href="#"></a>
+      </div>
+    </div>
+</div>
