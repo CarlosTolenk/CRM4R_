@@ -23,8 +23,9 @@ export class VerTicketComponent implements OnInit {
   public accionVoto:boolean;
   public comentario:string;
   public arrComentario:Comentario[];
-  public pushComentario:boolean;
-  public showComentario:CommentShow[];
+  public likeDo:boolean;
+  public showComentario: CommentShow[];
+  public changeDectec:boolean;
 
 
 
@@ -38,7 +39,9 @@ export class VerTicketComponent implements OnInit {
     this.tickets = new Ticket('','','',{},0,'','');
     this.url = GLOBAL.url;
     this.identity = _teamService.getIdentity();
-    this.pushComentario = false;
+    this.changeDectec = false;
+    this.likeDo = false;
+
     }
 
   ngOnInit() {
@@ -71,16 +74,16 @@ export class VerTicketComponent implements OnInit {
                  this.status = 'error';
                }else{
                  this.arrComentario = response.comentario;
-
-                this.arrComentario.forEach(function(comentario){
-                  this.showComentario.nombre_usuario = comentario.team.nombre_usuario;
-                  console.log(this.showComentario);
+                 // console.log(this.arrComentario);
+                 //Revisar si en algun comentario ya hay un like
+                 this.arrComentario.forEach((element) =>{
+                  if(element.accion_voto){
+                    this.likeDo = true;
+                    console.log("Ya han hecho like");
+                  }
                 });
+
                }
-               // console.log(this.showComentario);
-               // public nombre_usuario:String,
-               // public avatar:String,
-               // public texto:String
 
              },
              error => {
@@ -96,8 +99,35 @@ export class VerTicketComponent implements OnInit {
 
   //Este método lo que hace es cada vez que hace un cambio, esto refrescas el componenten
   ngDoCheck(){
+  //Refrescar los comentarios
+  if(this.changeDectec){
+    this._ticketService.getComentarios(this.tickets._id).subscribe(
+         response => {
+           if(!response.comentario){
+             this.status = 'error';
+           }else{
+             this.arrComentario = response.comentario;
+             // console.log(this.arrComentario);
+             //Revisar si han hecho like
+             this.arrComentario.forEach((element) =>{
+              if(element.accion_voto){
+                this.likeDo = true;
+                console.log("Ya han hecho like");
+              }
+            });
+           }
 
-
+         },
+         error => {
+               var errorMessage = <any>error;
+               console.log(errorMessage);
+               if(errorMessage != null){
+                 this.status = 'error';
+             }
+         }
+     );
+     this.changeDectec = false;
+   }
   }
 
   getColor(estado){
@@ -118,83 +148,93 @@ export class VerTicketComponent implements OnInit {
 
   rizeVoto(){
     let id = this.tickets._id;
-    this.tickets.votos++;
-    // console.log("ID: " + id + "Los votos: " + votos);
-    this._ticketService.updateTicket(this.tickets).subscribe(
-          response => {
-            if(!response.ticket){
-              this.status = 'error';
-            }else{
-              this._toastService.Success("Tu voto ha sido procesado exitosamente", "Acción Completada");
-              let objComentario:Comentario = {
-                team: this.identity._id,
-                ticket: this.tickets._id,
-                texto: this.identity.nombre_usuario + " " + "ha aprobado",
-                accion_voto: true
-              };
 
-              console.log(objComentario);
-              this._ticketService.addComentarios(objComentario).subscribe(
-                   response => {
-                     if(!response.comentario){
-                       this.status = 'error';
-                     }else{
-                       this.arrComentario = response.comentario;
-                    }
+    if(!this.likeDo){
+      this.tickets.votos++;
+      // console.log("ID: " + id + "Los votos: " + votos);
+      this._ticketService.updateTicket(this.tickets).subscribe(
+            response => {
+              if(!response.ticket){
+                this.status = 'error';
+              }else{
+                this._toastService.Success("Tu voto ha sido procesado exitosamente", "Acción Completada");
+                let objComentario:Comentario = {
+                  team: this.identity._id,
+                  ticket: this.tickets._id,
+                  texto: this.identity.nombre_usuario + " " + "ha aprobado",
+                  accion_voto: 'true'
+                };
 
-                   },
-                   error => {
-                         var errorMessage = <any>error;
-                         console.log(errorMessage);
-                         if(errorMessage != null){
-                           this.status = 'error';
-                       }
-                   }
-               );
-           }
-          },
-          error => {
-                var errorMessage = <any>error;
-                console.log(errorMessage);
-                if(errorMessage != null){
-                  this.status = 'error';
-                  this._toastService.Error("Tu voto no ha podido ser procesado", "Error");
-              }
-          }
-      );
+                console.log(objComentario);
+                this._ticketService.addComentarios(objComentario).subscribe(
+                     response => {
+                       if(!response.comentario){
+                         this.status = 'error';
+                       }else{
+                         //Actualizar los comentarios
+                         this.changeDectec = true;
+                      }
+
+                     },
+                     error => {
+                           var errorMessage = <any>error;
+                           console.log(errorMessage);
+                           if(errorMessage != null){
+                             this.status = 'error';
+                         }
+                     }
+                 );
+             }
+            },
+            error => {
+                  var errorMessage = <any>error;
+                  console.log(errorMessage);
+                  if(errorMessage != null){
+                    this.status = 'error';
+                    this._toastService.Error("Tu voto no ha podido ser procesado", "Error");
+                }
+            }
+        );
+
+    }else{
+      this._toastService.Error("Ya haz dado tu aprobacion", "Solo es un voto");
+    }
   }
 
   addComment(comentario){
-    let objComentario:Comentario = {
-      team: this.identity._id,
-      ticket: this.tickets._id,
-      texto: this.comentario,
-      accion_voto: false
-    };
 
-    // this.arrComentario.push(objComentario);
 
-    this.comentario = "";
-    this._ticketService.addComentarios(objComentario).subscribe(
-         response => {
-           if(!response.comentario){
-             this.status = 'error';
-           }else{
-             this.arrComentario = response.comentario;
-             this._toastService.Success("Tu comentario ha sido procesado exitosamente", "Acción Completada");
-             console.log(this.identity);
-             this.pushComentario = true;
-           }
+      let objComentario:Comentario = {
+        team: this.identity._id,
+        ticket: this.tickets._id,
+        texto: this.comentario,
+        accion_voto: false
+      };
 
-         },
-         error => {
-               var errorMessage = <any>error;
-               console.log(errorMessage);
-               if(errorMessage != null){
-                 this.status = 'error';
+      // this.arrComentario.push(objComentario);
+
+      this.comentario = "";
+      this._ticketService.addComentarios(objComentario).subscribe(
+           response => {
+             if(!response.comentario){
+               this.status = 'error';
+             }else{
+               //Actualizar los comentarios
+               this.changeDectec = true;
+               this._toastService.Success("Tu comentario ha sido procesado exitosamente", "Acción Completada");
+               console.log(this.identity);
+
              }
-         }
-     );
+
+           },
+           error => {
+                 var errorMessage = <any>error;
+                 console.log(errorMessage);
+                 if(errorMessage != null){
+                   this.status = 'error';
+               }
+           }
+       );
 
   }
 

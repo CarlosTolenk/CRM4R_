@@ -10,7 +10,7 @@ exports.addComentario = (req, res) => {
   let ticketId = req.params.id;
   let params = req.body;
   let comentario = new Comentario();
-  let accion_voto = req.body.voto;
+  let accion_voto = req.body.accion_voto;
 
   comentario.team = params.team;
   comentario.ticket = ticketId;
@@ -36,9 +36,35 @@ exports.getComentarios = (req, res) => {
   let ticketId = req.params.id;
 
     Comentario.find( { ticket: ticketId } ).populate({path: 'team'}).exec((err, comentario) => {
-       if(err) return res.status(500).send({message: 'Error en la petición'});
+         if(err) return res.status(500).send({message: 'Error en la petición'});
 
-       if(!comentario) return status(404).send({message: 'No hay Comentarios disponibles'});
-            return res.status(200).send({ comentario });
-        });
+         if(!comentario){
+           return status(404).send({message: 'No hay Comentarios disponibles'});
+         } else{
+            getFiltro(comentario).then((response) => {
+             // console.log(response);
+             return res.status(200).send({comentario: response});
+           });
+         }
+
+    });
 };
+
+
+async function getFiltro(comentario){
+
+  let filtroComentario = new Object;
+  let comentarioArr =  new Array;
+   await comentario.forEach((element) => {
+     filtroComentario = {
+     texto: element.texto,
+     usuario: element.team.nombre_usuario,
+     avatar: element.team.avatar,
+     accion_voto: element.accion_voto
+   }
+   comentarioArr.push(filtroComentario);
+ });
+
+console.log(comentarioArr);
+    return comentarioArr;
+}

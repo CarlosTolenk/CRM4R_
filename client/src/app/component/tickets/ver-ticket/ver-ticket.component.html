@@ -15,8 +15,8 @@
             <h4>Cliente: {{tickets.cliente}}</h4>
         </li>
         <li class="navbar-cliente-item">
-            <h4>Estado:<span class="estado-ticket" [ngStyle]="{'color':getColor(tickets.estado)}">{{tickets.estado}}</span></h4>
-            <!-- <h4>Estado  <span>{{tickets.estado}}</span> </h4> -->
+            <!-- <h4>Estado:<span class="estado-ticket" [ngStyle]="{'color':getColor(tickets.estado)}">{{tickets.estado}}</span></h4> -->
+            <h4>Estado  <span>{{tickets.estado}}</span> </h4>
         </li>
       </ul>
  </div>
@@ -31,14 +31,13 @@
       <a (click)="detallePrestamos(tickets.prestamo._id)"><i class="far fa-file-alt"></i>Condiciones del Préstamo</a>
     </div>
     <div class="body-card">
-      <!-- <div class="chat" *ngFor="let comentarios of arrComentario" >
-        <img src="{{url + 'get-image-team/' + comentarios.team.avatar }}" class="img-fluid team-avatar" alt="Responsive image" >
+      <div class="chat" *ngFor="let comentarios of arrComentario" >
+        <img src="{{url + 'get-image-team/' + comentarios.avatar }}" class="img-fluid team-avatar" alt="Responsive image" >
         <div class="team-name">
-          <h5 >{{comentarios.team.nombre_usuario}}</h5>
-          <p   class="team-comment">{{comentarios.texto}}</p>
+          <h5>{{comentarios.usuario}}</h5>
+          <p class="team-comment">{{comentarios.texto}}</p>
         </div>
-
-      </div> -->
+      </div>
 
     </div>
     <div class="footer-card">
