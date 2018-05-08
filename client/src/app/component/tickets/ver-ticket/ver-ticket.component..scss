@@ -137,8 +137,14 @@
     background: #2979FF;
   }
 
-  .title-card h4{
+  .title-card a{
+    font-size: 1.2em;
+    font-weight: 500;
     color: #FFFFFF!important;
+  }
+
+  .title-card a i{
+    margin-right: 5px;
   }
 
   .body-card{
@@ -196,6 +202,18 @@
 
   .text-comment{
     width: 90%;
+  }
+
+  .btn.btn-success.like{
+    position: relative;
+    border-radius: 120px;
+  }
+
+  .like a i{
+    color: #FFFFFF;
+    position: absolute;
+    top: 15px;
+    left: 30px;
   }
 
 

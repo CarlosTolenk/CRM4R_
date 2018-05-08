@@ -10,17 +10,19 @@ exports.addComentario = (req, res) => {
   let ticketId = req.params.id;
   let params = req.body;
   let comentario = new Comentario();
+  let accion_voto = req.body.voto;
 
   comentario.team = params.team;
   comentario.ticket = ticketId;
   comentario.texto = params.texto;
+  comentario.accion_voto = accion_voto;
 
     //Guardar toda la informacion del mensaje
     comentario.save((err, comentarioStore) => {
       if(err) return res.status(500).send({message: 'Error al guardar el nuevo comentario'});
 
       if(comentarioStore){
-        res.status(200).send({ticket: comentarioStore});
+        res.status(200).send({comentario: comentarioStore});
       }else{
         res.status(404).send({message: 'No se ha podido registrar el nuevo comentario'});
       }

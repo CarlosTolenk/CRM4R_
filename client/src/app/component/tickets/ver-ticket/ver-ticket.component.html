@@ -5,21 +5,22 @@
         <li class="navbar-cliente-item">
           <div class="navbar-client-item-group">
             <a class="btn btn-circle" (click)="volverListar()"><i class="fas fa-arrow-left"></i></a>
-            <h4>Votos:  {{tickets?.votos}} <i class="fas fa-thumbs-up like-ticket"></i></h4>
+            <h4>Votos:  {{tickets.votos}} <i class="fas fa-thumbs-up like-ticket"></i></h4>
           </div>
         </li>
         <!-- <li class="navbar-cliente-item">
 
         </li> -->
         <li class="navbar-cliente-item">
-            <h4>Cliente: {{tickets?.cliente}}</h4>
+            <h4>Cliente: {{tickets.cliente}}</h4>
         </li>
         <li class="navbar-cliente-item">
-            <h4>Estado:<span class="estado-ticket" [ngStyle]="{'color':getColor(tickets.estado)}">{{tickets?.estado}}</span></h4>
+            <h4>Estado:<span class="estado-ticket" [ngStyle]="{'color':getColor(tickets.estado)}">{{tickets.estado}}</span></h4>
+            <!-- <h4>Estado  <span>{{tickets.estado}}</span> </h4> -->
         </li>
       </ul>
  </div>
-<!--Close Navbar  -->
+
   <br>
   <br>
 
@@ -27,68 +28,26 @@
   <div class="card chat-container">
     <div class="bg-title"></div>
     <div class="title-card">
-      <h4>Condiciones del Préstamo</h4>
+      <a (click)="detallePrestamos(tickets.prestamo._id)"><i class="far fa-file-alt"></i>Condiciones del Préstamo</a>
     </div>
     <div class="body-card">
-      <div class="chat">
-        <img src="assets/images/bg-tickets.jpg" class="img-fluid team-avatar" alt="Responsive image">
+      <!-- <div class="chat" *ngFor="let comentarios of arrComentario" >
+        <img src="{{url + 'get-image-team/' + comentarios.team.avatar }}" class="img-fluid team-avatar" alt="Responsive image" >
         <div class="team-name">
-          <h5>Nombre Usuario</h5>
-          <p class="team-comment">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat..</p>
+          <h5 >{{comentarios.team.nombre_usuario}}</h5>
+          <p   class="team-comment">{{comentarios.texto}}</p>
         </div>
-      </div>
-      <div class="chat">
-        <img src="assets/images/bg-tickets.jpg" class="img-fluid team-avatar" alt="Responsive image">
-        <div class="team-name">
-          <h5>Nombre Usuario</h5>
-          <p class="team-comment">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat..</p>
-        </div>
-      </div>
-      <div class="chat">
-        <img src="assets/images/bg-tickets.jpg" class="img-fluid team-avatar" alt="Responsive image">
-        <div class="team-name">
-          <h5>Nombre Usuario</h5>
-          <p class="team-comment">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat..</p>
-        </div>
-      </div>
-      <div class="chat">
-        <img src="assets/images/bg-tickets.jpg" class="img-fluid team-avatar" alt="Responsive image">
-        <div class="team-name">
-          <h5>Nombre Usuario</h5>
-          <p class="team-comment">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat..</p>
-        </div>
-      </div>
-      <div class="chat">
-        <img src="assets/images/bg-tickets.jpg" class="img-fluid team-avatar" alt="Responsive image">
-        <div class="team-name">
-          <h5>Nombre Usuario</h5>
-          <p class="team-comment">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat..</p>
-        </div>
-      </div>
-      <div class="chat">
-        <img src="assets/images/bg-tickets.jpg" class="img-fluid team-avatar" alt="Responsive image">
-        <div class="team-name">
-          <h5>Nombre Usuario</h5>
-          <p class="team-comment">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat..</p>
-        </div>
-      </div>
-      <div class="chat">
-        <img src="assets/images/bg-tickets.jpg" class="img-fluid team-avatar" alt="Responsive image">
-        <div class="team-name">
-          <h5>Nombre Usuario</h5>
-          <p class="team-comment">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat..</p>
-        </div>
-      </div>
+
+      </div> -->
+
     </div>
     <div class="footer-card">
-      <div class="btn like">
-        <a href="#"></a>
+      <div class="btn btn-success like" >
+        <a  (click)="rizeVoto()"><i class="fas fa-thumbs-up like-ticket"></i></a>
       </div>
       <div class="text-comment">
-        <textarea name="name" rows="8" cols="80"></textarea>
+        <textarea class="md-textarea form-control" [(ngModel)]="comentario"></textarea>
       </div>
-      <div class="btn send">
-        <a href="#"></a>
-      </div>
+        <button (click)="addComment(comentario)" class="btn btn-info send"></button>
     </div>
 </div>

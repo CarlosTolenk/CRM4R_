@@ -59,7 +59,7 @@ export class PrestamosService{
 
 
 
-    return this._http.put(this.url + 'update-prestamo/' + prestamo._id, params, {headers: headers});
+    return this._http.put(this.url + 'edit-ticket/' + prestamo._id, params, {headers: headers});
   }
 
   //Eliminar los prestamos

@@ -7,7 +7,8 @@ const Schema = models.Schema;
 let ComentariosSchema = new Schema({
     team: {type: Schema.Types.ObjectId, ref: 'Team'},
     ticket: {type: Schema.Types.ObjectId, ref: 'Ticket'},
-    texto: String
+    texto: String,
+    accion_voto:Boolean
 });
 
 module.exports = models.model('Comentario', ComentariosSchema);

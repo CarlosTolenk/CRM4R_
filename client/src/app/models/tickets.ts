@@ -4,7 +4,7 @@ export class Ticket{
     public tipo: String,
     public cliente: String,
     public prestamo: Object,
-    public votos: Number,
+    public votos: number,
     public estado: String,
     public fecha: String
   ){}

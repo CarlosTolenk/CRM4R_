@@ -53,7 +53,7 @@ let md_uploadRecurso = multipart({uploadDir: 'api/uploads/recursos'});
 		app.post('/api/add-ticket', md_auth.ensureAuth, TicketController.addTicket);
 		app.get('/api/get-tickets', md_auth.ensureAuth, TicketController.getTickets);
 		app.get('/api/get-ticket/:id', md_auth.ensureAuth, TicketController.getTicket);
-		app.put('/api/edit-tickets/:id', md_auth.ensureAuth, TicketController.editTicket);
+		app.put('/api/edit-ticket/:id', md_auth.ensureAuth, TicketController.editTicket);
 		app.delete('/api/delete-ticket/:id', md_auth.ensureAuth, TicketController.destroyTicket);
 
 		//Rutas para los comentarios
