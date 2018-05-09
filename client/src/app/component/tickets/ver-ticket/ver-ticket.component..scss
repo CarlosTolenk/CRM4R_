@@ -147,6 +147,18 @@
     margin-right: 5px;
   }
 
+  .concluir-ticket{
+    float: right;
+    margin-right: 1em;
+    font-size: 2em;
+  }
+
+  .eliminar-ticket{
+    float: left;
+    margin-left: 1em;
+    font-size: 2em;
+  }
+
   .body-card{
     padding: 2em;
     overflow-y: scroll;
@@ -202,6 +214,16 @@
 
   .text-comment{
     width: 90%;
+    height: 75px;
+    background-color: #F5F5F5;
+    border-radius: 10px;;
+  }
+
+  .text-comment textarea{
+    overflow-y:visible;
+    resize: none;
+    height: 75px;
+    border-radius: 10px;;
   }
 
   .btn.btn-success.like{
@@ -211,9 +233,16 @@
 
   .like a i{
     color: #FFFFFF;
+    font-size: 1.5em;
     position: absolute;
-    top: 15px;
-    left: 30px;
+    top: 18px;
+    left: 27px;
+  }
+
+  .send {
+    color: #FFFFFF;
+    font-size: 1.5em;
+
   }
 
 

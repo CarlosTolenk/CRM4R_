@@ -33,7 +33,7 @@ export class ListaTicketsComponent implements OnInit {
     private _router: Router,
     private _ticketService: TicketService
   ) {
-    this.tickets = new Ticket('','','',{},0,'','');
+    this.tickets = new Ticket('','','',{},0,'','','');
     this.informacionTicket = new Array ();
     this.enProceso = true;
     this.aprobados = false;
@@ -67,7 +67,7 @@ export class ListaTicketsComponent implements OnInit {
 
               for(let filtro of this.listTickets){
 
-                if(filtro.estado == "EN PROCESO" ){
+                if(filtro.estado == "EN PROCESO" || filtro.estado == "PRE-APROBADO" || filtro.estado == "PRE-DENEGADO") {
                   enProceso.push(filtro);
                 }
               }
@@ -127,7 +127,7 @@ export class ListaTicketsComponent implements OnInit {
 
     for(let filtro of this.listTickets){
 
-      if(filtro.estado == "EN PROCESO" ){
+      if(filtro.estado == "EN PROCESO" || filtro.estado == "PRE-APROBADO" || filtro.estado == "PRE-DENEGADO") {
         enProceso.push(filtro);
       }
     }

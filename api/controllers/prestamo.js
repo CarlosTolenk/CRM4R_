@@ -77,46 +77,56 @@ exports.addPrestamo = (req, res, next) => {
                     // Un perso
                     if(prestamo.cuotas <= evaluacion && prestamo.monto_original <= 20000){
                       if(prestamo.cliente.avg >= 40){
+                        ticket.pre_estado = "PRE-APROBADO";
                         ticket.estado = "PRE-APROBADO";
                         ticket.votos++;
                       }else{
                         ticket.estado = "PRE-DENEGADO";
+                        ticket.pre_estado = "PRE-DENEGADO";
                       }
                     }
 
                     if(prestamo.cuotas <= evaluacion && prestamo.monto_original >= 20001 && prestamo.monto_original <= 40000){
                       if(prestamo.cliente.avg >= 45){
                         ticket.estado = "PRE-APROBADO";
+                        ticket.pre_estado = "PRE-APROBADO";
                         ticket.votos++;
                       }else{
                         ticket.estado = "PRE-DENEGADO";
+                        ticket.pre_estado = "PRE-DENEGADO";
                       }
                     }
 
                     if(prestamo.cuotas <= evaluacion && prestamo.monto_original >= 40001 && prestamo.monto_original <= 60000){
                       if(prestamo.cliente.avg >= 50){
                         ticket.estado = "PRE-APROBADO";
+                        ticket.pre_estado = "PRE-APROBADO";
                         ticket.votos++;
                       }else{
                         ticket.estado = "PRE-DENEGADO";
+                        ticket.pre_estado = "PRE-DENEGADO";
                       }
                     }
 
                     if(prestamo.cuotas <= evaluacion && prestamo.monto_original >= 70001 && prestamo.monto_original <= 90000){
                       if(prestamo.cliente.avg >= 70){
                         ticket.estado = "PRE-APROBADO";
+                        ticket.pre_estado = "PRE-APROBADO";
                         ticket.votos++;
                       }else{
                         ticket.estado = "PRE-DENEGADO";
+                        ticket.pre_estado = "PRE-DENEGADO";
                       }
                     }
 
-                    if(prestamo.cuotas <= evaluacion && prestamo.monto_original >= 90001){
+                    if(prestamo.cuotas <= evaluacion && prestamo.monto_original > 90001){
                       if(prestamo.cliente.avg >= 80){
                         ticket.estado = "PRE-APROBADO";
+                        ticket.pre_estado = "PRE-APROBADO";
                         ticket.votos++;
                       }else{
                         ticket.estado = "PRE-DENEGADO";
+                        ticket.pre_estado = "PRE-DENEGADO";
                       }
                     }
 

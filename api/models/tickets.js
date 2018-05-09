@@ -10,6 +10,7 @@ let TicketsSchema = new Schema({
     cliente: String,
     prestamo: {type: Schema.Types.ObjectId, ref: 'Prestamo'},
     votos: Number,
+    pre_estado:String,
     estado: String,
     fecha: Date
 });

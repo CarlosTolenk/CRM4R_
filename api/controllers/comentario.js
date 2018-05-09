@@ -55,6 +55,7 @@ async function getFiltro(comentario){
 
   let filtroComentario = new Object;
   let comentarioArr =  new Array;
+  // console.log(comentario);
    await comentario.forEach((element) => {
      filtroComentario = {
      texto: element.texto,
@@ -65,6 +66,6 @@ async function getFiltro(comentario){
    comentarioArr.push(filtroComentario);
  });
 
-console.log(comentarioArr);
+// console.log(comentarioArr);
     return comentarioArr;
 }

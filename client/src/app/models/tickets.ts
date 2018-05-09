@@ -6,6 +6,7 @@ export class Ticket{
     public prestamo: Object,
     public votos: number,
     public estado: String,
+    public pre_estado:String,
     public fecha: String
   ){}
 }

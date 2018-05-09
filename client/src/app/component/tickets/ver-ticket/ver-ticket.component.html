@@ -15,8 +15,9 @@
             <h4>Cliente: {{tickets.cliente}}</h4>
         </li>
         <li class="navbar-cliente-item">
-            <!-- <h4>Estado:<span class="estado-ticket" [ngStyle]="{'color':getColor(tickets.estado)}">{{tickets.estado}}</span></h4> -->
-            <h4>Estado  <span>{{tickets.estado}}</span> </h4>
+            <h4>Estado:<span class="estado-ticket" [ngStyle]="{'color':getColor(tickets.estado)}">{{tickets.estado}}</span></h4>
+
+            <!-- <h4>Estado  <span>{{tickets.estado}}</span> </h4> -->
         </li>
       </ul>
  </div>
@@ -28,9 +29,19 @@
   <div class="card chat-container">
     <div class="bg-title"></div>
     <div class="title-card">
-      <a (click)="detallePrestamos(tickets.prestamo._id)"><i class="far fa-file-alt"></i>Condiciones del Préstamo</a>
+      <a (click)="eliminarTicket()" *ngIf="denegar" class="eliminar-ticket"><i class="fas fa-minus-circle"></i></a>
+      <a (click)="detallePrestamos(tickets.prestamo._id)" ><i class="far fa-file-alt"></i>Condiciones del Préstamo</a>
+      <a (click)="concluirTicket()" *ngIf="concluir" class="concluir-ticket"><i class="far fa-check-circle"></i></a>
     </div>
     <div class="body-card">
+      <!--INicial del sistema  -->
+      <div class="chat" *ngIf="inicial">
+        <img src="assets/images/logo-header.png" class="img-fluid team-avatar" alt="Responsive image" >
+        <div class="team-name">
+          <h5>Sistema de Evaluación</h5>
+          <p class="team-comment">{{tickets.pre_estado}}</p>
+        </div>
+      </div>
       <div class="chat" *ngFor="let comentarios of arrComentario" >
         <img src="{{url + 'get-image-team/' + comentarios.avatar }}" class="img-fluid team-avatar" alt="Responsive image" >
         <div class="team-name">
@@ -38,15 +49,14 @@
           <p class="team-comment">{{comentarios.texto}}</p>
         </div>
       </div>
-
     </div>
     <div class="footer-card">
       <div class="btn btn-success like" >
         <a  (click)="rizeVoto()"><i class="fas fa-thumbs-up like-ticket"></i></a>
       </div>
       <div class="text-comment">
-        <textarea class="md-textarea form-control" [(ngModel)]="comentario"></textarea>
+        <textarea autosize [(ngModel)]="comentario"></textarea>
       </div>
-        <button (click)="addComment(comentario)" class="btn btn-info send"></button>
+        <button (click)="addComment(comentario)" class="btn btn-info send"><i class="fab fa-facebook-messenger"></i></button>
     </div>
 </div>

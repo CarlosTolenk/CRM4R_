@@ -26,8 +26,9 @@ export class VerTicketComponent implements OnInit {
   public likeDo:boolean;
   public showComentario: CommentShow[];
   public changeDectec:boolean;
-
-
+  public concluir:boolean;
+  public denegar:boolean;
+  public inicial:boolean;
 
   constructor(
     private _route: ActivatedRoute,
@@ -36,11 +37,14 @@ export class VerTicketComponent implements OnInit {
     private _teamService: TeamService,
     private _toastService: ToastService
   ) {
-    this.tickets = new Ticket('','','',{},0,'','');
+    this.tickets = new Ticket('','','',{},0,'','','');
     this.url = GLOBAL.url;
     this.identity = _teamService.getIdentity();
     this.changeDectec = false;
     this.likeDo = false;
+    this.concluir = false;
+    this.inicial = true;
+    this.denegar = false;
 
     }
 
@@ -55,6 +59,13 @@ export class VerTicketComponent implements OnInit {
                 this.status = 'error';
               }else{
                 this.tickets = response.ticket;
+                console.log(this.tickets);
+                if(this.tickets.estado == 'APROBADO' || this.tickets.tipo == 'Legal'){
+                  this.concluir = true;
+                }
+                if((this.tickets.estado == 'EN PROCESO' ||  this.tickets.estado == "PRE-APROBADO" || this.tickets.estado == "PRE-DENEGADO") && this.tickets.tipo == 'Prestamo'){
+                  this.denegar = true;
+                }
               }
 
             },
@@ -74,15 +85,16 @@ export class VerTicketComponent implements OnInit {
                  this.status = 'error';
                }else{
                  this.arrComentario = response.comentario;
-                 // console.log(this.arrComentario);
+                 // console.log(this.identity.nombre_usuario);
+                 console.log(this.arrComentario)
                  //Revisar si en algun comentario ya hay un like
                  this.arrComentario.forEach((element) =>{
-                  if(element.accion_voto){
+                 //En el backend así lo estoy manejando
+                  if(element.accion_voto && element.usuario == this.identity.nombre_usuario){
                     this.likeDo = true;
-                    console.log("Ya han hecho like");
+                    // console.log("Ya votaste");
                   }
                 });
-
                }
 
              },
@@ -110,10 +122,10 @@ export class VerTicketComponent implements OnInit {
              // console.log(this.arrComentario);
              //Revisar si han hecho like
              this.arrComentario.forEach((element) =>{
-              if(element.accion_voto){
-                this.likeDo = true;
-                console.log("Ya han hecho like");
-              }
+             if(element.accion_voto && element.usuario == this.identity.nombre_usuario){
+               this.likeDo = true;
+               // console.log("Ya votaste");
+             }
             });
            }
 
@@ -244,6 +256,53 @@ export class VerTicketComponent implements OnInit {
 
   volverListar() : void{
     window.history.back();
+  }
+
+  concluirTicket(){
+    this.tickets.estado = "COMPLETADO";
+
+    this._ticketService.updateTicket(this.tickets).subscribe(
+          response => {
+            if(!response.ticket){
+              this.status = 'error';
+            }else{
+              console.log(response.ticket);
+              this._toastService.Success("Ya se ha completado exitosamente", "Ticket Completado");
+            }
+          },
+          error => {
+                var errorMessage = <any>error;
+                console.log(errorMessage);
+                if(errorMessage != null){
+                  this.status = 'error';
+                  this._toastService.Error("Tu voto no ha podido ser procesado", "Error");
+              }
+          }
+      );
+  }
+
+  eliminarTicket(){
+    this.tickets.estado = "DENEGADO";
+
+    this._ticketService.updateTicket(this.tickets).subscribe(
+          response => {
+            if(!response.ticket){
+              this.status = 'error';
+            }else{
+              console.log(response.ticket);
+              this._toastService.Success("Ya se ha completado exitosamente", "Ticket Completado");
+            }
+          },
+          error => {
+                var errorMessage = <any>error;
+                console.log(errorMessage);
+                if(errorMessage != null){
+                  this.status = 'error';
+                  this._toastService.Error("Tu voto no ha podido ser procesado", "Error");
+              }
+          }
+      );
+  }
   }
 
 }

@@ -19,6 +19,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
 
 
 
+
 //Componentes
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './component/navbar/navbar.component';
@@ -69,7 +70,8 @@ import { VerTicketComponent } from './component/tickets/ver-ticket/ver-ticket.co
     EditarPrestamosComponent,
     ListaTicketsComponent,
     TicketsComponent,
-    VerTicketComponent
+    VerTicketComponent,
+
 
 
 
