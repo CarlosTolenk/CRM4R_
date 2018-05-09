@@ -17,6 +17,7 @@ export class ListaTicketsComponent implements OnInit {
   public listTickets:Ticket[];
   public informacionTicket;
   public ticketEnProceso:Ticket[];
+  public ticketBusqueda:Ticket[];
   public ticketAprobados:Ticket[];
   public ticketDenegados:Ticket[];
   public ticketCompletados:Ticket[];
@@ -24,6 +25,8 @@ export class ListaTicketsComponent implements OnInit {
   public aprobados:Boolean;
   public denegados:Boolean;
   public completados:Boolean;
+  public busqueda:Boolean;
+  public terminoB:String;
 
   constructor(
     private _route: ActivatedRoute,
@@ -36,6 +39,8 @@ export class ListaTicketsComponent implements OnInit {
     this.aprobados = false;
     this.denegados = false;
     this.completados = false;
+    this.busqueda = false;
+    this.terminoB = '';
 
     // public _id: String,
     // public tipo: String,
@@ -55,6 +60,7 @@ export class ListaTicketsComponent implements OnInit {
               this.status = 'error';
             }else{
               this.listTickets = response.tickets;
+              console.log(this.listTickets );
 
 
               let enProceso:Ticket[] = [];
@@ -185,6 +191,30 @@ export class ListaTicketsComponent implements OnInit {
 
     this.ticketCompletados = completados;
 
+  }
+
+  buscarTicket(termino:string){
+
+    this.busqueda = true;
+    this.terminoB = termino;
+    let clientesArr:Ticket[] = [];
+    termino = termino.toLowerCase();
+
+    for(let ticket of this.listTickets){
+      let nombre = ticket.cliente.toLowerCase();
+
+      if(nombre.indexOf(termino) >= 0 ){
+        clientesArr.push(ticket);
+      }
+    }
+
+    this.ticketBusqueda = clientesArr;
+    console.log(this.ticketBusqueda);
+  }
+
+  volver(){
+    this.busqueda = false;
+    this.terminoB = '';
   }
 
 }

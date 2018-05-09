@@ -7,12 +7,12 @@
       </li>
     </ul>
     <div class="search">
-      <input type="text" class="form-control" placeholder="Buscar Préstamo" (keyup.enter)="buscarCliente(buscar.value)" #buscar  [value]="terminoB"    >
+      <input type="text" class="form-control" placeholder="Buscar Ticket" (keyup.enter)="buscarTicket(buscar.value)" #buscar  [value]="terminoB"    >
     </div>
   </div>
 </div>
 
-<div class="tabs-navigation">
+<div class="tabs-navigation" *ngIf="!busqueda">
   <a class="btn btn-tabs tabs" (click)="getTicketEnProceso()" [ngStyle]="{'background-color': enProceso && !aprobados && !denegados && !completados  ? '#12224B' : '#2F55B5'}"> En Proceso</a>
   <a class="btn btn-tabs tabs" (click)="getTicketAprobado()" [ngStyle]="{'background-color':  !enProceso && aprobados && !denegados && !completados ? '#12224B' : '#2F55B5'}"> Aprobados</a>
   <a class="btn btn-tabs tabs" (click)="getTicketDenegado()" [ngStyle]="{'background-color':  !enProceso && !aprobados && denegados && !completados  ? '#12224B' : '#2F55B5'}"> Denegados</a>
@@ -20,7 +20,7 @@
 </div>
 
 <!-- Tickets en Procesoo  -->
-  <div class="card-tickets" *ngIf="enProceso && !aprobados && !denegados && !completados">
+  <div class="card-tickets" *ngIf="enProceso && !aprobados && !denegados && !completados && !busqueda">
     <div class="card" *ngFor="let ticket of ticketEnProceso | paginate: { itemsPerPage: 8, currentPage: p }">
       <div class="bg-title">
       </div>
@@ -44,7 +44,7 @@
   </div>
 
 <!-- Tickets en Aprobados  -->
-  <div class="card-tickets" *ngIf="!enProceso && aprobados && !denegados && !completados">
+  <div class="card-tickets" *ngIf="!enProceso && aprobados && !denegados && !completados && !busqueda">
     <div class="card" *ngFor="let ticket of ticketAprobados | paginate: { itemsPerPage: 8, currentPage: p }">
       <div class="bg-title">
       </div>
@@ -68,7 +68,7 @@
   </div>
 
   <!-- Tickets en Denegados  -->
-    <div class="card-tickets" *ngIf="!enProceso && !aprobados && denegados && !completados">
+    <div class="card-tickets" *ngIf="!enProceso && !aprobados && denegados && !completados && !busqueda">
       <div class="card" *ngFor="let ticket of ticketDenegados | paginate: { itemsPerPage: 8, currentPage: p }">
         <div class="bg-title">
         </div>
@@ -92,7 +92,7 @@
     </div>
 
     <!-- Tickets en Completados  -->
-      <div class="card-tickets" *ngIf="!enProceso && !aprobados && !denegados && completados">
+      <div class="card-tickets" *ngIf="!enProceso && !aprobados && !denegados && completados && !busqueda">
         <div class="card" *ngFor="let ticket of ticketCompletados | paginate: { itemsPerPage: 8, currentPage: p }">
           <div class="bg-title">
           </div>
@@ -114,3 +114,31 @@
             </div>
         </div>
       </div>
+
+    <!-- Búsqueda de los ticket  -->
+    <div class="" *ngIf="busqueda">
+      <a class="btn btn-circle-atras" (click)="volver()"><i class="far fa-arrow-alt-circle-left"></i></a>
+      <h3 class="terminoBusqueda">Búsqueda del Ticket: {{terminoB}}</h3>
+        <div class="card-tickets">
+          <div class="card" *ngFor="let ticket of ticketBusqueda | paginate: { itemsPerPage: 8, currentPage: p }">
+            <div class="bg-title">
+            </div>
+            <div class="card-title" >
+              <h4>{{ticket.tipo}}</h4>
+            </div>
+              <div class="body-card" *ngIf="ticket?.tipo=='Prestamo'">
+                <p><i class="fas fa-user"></i>{{ticket.cliente}}</p>
+                <p><i class="fas fa-dollar-sign"></i>{{ticket.prestamo.monto_original | currency:'RD$'}}</p>
+                <a (click)="detalleTicket(ticket._id)"><i class="far fa-file-alt"></i>Detalles de Ticket</a>
+              </div>
+              <div class="body-card" *ngIf="ticket?.tipo=='Legal'">
+                <p><i class="fas fa-user"></i>{{ticket.cliente}}</p>
+                <p><i class="far fa-file-alt"></i>{{ticket.descripcion}}</p>
+                <a (click)="detalleTicket(ticket._id)"><i class="far fa-file-alt"></i>Detalles de Ticket</a>
+              </div>
+              <div class="footer-card" [ngStyle]="{'background':getColor(ticket.estado)}">
+                <p>{{ticket.estado}}</p>
+              </div>
+          </div>
+        </div>
+    </div>
