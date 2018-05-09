@@ -16,6 +16,14 @@ export class ListaTicketsComponent implements OnInit {
   public tickets:Ticket;
   public listTickets:Ticket[];
   public informacionTicket;
+  public ticketEnProceso:Ticket[];
+  public ticketAprobados:Ticket[];
+  public ticketDenegados:Ticket[];
+  public ticketCompletados:Ticket[];
+  public enProceso:Boolean;
+  public aprobados:Boolean;
+  public denegados:Boolean;
+  public completados:Boolean;
 
   constructor(
     private _route: ActivatedRoute,
@@ -24,6 +32,10 @@ export class ListaTicketsComponent implements OnInit {
   ) {
     this.tickets = new Ticket('','','',{},0,'','');
     this.informacionTicket = new Array ();
+    this.enProceso = true;
+    this.aprobados = false;
+    this.denegados = false;
+    this.completados = false;
 
     // public _id: String,
     // public tipo: String,
@@ -36,12 +48,26 @@ export class ListaTicketsComponent implements OnInit {
 
   ngOnInit() {
     //Conseguir todos los datos del prestamo
+    this.enProceso = true;
     this._ticketService.getTickets().subscribe(
           response => {
             if(!response.tickets){
               this.status = 'error';
             }else{
               this.listTickets = response.tickets;
+
+
+              let enProceso:Ticket[] = [];
+
+              for(let filtro of this.listTickets){
+
+                if(filtro.estado == "EN PROCESO" ){
+                  enProceso.push(filtro);
+                }
+              }
+
+              this.ticketEnProceso = enProceso;
+              console.log(this.ticketEnProceso);
               // for(let i=0; i<this.listTickets.length; i++){
               //   let info = {
               //     "tipo": this.listTickets[i].tipo,
@@ -83,6 +109,82 @@ export class ListaTicketsComponent implements OnInit {
   detalleTicket(id){
     console.log("Detalle");
     this._router.navigate(['home/tickets/detalle', id]);
+  }
+
+  getTicketEnProceso(){
+    this.enProceso = true;
+    this.aprobados = false;
+    this.denegados = false;
+    this.completados = false;
+
+    let enProceso:Ticket[] = [];
+
+    for(let filtro of this.listTickets){
+
+      if(filtro.estado == "EN PROCESO" ){
+        enProceso.push(filtro);
+      }
+    }
+
+    this.ticketEnProceso = enProceso;
+
+  }
+
+  getTicketAprobado(){
+    this.enProceso = false;
+    this.aprobados = true;
+    this.denegados = false;
+    this.completados = false;
+
+    let aprobados:Ticket[] = [];
+
+    for(let filtro of this.listTickets){
+
+      if(filtro.estado == "APROBADO" ){
+        aprobados.push(filtro);
+      }
+    }
+
+    this.ticketAprobados = aprobados;
+
+  }
+
+  getTicketDenegado(){
+    this.enProceso = false;
+    this.aprobados = false;
+    this.denegados = true;
+    this.completados = false;
+
+    let denegado:Ticket[] = [];
+
+    for(let filtro of this.listTickets){
+
+      if(filtro.estado == "DENEGADO"){
+        denegado.push(filtro);
+      }
+    }
+
+    this.ticketDenegados = denegado;
+
+  }
+
+  getTicketCompletados(){
+    this.enProceso = false;
+    this.aprobados = false;
+    this.denegados = false;
+    this.completados = true;
+
+    let completados:Ticket[] = [];
+
+    for(let filtro of this.listTickets){
+
+      if(filtro.estado == "COMPLETADO"){
+        completados.push(filtro);
+      }
+    }
+
+    this.ticketCompletados = completados;
+
   }
 
 }

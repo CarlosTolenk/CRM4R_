@@ -101,7 +101,7 @@ exports.editTicket = (req, res) => {
 //Funcion ASync para poder obtener la actualizaciín y verificar los votos del ticket
 async function estadoCompletado(ticket){
   if(ticket.votos >= 3){
-    return ticket.estado = "COMPLETADO";
+    return ticket.estado = "APROBADO";  
   }else{
     return ticket.estado = "EN PROCESO";
   }
