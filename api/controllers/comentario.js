@@ -59,7 +59,7 @@ async function getFiltro(comentario){
    await comentario.forEach((element) => {
      filtroComentario = {
      texto: element.texto,
-     usuario: element.team.nombre_usuario,
+     team: element.team.nombre_usuario,
      avatar: element.team.avatar,
      accion_voto: element.accion_voto
    }

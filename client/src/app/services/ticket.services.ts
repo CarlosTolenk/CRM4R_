@@ -64,7 +64,7 @@ export class TicketService{
     return this._http.put(this.url + 'edit-ticket/' + ticket._id, params, {headers: headers});
   }
 
-  addComentarios(comentario: Comentario): Observable<any>{
+  addComentarios(comentario): Observable<any>{
     let params = JSON.stringify(comentario);
 
     let headers = new HttpHeaders().set('Content-Type', 'application/json')

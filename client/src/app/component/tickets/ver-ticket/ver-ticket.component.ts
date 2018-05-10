@@ -90,7 +90,7 @@ export class VerTicketComponent implements OnInit {
                  //Revisar si en algun comentario ya hay un like
                  this.arrComentario.forEach((element) =>{
                  //En el backend así lo estoy manejando
-                  if(element.accion_voto && element.usuario == this.identity.nombre_usuario){
+                  if(element.accion_voto && element.team == this.identity.nombre_usuario){
                     this.likeDo = true;
                     // console.log("Ya votaste");
                   }
@@ -122,7 +122,7 @@ export class VerTicketComponent implements OnInit {
              // console.log(this.arrComentario);
              //Revisar si han hecho like
              this.arrComentario.forEach((element) =>{
-             if(element.accion_voto && element.usuario == this.identity.nombre_usuario){
+             if(element.accion_voto && element.team == this.identity.nombre_usuario){
                this.likeDo = true;
                // console.log("Ya votaste");
              }
@@ -170,7 +170,7 @@ export class VerTicketComponent implements OnInit {
                 this.status = 'error';
               }else{
                 this._toastService.Success("Tu voto ha sido procesado exitosamente", "Acción Completada");
-                let objComentario:Comentario = {
+                let objComentario = {
                   team: this.identity._id,
                   ticket: this.tickets._id,
                   texto: this.identity.nombre_usuario + " " + "ha aprobado",
@@ -216,7 +216,7 @@ export class VerTicketComponent implements OnInit {
   addComment(comentario){
 
 
-      let objComentario:Comentario = {
+      let objComentario = {
         team: this.identity._id,
         ticket: this.tickets._id,
         texto: this.comentario,
@@ -284,25 +284,28 @@ export class VerTicketComponent implements OnInit {
   eliminarTicket(){
     this.tickets.estado = "DENEGADO";
 
-    this._ticketService.updateTicket(this.tickets).subscribe(
-          response => {
-            if(!response.ticket){
-              this.status = 'error';
-            }else{
-              console.log(response.ticket);
-              this._toastService.Success("Ya se ha completado exitosamente", "Ticket Completado");
-            }
-          },
-          error => {
-                var errorMessage = <any>error;
-                console.log(errorMessage);
-                if(errorMessage != null){
-                  this.status = 'error';
-                  this._toastService.Error("Tu voto no ha podido ser procesado", "Error");
+      this._ticketService.updateTicket(this.tickets).subscribe(
+            response => {
+              if(!response.ticket){
+                this.status = 'error';
+              }else{
+                console.log(response.ticket);
+                this._toastService.Success("Ya se ha completado exitosamente", "Ticket Completado");
               }
-          }
-      );
-  }
-  }
+            },
+            error => {
+                  var errorMessage = <any>error;
+                  console.log(errorMessage);
+                  if(errorMessage != null){
+                    this.status = 'error';
+                    this._toastService.Error("Tu voto no ha podido ser procesado", "Error");
+                }
+            }
+        );
+    }
 
-}
+
+
+
+    //Fin
+  }

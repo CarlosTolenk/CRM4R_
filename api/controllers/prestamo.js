@@ -128,6 +128,9 @@ exports.addPrestamo = (req, res, next) => {
                         ticket.estado = "PRE-DENEGADO";
                         ticket.pre_estado = "PRE-DENEGADO";
                       }
+                    }else{
+                      ticket.estado = "PRE-DENEGADO";
+                      ticket.pre_estado = "PRE-DENEGADO";
                     }
 
                     update = cliente;

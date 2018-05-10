@@ -29,7 +29,8 @@
   <div class="card chat-container">
     <div class="bg-title"></div>
     <div class="title-card">
-      <a (click)="eliminarTicket()" *ngIf="denegar" class="eliminar-ticket"><i class="fas fa-minus-circle"></i></a>
+      <a class="eliminar-ticket" data-toggle="modal" (click)="style.show()" mdbRippleRadius><i class="fas fa-minus-circle"></i></a>
+      <!-- <a (click)="eliminarTicket()" *ngIf="denegar" class="eliminar-ticket"><i class="fas fa-minus-circle"></i></a> -->
       <a (click)="detallePrestamos(tickets.prestamo._id)" ><i class="far fa-file-alt"></i>Condiciones del Préstamo</a>
       <a (click)="concluirTicket()" *ngIf="concluir" class="concluir-ticket"><i class="far fa-check-circle"></i></a>
     </div>
@@ -45,7 +46,7 @@
       <div class="chat" *ngFor="let comentarios of arrComentario" >
         <img src="{{url + 'get-image-team/' + comentarios.avatar }}" class="img-fluid team-avatar" alt="Responsive image" >
         <div class="team-name">
-          <h5>{{comentarios.usuario}}</h5>
+          <h5>{{comentarios.team}}</h5>
           <p class="team-comment">{{comentarios.texto}}</p>
         </div>
       </div>
@@ -58,5 +59,32 @@
         <textarea autosize [(ngModel)]="comentario"></textarea>
       </div>
         <button (click)="addComment(comentario)" class="btn btn-info send"><i class="fab fa-facebook-messenger"></i></button>
+    </div>
+</div>
+
+</div>
+<!--Modal  -->
+
+<div mdbModal #style="mdb-modal" class="modal fade right show" id="SideModalSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-side modal-bottom-right modal-notify modal-info " role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="heading lead">Denegar Automáticamente</p>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="style.hide()">
+                    <span aria-hidden="true" class="white-text">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="text-center">
+                    <i class="fas fa-minus-circle fa-4x mb-3 animated rotateIn"></i>
+                    <p>Estás seguro de querer denegar el préstamo, una vez hecha esta acción no se podrá volver atrás
+                    </p>
+                </div>
+            </div>
+            <div class="modal-footer justify-content-center">
+                <a type="button" class="btn btn-outline-secondary-modal" data-dismiss="modal" (click)="style.hide()" mdbRippleRadius>Cancelar</a>
+                <button type="submit" class="btn btn-primary-modal waves-light" data-dismiss="modal" (click)="style.hide()" (click)="eliminarTicket()"  mdbRippleRadius>Denegar</button>
+            </div>
+        </div>
     </div>
 </div>

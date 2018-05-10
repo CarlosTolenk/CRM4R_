@@ -1,6 +1,6 @@
 export class Comentario {
   constructor(
-    public usuario:any,
+    public team:any,
     public ticket:any,
     public texto:String,
     public accion_voto:any
