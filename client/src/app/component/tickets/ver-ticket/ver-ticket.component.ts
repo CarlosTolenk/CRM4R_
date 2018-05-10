@@ -169,8 +169,9 @@ export class VerTicketComponent implements OnInit {
               if(!response.ticket){
                 this.status = 'error';
               }else{
+                console.log(response.ticket);
                 this._toastService.Success("Tu voto ha sido procesado exitosamente", "Acción Completada");
-                let objComentario = {
+                let objComentario:Comentario = {
                   team: this.identity._id,
                   ticket: this.tickets._id,
                   texto: this.identity.nombre_usuario + " " + "ha aprobado",
@@ -216,7 +217,7 @@ export class VerTicketComponent implements OnInit {
   addComment(comentario){
 
 
-      let objComentario = {
+      let objComentario:Comentario = {
         team: this.identity._id,
         ticket: this.tickets._id,
         texto: this.comentario,

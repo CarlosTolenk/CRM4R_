@@ -3,6 +3,7 @@
 // Registrar los controladores para los modelos
 const Cliente = require('../models/clientes');
 const Ticket = require('../models/tickets');
+const Prestamo = require('../models/prestamos');
 //Requerir modulos necesarios para las funciones
 const mongoosePaginate = require('mongoose-pagination');
 const moment = require('moment');
@@ -70,24 +71,27 @@ exports.editTicket = (req, res) => {
   let ticketId = req.params.id;
   let update = req.body;
   let confirmacion_voto = req.body.votos;
+  let estado_prestamo;
 
 
-  Ticket.findByIdAndUpdate(ticketId, update, {new: true}, (err, ticketUpdated) => {
+  Ticket.findByIdAndUpdate(ticketId, update, {new: true}).populate({path: 'prestamo'}).exec((err, ticketUpdated) => {
     if(err) return res.status(500).send({message: 'Error en la peteción'});
 
     if(!ticketUpdated) return res.status(404).send({message: 'No se ha podido actualizar el ticket'});
 
+
       if(ticketUpdated.tipo == "Prestamo"){
         update = estadoCompletado(ticketUpdated).then((value) => {
             ticketUpdated.estado = value;
-            console.log(ticketUpdated);
 
             Ticket.findByIdAndUpdate(ticketId, ticketUpdated, {new: true}, (err, nuevoticketUpdated) => {
               if(err) return res.status(500).send({message: 'Error en la peteción'});
 
-              if(!nuevoticketUpdated) return res.status(404).send({message: 'No se ha podido actualizar el ticket'});
-            //  console.log(nuevoticketUpdated);
-              return res.status(200).send({ticket: nuevoticketUpdated});
+              if(!nuevoticketUpdated) return res.status(404).send({message: 'No se ha podido actualizar el prestamo'});
+
+                return res.status(200).send({ticket: nuevoticketUpdated});
+              //Envio de información
+
             });
         });
 
@@ -100,21 +104,58 @@ exports.editTicket = (req, res) => {
 };
 //Funcion ASync para poder obtener la actualizaciín y verificar los votos del ticket
 async function estadoCompletado(ticket){
+  let prestamoId = ticket.prestamo._id;
 
-  if(ticket.estado == "COMPLETADO"){
-    return ticket.estado = "COMPLETADO";
-  }
   if(ticket.estado == "DENEGADO"){
+    Prestamo.findByIdAndUpdate(prestamoId, { estado: 'DENEGADO'}, { new: true},  (error, nuevoEstado) => {
+     if(error) return res.status(500).send({message: 'Error en la peteción'});
+
+     if(!nuevoEstado){
+       return res.status(404).send({message: 'No se ha podido actualizar el prestamo'});
+     }else{
+       console.log("Se ha cambiando");
+       console.log(nuevoEstado);
+     }
+
+   });
+
     return ticket.estado = "DENEGADO";
   }else{
     if(ticket.votos >= 3){
+
+      let prestamo_estado = ticket.prestamo.estado = "APROBADO";
+      Prestamo.findByIdAndUpdate(prestamoId, { estado: 'APROBADO'}, { new: true},  (error, nuevoEstado) => {
+       if(error) return res.status(500).send({message: 'Error en la peteción'});
+
+       if(!nuevoEstado){
+         return res.status(404).send({message: 'No se ha podido actualizar el prestamo'});
+       }else{
+         console.log("Se ha cambiando");
+         console.log(nuevoEstado);
+       }
+
+     });
+
       return ticket.estado = "APROBADO";
     }else{
+      Prestamo.findByIdAndUpdate(prestamoId, { estado: 'EN PROCESO'}, { new: true},  (error, nuevoEstado) => {
+       if(error) return res.status(500).send({message: 'Error en la peteción'});
+
+       if(!nuevoEstado){
+         return res.status(404).send({message: 'No se ha podido actualizar el prestamo'});
+       }else{
+         console.log("Se ha cambiando");
+         console.log(nuevoEstado);
+       }
+
+     });
+
       return ticket.estado = "EN PROCESO";
     }
   }
 
 }
+
 
 
 exports.destroyTicket = (req, res) => {

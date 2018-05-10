@@ -128,7 +128,9 @@ exports.addPrestamo = (req, res, next) => {
                         ticket.estado = "PRE-DENEGADO";
                         ticket.pre_estado = "PRE-DENEGADO";
                       }
-                    }else{
+                    }
+
+                    if(prestamo.cuotas > evaluacion){
                       ticket.estado = "PRE-DENEGADO";
                       ticket.pre_estado = "PRE-DENEGADO";
                     }
@@ -179,7 +181,7 @@ exports.getPrestamos  = (req, res) => {
       //Guardar el id que nos llega por la url
       let prestamoId = req.params.id;
 
-      Prestamo.findById(prestamoId) .populate({path: 'cliente'}).exec((err, prestamo) => {
+      Prestamo.findById(prestamoId).populate({path: 'cliente'}).exec((err, prestamo) => {
         if(err) return res.status(500).send({message: 'Error en la peteción'});
 
         if(!prestamo) return res.status(404).send({message: 'Usuario no existe'});
